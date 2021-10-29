@@ -1,0 +1,82 @@
+global !p
+def complete(t, opts):
+	if t:
+		opts = [ m[len(t):] for m in opts if m.startswith(t) ]
+	if len(opts) == 1:
+		return opts[0]
+	return "(" + '|'.join(opts) + ')'
+endglobal	
+
+snippet	st "Status" b
+status $1`!p snip.rv=complete(t[1], ['new','incomplete','invalid'])`
+endsnippet
+
+snippet c "console.log(thing)" b
+console.log(${0});
+endsnippet
+
+snippet f "function ()" b
+${1:}(${2:}) {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet i "if statement" b
+if (${1:}) {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet ei "elseif statement" b
+else if(${1:}) {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet e "else statement" b
+else {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet ie "if else statement" b
+if (${1:}) {
+	${2:}
+} else {
+	${0:}
+}
+endsnippet
+
+snippet des "describe('thing', () => { ... })" b
+describe('${1:}', () => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet it "it('should do', () => { ... })" b
+it('${1:}', () => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet t "test('should do', () => { ... })" b
+test('${1:}', () => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet befe "beforeEach(() => { ... })" b
+beforeEach(() => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet afte "afterEach(() => { ... })" b
+afterEach(() => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet exp "expect(...)" b
+expect(${1:})${0};
+endsnippet
