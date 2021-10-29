@@ -61,6 +61,9 @@ Plug 'google/vim-maktaba'
 Plug 'SirVer/ultisnips'
 " calendar
 Plug 'itchyny/calendar.vim'
+" package.json dependencies manager helpers
+Plug 'vuki656/package-info.nvim'
+Plug 'MunifTanjim/nui.nvim'
 call plug#end()
 
 " configurations
@@ -69,6 +72,7 @@ source ~/.config/nvim/configs/calendar.vim
 source ~/.config/nvim/configs/coc.vim
 source ~/.config/nvim/configs/airline.vim
 source ~/.config/nvim/configs/lazygit.vim
+source ~/.config/nvim/configs/package-info.vim
 source ~/.config/nvim/configs/startify.vim
 source ~/.config/nvim/configs/telescope.vim
 source ~/.config/nvim/configs/treesitter.vim
