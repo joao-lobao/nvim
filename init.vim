@@ -31,6 +31,8 @@ Plug 'gruvbox-community/gruvbox'
 " plugin for intelisense for multiple languages; has own extensions for
 " multiple languages
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" fancy startup plugin
+Plug 'mhinz/vim-startify'
 " easily run tests
 Plug 'janko/vim-test'
 " telescope functionality
@@ -57,6 +59,7 @@ source ~/.config/nvim/configs/general.vim
 source ~/.config/nvim/configs/coc.vim
 source ~/.config/nvim/configs/airline.vim
 source ~/.config/nvim/configs/package-info.vim
+source ~/.config/nvim/configs/startify.vim
 source ~/.config/nvim/configs/telescope.vim
 source ~/.config/nvim/configs/treesitter.vim
 source ~/.config/nvim/configs/ultisnips.vim
