@@ -1,4 +1,10 @@
 {
   "html.format.wrapAttributes": "force-expand-multiline",
-  "html.autoClosingTags": true
+  "html.autoClosingTags": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.enableMessage": "jump",
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "⚠",
+  "diagnostic.hintSign": "H"
 }

@@ -14,7 +14,6 @@ let g:coc_global_extensions = [
       \ 'coc-webview',
       \ 'coc-emmet',
       \ 'coc-tabnine',
-      \ 'coc-explorer',
       \ 'coc-ultisnips',
       \ ]
 
@@ -25,7 +24,6 @@ nmap <silent> <leader>dp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>dn <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>m :CocCommand markdown-preview-enhanced.openPreview<CR>
 nmap <silent> <leader>cg :CocCommand git.showCommit<CR>
-nmap <silent> <leader><leader>e :CocCommand explorer<CR>
 nnoremap <leader>f :CocFix<CR>
 " Formatting selected code.
 xmap <leader>p  <Plug>(coc-format)

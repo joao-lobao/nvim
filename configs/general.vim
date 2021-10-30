@@ -161,35 +161,6 @@ augroup END
 
 
 "-------------HELPER-------------
-" find and replace normal mode flow
-function! s:better_sub() abort
-  let reg = getreg(0)
-  let word = expand('<cword>')
-  call maktaba#buffer#Substitute(word, reg)
-endfunc
-nnoremap <leader>z :call <SID>better_sub()<CR>
-
-
-
-"-------------HELPER-------------
-" find and replace visual mode flow
-function! s:visual_better_sub() abort
-  let reg = getreg(0)
-
-  let line = getline('.')
-  let start = col('v')
-  let end = col('.')
-
-  let word = line[start-1:end-1]
-
-  call maktaba#buffer#Substitute(word, reg)
-  call feedkeys("\<Esc>")
-endfunc
-vnoremap <leader>z <cmd>call <SID>visual_better_sub()<CR>
-
-
-
-"-------------HELPER-------------
 " for vim yank highlight
 augroup highlight_yank
     autocmd!
