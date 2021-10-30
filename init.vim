@@ -48,6 +48,8 @@ Plug 'SirVer/ultisnips'
 " package.json dependencies manager helpers
 Plug 'vuki656/package-info.nvim'
 Plug 'MunifTanjim/nui.nvim'
+" alternate files / naviagation cmds / buffer configuration
+Plug 'tpope/vim-projectionist'
 call plug#end()
 
 " configurations
@@ -59,5 +61,6 @@ source ~/.config/nvim/configs/telescope.vim
 source ~/.config/nvim/configs/treesitter.vim
 source ~/.config/nvim/configs/ultisnips.vim
 source ~/.config/nvim/configs/vim-fugitive.vim
+source ~/.config/nvim/configs/vim-projectionist.vim
 source ~/.config/nvim/configs/vim-test.vim
 
