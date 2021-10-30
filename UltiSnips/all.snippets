@@ -5,22 +5,34 @@ def complete(t, opts):
 	if len(opts) == 1:
 		return opts[0]
 	return "(" + '|'.join(opts) + ')'
-endglobal	
+endglobal
 
+####################
+### GENERAL
+####################
 snippet	st "Status" b
 status $1`!p snip.rv=complete(t[1], ['new','incomplete','invalid'])`
 endsnippet
 
 snippet c "console.log(thing)" b
-console.log(${0});
+console.log(${0:varName${VISUAL}});
 endsnippet
 
 snippet f "function ()" b
-${1:}(${2:}) {
+${1:name${VISUAL}}(${2:}) {
 	${0:${VISUAL}}
 }
 endsnippet
 
+snippet fn "function ()" b
+function ${1:name${VISUAL}}(${2:}) {
+	${0:${VISUAL}}
+}
+endsnippet
+
+####################
+### CONDITIONALS
+####################
 snippet i "if statement" b
 if (${1:}) {
 	${0:${VISUAL}}
@@ -47,6 +59,9 @@ if (${1:}) {
 }
 endsnippet
 
+####################
+### TESTS
+####################
 snippet des "describe('thing', () => { ... })" b
 describe('${1:}', () => {
 	${0:${VISUAL}}
@@ -80,3 +95,42 @@ endsnippet
 snippet exp "expect(...)" b
 expect(${1:})${0};
 endsnippet
+
+####################
+### COMMENTS
+####################
+snippet header "###COMMENT HEADER" w
+####################
+### ${0:HEADER${VISUAL}}
+####################
+endsnippet
+
+snippet date "YYYY-MM-DD" w
+`!v strftime("%Y-%m-%d")`
+endsnippet
+
+snippet todo "TODO comment" b
+TODO: ${0} `!v strftime("%Y-%m-%d")`
+endsnippet
+
+####################
+### CREATE CLASSES
+####################
+snippet ec "export class N {}" b
+export class ${1:N${VISUAL}} {
+	${0}
+}
+endsnippet
+
+snippet ece "export class N extends S {}" b
+export class ${1:N${VISUAL}} extends ${2:S${VISUAL}} {
+	${0}
+}
+endsnippet
+
+snippet eci "export class N implements I {}" b
+export class ${1:N${VISUAL}} implements ${2:I${VISUAL}} {
+	${0}
+}
+endsnippet
+
