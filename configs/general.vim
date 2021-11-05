@@ -107,6 +107,7 @@ nnoremap <leader>vrc :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ç :source %<CR>
 nnoremap gcf :e <cfile><CR>
 nnoremap ! ZQ
+nnoremap daf daBdd
 
 "-------------HELPER-------------
 " autocorrect common mistakes
