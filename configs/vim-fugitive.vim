@@ -1,5 +1,4 @@
 nnoremap gs :G<CR>
-nnoremap <leader>gs :G<CR>
 
 nnoremap gl :Gclog<CR>
 nnoremap <leader>gc :Git commit<CR>

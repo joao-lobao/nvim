@@ -25,6 +25,8 @@ nmap <silent> <leader>dn <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>m :CocCommand markdown-preview-enhanced.openPreview<CR>
 nmap <silent> <leader>cg :CocCommand git.showCommit<CR>
 nnoremap <leader>f :CocFix<CR>
+nnoremap <leader>gu :CocCommand git.chunkUndo<CR>
+nnoremap <leader>gs :CocCommand git.chunkStage<CR>
 " Formatting selected code.
 xmap <leader>p  <Plug>(coc-format)
 nmap <leader>p  <Plug>(coc-format)
