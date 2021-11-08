@@ -136,8 +136,8 @@ call AutoCorrect()
 
 "-------------HELPER-------------
 " to highlight char as red in 79 column
-highlight OverLength ctermbg=red guibg=red
-call matchadd('OverLength', '\%<80v.\%>79v')
+" highlight OverLength ctermbg=red guibg=red
+" call matchadd('OverLength', '\%<80v.\%>79v')
 
 
 
