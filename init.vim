@@ -52,6 +52,8 @@ Plug 'vuki656/package-info.nvim'
 Plug 'MunifTanjim/nui.nvim'
 " alternate files / naviagation cmds / buffer configuration
 Plug 'tpope/vim-projectionist'
+" cool marks feature, attaches on the gutter the mark associated with each line
+Plug 'kshenoy/vim-signature'
 call plug#end()
 
 " configurations
