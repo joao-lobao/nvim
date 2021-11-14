@@ -75,6 +75,7 @@ nnoremap <leader>nh :nohl<CR>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
 nnoremap <leader>bd :bp\|bd #<CR>
+nnoremap X :bd<CR>
 nnoremap <leader>bD :bd!<CR>
 
 " shift lines up and down in visual mode
@@ -104,7 +105,7 @@ tnoremap <leader>bp <c-\><c-n><c-w>:bp<CR>
 
 " other customizations
 nnoremap <leader>vrc :e ~/.config/nvim/init.vim<CR>
-nnoremap <leader>ç :source %<CR>
+nnoremap <leader>s :source %<CR>
 nnoremap gcf :e <cfile><CR>
 nnoremap ! ZQ
 nnoremap daf daBdd
