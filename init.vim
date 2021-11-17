@@ -12,6 +12,7 @@
 call plug#begin('~/.config/nvim/plugged')
 " plugin for statusline
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " plugin for auto pairs feature
 Plug 'jiangmiao/auto-pairs'
 " plugin for surrounding feature
