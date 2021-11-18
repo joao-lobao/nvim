@@ -184,3 +184,10 @@ function! s:create_and_go_to_class() abort
   norm w
 endfunc
 nnoremap <leader>cc :call <SID>create_and_go_to_class()<CR>
+
+nnoremap <leader>C :terminal<CR>acmatrix -Br<CR>
+tnoremap X <C-c>exit<CR><C-\><C-n>:bd!<CR>
+function! s:matrix() abort
+  terminal cmatrix -Bru 10
+endfunc
+nnoremap <leader>C :call <SID>matrix()<CR>
