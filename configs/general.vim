@@ -106,9 +106,9 @@ tnoremap <leader>bp <c-\><c-n><c-w>:bp<CR>
 " other customizations
 nnoremap <leader>vrc :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>s :source %<CR>
+" create and goto file
 nnoremap gcf :e <cfile><CR>
 nnoremap ! ZQ
-nnoremap daf daBdd
 
 "-------------HELPER-------------
 " autocorrect common mistakes
