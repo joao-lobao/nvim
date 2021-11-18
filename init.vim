@@ -55,6 +55,8 @@ Plug 'MunifTanjim/nui.nvim'
 Plug 'tpope/vim-projectionist'
 " cool marks feature, attaches on the gutter the mark associated with each line
 Plug 'kshenoy/vim-signature'
+" provides two text objects: ax and ix. They represent XML/HTML attributes.
+Plug 'kana/vim-textobj-user' | Plug 'whatyouhide/vim-textobj-xmlattr'
 call plug#end()
 
 " configurations
