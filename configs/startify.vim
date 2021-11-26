@@ -8,13 +8,10 @@ let g:startify_lists = [
           \ ]
 
 let g:startify_bookmarks = [
-            \ { 'v': '~/.config/nvim/init.vim' },
             \ { 't': '~/.tmux.conf' },
             \ { 'z': '~/.zshrc' },
-            \ { 'n': '~/Desktop/coding/notes/index.md' },
-            \ { 'd': '~/Desktop/dotfiles' },
-            \ { 'c': '~/Desktop/coding/crypto-watcher/src/app/components/table/table.component.ts' },
             \ ]
 
 let g:startify_session_persistence = 1
 
+let g:startify_custom_indices = ['c', 'd', 'n', 'v']
