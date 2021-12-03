@@ -22,7 +22,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>dp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>dn <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>m :CocCommand markdown-preview-enhanced.openPreview<CR>
+nmap <silent> <leader>mo :CocCommand markdown-preview-enhanced.openPreview<CR>
+nmap <silent> <leader>mf :CocCommand markdownlint.fixAll<CR>
 nmap <silent> <leader>cg :CocCommand git.showCommit<CR>
 nnoremap <leader>f :CocFix<CR>
 nnoremap <leader>gu :CocCommand git.chunkUndo<CR>
