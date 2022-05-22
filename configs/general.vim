@@ -180,7 +180,7 @@ function! s:create_and_go_to_class() abort
   call append(0, 'export class '..reg..' {}')
   goto 1
   norm 2w
-  norm ~
+  norm gUl
   norm w
 endfunc
 nnoremap <leader>cc :call <SID>create_and_go_to_class()<CR>
