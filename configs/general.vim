@@ -48,8 +48,6 @@ set si "Smart indent
 inoremap jj <Esc>
 " Save file
 nnoremap <leader>w :w<CR>
-" Quit
-nnoremap <leader>q :q<CR>
 
 " Refresh file
 nnoremap <leader>r :e!<CR>
@@ -68,15 +66,21 @@ nnoremap == gg=G''
 
 " no highlight
 nnoremap <leader>nh :nohl<CR>
+nnoremap - :nohl<CR>
 
 
 " ------BUFFERS------
 " buffer naviagation, open and deleting
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
-nnoremap <leader>bd :bp\|bd #<CR>
-nnoremap X :bd<CR>
+" Quitting buffer
+nnoremap gq :bp\|bd #<CR>
+nnoremap gQ :bp\|bd! #<CR>
+nnoremap <leader>bd :bd<CR>
 nnoremap <leader>bD :bd!<CR>
+" Quitting vim
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :q!<CR>
 
 " shift lines up and down in visual mode
 vnoremap J :m '>+1<CR>gv=gv
@@ -108,7 +112,6 @@ nnoremap <leader>vrc :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>s :source %<CR>
 " create and goto file
 nnoremap gcf :e <cfile><CR>
-nnoremap ! ZQ
 
 "-------------HELPER-------------
 " autocorrect common mistakes
