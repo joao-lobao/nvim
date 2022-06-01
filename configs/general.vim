@@ -46,6 +46,7 @@ set si "Smart indent
 " MAPPINGS
 " escape insert mode
 inoremap jj <Esc>
+inoremap Ç ç
 " Save file
 nnoremap <leader>w :w<CR>
 
