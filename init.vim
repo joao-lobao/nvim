@@ -59,6 +59,8 @@ Plug 'tpope/vim-projectionist'
 Plug 'kshenoy/vim-signature'
 " provides two text objects: ax and ix. They represent XML/HTML attributes.
 Plug 'kana/vim-textobj-user' | Plug 'whatyouhide/vim-textobj-xmlattr'
+" terminal in vim
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " configurations
@@ -74,4 +76,5 @@ source ~/.config/nvim/configs/ultisnips.vim
 source ~/.config/nvim/configs/vim-fugitive.vim
 source ~/.config/nvim/configs/vim-projectionist.vim
 source ~/.config/nvim/configs/vim-test.vim
+source ~/.config/nvim/configs/vim-floaterm.vim
 
