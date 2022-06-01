@@ -10,6 +10,7 @@ let g:coc_global_extensions = [
       \ 'coc-angular',
       \ 'coc-vimlsp',
       \ 'coc-git',
+      \ 'coc-markdownlint',
       \ 'coc-markdown-preview-enhanced',
       \ 'coc-webview',
       \ 'coc-emmet',
