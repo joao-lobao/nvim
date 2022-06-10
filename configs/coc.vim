@@ -12,13 +12,16 @@ let g:coc_global_extensions = [
       \ 'coc-git',
       \ 'coc-markdownlint',
       \ 'coc-markdown-preview-enhanced',
+      \ 'coc-marketplace',
       \ 'coc-webview',
       \ 'coc-emmet',
       \ 'coc-tabnine',
       \ 'coc-ultisnips',
+      \ 'coc-calc',
       \ ]
 
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> Q :CocCommand calc.append<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>dp <Plug>(coc-diagnostic-prev)

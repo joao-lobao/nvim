@@ -113,8 +113,6 @@ nnoremap <leader>vrc :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>s :source %<CR>
 " create and goto file
 nnoremap gcf :e <cfile><CR>
-" perform arithmetic operations
-nnoremap Q 0f=a<space><space><Esc>d$0yt=A<C-r>=<C-r>"<CR><Esc>
 
 "-------------HELPER-------------
 " autocorrect common mistakes
