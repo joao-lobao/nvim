@@ -28,7 +28,7 @@ Plug 'tpope/vim-fugitive'
 " improve syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " to create custom mappings for text objects (ex: `daf` to delete a function)
-Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch' : '0.5-compat'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " gruvbox colorscheme
 Plug 'gruvbox-community/gruvbox'
 " plugin for intelisense for multiple languages; has own extensions for
