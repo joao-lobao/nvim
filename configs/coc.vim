@@ -30,8 +30,8 @@ nnoremap <leader>f :CocFix<CR>
 nnoremap <leader>gu :CocCommand git.chunkUndo<CR>
 nnoremap <leader>gs :CocCommand git.chunkStage<CR>
 " Formatting selected code.
-xmap <leader>p  <Plug>(coc-format)
-nmap <leader>p  <Plug>(coc-format)
+xmap <leader>p <Plug>(coc-format)
+nmap <leader>p <Plug>(coc-format)
 
 
 " -------------BEGIN COC BOILERPLATE-------------
@@ -112,5 +112,7 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
+command! -nargs=* -range CocAction :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, <f-args>])
+command! -nargs=* -range CocFix    :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, 'quickfix'])
 " -------------END COC BOILERPLATE-------------
 
