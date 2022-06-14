@@ -188,3 +188,18 @@ function! s:create_and_go_to_class() abort
   norm w
 endfunc
 nnoremap <leader>cc :call <SID>create_and_go_to_class()<CR>
+
+function! s:animation() abort
+  while 1
+    norm _
+    sleep 1
+    for i in range(1,3)
+      execute "normal f "
+      sleep 1
+    endfor
+    norm $
+    sleep 1
+  endwhile
+endfunc
+:command Animation :call <SID>animation()
+nnoremap + :Animation<CR>
