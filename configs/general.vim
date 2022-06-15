@@ -190,17 +190,34 @@ function! s:create_and_go_to_class() abort
 endfunc
 nnoremap <leader>cc :call <SID>create_and_go_to_class()<CR>
 
+"-------------HELPER-------------
+" create cursor animation
 function! s:animation() abort
   while 1
     norm _
+    execute "normal f "
     sleep 1
-    for i in range(1,3)
-      execute "normal f "
+    for i in range(1,5)
+      execute "normal 5f "
       sleep 1
     endfor
-    norm $
-    sleep 1
+    norm _
   endwhile
 endfunc
 :command Animation :call <SID>animation()
-nnoremap + :Animation<CR>
+
+"-------------HELPER-------------
+" create window with chosen text to use with animation function
+function! s:coffee_break() abort
+  45new "register"
+  let text = [
+   \'', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+   \'-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------',
+   \'--------------------------------------------------------------------------- COFFEE BREAK IN PROGRESS --------------------------------------------------------------------------------',
+   \'---------------------------------------------------------------------------                          --------------------------------------------------------------------------------',
+   \'-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------']
+  call append(0, text)
+  set norelativenumber
+  set nonumber
+endfunc
+nnoremap + :call <SID>coffee_break()<CR>kk:Animation<CR>
