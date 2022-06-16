@@ -16,9 +16,15 @@ require('telescope').setup {
 
 EOF
 
+" find git files
 nnoremap <silent> <leader>gF <Cmd>Telescope git_files<CR>
-nnoremap <silent> <leader>F <Cmd>Telescope find_files<CR>
-nnoremap <silent> <leader>R <Cmd>Telescope live_grep<CR>
+" find all files (doesn't respect .gitignore)
+nnoremap <silent> <leader>F <Cmd>Telescope find_files no_ignore=true<CR>
+" grep respecting .gitignore
+nnoremap <silent> <leader>r <Cmd>Telescope live_grep<CR>
+" grep not respecting .gitignore
+nnoremap <silent> <leader>R :lua require('telescope.builtin').live_grep({ additional_args = function(opts) return { "--no-ignore" } end })<CR>
+
 nnoremap <silent> <leader>B <Cmd>Telescope buffers<CR>
 nnoremap <silent> <leader>M <Cmd>Telescope marks<CR>
 nnoremap <silent> <leader>T <Cmd>Telescope tags<CR>

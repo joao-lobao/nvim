@@ -51,7 +51,7 @@ inoremap Ç ç
 nnoremap <leader>w :w<CR>
 
 " Refresh file
-nnoremap <leader>r :e!<CR>
+nnoremap <leader>5 :e!<CR>
 
 " Go to previous file
 nnoremap <leader>P :e#<CR>
