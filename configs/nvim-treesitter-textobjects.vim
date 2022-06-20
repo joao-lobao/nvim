@@ -6,6 +6,15 @@ require'nvim-treesitter.configs'.setup {
     disable = { "c", "rust" },  -- list of language that will be disabled
   },
   textobjects = {
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>z"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>Z"] = "@parameter.inner",
+      },
+    },
     select = {
       enable = true,
 
