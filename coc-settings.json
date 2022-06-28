@@ -6,5 +6,6 @@
   "diagnostic.errorSign": "✖",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "⚠",
-  "diagnostic.hintSign": "H"
+  "diagnostic.hintSign": "H",
+  "explorer.quitOnOpen": true
 }

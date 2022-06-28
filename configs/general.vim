@@ -97,9 +97,6 @@ inoremap <Down> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 
-" open Netrw explorer
-nnoremap <leader>e :Explore<CR>
-
 " terminal mode mappings
 tnoremap <leader>h <c-\><c-n><c-w>h
 tnoremap <leader>j <c-\><c-n><c-w>j

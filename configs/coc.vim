@@ -18,6 +18,7 @@ let g:coc_global_extensions = [
       \ 'coc-tabnine',
       \ 'coc-ultisnips',
       \ 'coc-calc',
+      \ 'coc-explorer',
       \ ]
 
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
@@ -29,6 +30,7 @@ nmap <silent> <leader>dn <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>mo :CocCommand markdown-preview-enhanced.openPreview<CR>
 nmap <silent> <leader>mf :CocCommand markdownlint.fixAll<CR>
 nmap <silent> <leader>cg :CocCommand git.showCommit<CR>
+nmap <space>e <Cmd>CocCommand explorer<CR>
 nnoremap <leader>f :CocFix<CR>
 nnoremap <leader>gu :CocCommand git.chunkUndo<CR>
 nnoremap <leader>gs :CocCommand git.chunkStage<CR>
