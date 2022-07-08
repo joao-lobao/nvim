@@ -7,5 +7,6 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "⚠",
   "diagnostic.hintSign": "H",
-  "explorer.quitOnOpen": true
+  "explorer.quitOnOpen": true,
+  "tabnine.priority": 90
 }
