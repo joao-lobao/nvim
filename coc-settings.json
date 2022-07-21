@@ -8,5 +8,6 @@
   "diagnostic.infoSign": "⚠",
   "diagnostic.hintSign": "H",
   "explorer.quitOnOpen": true,
-  "tabnine.priority": 90
+  "tabnine.disable_filetypes": ["javascript", "typescript"],
+  "javascript.suggest.names": false
 }
