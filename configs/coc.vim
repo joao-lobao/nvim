@@ -35,6 +35,7 @@ nmap <space>e <Cmd>CocCommand explorer<CR>
 nnoremap <leader>f :CocFix<CR>
 nnoremap <leader>gu :CocCommand git.chunkUndo<CR>
 nnoremap <leader>gs :CocCommand git.chunkStage<CR>
+nnoremap <leader>gk :CocCommand git.chunkInfo<CR>
 " Formatting selected code.
 xmap <leader>p <Plug>(coc-format)
 nmap <leader>p <Plug>(coc-format)
