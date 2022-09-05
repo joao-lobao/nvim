@@ -218,3 +218,10 @@ function! s:coffee_break() abort
   set nonumber
 endfunc
 nnoremap + :call <SID>coffee_break()<CR>kk:Animation<CR>
+
+"-------------HELPER-------------
+" set transparent background
+function! s:transparent() abort
+  highlight Normal ctermbg=NONE guibg=NONE
+endfunc
+:command Transparent :call <SID>transparent()
