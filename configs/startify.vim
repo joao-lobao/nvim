@@ -17,4 +17,4 @@ let g:startify_bookmarks = [
 
 let g:startify_session_persistence = 1
 
-let g:startify_custom_indices = ['c', 'd', 'n', 'v']
+let g:startify_custom_indices = ['c', 'd', 'm', 'n', 'v']
