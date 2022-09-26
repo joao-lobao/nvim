@@ -8,6 +8,11 @@
 "   - download a font from nerd fonts (ex: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.ttf)
 "   - add the downloaded file on ~/.fonts
 "   - select the font from the list on the terminal preferences font settings
+" 6 - a C compiler has to be installed because of nvim-treesiter
+"   - sudo apt install build-essential
+" 7 - pip3 has to be installed because of UltiSnips
+"   - sudo apt install python3-pip
+"   - sudo pip3 install neovim --upgrade
 
 call plug#begin('~/.config/nvim/plugged')
 " plugin for statusline
