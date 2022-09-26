@@ -65,6 +65,8 @@ Plug 'voldikss/vim-floaterm'
 Plug 'hasufell/ghcup.vim'
 " neovim dependency to ghcup.vim
 Plug 'rbgrouleff/bclose.vim'
+" run a snippet of code without ever leaving neovim
+Plug 'arjunmahishi/run-code.nvim'
 call plug#end()
 
 " configurations
