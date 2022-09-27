@@ -66,10 +66,6 @@ Plug 'kshenoy/vim-signature'
 Plug 'kana/vim-textobj-user' | Plug 'whatyouhide/vim-textobj-xmlattr'
 " terminal in vim
 Plug 'voldikss/vim-floaterm'
-" vim plugin to use GHCup from within vim buffers.
-Plug 'hasufell/ghcup.vim'
-" neovim dependency to ghcup.vim
-Plug 'rbgrouleff/bclose.vim'
 " run a snippet of code without ever leaving neovim
 Plug 'arjunmahishi/run-code.nvim'
 call plug#end()
