@@ -68,12 +68,16 @@ Plug 'kana/vim-textobj-user' | Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'voldikss/vim-floaterm'
 " run a snippet of code without ever leaving neovim
 Plug 'arjunmahishi/run-code.nvim'
+"extends increment and decrement functionality for toggling boolean values as
+"well as days of the week, months, and ROYGBIV color names
+Plug 'nat-418/boole.nvim'
 call plug#end()
 
 " configurations
 source ~/.config/nvim/configs/general.vim
 source ~/.config/nvim/configs/coc.vim
 source ~/.config/nvim/configs/airline.vim
+source ~/.config/nvim/configs/boole.vim
 source ~/.config/nvim/configs/package-info.vim
 source ~/.config/nvim/configs/startify.vim
 source ~/.config/nvim/configs/telescope.vim
