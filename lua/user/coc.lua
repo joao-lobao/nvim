@@ -1,48 +1,48 @@
-let g:coc_global_extensions = [
-      \ 'coc-yank',
-      \ 'coc-tsserver',
-      \ 'coc-tslint-plugin',
-      \ 'coc-prettier',
-      \ 'coc-json',
-      \ 'coc-html',
-      \ 'coc-eslint',
-      \ 'coc-css',
-      \ 'coc-angular',
-      \ 'coc-vimlsp',
-      \ 'coc-git',
-      \ 'coc-markdownlint',
-      \ 'coc-markdown-preview-enhanced',
-      \ 'coc-marketplace',
-      \ 'coc-webview',
-      \ 'coc-emmet',
-      \ 'coc-tabnine',
-      \ 'coc-ultisnips',
-      \ 'coc-calc',
-      \ 'coc-explorer',
-      \ ]
+vim.g.coc_global_extensions = { 
+  'coc-yank',
+  'coc-tsserver',
+  'coc-tslint-plugin',
+  'coc-prettier',
+  'coc-json',
+  'coc-html',
+  'coc-eslint',
+  'coc-css',
+  'coc-angular',
+  'coc-vimlsp',
+  'coc-git',
+  'coc-markdownlint',
+  'coc-markdown-preview-enhanced',
+  'coc-marketplace',
+  'coc-webview',
+  'coc-emmet',
+  'coc-tabnine',
+  'coc-ultisnips',
+  'coc-calc',
+  'coc-explorer',
+ }
 
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
-nnoremap <silent> Q :CocCommand calc.append<CR>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <leader>dp <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>dn <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>di <Plug>(coc-diagnostic-info)
-nmap <silent> <leader>mo :CocCommand markdown-preview-enhanced.openPreview<CR>
-nmap <silent> <leader>mf :CocCommand markdownlint.fixAll<CR>
-nmap <silent> <leader>cg :CocCommand git.showCommit<CR>
-nmap <space>e <Cmd>CocCommand explorer<CR>
-nnoremap <leader>f :CocFix<CR>
-nnoremap <leader>gu :CocCommand git.chunkUndo<CR>
-nnoremap <leader>gs :CocCommand git.chunkStage<CR>
-nnoremap <leader>gk :CocCommand git.chunkInfo<CR>
-" Formatting selected code.
-xmap <leader>p <Plug>(coc-format)
-nmap <leader>p <Plug>(coc-format)
+vim.api.nvim_set_keymap('n', '<leader>y', ':<C-u>CocList -A --normal yank<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'Q', ':CocCommand calc.append<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dp', '<Plug>(coc-diagnostic-prev)', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dn', '<Plug>(coc-diagnostic-next)', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>di', '<Plug>(coc-diagnostic-info)', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mo', ':CocCommand markdown-preview-enhanced.openPreview<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mf', ':CocCommand markdownlint.fixAll<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>cg', ':CocCommand git.showCommit<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>e', '<Cmd>CocCommand explorer<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>f', ':CocFix<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gu', ':CocCommand git.chunkUndo<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gs', ':CocCommand git.chunkStage<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gk', ':CocCommand git.chunkInfo<CR>', { noremap = true })
+
+-- Formatting selected code
+vim.api.nvim_set_keymap('x', '<leader>p', '<Plug>(coc-format)', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>p', '<Plug>(coc-format)', { noremap = true })
 
 
-" -------------BEGIN COC BOILERPLATE-------------
-lua <<EOF
+-------------BEGIN COC BOILERPLATE-------------
 -- Some servers have issues with backup files, see #649.
 vim.opt.backup = false
 vim.opt.writebackup = false
@@ -128,20 +128,21 @@ vim.api.nvim_create_autocmd("User", {
     command = "call CocActionAsync('showSignatureHelp')",
     desc = "Update signature help on jump placeholder"
 })
-EOF
 
-" Symbol renaming.
-nmap <F2> <Plug>(coc-rename)
+-- Symbol renaming.
+vim.api.nvim_set_keymap('n', '<F2>', '<Plug>(coc-rename)', { noremap = true })
 
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+vim.cmd [[
+  augroup mygroup
+    autocmd!
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder.
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  augroup end
 
-command! -nargs=* -range CocAction :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, <f-args>])
-command! -nargs=* -range CocFix    :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, 'quickfix'])
-" -------------END COC BOILERPLATE-------------
+  command! -nargs=* -range CocAction :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, <f-args>])
+  command! -nargs=* -range CocFix    :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, 'quickfix'])
+]]
+-------------END COC BOILERPLATE-------------
 
