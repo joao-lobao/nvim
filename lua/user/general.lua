@@ -58,7 +58,7 @@ vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', { noremap = true })
 
 -- indent
-vim.api.nvim_set_keymap('n', '==', 'gg=G', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>=', 'gg=G', { noremap = true })
 
 -- no highlight
 vim.api.nvim_set_keymap('n', '<leader>nh', ':nohl<CR>', { noremap = true })
@@ -75,8 +75,8 @@ vim.api.nvim_set_keymap('n', 'gQ', ':bp|bd! #<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>bD', ':bd!<CR>', { noremap = true })
 -- Quitting vim
-vim.api.nvim_set_keymap('n', 'q', ':q<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'Q', ':q!<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>Q', ':q!<CR>', { noremap = true })
 
 -- no operation keys
 vim.api.nvim_set_keymap('n', '<Up>', '<NOP>', { noremap = true })

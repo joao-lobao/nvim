@@ -22,7 +22,7 @@ vim.g.coc_global_extensions = {
  }
 
 vim.api.nvim_set_keymap('n', '<leader>y', ':<C-u>CocList -A --normal yank<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'Q', ':CocCommand calc.append<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '=', ':CocCommand calc.append<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dp', '<Plug>(coc-diagnostic-prev)', { noremap = true, silent = true })
