@@ -13,13 +13,12 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +29 src/app/components/table/table.component.ts
-badd +113 src/app/components/table/table.component.html
+badd +40 src/app/components/table/table.component.ts
+badd +17 src/app/components/table/table.component.html
 argglobal
 %argdel
 edit src/app/components/table/table.component.ts
 argglobal
-balt src/app/components/table/table.component.html
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -30,14 +29,20 @@ setlocal fdn=20
 setlocal fen
 13
 normal! zo
+40
+normal! zo
+42
+normal! zo
+44
+normal! zo
 59
 normal! zo
-let s:l = 27 - ((22 * winheight(0) + 19) / 38)
+let s:l = 40 - ((19 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 27
-normal! 0
+keepjumps 40
+normal! 05|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
