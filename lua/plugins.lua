@@ -25,8 +25,7 @@ return require('packer').startup(function(use)
   -- Have packer manage itself
   use({ "wbthomason/packer.nvim", opt = true }) 
   -- plugin for statusline
-  use({ 'vim-airline/vim-airline' })
-  use({ 'vim-airline/vim-airline-themes' })
+  use({ 'nvim-lualine/lualine.nvim' })
   -- plugin for auto pairs feature
   use({ 'jiangmiao/auto-pairs' })
   -- plugin for surrounding feature

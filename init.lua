@@ -1,6 +1,6 @@
 require("plugins")
 require("user.general")
-require("user.airline")
+require("user.lualine")
 require("user.coc")
 require("user.boole")
 require("user.nvim-treesitter-textobjects")
