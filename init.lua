@@ -1,5 +1,5 @@
-require("plugins")
 require("impatient")
+require("plugins")
 require("user.general")
 require("user.lualine")
 require("user.coc")
