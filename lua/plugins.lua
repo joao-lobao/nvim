@@ -41,7 +41,7 @@ return require('packer').startup(function(use)
   -- plugin for git integration
   use({ 'tpope/vim-fugitive' })
   -- improve syntax highlighting
-  use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
+  use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', commit = 'addc129a4f272aba0834bd0a7b6bd4ad5d8c801b' })
   -- to create custom mappings for text objects (ex: `daf` to delete a function)
   use({ 'nvim-treesitter/nvim-treesitter-textobjects' })
   -- gruvbox colorscheme
