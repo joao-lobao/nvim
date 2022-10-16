@@ -86,6 +86,9 @@ vim.api.nvim_set_keymap('i', '<Down>', '<NOP>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<Left>', '<NOP>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<Right>', '<NOP>', { noremap = true })
 
+-- no mouse
+vim.opt.mouse = ""
+
 -- terminal mode mappings
 vim.api.nvim_set_keymap('t', '<leader>h', '<c-\\><c-n><c-w>h', { noremap = true })
 vim.api.nvim_set_keymap('t', '<leader>j', '<c-\\><c-n><c-w>j', { noremap = true })
