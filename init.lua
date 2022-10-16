@@ -1,4 +1,5 @@
 require("plugins")
+require("impatient")
 require("user.general")
 require("user.lualine")
 require("user.coc")
