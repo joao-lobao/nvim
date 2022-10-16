@@ -23,7 +23,7 @@ return require('packer').startup(function(use)
   -- My plugins here
 
   -- Have packer manage itself
-  use({ "wbthomason/packer.nvim", opt = true }) 
+  use({ 'wbthomason/packer.nvim', opt = true }) 
   -- speed loading Lua modules and files.
   use 'lewis6991/impatient.nvim'
   -- plugin for statusline

@@ -38,11 +38,20 @@ vim.api.nvim_set_keymap('n', '<leader>gs', ':CocCommand git.chunkStage<CR>', { n
 vim.api.nvim_set_keymap('n', '<leader>gk', ':CocCommand git.chunkInfo<CR>', { noremap = true })
 
 -- Formatting selected code
-vim.api.nvim_set_keymap('x', '<leader>p', '<Plug>(coc-format)', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>p', '<Plug>(coc-format)', { noremap = true })
+vim.api.nvim_set_keymap('x', '<leader>p', '<Plug>(coc-format)', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>p', '<Plug>(coc-format)', { noremap = true, silent = true })
+
+-- Symbol renaming.
+vim.api.nvim_set_keymap('n', '<F2>', '<Plug>(coc-rename)', { noremap = true })
 
 
--------------BEGIN COC BOILERPLATE-------------
+---------------BEGIN COC BOILERPLATE-------------
+-- Create CocAction and CocFix command
+vim.cmd [[
+  command! -nargs=* -range CocAction :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, <f-args>])
+  command! -nargs=* -range CocFix    :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, 'quickfix'])
+]]
+
 -- Some servers have issues with backup files, see #649.
 vim.opt.backup = false
 vim.opt.writebackup = false
@@ -55,35 +64,31 @@ vim.opt.updatetime = 300
 -- diagnostics appear/become resolved.
 vim.opt.signcolumn = "yes"
 
-
+local keyset = vim.keymap.set
 -- Auto complete
 function _G.check_back_space()
     local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
-
-local opts = {silent = true, noremap = true, expr = true}
 
 -- Use tab for trigger completion with characters ahead and navigate.
 -- NOTE: There's always complete item selected by default, you may want to enable
 -- no select by `"suggest.noselect": true` in your configuration file.
 -- NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 -- other plugin before putting this into your config.
-vim.api.nvim_set_keymap("i", "<TAB>",
-                        'coc#pum#visible() ? coc#pum#next(1) : "<TAB>"', opts)
-vim.api.nvim_set_keymap("i", "<S-TAB>",
-                        [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 -- <C-g>u breaks current undo, please make your own choice.
-vim.api.nvim_set_keymap("i", "<cr>",
-                        [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
+keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
-local keyset = vim.keymap.set
 -- Use <c-j> to trigger snippets
 keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
--- Use <c-space> to trigger completion.
+-- Use ç to trigger completion.
 keyset("i", "ç", "coc#refresh()", {silent = true, expr = true})
+
 
 -- Use K to show documentation in preview window.
 function _G.show_docs()
@@ -107,12 +112,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
     desc = "Highlight symbol under cursor on CursorHold"
 })
 
-
--- Formatting selected code.
-keyset("x", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
-keyset("n", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
-
-
 -- Setup formatexpr specified filetype(s).
 vim.api.nvim_create_autocmd("FileType", {
     group = "CocGroup",
@@ -129,20 +128,6 @@ vim.api.nvim_create_autocmd("User", {
     desc = "Update signature help on jump placeholder"
 })
 
--- Symbol renaming.
-vim.api.nvim_set_keymap('n', '<F2>', '<Plug>(coc-rename)', { noremap = true })
+vim.api.nvim_create_user_command("Refactor", "call CocAction('refactor')", {})
 
-vim.cmd [[
-  augroup mygroup
-    autocmd!
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder.
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  augroup end
-
-  command! -nargs=* -range CocAction :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, <f-args>])
-  command! -nargs=* -range CocFix    :call coc#rpc#notify('codeActionRange', [<line1>, <line2>, 'quickfix'])
-]]
 -------------END COC BOILERPLATE-------------
-
