@@ -1,5 +1,4 @@
 vim.cmd [[ silent! colorscheme gruvbox]]
-vim.o.background = "dark"
 
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
@@ -49,7 +48,7 @@ vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>5', ':e!<CR>', { noremap = true })
 
 -- Go to previous file
-vim.api.nvim_set_keymap('n', '<leader>5', ':e#<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>P', ':e#<CR>', { noremap = true })
 
 -- Switching windows
 vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', { noremap = true })
@@ -61,7 +60,6 @@ vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>=', 'gg=G', { noremap = true })
 
 -- no highlight
-vim.api.nvim_set_keymap('n', '<leader>nh', ':nohl<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '-', ':nohl<CR>', { noremap = true })
 
 
