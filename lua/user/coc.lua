@@ -70,7 +70,7 @@ local opts = {silent = true, noremap = true, expr = true}
 -- NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 -- other plugin before putting this into your config.
 vim.api.nvim_set_keymap("i", "<TAB>",
-                        'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+                        'coc#pum#visible() ? coc#pum#next(1) : "<TAB>"', opts)
 vim.api.nvim_set_keymap("i", "<S-TAB>",
                         [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 
@@ -83,7 +83,7 @@ local keyset = vim.keymap.set
 -- Use <c-j> to trigger snippets
 keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 -- Use <c-space> to trigger completion.
-keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+keyset("i", "ç", "coc#refresh()", {silent = true, expr = true})
 
 -- Use K to show documentation in preview window.
 function _G.show_docs()
