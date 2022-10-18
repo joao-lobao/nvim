@@ -104,6 +104,15 @@ vim.api.nvim_set_keymap('n', '<leader>s', ':source %<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'gcf', ':e <cfile><CR>', { noremap = true })
 
 
+--------------HELPER-------------
+--- for vim yank highlight
+vim.cmd [[
+  augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 200})
+  augroup END
+]]
+
 
 -------------HELPER-------------
 -- Remember cursor position
