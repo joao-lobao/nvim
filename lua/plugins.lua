@@ -79,10 +79,11 @@ return require('packer').startup(function(use)
   use({ 'voldikss/vim-floaterm' })
   -- run a snippet of code without ever leaving neovim
   use({ 'arjunmahishi/flow.nvim' })
-  --extends increment and decrement functionality for toggling boolean values as
-  --well as days of the week, months, and ROYGBIV color names
+  -- extends increment and decrement functionality for toggling boolean values as
+  -- well as days of the week, months, and ROYGBIV color names
   use({ 'nat-418/boole.nvim' })
-
+  -- hatch a duck or any emoji/character
+  use({ 'tamton-aquib/duck.nvim' })
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
