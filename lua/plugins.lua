@@ -84,6 +84,8 @@ return require('packer').startup(function(use)
   use({ 'nat-418/boole.nvim' })
   -- hatch a duck or any emoji/character
   use({ 'tamton-aquib/duck.nvim' })
+  use({ 'ziontee113/neo-minimap' })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
