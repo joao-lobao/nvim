@@ -7,6 +7,7 @@ vim.g.coc_global_extensions = {
   'coc-html',
   'coc-eslint',
   'coc-css',
+  'coc-lua',
   'coc-angular',
   'coc-vimlsp',
   'coc-git',
@@ -18,7 +19,6 @@ vim.g.coc_global_extensions = {
   'coc-tabnine',
   'coc-ultisnips',
   'coc-calc',
-  'coc-explorer',
  }
 
 vim.api.nvim_set_keymap('n', '<leader>y', ':<C-u>CocList -A --normal yank<CR>', { noremap = true, silent = true })
@@ -31,7 +31,6 @@ vim.api.nvim_set_keymap('n', '<leader>di', '<Plug>(coc-diagnostic-info)', { nore
 vim.api.nvim_set_keymap('n', '<leader>mo', ':CocCommand markdown-preview-enhanced.openPreview<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>mf', ':CocCommand markdownlint.fixAll<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>cg', ':CocCommand git.showCommit<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>e', '<Cmd>CocCommand explorer<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>f', ':CocFix<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gu', ':CocCommand git.chunkUndo<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gs', ':CocCommand git.chunkStage<CR>', { noremap = true })

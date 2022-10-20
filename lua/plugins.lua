@@ -62,7 +62,7 @@ return require('packer').startup(function(use)
   use({ 'airblade/vim-rooter' })
   -- dev icons in telescope
   -- requires a Nerd Font
-  use({ 'kyazdani42/nvim-web-devicons' })
+  -- use({ 'kyazdani42/nvim-web-devicons' })
   -- snippets
   use({ 'SirVer/ultisnips' })
   -- package.json dependencies manager helpers
@@ -84,7 +84,10 @@ return require('packer').startup(function(use)
   use({ 'nat-418/boole.nvim' })
   -- hatch a duck or any emoji/character
   use({ 'tamton-aquib/duck.nvim' })
+  -- customizable semantic minimap
   use({ 'ziontee113/neo-minimap' })
+  use({ 'nvim-tree/nvim-tree.lua' })
+  use({ 'nvim-tree/nvim-web-devicons' })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

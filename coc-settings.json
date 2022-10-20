@@ -7,7 +7,6 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "⚠",
   "diagnostic.hintSign": "H",
-  "explorer.quitOnOpen": true,
   "tabnine.disable_filetypes": ["javascript", "typescript"],
   "javascript.suggest.names": false
 }
