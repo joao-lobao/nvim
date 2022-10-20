@@ -7,6 +7,5 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "⚠",
   "diagnostic.hintSign": "H",
-  "tabnine.disable_filetypes": ["javascript", "typescript"],
-  "javascript.suggest.names": false
+  "tabnine.disable_filetypes": ["javascript", "typescript"]
 }
