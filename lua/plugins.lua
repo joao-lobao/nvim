@@ -60,9 +60,6 @@ return require('packer').startup(function(use)
   -- changes the working directory to the project root when a file or directory
   -- is opened
   use({ 'airblade/vim-rooter' })
-  -- dev icons in telescope
-  -- requires a Nerd Font
-  -- use({ 'kyazdani42/nvim-web-devicons' })
   -- snippets
   use({ 'SirVer/ultisnips' })
   -- package.json dependencies manager helpers
@@ -86,7 +83,10 @@ return require('packer').startup(function(use)
   use({ 'tamton-aquib/duck.nvim' })
   -- customizable semantic minimap
   use({ 'ziontee113/neo-minimap' })
+  -- file explorer
   use({ 'nvim-tree/nvim-tree.lua' })
+  -- dev icons for multiple plugins
+  -- requires a Nerd Font
   use({ 'nvim-tree/nvim-web-devicons' })
 
   -- Automatically set up your configuration after cloning packer.nvim
