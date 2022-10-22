@@ -16,7 +16,7 @@ vim.g.coc_global_extensions = {
   'coc-marketplace',
   'coc-webview',
   'coc-emmet',
-  'coc-tabnine',
+  -- 'coc-tabnine',
   'coc-ultisnips',
   'coc-calc',
  }

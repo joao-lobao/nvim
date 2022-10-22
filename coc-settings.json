@@ -7,5 +7,5 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "⚠",
   "diagnostic.hintSign": "H",
-  "tabnine.disable_filetypes": ["javascript", "typescript"]
+  "yank.enableCompletion": false
 }
