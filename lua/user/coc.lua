@@ -19,6 +19,7 @@ vim.g.coc_global_extensions = {
   -- 'coc-tabnine',
   'coc-ultisnips',
   'coc-calc',
+  'coc-react-refactor',
  }
 
 vim.api.nvim_set_keymap('n', '<leader>y', ':<C-u>CocList -A --normal yank<CR>', { noremap = true, silent = true })
