@@ -72,8 +72,6 @@ return require('packer').startup(function(use)
   -- provides two text objects: ax and ix. They represent XML/HTML attributes.
   use({ 'kana/vim-textobj-user' })
   use({ 'whatyouhide/vim-textobj-xmlattr' })
-  -- terminal in vim
-  use({ 'voldikss/vim-floaterm' })
   -- run a snippet of code without ever leaving neovim
   use({ 'arjunmahishi/flow.nvim' })
   -- extends increment and decrement functionality for toggling boolean values as

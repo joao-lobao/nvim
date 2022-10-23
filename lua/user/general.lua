@@ -89,14 +89,12 @@ vim.api.nvim_set_keymap('i', '<Right>', '<NOP>', { noremap = true })
 -- no mouse
 vim.opt.mouse = ""
 
--- terminal mode mappings
-vim.api.nvim_set_keymap('t', '<leader>h', '<c-\\><c-n><c-w>h', { noremap = true })
-vim.api.nvim_set_keymap('t', '<leader>j', '<c-\\><c-n><c-w>j', { noremap = true })
-vim.api.nvim_set_keymap('t', '<leader>k', '<c-\\><c-n><c-w>k', { noremap = true })
-vim.api.nvim_set_keymap('t', '<leader>l', '<c-\\><c-n><c-w>l', { noremap = true })
-vim.api.nvim_set_keymap('t', '<leader>l', '<c-\\><c-n><c-w>l', { noremap = true })
-vim.api.nvim_set_keymap('t', '<leader>bn', '<c-\\><c-n><c-w>:bn<CR>', { noremap = true })
-vim.api.nvim_set_keymap('t', '<leader>bp', '<c-\\><c-n><c-w>:bp<CR>', { noremap = true })
+-- terminal mode
+vim.api.nvim_set_keymap('t', '<esc>', '<c-\\><c-n><c-w><CR>', { noremap = true })
+vim.api.nvim_create_user_command('NoNumbers', ':setlocal nonumber norelativenumber', {})
+vim.api.nvim_set_keymap('n', '<leader>t', ':term<CR>:NoNumbers<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>%', ':vs | term<CR>:NoNumbers<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>"', ':sp | term<CR>:NoNumbers<CR>', { noremap = true })
 
 -- other customizations
 vim.api.nvim_set_keymap('n', '<leader>s', ':source %<CR>', { noremap = true })
