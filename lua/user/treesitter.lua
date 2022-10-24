@@ -1,8 +1,42 @@
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
-  },
-}
+-- need to install treesitter cli
+-- npm i -g tree-sitter-cli
 
+-- import nvim-treesitter plugin safely
+local status, treesitter = pcall(require, "nvim-treesitter.configs")
+if not status then
+	return
+end
+
+-- configure treesitter
+treesitter.setup({
+	-- enable syntax highlighting
+	highlight = {
+		enable = true,
+	},
+	-- enable indentation
+	indent = { enable = true },
+	-- enable autotagging (w/ nvim-ts-autotag plugin)
+	autotag = { enable = true },
+	-- ensure these language parsers are installed
+	ensure_installed = {
+		"json",
+		"javascript",
+		"typescript",
+		"tsx",
+		"yaml",
+		"html",
+		"css",
+		"scss",
+		"markdown",
+		"graphql",
+		"sql",
+		"bash",
+		"lua",
+		"vim",
+		"dockerfile",
+		"gitignore",
+		"haskell",
+	},
+	-- auto install above language parsers
+	auto_install = true,
+})

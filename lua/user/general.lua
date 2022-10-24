@@ -101,6 +101,10 @@ vim.api.nvim_set_keymap('n', '<leader>s', ':source %<CR>', { noremap = true })
 -- create and goto file
 vim.api.nvim_set_keymap('n', 'gcf', ':e <cfile><CR>', { noremap = true })
 
+-- makes quickfix list close after list item selection (override the <CR>
+-- mapping that is used in the quickfix window)
+vim.cmd[[:autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>]]
+vim.cmd[[:autocmd FileType qf nnoremap <buffer> <Esc> :cclose<CR>]]
 
 --------------HELPER-------------
 --- for vim yank highlight
@@ -110,7 +114,6 @@ vim.cmd [[
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 200})
   augroup END
 ]]
-
 
 -------------HELPER-------------
 -- Remember cursor position

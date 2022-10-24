@@ -35,8 +35,6 @@ return packer.startup(function(use)
   use 'lewis6991/impatient.nvim'
   -- plugin for statusline
   use({ 'nvim-lualine/lualine.nvim' })
-  -- plugin for auto pairs feature
-  use({ 'jiangmiao/auto-pairs' })
   -- plugin for surrounding feature
   use({ 'tpope/vim-surround' })
   -- plugin commentary feature
@@ -53,9 +51,6 @@ return packer.startup(function(use)
   use({ 'nvim-treesitter/nvim-treesitter-textobjects' })
   -- gruvbox colorscheme
   use({ 'gruvbox-community/gruvbox' })
-  -- plugin for intelisense for multiple languages; has own extensions for
-  -- multiple languages
-  use({ 'neoclide/coc.nvim', branch = 'release' })
   -- fancy startup plugin
   use({ 'mhinz/vim-startify' })
   -- easily run tests
@@ -79,11 +74,6 @@ return packer.startup(function(use)
   -- provides two text objects: ax and ix. They represent XML/HTML attributes.
   use({ 'kana/vim-textobj-user' })
   use({ 'whatyouhide/vim-textobj-xmlattr' })
-  -- run a snippet of code without ever leaving neovim
-  use({ 'arjunmahishi/flow.nvim' })
-  -- extends increment and decrement functionality for toggling boolean values as
-  -- well as days of the week, months, and ROYGBIV color names
-  use({ 'nat-418/boole.nvim' })
   -- hatch a duck or any emoji/character
   use({ 'tamton-aquib/duck.nvim' })
   -- customizable semantic minimap
@@ -93,6 +83,40 @@ return packer.startup(function(use)
   -- dev icons for multiple plugins
   -- requires a Nerd Font
   use({ 'nvim-tree/nvim-web-devicons' })
+
+	-- autocompletion
+	use("hrsh7th/nvim-cmp") -- completion plugin
+	use("hrsh7th/cmp-buffer") -- source for text in buffer
+	use("hrsh7th/cmp-path") -- source for file system paths
+	use("quangnguyen30192/cmp-nvim-ultisnips") -- support for ultisnips
+
+	-- snippets
+	use("L3MON4D3/LuaSnip") -- snippet engine
+	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
+	use("rafamadriz/friendly-snippets") -- useful snippets
+
+	-- managing & installing lsp servers, linters & formatters
+	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
+	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
+
+	-- configuring lsp servers
+	use("neovim/nvim-lspconfig") -- easily configure language servers
+	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
+	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
+	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
+  use { "ray-x/lsp_signature.nvim" }
+
+	-- formatting & linting
+	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
+	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+
+	-- auto closing
+	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
+	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+
+	-- git integration
+	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
