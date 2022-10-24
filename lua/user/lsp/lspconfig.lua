@@ -71,11 +71,6 @@ end
 
 -- configure typescript server with plugin
 typescript.setup({
-  init_options = {
-    completion = {
-      placeholder = true
-    }
-  },
 	server = {
 		capabilities = capabilities,
 		on_attach = on_attach,
