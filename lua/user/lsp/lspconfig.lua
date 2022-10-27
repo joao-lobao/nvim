@@ -64,10 +64,16 @@ for type, icon in pairs(signs) do
 end
 
 -- configure html server
--- lspconfig["html"].setup({
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- })
+lspconfig["html"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure markdown server
+lspconfig["marksman"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
 -- configure typescript server with plugin
 typescript.setup({
@@ -83,6 +89,7 @@ typescript.setup({
 local languageServerPath = "/usr/lib"
 local cmd = {"node", languageServerPath.."/node_modules/@angular/language-server/index.js", "--stdio", "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath}
 
+-- configure angular server
 lspconfig.angularls.setup{
   cmd = cmd,
   on_new_config = function(new_config,new_root_dir)
@@ -92,8 +99,20 @@ lspconfig.angularls.setup{
 	on_attach = on_attach,
 }
 
+-- configure jsonls server
+lspconfig["jsonls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- configure css server
 lspconfig["cssls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure vim server
+lspconfig["vimls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
