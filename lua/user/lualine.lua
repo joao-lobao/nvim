@@ -23,12 +23,14 @@ end
 
 require'lualine'.setup {
   options = {
-    theme = "material",
+    -- theme = "material",
+    -- theme = "gruvbox",
+    theme = "tokyonight",
   },
   tabline = {
     lualine_a = {
       {
-        'buffers', 
+        'buffers',
         show_filename_only = false,  -- Shows shortened relative path when set to false.
         show_modified_status = true, -- Shows indicator when the buffer is modified.
       }

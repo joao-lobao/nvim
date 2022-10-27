@@ -1,4 +1,4 @@
-vim.cmd [[ silent! colorscheme gruvbox]]
+vim.cmd [[ silent! colorscheme tokyonight-night]]
 
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', { noremap = true, silent = true })
 vim.g.mapleader = ' '

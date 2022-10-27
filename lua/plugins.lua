@@ -49,8 +49,9 @@ return packer.startup(function(use)
   use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
   -- to create custom mappings for text objects (ex: `daf` to delete a function)
   use({ 'nvim-treesitter/nvim-treesitter-textobjects' })
-  -- gruvbox colorscheme
+  -- colorschemes
   use({ 'gruvbox-community/gruvbox' })
+  use 'folke/tokyonight.nvim'
   -- fancy startup plugin
   use({ 'mhinz/vim-startify' })
   -- easily run tests
