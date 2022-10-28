@@ -42,7 +42,7 @@ return packer.startup(function(use)
   -- repeat commands from other plugins that are not atomic to vim
   use({ 'tpope/vim-repeat' })
   -- color highlighter
-  use({ 'ap/vim-css-color' })
+  use({ 'norcalli/nvim-colorizer.lua' })
   -- plugin for git integration
   use({ 'tpope/vim-fugitive' })
   -- improve syntax highlighting
