@@ -23,9 +23,8 @@ end
 
 require'lualine'.setup {
   options = {
-    -- theme = "material",
     -- theme = "gruvbox",
-    theme = "tokyonight",
+    theme = "material",
   },
   tabline = {
     lualine_a = {
