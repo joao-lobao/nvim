@@ -21,6 +21,7 @@ saga.init_lsp_saga({
 	show_outline = {
 		jump_key = "<CR>",
 	},
+  code_action_icon = "",
   code_action_keys = {
     quit = "<Esc>",
   },
