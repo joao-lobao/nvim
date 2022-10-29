@@ -14,6 +14,14 @@ vim.cmd[[
 function! StartifyEntryFormat() abort
   return 'v:lua.webDevIcons(absolute_path) . " " . entry_path'
 endfunction
+
+" customize Startify text colors
+autocmd ColorScheme gruvbox highlight StartifyNumber  guifg=#85DACD
+autocmd ColorScheme gruvbox highlight StartifyBracket guifg=gray
+autocmd ColorScheme gruvbox highlight StartifySpecial guifg=#C4CCFF
+autocmd ColorScheme gruvbox highlight StartifySection guifg=#CB7080
+autocmd ColorScheme gruvbox highlight StartifyPath    guifg=orange
+autocmd ColorScheme gruvbox highlight StartifyFile    guifg=#97FF97
 ]]
 
 vim.g.startify_lists = {
