@@ -14,9 +14,11 @@ require('telescope').setup {
 }
 
 local M = require('telescope.builtin')
-function M.search_files()
+function M.search_files_in_home()
   local opts = {}
   opts.cwd = "~"
+  opts.hidden = true
+  opts.no_ignore = true
   require('telescope.builtin').find_files(opts)
 end
 
@@ -31,7 +33,7 @@ vim.api.nvim_set_keymap('n', '<leader>y', '<Cmd>Telescope registers<CR>', { nore
 -- grep not respecting .gitignore
 vim.api.nvim_set_keymap('n', '<leader>R', ':lua require("telescope.builtin").live_grep({ additional_args = function(opts) return { "--no-ignore" } end })<CR>', { noremap = true, silent = true })
 -- find files from home dir as cwd
-vim.api.nvim_set_keymap('n', '<leader>~', '<Cmd>Telescope search_files<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>~', '<Cmd>Telescope search_files_in_home<CR>', { noremap = true, silent = true })
 
 
 vim.api.nvim_set_keymap('n', '<leader>B', '<Cmd>Telescope buffers<CR>', { noremap = true, silent = true })
