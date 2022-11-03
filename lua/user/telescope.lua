@@ -1,6 +1,7 @@
 local actions = require('telescope.actions')
+local telescope = require('telescope')
 
-require('telescope').setup {
+telescope.setup {
   defaults = {
     prompt_prefix = " 🔍 ",
     layout_config = {prompt_position = "top"},
@@ -12,6 +13,8 @@ require('telescope').setup {
     }
   }
 }
+-- load refactoring Telescope extension
+telescope.load_extension("refactoring")
 
 local M = require('telescope.builtin')
 function M.search_files_in_home()
