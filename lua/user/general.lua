@@ -65,11 +65,13 @@ vim.api.nvim_set_keymap('n', '-', ':nohl<CR>', { noremap = true })
 -- buffer naviagation, open and deleting
 vim.api.nvim_set_keymap('n', '<leader>bn', ':bn<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>bp', ':bp<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>H', ':sp<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>V', ':vsp<CR>', { noremap = true })
 -- Quitting buffer
-vim.api.nvim_set_keymap('n', 'gq', ':bp|bd #<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'gQ', ':bp|bd! #<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>bD', ':bd!<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'gq', ':bd<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'gQ', ':bd!<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>bd', ':bp|bd #<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>bD', ':bp|bd! #<CR>', { noremap = true })
 -- Quitting vim
 vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>Q', ':q!<CR>', { noremap = true })
