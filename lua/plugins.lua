@@ -29,60 +29,60 @@ end
 
 -- add list of plugins to install
 return packer.startup(function(use)
-  -- Have packer manage itself
-  use({ 'wbthomason/packer.nvim', opt = true })
-  -- speed loading Lua modules and files.
-  use 'lewis6991/impatient.nvim'
-  -- plugin for statusline
-  use({ 'nvim-lualine/lualine.nvim' })
-  -- plugin for surrounding feature
-  use({ 'tpope/vim-surround' })
-  -- plugin commentary feature
-  use({ 'tpope/vim-commentary' })
-  -- repeat commands from other plugins that are not atomic to vim
-  use({ 'tpope/vim-repeat' })
-  -- color highlighter
-  use({ 'norcalli/nvim-colorizer.lua' })
-  -- plugin for git integration
-  use({ 'tpope/vim-fugitive' })
-  -- improve syntax highlighting
-  use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
-  -- to create custom mappings for text objects (ex: `daf` to delete a function)
-  use({ 'nvim-treesitter/nvim-treesitter-textobjects' })
-  -- colorschemes
-  use { "ellisonleao/gruvbox.nvim" }
-  -- fancy startup plugin
-  use({ 'mhinz/vim-startify' })
-  -- easily run tests
-  use({ 'janko/vim-test' })
-  -- telescope functionality
-  use({ 'nvim-lua/popup.nvim' })
-  use({ 'nvim-lua/plenary.nvim' })
-  use({ 'nvim-telescope/telescope.nvim' })
-  -- changes the working directory to the project root when a file or directory
-  -- is opened
-  use({ 'airblade/vim-rooter' })
-  -- snippets
-  use({ 'SirVer/ultisnips' })
-  -- package.json dependencies manager helpers
-  use({ 'vuki656/package-info.nvim' })
-  use({ 'MunifTanjim/nui.nvim' })
-  -- alternate files / naviagation cmds / buffer configuration
-  use({ 'tpope/vim-projectionist' })
-  -- cool marks feature, attaches on the gutter the mark associated with each line
-  use({ 'kshenoy/vim-signature' })
-  -- provides two text objects: ax and ix. They represent XML/HTML attributes.
-  use({ 'kana/vim-textobj-user' })
-  use({ 'whatyouhide/vim-textobj-xmlattr' })
-  -- hatch a duck or any emoji/character
-  use({ 'tamton-aquib/duck.nvim' })
-  -- customizable semantic minimap
-  use({ 'ziontee113/neo-minimap' })
-  -- file explorer
-  use({ 'nvim-tree/nvim-tree.lua' })
-  -- dev icons for multiple plugins
-  -- requires a Nerd Font
-  use({ 'nvim-tree/nvim-web-devicons' })
+	-- Have packer manage itself
+	use({ "wbthomason/packer.nvim", opt = true })
+	-- speed loading Lua modules and files.
+	use("lewis6991/impatient.nvim")
+	-- plugin for statusline
+	use({ "nvim-lualine/lualine.nvim" })
+	-- plugin for surrounding feature
+	use({ "tpope/vim-surround" })
+	-- plugin commentary feature
+	use({ "tpope/vim-commentary" })
+	-- repeat commands from other plugins that are not atomic to vim
+	use({ "tpope/vim-repeat" })
+	-- color highlighter
+	use({ "norcalli/nvim-colorizer.lua" })
+	-- plugin for git integration
+	use({ "tpope/vim-fugitive" })
+	-- improve syntax highlighting
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	-- to create custom mappings for text objects (ex: `daf` to delete a function)
+	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
+	-- colorschemes
+	use({ "ellisonleao/gruvbox.nvim" })
+	-- fancy startup plugin
+	use({ "mhinz/vim-startify" })
+	-- easily run tests
+	use({ "janko/vim-test" })
+	-- telescope functionality
+	use({ "nvim-lua/popup.nvim" })
+	use({ "nvim-lua/plenary.nvim" })
+	use({ "nvim-telescope/telescope.nvim" })
+	-- changes the working directory to the project root when a file or directory
+	-- is opened
+	use({ "airblade/vim-rooter" })
+	-- snippets
+	use({ "SirVer/ultisnips" })
+	-- package.json dependencies manager helpers
+	use({ "vuki656/package-info.nvim" })
+	use({ "MunifTanjim/nui.nvim" })
+	-- alternate files / naviagation cmds / buffer configuration
+	use({ "tpope/vim-projectionist" })
+	-- cool marks feature, attaches on the gutter the mark associated with each line
+	use({ "kshenoy/vim-signature" })
+	-- provides two text objects: ax and ix. They represent XML/HTML attributes.
+	use({ "kana/vim-textobj-user" })
+	use({ "whatyouhide/vim-textobj-xmlattr" })
+	-- hatch a duck or any emoji/character
+	use({ "tamton-aquib/duck.nvim" })
+	-- customizable semantic minimap
+	use({ "ziontee113/neo-minimap" })
+	-- file explorer
+	use({ "nvim-tree/nvim-tree.lua" })
+	-- dev icons for multiple plugins
+	-- requires a Nerd Font
+	use({ "nvim-tree/nvim-web-devicons" })
 
 	-- autocompletion
 	use("hrsh7th/nvim-cmp") -- completion plugin
@@ -105,7 +105,7 @@ return packer.startup(function(use)
 	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
 	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
-  use { "ray-x/lsp_signature.nvim" }
+	use({ "ray-x/lsp_signature.nvim" })
 
 	-- formatting & linting
 	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
