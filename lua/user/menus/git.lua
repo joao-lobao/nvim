@@ -7,4 +7,3 @@ vim.cmd[[
   nmenu GitActions.\ Amend :Git commit --amend --no-edit<CR>
   nmenu GitActions.\ Amend\ and\ reword :Git commit --amend -m ""<Left>
 ]]
-
