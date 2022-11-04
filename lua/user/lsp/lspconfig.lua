@@ -18,32 +18,29 @@ end
 
 local keymap = vim.keymap -- for conciseness
 
--- enable keybinds only for when lsp server available
-local on_attach = function(client, bufnr)
-	-- keybind options
-	local opts = { noremap = true, silent = true, buffer = bufnr }
+local opts = { noremap = true, silent = true }
+-- set keybinds
+keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
+keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
+keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- go to definition
+keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- go to references
+keymap.set("n", "gi", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
+keymap.set("n", "<leader>f", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
+keymap.set(
+	"n",
+	"<leader>p",
+	"<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })<CR>",
+	opts
+)
+keymap.set("n", "<F2>", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
+keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
+keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
+keymap.set("n", "<leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
+keymap.set("n", "<leader>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
+keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 
-	-- set keybinds
-	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
-	keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- go to definition
-	keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- go to references
-	keymap.set("n", "gi", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
-	keymap.set("n", "<leader>f", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
-	keymap.set(
-		"n",
-		"<leader>p",
-		"<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })<CR>",
-		opts
-	)
-	keymap.set("n", "<F2>", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
-	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-	keymap.set("n", "<leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-	keymap.set("n", "<leader>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
-
+local on_attach = function(client)
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "tsserver" then
 		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
@@ -83,21 +80,29 @@ typescript.setup({
 	},
 })
 
--- need to install angular language server and language service 
+-- need to install angular language server and language service
 -- npm i -g @angular/language-server
 -- npm i -g @angular/language-service
 local languageServerPath = "/usr/lib"
-local cmd = {"node", languageServerPath.."/node_modules/@angular/language-server/index.js", "--stdio", "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath}
+local cmd = {
+	"node",
+	languageServerPath .. "/node_modules/@angular/language-server/index.js",
+	"--stdio",
+	"--tsProbeLocations",
+	languageServerPath,
+	"--ngProbeLocations",
+	languageServerPath,
+}
 
 -- configure angular server
-lspconfig.angularls.setup{
-  cmd = cmd,
-  on_new_config = function(new_config, new_root_dir)
-    new_config.cmd = cmd
-  end,
-  capabilities = capabilities,
+lspconfig.angularls.setup({
+	cmd = cmd,
+	on_new_config = function(new_config, new_root_dir)
+		new_config.cmd = cmd
+	end,
+	capabilities = capabilities,
 	on_attach = on_attach,
-}
+})
 
 -- configure jsonls server
 lspconfig["jsonls"].setup({
