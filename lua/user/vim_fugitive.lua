@@ -1,6 +1,6 @@
 vim.api.nvim_set_keymap('n', 'gs', ':G<CR>', { noremap = true })
 
-vim.api.nvim_set_keymap('n', 'gl', ':Gclog<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'gl', ':Gclog<CR><C-w>j', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gc', ':Git commit<CR>', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '<leader>gd', ':Git diff<CR>', { noremap = true })
