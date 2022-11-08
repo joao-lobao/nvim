@@ -29,7 +29,6 @@ vim.o.softtabstop = 2 -- Sets the number of columns for a TAB
 vim.o.expandtab = true -- Expand TABs to spaces
 vim.o.swapfile = false
 vim.o.backup = false
-vim.opt.undodir = vim.fn.expand('~/.config/undodir')
 vim.o.undofile = true
 vim.o.cul = true -- highlights the line where currently is the cursor
 vim.o.ai = true -- Auto indent
