@@ -1,3 +1,6 @@
+-- import utils file
+require("user.utils.nvim_cmp")
+
 -- import nvim-cmp plugin safely
 local cmp_status, cmp = pcall(require, "cmp")
 if not cmp_status then
@@ -73,24 +76,26 @@ cmp.setup({
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
 		{ name = "cmp_tabnine" }, -- tabnine
+		{ name = "emojis", max_item_count = 3 },
 	}),
 	-- configure lspkind for vs-code like icons
 	formatting = {
-    format = lspkind.cmp_format {
-      maxwidth = 50,
-      ellipsis_char = "...",
+		format = lspkind.cmp_format({
+			maxwidth = 50,
+			ellipsis_char = "...",
 
-      before = function(entry, vim_item)
-        vim_item.menu = ({
-          nvim_lsp = "ﲳ",
-          path = "ﱮ",
-          buffer = "﬘",
-          luasnip = "",
-          ultisnips = "US",
-        })[entry.source.name]
-        return vim_item
-      end,
-    },
+			before = function(entry, vim_item)
+				vim_item.menu = ({
+					nvim_lsp = "ﲳ",
+					path = "ﱮ",
+					buffer = "﬘",
+					luasnip = "",
+					ultisnips = "US",
 					cmp_tabnine = "TN",
+					emojis = "😀",
+				})[entry.source.name]
+				return vim_item
+			end,
+		}),
 	},
 })
