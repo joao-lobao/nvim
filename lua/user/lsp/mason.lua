@@ -1,5 +1,3 @@
-
-
 -- import mason plugin safely
 local mason_status, mason = pcall(require, "mason")
 if not mason_status then
@@ -39,7 +37,7 @@ mason_null_ls.setup({
 		"prettier", -- ts/js formatter
 		"stylua", -- lua formatter
 		"eslint_d", -- ts/js linter
-    "markdownlint",
+		"markdownlint",
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,

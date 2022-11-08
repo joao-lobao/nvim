@@ -6,11 +6,11 @@ end
 
 colorizer.setup({
 	css = {
-    css = true
-  },
+		css = true,
+	},
 	scss = {
-    css = true
-  },
+		css = true,
+	},
 	"javascript",
-	"html"
+	"html",
 })

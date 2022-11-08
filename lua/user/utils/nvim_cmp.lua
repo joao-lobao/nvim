@@ -282,4 +282,3 @@ end
 
 -- register emojis source
 cmp.register_source("emojis", source.new())
-
