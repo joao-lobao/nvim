@@ -129,9 +129,6 @@ return packer.startup(function(use)
 		},
 	})
 
-  -- SFTP for Vim: Sync local and remote files/folders inside vim.
-  use({"hesselbom/vim-hsftp"})
-
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
