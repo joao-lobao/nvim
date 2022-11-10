@@ -104,6 +104,9 @@ vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", { noremap = true })
 vim.cmd([[:autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>]])
 vim.cmd([[:autocmd FileType qf nnoremap <buffer> <Esc> :cclose<CR>]])
 
+-- keymap to sync through SFTP server
+vim.api.nvim_set_keymap("n", "<leader>u", ":!$(pwd)/sync.sh<CR>", { noremap = true })
+
 --------------HELPER-------------
 --- for vim yank highlight
 vim.cmd([[
