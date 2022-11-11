@@ -20,8 +20,7 @@ local keymap = vim.keymap -- for conciseness
 
 local opts = { noremap = true, silent = true }
 -- set keybinds
-keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
+keymap.set("n", "gD", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- go to definition
 keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- go to references
 keymap.set("n", "gi", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
