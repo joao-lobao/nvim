@@ -75,7 +75,7 @@ cmp.setup({
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
 		{ name = "cmp_tabnine" }, -- tabnine
-		{ name = "emojis", max_item_count = 3 },
+		{ name = "emojis", max_item_count = 3 }, -- custom emojis
 	}),
 	-- configure lspkind for vs-code like icons
 	formatting = {

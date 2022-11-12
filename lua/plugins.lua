@@ -128,7 +128,7 @@ return packer.startup(function(use)
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	})
-  -- adds a scroll bar
+	-- adds a scroll bar
 	use("petertriho/nvim-scrollbar")
 
 	-- Automatically set up your configuration after cloning packer.nvim
