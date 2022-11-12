@@ -13,6 +13,7 @@ local common_actions = {
 	{ description = "", value = "", ordinal=""  },
 	{ description = "🪙 Crypto Watcher", value = "SLoad Crypto Watcher", ordinal="" },
 	{ description = "⁉️  Dotfiles", value = "SLoad Dotfiles", ordinal="" },
+	{ description = "🚀 JoaoLobao", value = "SLoad JoaoLobao", ordinal="tmuxinator tmux joaolobao joao lobao .com" },
 	{ description = "📡 Muxinator", value = "SLoad Muxinator", ordinal="tmuxinator tmux" },
 	{ description = "📓 Notes", value = "SLoad Notes", ordinal="" },
 	{ description = "⚙️  VimConfig", value = "SLoad VimConfig", ordinal="vim config" },
