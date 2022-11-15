@@ -9,14 +9,14 @@ local sorters = require("telescope.sorters")
 -- input format eg:
 local common_actions = {
 	{ description = "e  Empty buffer", value = "enew", ordinal="create new buffer" },
-	{ description = "q  Quit", value = "q", ordinal="exit" },
 	{ description = "", value = "", ordinal=""  },
-	{ description = "🪙 Crypto Watcher", value = "SLoad Crypto Watcher", ordinal="" },
-	{ description = "⁉️  Dotfiles", value = "SLoad Dotfiles", ordinal="" },
+	{ description = "🚀 Crypto Watcher", value = "SLoad Crypto Watcher", ordinal="" },
+	{ description = "🚀 Dotfiles", value = "SLoad Dotfiles", ordinal="" },
 	{ description = "🚀 JoaoLobao", value = "SLoad JoaoLobao", ordinal="tmuxinator tmux joaolobao joao lobao .com" },
-	{ description = "📡 Muxinator", value = "SLoad Muxinator", ordinal="tmuxinator tmux" },
-	{ description = "📓 Notes", value = "SLoad Notes", ordinal="" },
-	{ description = "⚙️  VimConfig", value = "SLoad VimConfig", ordinal="vim config" },
+	{ description = "🚀 Muxinator", value = "SLoad Muxinator", ordinal="tmuxinator tmux" },
+	{ description = "🚀 Notes", value = "SLoad Notes", ordinal="" },
+	{ description = "🚀 VimConfig", value = "SLoad VimConfig", ordinal="vim config" },
+	{ description = "", value = "", ordinal="" },
 	{ description = "❌ Close Session", value = "SClose", ordinal="SClose" },
 	{ description = "", value = "", ordinal="" },
 	{ description = "📊 ~/.config/nvim/init.lua", value = "e ~/.config/nvim/init.lua", ordinal="init.lua" },
@@ -24,29 +24,16 @@ local common_actions = {
 	{ description = "📊 ~/.zshrc", value = "e ~/.zshrc", ordinal="zshrc" },
 	{ description = "", value = "", ordinal="" },
 	{ description = "📁 Recent files", value = "Telescope oldfiles", ordinal="old files oldfiles" },
-	{ description = "🏡 Search home files", value = "Telescope search_files_in_home", ordinal="home" },
 	{ description = "", value = "", ordinal="" },
 	{ description = " git push", value = "Git push", ordinal="" },
 	{ description = " git push --force", value = "Git push --force", ordinal="force" },
 	{ description = " git log on buffer", value = "Gclog -- %", ordinal="glog" },
-	{ description = "🔍 Search files ", value = "Telescope git_files", ordinal="git files" },
-	{ description = "🔍 Search files", value = "Telescope find_files no_ignore=true hidden=true", ordinal="search all files" },
-	{ description = "🔍 Live grep ", value = "Telescope grep_git", ordinal="git grep" },
-	{ description = "🔍 Live grep", value = "Telescope grep_all", ordinal="grep all files" },
 	{ description = "🅰  Keymaps", value = "Telescope keymaps", ordinal="key maps" },
-	{ description = "🗂 Buffers", value = "Telescope buffers", ordinal="" },
-	{ description = "📌 Marks", value = "Telescope marks", ordinal="" },
-	{ description = "🗃 Registers", value = "Telescope registers", ordinal="yank" },
-	{ description = "🦆 Hatch Duck", value = "Hatch 🦆", ordinal="" },
-	{ description = "🦆 Hatch Santa", value = "Hatch 🎅", ordinal="" },
-	{ description = "🦆 Hatch Tree", value = "Hatch 🎄", ordinal="" },
-	{ description = "🦆 Hatch Snowman", value = "Hatch ☃️ ", ordinal="" },
-	{ description = "☠️  HatchKill", value = "HatchKill", ordinal="" },
 }
 
 local task = function(input)
 	local opts = {
-		layout_config = { width = 0.3, height = 0.95 },
+		layout_config = { width = 0.3, },
 		finder = finders.new_table({
 			results = input,
 			entry_maker = function(entry)
