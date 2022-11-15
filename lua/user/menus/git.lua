@@ -1,4 +1,5 @@
-vim.api.nvim_set_keymap("n", "gm", ":popup GitActions<CR>", { noremap = true })
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "gm", ":popup GitActions<CR>", opts)
 
 vim.cmd([[
   nmenu GitActions.\ Git\ push :Git push<CR>

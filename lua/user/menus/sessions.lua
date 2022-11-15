@@ -1,4 +1,5 @@
-vim.api.nvim_set_keymap("n", "sm", ":popup Sessions<CR>", { noremap = true })
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "sm", ":popup Sessions<CR>", opts)
 
 vim.cmd([[
   nmenu Sessions.\ Crypto\ Watcher :SLoad Crypto Watcher<CR>

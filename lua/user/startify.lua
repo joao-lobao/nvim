@@ -1,4 +1,5 @@
-vim.api.nvim_set_keymap("n", "<leader>S", ":Startify<CR>", { noremap = true })
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<leader>S", ":Startify<CR>", opts)
 
 vim.g.startify_session_dir = "~/.config/nvim/session"
 
