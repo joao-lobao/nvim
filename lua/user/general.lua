@@ -84,8 +84,8 @@ vim.api.nvim_set_keymap("i", "<Down>", "<NOP>", { noremap = true })
 vim.api.nvim_set_keymap("i", "<Left>", "<NOP>", { noremap = true })
 vim.api.nvim_set_keymap("i", "<Right>", "<NOP>", { noremap = true })
 
--- no mouse
-vim.opt.mouse = ""
+-- mouse
+vim.opt.mouse = "a"
 
 -- terminal mode
 vim.api.nvim_set_keymap("t", "<esc>", "<c-\\><c-n><c-w><CR>", { noremap = true })
