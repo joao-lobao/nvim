@@ -6,34 +6,34 @@ local finders = require("telescope.finders")
 local sorters = require("telescope.sorters")
 
 -- function to create a list of commands
--- input format eg:
 local common_actions = {
-	{ description = "e  Empty buffer", value = "enew", ordinal="create new buffer" },
-	{ description = "", value = "", ordinal=""  },
-	{ description = "🚀 Crypto Watcher", value = "SLoad Crypto Watcher", ordinal="" },
-	{ description = "🚀 Dotfiles", value = "SLoad Dotfiles", ordinal="" },
-	{ description = "🚀 JoaoLobao", value = "SLoad JoaoLobao", ordinal="tmuxinator tmux joaolobao joao lobao .com" },
-	{ description = "🚀 Muxinator", value = "SLoad Muxinator", ordinal="tmuxinator tmux" },
-	{ description = "🚀 Notes", value = "SLoad Notes", ordinal="" },
-	{ description = "🚀 VimConfig", value = "SLoad VimConfig", ordinal="vim config" },
-	{ description = "", value = "", ordinal="" },
-	{ description = "❌ Close Session", value = "SClose", ordinal="SClose" },
-	{ description = "", value = "", ordinal="" },
-	{ description = "📊 ~/.config/nvim/init.lua", value = "e ~/.config/nvim/init.lua", ordinal="init.lua" },
-	{ description = "📊 ~/.tmux.conf", value = "e ~/.tmux.conf", ordinal="tmux.conf" },
-	{ description = "📊 ~/.zshrc", value = "e ~/.zshrc", ordinal="zshrc" },
-	{ description = "", value = "", ordinal="" },
-	{ description = "📁 Recent files", value = "Telescope oldfiles", ordinal="old files oldfiles" },
-	{ description = "", value = "", ordinal="" },
-	{ description = " git push", value = "Git push", ordinal="" },
-	{ description = " git push --force", value = "Git push --force", ordinal="force" },
-	{ description = " git log on buffer", value = "Gclog -- %", ordinal="glog" },
-	{ description = "🅰  Keymaps", value = "Telescope keymaps", ordinal="key maps" },
+	{ description = "e  Empty buffer", value = "enew", ordinal = "create new buffer" },
+	{ description = "q  Quit", value = "q", ordinal = "" },
+	{ description = "", value = "", ordinal = "" },
+	{ description = "🚀 Crypto Watcher", value = "SLoad Crypto Watcher", ordinal = "session load session crypto watcher cryptowatcher" },
+	{ description = "🚀 Dotfiles", value = "SLoad Dotfiles", ordinal = "session load session dotfiles" },
+	{ description = "🚀 JoaoLobao", value = "SLoad JoaoLobao", ordinal = "session load session tmuxinator tmux joaolobao joao lobao .com" },
+	{ description = "🚀 Muxinator", value = "SLoad Muxinator", ordinal = "session load session tmuxinator tmux" },
+	{ description = "🚀 Notes", value = "SLoad Notes", ordinal = "session load session notes" },
+	{ description = "🚀 VimConfig", value = "SLoad VimConfig", ordinal = "session load session vim config vimconfig" },
+	{ description = "", value = "", ordinal = "" },
+	{ description = "❌ Close Session", value = "SClose", ordinal = "SClose" },
+	{ description = "", value = "", ordinal = "" },
+	{ description = "📊 ~/.config/nvim/init.lua", value = "e ~/.config/nvim/init.lua", ordinal = "init.lua" },
+	{ description = "📊 ~/.tmux.conf", value = "e ~/.tmux.conf", ordinal = "tmux.conf" },
+	{ description = "📊 ~/.zshrc", value = "e ~/.zshrc", ordinal = "zshrc" },
+	{ description = "", value = "", ordinal = "" },
+	{ description = "📁 Recent files", value = "Telescope oldfiles", ordinal = "old files oldfiles" },
+	{ description = "", value = "", ordinal = "" },
+	{ description = " git push", value = "Git push", ordinal = "" },
+	{ description = " git push --force", value = "Git push --force", ordinal = "force" },
+	{ description = " git log on buffer", value = "Gclog -- %", ordinal = "glog" },
+	{ description = "🅰  Keymaps", value = "Telescope keymaps", ordinal = "key maps" },
 }
 
 local task = function(input)
 	local opts = {
-		layout_config = { width = 0.3, },
+		layout_config = { width = 0.3, height = 0.7},
 		finder = finders.new_table({
 			results = input,
 			entry_maker = function(entry)
