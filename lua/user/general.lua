@@ -127,3 +127,10 @@ vim.cmd([[
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal!    g`\"" | endif
   augroup END
 ]])
+
+-------------HELPER-------------
+-- Change highlight color for search hits and quickfix selection
+vim.cmd([[
+  autocmd ColorScheme gruvbox highlight QuickFixLine guifg=#444444 guibg=#a19f0c
+  autocmd ColorScheme gruvbox highlight Search guibg=#FE7F00 guifg=gray
+]])
