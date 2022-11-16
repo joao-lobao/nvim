@@ -73,8 +73,8 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 
 -- command to run on vim startup
--- vim.api.nvim_create_autocmd("VimEnter", {
--- 	callback = function()
--- 		task(common_actions)
--- 	end,
--- })
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		task(common_actions)
+	end,
+})
