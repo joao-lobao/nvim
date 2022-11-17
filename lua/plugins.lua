@@ -67,15 +67,11 @@ return packer.startup(function(use)
 	use({ "MunifTanjim/nui.nvim" })
 	-- alternate files / naviagation cmds / buffer configuration
 	use({ "tpope/vim-projectionist" })
-	-- cool marks feature, attaches on the gutter the mark associated with each line
-	use({ "kshenoy/vim-signature" })
 	-- provides two text objects: ax and ix. They represent XML/HTML attributes.
 	use({ "kana/vim-textobj-user" })
 	use({ "whatyouhide/vim-textobj-xmlattr" })
 	-- hatch a duck or any emoji/character
 	use({ "tamton-aquib/duck.nvim" })
-	-- customizable semantic minimap
-	use({ "ziontee113/neo-minimap" })
 	-- file explorer
 	use({ "nvim-tree/nvim-tree.lua" })
 	-- dev icons for multiple plugins
