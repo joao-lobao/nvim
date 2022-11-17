@@ -27,12 +27,12 @@ function custom_fname:update_status()
 	local data = custom_fname.super.update_status(self)
 	local show_text = ""
 	if vim.bo.modified and self.status_colors.modified then
-		show_text = "●"
+		show_text = "● "
 	end
 	data = highlight.component_format_highlight(
 		vim.bo.modified and self.status_colors.modified or self.status_colors.saved
 	) .. show_text
-	return data
+	return data .. "BufNr: %n"
 end
 
 require("lualine").setup({
