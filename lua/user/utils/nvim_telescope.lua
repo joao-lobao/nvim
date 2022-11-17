@@ -5,42 +5,46 @@ local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local sorters = require("telescope.sorters")
 
+-- TODO: create a better way of adding picker options 2022-11-18
 -- function to create a list of commands
 local common_actions = {
-	{ description = "e  Empty buffer", value = "enew", ordinal = "create new buffer" },
-	{ description = "q  Quit", value = "q", ordinal = "" },
+	{ description = "e  Empty buffer", value = "enew", ordinal = "e empty new buffer" },
+	{ description = "q  Quit", value = "q", ordinal = "q quit" },
 	{ description = "", value = "", ordinal = "" },
-	{ description = "🚀 Crypto Watcher", value = "SLoad Crypto Watcher", ordinal = "session load session crypto watcher cryptowatcher" },
-	{ description = "🚀 Dotfiles", value = "SLoad Dotfiles", ordinal = "session load session dotfiles" },
-	{ description = "🚀 JoaoLobao", value = "SLoad JoaoLobao", ordinal = "session load session tmuxinator tmux joaolobao joao lobao .com" },
-	{ description = "🚀 Muxinator", value = "SLoad Muxinator", ordinal = "session load session tmuxinator tmux" },
-	{ description = "🚀 Notes", value = "SLoad Notes", ordinal = "session load session notes" },
-	{ description = "🚀 VimConfig", value = "SLoad VimConfig", ordinal = "session load session vim config vimconfig" },
-	{ description = "", value = "", ordinal = "" },
-	{ description = "❌ Close Session", value = "SClose", ordinal = "SClose" },
+	{ description = "🚀 Crypto Watcher", value = "SLoad Crypto Watcher", ordinal = "c crypto watcher" },
+	{ description = "🚀 Dotfiles", value = "SLoad Dotfiles", ordinal = "d dotfiles" },
+	{ description = "🚀 JoaoLobao", value = "SLoad JoaoLobao", ordinal = "j joao lobao" },
+	{ description = "🚀 Muxinator", value = "SLoad Muxinator", ordinal = "m muxinator" },
+	{ description = "🚀 Notes", value = "SLoad Notes", ordinal = "n notes" },
+	{ description = "🚀 VimConfig", value = "SLoad VimConfig", ordinal = "v vim config" },
+	{ description = "❌ Close Session", value = "SClose", ordinal = "x sclose" },
 	{ description = "", value = "", ordinal = "" },
 	{ description = "📊 ~/.config/nvim/init.lua", value = "e ~/.config/nvim/init.lua", ordinal = "init.lua" },
-	{ description = "📊 ~/.tmux.conf", value = "e ~/.tmux.conf", ordinal = "tmux.conf" },
-	{ description = "📊 ~/.zshrc", value = "e ~/.zshrc", ordinal = "zshrc" },
+	{ description = "📊 ~/.tmux.conf", value = "e ~/.tmux.conf", ordinal = ".tmux.conf" },
+	{ description = "📊 ~/.zshrc", value = "e ~/.zshrc", ordinal = ".zshrc" },
 	{ description = "", value = "", ordinal = "" },
-	{ description = "📁 Recent files", value = "Telescope oldfiles", ordinal = "old files oldfiles" },
+	{ description = "📁 Old files", value = "Telescope oldfiles", ordinal = "old files" },
 	{ description = "", value = "", ordinal = "" },
-	{ description = " git push", value = "Git push", ordinal = "" },
-	{ description = " git push --force", value = "Git push --force", ordinal = "force" },
-	{ description = " git log on buffer", value = "Gclog -- %", ordinal = "glog" },
+	{ description = " git push", value = "Git push" },
+	{ description = " git push --force", value = "Git push --force" },
+	{ description = " git log %", value = "Gclog -- %", ordinal = "git log buffer gclog -- %" },
 	{ description = "🅰  Keymaps", value = "Telescope keymaps", ordinal = "key maps" },
 }
 
 local task = function(input)
 	local opts = {
-		layout_config = { width = 0.3, height = 0.7},
+		prompt_prefix = " 📡 ",
+		prompt_title = vim.fn.fnamemodify(vim.v.this_session, ":t"),
+		results_title = vim.fn.getcwd(),
+		selection_caret = "➡ ",
+		layout_config = { width = 0.2, height = 0.65 },
 		finder = finders.new_table({
 			results = input,
 			entry_maker = function(entry)
 				return {
 					value = entry.value,
 					display = entry.description,
-					ordinal = entry.description .. " " .. entry.ordinal,
+					ordinal = entry.ordinal or entry.description,
 				}
 			end,
 		}),
