@@ -1,6 +1,5 @@
-vim.api.nvim_create_user_command("SessionLoad", ":bufdo! | bd", {})
-
 local session_dir = "~/.config/nvim/session/"
+local dummy_session = "No session loaded"
 
 -- TODO: make sessions return dynamically 2022-11-16
 function Sessions()
@@ -42,7 +41,7 @@ function SessionClose()
 		print("No session is loaded")
 	else
 		SessionSave(session)
-		vim.cmd("so " .. session_dir .. "Dummy")
+		vim.cmd("so " .. session_dir .. dummy_session)
 		vim.cmd("silent bufdo bwipeout")
 	end
 end
@@ -50,7 +49,7 @@ vim.api.nvim_create_user_command("SClose", ":lua SessionClose()", {})
 
 -- Session Delete
 function SessionDelete(session)
-	vim.cmd(":call delete('" .. session_dir .. session .. "')")
+	vim.cmd(":call delete(expand('" .. session_dir .. session .. "'))")
 end
 vim.api.nvim_create_user_command(
 	"SDelete",
