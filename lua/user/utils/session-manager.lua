@@ -1,5 +1,5 @@
 local session_dir = "~/.config/nvim/session/"
-local dummy_session = "No session loaded"
+local dummy_session = "Connect to Workspace"
 
 -- TODO: make sessions return dynamically 2022-11-16
 function Sessions()
@@ -61,5 +61,13 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_autocmd("VimLeave", {
 	callback = function()
 		SessionClose()
+	end,
+})
+
+-- command to run on vim startup
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		SessionLoad(dummy_session)
+		require("telescope.builtin").common_actions()
 	end,
 })

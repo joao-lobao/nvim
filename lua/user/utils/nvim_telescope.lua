@@ -37,7 +37,6 @@ local task = function(input)
 		prompt_title = vim.fn.fnamemodify(vim.v.this_session, ":t"),
 		results_title = vim.fn.getcwd(),
 		selection_caret = "➡ ",
-		layout_config = { width = 0.2, height = 0.65 },
 		finder = finders.new_table({
 			results = input,
 			entry_maker = function(entry)
@@ -73,12 +72,5 @@ vim.api.nvim_create_autocmd("BufRead", {
 			once = true,
 			command = "normal! zx",
 		})
-	end,
-})
-
--- command to run on vim startup
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		task(common_actions)
 	end,
 })
