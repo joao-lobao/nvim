@@ -40,7 +40,9 @@ function SessionClose()
 	if session == "" then
 		print("No session is loaded")
 	else
-		SessionSave(session)
+    if session ~= dummy_session then
+		  SessionSave(session)
+    end
 		vim.cmd("so " .. session_dir .. dummy_session)
 		vim.cmd("silent bufdo bd")
 	end
