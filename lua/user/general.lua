@@ -60,7 +60,7 @@ vim.api.nvim_set_keymap("n", "<leader>h", "<C-w>h", opts)
 vim.api.nvim_set_keymap("n", "<leader>=", "gg=G", opts)
 
 -- no highlight
-vim.api.nvim_set_keymap("n", "-", ":nohl<CR>", opts)
+vim.api.nvim_set_keymap("n", "-", ":nohl<CR>", { noremap = true })
 
 ------BUFFERS------
 -- buffer naviagation, open and deleting
@@ -134,3 +134,9 @@ vim.cmd([[
   autocmd ColorScheme gruvbox highlight QuickFixLine guifg=#444444 guibg=#a19f0c
   autocmd ColorScheme gruvbox highlight Search guibg=#444444 guifg=#a19f0c
 ]])
+
+-------------HELPER-------------
+-- get last commit message
+local last_commit_msg = vim.fn.system("git -C . log | sed -n '5p' | sed -e 's/^[ \t]*//'")
+local commit_msg_cmd = "echo '" .. last_commit_msg .. "'"
+vim.api.nvim_create_user_command("GitLastCommit", commit_msg_cmd, {})

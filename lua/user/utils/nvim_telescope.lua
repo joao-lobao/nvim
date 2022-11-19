@@ -28,6 +28,7 @@ local common_actions = {
 	{ description = " git push", value = "Git push" },
 	{ description = " git push --force", value = "Git push --force" },
 	{ description = " git log %", value = "Gclog -- %", ordinal = "git log buffer gclog -- %" },
+	{ description = " git log last commit", value = "GitLastCommit" },
 	{ description = "🅰  Keymaps", value = "Telescope keymaps", ordinal = "key maps" },
 }
 
