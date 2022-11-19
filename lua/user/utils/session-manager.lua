@@ -42,7 +42,7 @@ function SessionClose()
 	else
 		SessionSave(session)
 		vim.cmd("so " .. session_dir .. dummy_session)
-		vim.cmd("silent bufdo bwipeout")
+		vim.cmd("silent bufdo bd")
 	end
 end
 vim.api.nvim_create_user_command("SClose", ":lua SessionClose()", {})
