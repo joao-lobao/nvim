@@ -4,6 +4,7 @@ local action_state = require("telescope.actions.state")
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local sorters = require("telescope.sorters")
+local entry_display = require("telescope.pickers.entry_display")
 
 -- TODO: create a better way of adding picker options 2022-11-18
 -- function to create a list of commands
@@ -32,6 +33,26 @@ local common_actions = {
 	{ description = "🅰  Keymaps", value = "Telescope keymaps", ordinal = "key maps" },
 }
 
+local displayer = entry_display.create({
+	separator = " ",
+	items = {
+		{ remaining = true },
+		{ remaining = true },
+	},
+})
+
+local make_display = function(entry)
+	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
+	if string.match(entry.description, session) then
+		entry.description = "👷 " .. session
+		entry.value = ""
+	end
+	return displayer({
+		{ entry.description, "TelescopeResultsIdentifier" },
+		{ entry.value, "TelescopeResultsComment" },
+	})
+end
+
 local task = function(input)
 	local opts = {
 		prompt_prefix = " 📡 ",
@@ -41,17 +62,12 @@ local task = function(input)
 		finder = finders.new_table({
 			results = input,
 			entry_maker = function(entry)
-				local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 				local new_entry = {
 					value = entry.value,
-					display = entry.description,
+					description = entry.description,
+					display = make_display,
 					ordinal = entry.ordinal or entry.description,
 				}
-				-- show current session with different emoji icon
-				if string.match(entry.description, session) then
-					new_entry.display = "👷 " .. session
-					new_entry.value = ""
-				end
 				return new_entry
 			end,
 		}),
@@ -82,3 +98,8 @@ vim.api.nvim_create_autocmd("BufRead", {
 		})
 	end,
 })
+
+-- Change highlight color for telescope matching search hits
+vim.cmd([[
+  autocmd ColorScheme gruvbox highlight TelescopeMatching guifg=#ba3636
+]])
