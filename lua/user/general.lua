@@ -137,6 +137,4 @@ vim.cmd([[
 
 -------------HELPER-------------
 -- get last commit message
-local last_commit_msg = vim.fn.system("git -C . log | sed -n '5p' | sed -e 's/^[ \t]*//'")
-local commit_msg_cmd = "echo '" .. last_commit_msg .. "'"
-vim.api.nvim_create_user_command("GitLastCommit", commit_msg_cmd, {})
+vim.api.nvim_create_user_command("GitLastCommit", "!(git -C . log | sed -n '5p' | sed -e 's/^[ \t]*//')", {})
