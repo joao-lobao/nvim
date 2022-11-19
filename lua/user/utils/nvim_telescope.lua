@@ -34,17 +34,24 @@ local common_actions = {
 local task = function(input)
 	local opts = {
 		prompt_prefix = " 📡 ",
-		prompt_title = vim.fn.fnamemodify(vim.v.this_session, ":t"),
-		results_title = vim.fn.getcwd(),
+		prompt_title = "👷 " .. vim.fn.fnamemodify(vim.v.this_session, ":t"),
+		results_title = "🗃 " .. vim.fn.getcwd(),
 		selection_caret = "➡ ",
 		finder = finders.new_table({
 			results = input,
 			entry_maker = function(entry)
-				return {
+				local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
+				local new_entry = {
 					value = entry.value,
 					display = entry.description,
 					ordinal = entry.ordinal or entry.description,
 				}
+				-- show current session with different emoji icon
+				if string.match(entry.description, session) then
+					new_entry.display = "👷 " .. session
+					new_entry.value = ""
+				end
+				return new_entry
 			end,
 		}),
 		sorter = sorters.get_fzy_sorter({}),
