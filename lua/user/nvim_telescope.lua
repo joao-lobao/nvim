@@ -63,7 +63,7 @@ vim.api.nvim_set_keymap("n", "<leader>R", "<Cmd>Telescope grep_all<CR>", opts)
 -- find files from home dir as cwd
 vim.api.nvim_set_keymap("n", "<leader>~", "<Cmd>Telescope search_files_in_home<CR>", opts)
 -- common or useful commands
-vim.api.nvim_set_keymap("n", "mm", "<Cmd>Telescope common_actions<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>S", "<Cmd>Telescope common_actions<CR>", {})
 
 vim.api.nvim_set_keymap("n", "<leader>y", "<Cmd>Telescope registers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>B", "<Cmd>Telescope buffers<CR>", opts)
