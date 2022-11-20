@@ -7,30 +7,31 @@ local sorters = require("telescope.sorters")
 local entry_display = require("telescope.pickers.entry_display")
 
 -- TODO: create a better way of adding picker options 2022-11-18
+-- TODO: create a better way of adding horizontal separators between options 2022-11-19
 -- function to create a list of commands
 local common_actions = {
-	{ description = "e  Empty buffer", value = "enew", ordinal = "e empty new buffer" },
-	{ description = "q  Quit", value = "q", ordinal = "q quit" },
-	{ description = "", value = "", ordinal = "" },
-	{ description = "🚀 Crypto Watcher", value = "SLoad Crypto Watcher", ordinal = "c crypto watcher" },
-	{ description = "🚀 Dotfiles", value = "SLoad Dotfiles", ordinal = "d dotfiles" },
-	{ description = "🚀 JoaoLobao", value = "SLoad JoaoLobao", ordinal = "j joao lobao" },
-	{ description = "🚀 Muxinator", value = "SLoad Muxinator", ordinal = "m muxinator" },
-	{ description = "🚀 Notes", value = "SLoad Notes", ordinal = "n notes" },
-	{ description = "🚀 VimConfig", value = "SLoad VimConfig", ordinal = "v vim config" },
-	{ description = "❌ Close Session", value = "SClose", ordinal = "x sclose" },
-	{ description = "", value = "", ordinal = "" },
-	{ description = "📊 ~/.config/nvim/init.lua", value = "e ~/.config/nvim/init.lua", ordinal = "init.lua" },
-	{ description = "📊 ~/.tmux.conf", value = "e ~/.tmux.conf", ordinal = ".tmux.conf" },
-	{ description = "📊 ~/.zshrc", value = "e ~/.zshrc", ordinal = ".zshrc" },
-	{ description = "", value = "", ordinal = "" },
-	{ description = "📁 Old files", value = "Telescope oldfiles", ordinal = "old files" },
-	{ description = "", value = "", ordinal = "" },
+	{ description = "e  Empty buffer", value = "enew" },
+	{ description = "q  Quit", value = "q" },
+	{ description = "", value = "" },
+	{ description = "🚀 Crypto Watcher", value = "SLoad Crypto Watcher" },
+	{ description = "🚀 Dotfiles", value = "SLoad Dotfiles" },
+	{ description = "🚀 JoaoLobao", value = "SLoad JoaoLobao" },
+	{ description = "🚀 Muxinator", value = "SLoad Muxinator" },
+	{ description = "🚀 Notes", value = "SLoad Notes" },
+	{ description = "🚀 VimConfig", value = "SLoad VimConfig" },
+	{ description = "❌ Close Session", value = "SClose" },
+	{ description = "", value = "" },
+	{ description = "📊 ~/.config/nvim/init.lua", value = "e ~/.config/nvim/init.lua" },
+	{ description = "📊 ~/.tmux.conf", value = "e ~/.tmux.conf" },
+	{ description = "📊 ~/.zshrc", value = "e ~/.zshrc" },
+	{ description = "", value = "" },
+	{ description = "📁 Old files", value = "Telescope oldfiles" },
+	{ description = "", value = "" },
 	{ description = " git push", value = "Git push" },
 	{ description = " git push --force", value = "Git push --force" },
-	{ description = " git log %", value = "Gclog -- %", ordinal = "git log buffer gclog -- %" },
+	{ description = " git log %", value = "Gclog -- %" },
 	{ description = " git log last commit", value = "GitLastCommit" },
-	{ description = "🅰  Keymaps", value = "Telescope keymaps", ordinal = "key maps" },
+	{ description = "🅰  Keymaps", value = "Telescope keymaps" },
 }
 
 local displayer = entry_display.create({
@@ -66,7 +67,7 @@ local task = function(input)
 					value = entry.value,
 					description = entry.description,
 					display = make_display,
-					ordinal = entry.ordinal or entry.description,
+					ordinal = entry.description,
 				}
 				return new_entry
 			end,
