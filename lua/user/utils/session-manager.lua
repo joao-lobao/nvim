@@ -1,18 +1,6 @@
 local session_dir = "~/.config/nvim/session/"
 local dummy_session = "Connect to Workspace"
 
--- TODO: make sessions return dynamically 2022-11-16
-function Sessions()
-	return {
-		"Crypto Watcher",
-		"Dotfiles",
-		"JoaoLobao",
-		"Muxinator",
-		"Notes",
-		"VimConfig",
-	}
-end
-
 -- Session Load
 function SessionLoad(session)
 	SessionClose()
@@ -21,18 +9,14 @@ end
 vim.api.nvim_create_user_command(
 	"SLoad",
 	":lua SessionLoad(<f-args>)",
-	{ nargs = "?", complete = "customlist,v:lua.Sessions" }
+	{ nargs = "?" }
 )
 
 -- Session Save
 function SessionSave(session)
 	vim.cmd("mks! " .. session_dir .. session)
 end
-vim.api.nvim_create_user_command(
-	"SSave",
-	":lua SessionSave(<f-args>)",
-	{ nargs = "?", complete = "customlist,v:lua.Sessions" }
-)
+vim.api.nvim_create_user_command("SSave", ":lua SessionSave(<f-args>)", { nargs = "?" })
 
 -- Session Close
 function SessionClose()
@@ -40,9 +24,9 @@ function SessionClose()
 	if session == "" then
 		print("No session is loaded")
 	else
-    if session ~= dummy_session then
-		  SessionSave(session)
-    end
+		if session ~= dummy_session then
+			SessionSave(session)
+		end
 		vim.cmd("so " .. session_dir .. dummy_session)
 		vim.cmd("silent bufdo bd")
 	end
@@ -53,11 +37,7 @@ vim.api.nvim_create_user_command("SClose", ":lua SessionClose()", {})
 function SessionDelete(session)
 	vim.cmd(":call delete(expand('" .. session_dir .. session .. "'))")
 end
-vim.api.nvim_create_user_command(
-	"SDelete",
-	":lua SessionDelete(<f-args>)",
-	{ nargs = "?", complete = "customlist,v:lua.Sessions" }
-)
+vim.api.nvim_create_user_command("SDelete", ":lua SessionDelete(<f-args>)", { nargs = "?" })
 
 -- close and save sessions on vim leave
 vim.api.nvim_create_autocmd("VimLeave", {
