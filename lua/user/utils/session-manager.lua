@@ -6,11 +6,7 @@ function SessionLoad(session)
 	SessionClose()
 	vim.cmd("so " .. session_dir .. session)
 end
-vim.api.nvim_create_user_command(
-	"SLoad",
-	":lua SessionLoad(<f-args>)",
-	{ nargs = "?" }
-)
+vim.api.nvim_create_user_command("SLoad", ":lua SessionLoad(<f-args>)", { nargs = "?" })
 
 -- Session Save
 function SessionSave(session)
@@ -18,11 +14,21 @@ function SessionSave(session)
 end
 vim.api.nvim_create_user_command("SSave", ":lua SessionSave(<f-args>)", { nargs = "?" })
 
+function CreateDummySession()
+	-- creates dummy session in case it does not exist
+	if vim.fn.filereadable(vim.fn.expand("'" .. session_dir .. dummy_session .. "'")) == 0 then
+		vim.cmd("silent bufdo bd")
+		SessionSave(dummy_session)
+	end
+end
+
 -- Session Close
 function SessionClose()
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 	if session == "" then
 		print("No session is loaded")
+    -- create dummy session if not exists
+		CreateDummySession()
 	else
 		if session ~= dummy_session then
 			SessionSave(session)
