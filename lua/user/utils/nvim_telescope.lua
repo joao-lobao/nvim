@@ -85,6 +85,11 @@ local task = function(input)
 		}),
 		sorter = sorters.get_fzy_sorter({}),
 		attach_mappings = function(prompt_bufnr)
+			vim.api.nvim_buf_set_extmark(0, 1, 0, 0, {
+				virt_text = {
+					{ "... connecting ... 👽", "Comment" },
+				},
+			})
 			actions.select_default:replace(function()
 				actions.close(prompt_bufnr)
 				local selection = action_state.get_selected_entry()
@@ -112,8 +117,10 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 
 -- Change highlight color for telescope matching search hits
+-- TODO: 2022-11-25 better way to implement hl color groups as below:
+-- vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red", bg = "white" })
 vim.cmd([[
-  autocmd ColorScheme gruvbox highlight TelescopeMatching guifg=#ba3636
+  autocmd ColorScheme gruvbox highlight TelescopeMatching guifg=red
   autocmd ColorScheme gruvbox highlight TelescopeResultsBookmark guifg=#de5d5d
   autocmd ColorScheme gruvbox highlight TelescopePromptBorder guifg=#e993ed
   autocmd ColorScheme gruvbox highlight TelescopeResultsBorder guifg=orange
