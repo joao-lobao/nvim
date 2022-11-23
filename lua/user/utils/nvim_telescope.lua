@@ -69,8 +69,7 @@ local task = function(input)
 		prompt_prefix = " 📡 ",
 		prompt_title = "👷 " .. vim.fn.fnamemodify(vim.v.this_session, ":t"),
 		results_title = "🗃 " .. vim.fn.getcwd(),
-		selection_caret = "➡ ",
-		layout_config = { anchor = "E", width = 0.5, height = 100 },
+		layout_config = { anchor = "E", width = 0.5, height = 0.97 },
 		finder = finders.new_table({
 			results = input,
 			entry_maker = function(entry)
