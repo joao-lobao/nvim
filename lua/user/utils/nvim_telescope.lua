@@ -64,9 +64,47 @@ local make_display = function(entry)
 	})
 end
 
+local placeholder = function()
+	local virt_texts = {
+		" 📡➡  connecting   👽",
+		" 📡 ➡ connecting   👽",
+		" 📡  ➡connecting   👽",
+		" 📡   connecting➡  👽",
+		" 📡   connecting ➡ 👽",
+		" 📡   connecting  ➡👽",
+	}
+	local timer = vim.loop.new_timer()
+	local position = 1
+	local total_positions = 6
+	local current_cycle = 0
+	local iterations = 6
+	timer:start(
+		0,
+		100,
+		vim.schedule_wrap(function()
+			vim.api.nvim_buf_clear_namespace(0, 1, 0, 1)
+			if current_cycle == iterations then
+				timer:close()
+			else
+				vim.api.nvim_buf_set_extmark(0, 1, 0, 0, {
+					virt_text = {
+						{ virt_texts[position], "Comment" },
+					},
+				})
+			end
+			if position == total_positions then
+				position = 1
+				current_cycle = current_cycle + 1
+			else
+				position = position + 1
+			end
+		end)
+	)
+end
+
 local task = function(input)
 	local opts = {
-		prompt_prefix = " 📡 ",
+		prompt_prefix = " 🔭 ",
 		prompt_title = "👷 " .. vim.fn.fnamemodify(vim.v.this_session, ":t"),
 		results_title = "🗃 " .. vim.fn.getcwd(),
 		layout_config = { anchor = "E", width = 0.5, height = 0.97 },
@@ -85,11 +123,7 @@ local task = function(input)
 		}),
 		sorter = sorters.get_fzy_sorter({}),
 		attach_mappings = function(prompt_bufnr)
-			vim.api.nvim_buf_set_extmark(0, 1, 0, 0, {
-				virt_text = {
-					{ "... connecting ... 👽", "Comment" },
-				},
-			})
+			placeholder()
 			actions.select_default:replace(function()
 				actions.close(prompt_bufnr)
 				local selection = action_state.get_selected_entry()
