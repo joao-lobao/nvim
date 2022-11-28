@@ -125,6 +125,9 @@ return packer.startup(function(use)
 	-- adds a scroll bar
 	use("petertriho/nvim-scrollbar")
 
+	-- buffer animation
+	use({ "Eandrju/cellular-automaton.nvim" })
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
