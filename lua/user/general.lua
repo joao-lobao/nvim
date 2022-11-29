@@ -138,3 +138,29 @@ vim.cmd([[
 -------------HELPER-------------
 -- get last commit message
 vim.api.nvim_create_user_command("GitLastCommit", "!(git -C . log | sed -n '5p' | sed -e 's/^[ \t]*//')", {})
+
+-------------HELPER-------------
+-- autocorrect common mistakes
+vim.cmd [[ 
+  let s:auto_correct_loaded=0
+
+  function! AutoCorrect()
+    if exists('s:autocorrect_loaded')
+      return
+    else
+      let s:autocorrect_loaded='1'
+    endif
+  ia funciton function
+  ia cosnt const
+  ia conts const
+  ia thsi this
+  ia htis this
+  ia tset test
+  ia reutrn return
+  ia retunr return
+  ia retun return
+  ia retur return
+  ia nubmer number
+  endfunction
+  call AutoCorrect()
+]]
