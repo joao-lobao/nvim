@@ -77,7 +77,7 @@ local placeholder = function()
 	local position = 1
 	local total_positions = 6
 	local current_cycle = 0
-	local iterations = 6
+	local iterations = 2
 	timer:start(
 		0,
 		100,
