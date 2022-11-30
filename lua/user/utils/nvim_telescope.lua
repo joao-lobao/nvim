@@ -64,6 +64,64 @@ local make_display = function(entry)
 	})
 end
 
+local task = function(input)
+	local opts = {
+		prompt_prefix = " 🔭 ",
+		prompt_title = "👷 " .. vim.fn.fnamemodify(vim.v.this_session, ":t"),
+		results_title = "🗃 " .. vim.fn.getcwd(),
+		layout_config = { anchor = "E", width = 0.5, height = 0.97 },
+		finder = finders.new_table({
+			results = input,
+			entry_maker = function(entry)
+				local new_entry = {
+					value = entry.value,
+					category = entry.category,
+					description = entry.description,
+					display = make_display,
+					ordinal = entry.description,
+				}
+				return new_entry
+			end,
+		}),
+		sorter = sorters.get_fzy_sorter({}),
+		attach_mappings = function(prompt_bufnr)
+			actions.select_default:replace(function()
+				actions.close(prompt_bufnr)
+				local selection = action_state.get_selected_entry()
+				vim.cmd(selection.value)
+			end)
+			return true
+		end,
+	}
+	return pickers.new(opts):find()
+end
+
+M.common_actions = function()
+	task(common_actions)
+end
+
+-- a (bad) workaround for the Telescope issue folds only exist after Folds only
+-- exist after using zx (E490: No fold found) when using "telescope" fzf plugin
+vim.api.nvim_create_autocmd("BufRead", {
+	callback = function()
+		vim.api.nvim_create_autocmd("BufWinEnter", {
+			once = true,
+			command = "normal! zx",
+		})
+	end,
+})
+
+-- Change highlight color for telescope matching search hits
+-- TODO: 2022-11-25 better way to implement hl color groups as below:
+-- vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red", bg = "white" })
+vim.cmd([[
+  autocmd ColorScheme gruvbox highlight TelescopeMatching guifg=red
+  autocmd ColorScheme gruvbox highlight TelescopeResultsBookmark guifg=#de5d5d
+  autocmd ColorScheme gruvbox highlight TelescopePromptBorder guifg=#e993ed
+  autocmd ColorScheme gruvbox highlight TelescopeResultsBorder guifg=orange
+  autocmd ColorScheme gruvbox highlight TelescopePreviewBorder guifg=#de5d5d
+]])
+
 local placeholder = function()
 	local virt_texts = {
 		" 📡➡  connecting   👽",
@@ -101,62 +159,4 @@ local placeholder = function()
 		end)
 	)
 end
-
-local task = function(input)
-	local opts = {
-		prompt_prefix = " 🔭 ",
-		prompt_title = "👷 " .. vim.fn.fnamemodify(vim.v.this_session, ":t"),
-		results_title = "🗃 " .. vim.fn.getcwd(),
-		layout_config = { anchor = "E", width = 0.5, height = 0.97 },
-		finder = finders.new_table({
-			results = input,
-			entry_maker = function(entry)
-				local new_entry = {
-					value = entry.value,
-					category = entry.category,
-					description = entry.description,
-					display = make_display,
-					ordinal = entry.description,
-				}
-				return new_entry
-			end,
-		}),
-		sorter = sorters.get_fzy_sorter({}),
-		attach_mappings = function(prompt_bufnr)
-			placeholder()
-			actions.select_default:replace(function()
-				actions.close(prompt_bufnr)
-				local selection = action_state.get_selected_entry()
-				vim.cmd(selection.value)
-			end)
-			return true
-		end,
-	}
-	return pickers.new(opts):find()
-end
-
-M.common_actions = function()
-	task(common_actions)
-end
-
--- a (bad) workaround for the Telescope issue folds only exist after Folds only
--- exist after using zx (E490: No fold found) when using "telescope" fzf plugin
-vim.api.nvim_create_autocmd("BufRead", {
-	callback = function()
-		vim.api.nvim_create_autocmd("BufWinEnter", {
-			once = true,
-			command = "normal! zx",
-		})
-	end,
-})
-
--- Change highlight color for telescope matching search hits
--- TODO: 2022-11-25 better way to implement hl color groups as below:
--- vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red", bg = "white" })
-vim.cmd([[
-  autocmd ColorScheme gruvbox highlight TelescopeMatching guifg=red
-  autocmd ColorScheme gruvbox highlight TelescopeResultsBookmark guifg=#de5d5d
-  autocmd ColorScheme gruvbox highlight TelescopePromptBorder guifg=#e993ed
-  autocmd ColorScheme gruvbox highlight TelescopeResultsBorder guifg=orange
-  autocmd ColorScheme gruvbox highlight TelescopePreviewBorder guifg=#de5d5d
-]])
+placeholder()
