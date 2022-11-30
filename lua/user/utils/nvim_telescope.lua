@@ -70,7 +70,7 @@ local task = function(input)
 		session = "Connect to Workspace"
 	end
 	local opts = {
-		prompt_prefix = " 🔭 ",
+		prompt_prefix = " 📡 ",
 		prompt_title = "👷 " .. session,
 		results_title = "🗃 " .. vim.fn.getcwd(),
 		layout_config = { anchor = "E", width = 0.5, height = 0.97 },
@@ -125,42 +125,3 @@ vim.cmd([[
   autocmd ColorScheme gruvbox highlight TelescopeResultsBorder guifg=orange
   autocmd ColorScheme gruvbox highlight TelescopePreviewBorder guifg=#de5d5d
 ]])
-
-local placeholder = function()
-	local virt_texts = {
-		" 📡➡  connecting   👽",
-		" 📡 ➡ connecting   👽",
-		" 📡  ➡connecting   👽",
-		" 📡   connecting➡  👽",
-		" 📡   connecting ➡ 👽",
-		" 📡   connecting  ➡👽",
-	}
-	local timer = vim.loop.new_timer()
-	local position = 1
-	local total_positions = 6
-	local current_cycle = 0
-	local iterations = 2
-	timer:start(
-		0,
-		100,
-		vim.schedule_wrap(function()
-			vim.api.nvim_buf_clear_namespace(0, 1, 0, 1)
-			if current_cycle == iterations then
-				timer:close()
-			else
-				vim.api.nvim_buf_set_extmark(0, 1, 0, 0, {
-					virt_text = {
-						{ virt_texts[position], "Comment" },
-					},
-				})
-			end
-			if position == total_positions then
-				position = 1
-				current_cycle = current_cycle + 1
-			else
-				position = position + 1
-			end
-		end)
-	)
-end
--- placeholder()
