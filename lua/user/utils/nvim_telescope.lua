@@ -54,7 +54,7 @@ local displayer = entry_display.create({
 
 local make_display = function(entry)
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
-	if string.match(entry.description, session) then
+	if session ~= "" and string.match(entry.description, session) then
 		entry.description = "👷 " .. session
 		entry.value = ""
 	end
@@ -65,9 +65,13 @@ local make_display = function(entry)
 end
 
 local task = function(input)
+	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
+	if session == "" then
+		session = "Connect to Workspace"
+	end
 	local opts = {
 		prompt_prefix = " 🔭 ",
-		prompt_title = "👷 " .. vim.fn.fnamemodify(vim.v.this_session, ":t"),
+		prompt_title = "👷 " .. session,
 		results_title = "🗃 " .. vim.fn.getcwd(),
 		layout_config = { anchor = "E", width = 0.5, height = 0.97 },
 		finder = finders.new_table({
@@ -159,4 +163,4 @@ local placeholder = function()
 		end)
 	)
 end
-placeholder()
+-- placeholder()
