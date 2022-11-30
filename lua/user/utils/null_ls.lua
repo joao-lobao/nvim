@@ -1,3 +1,40 @@
+local no_undef_code_action_var = function(context, diagn)
+	local custom_icon_var = "🔨"
+	return {
+		title = custom_icon_var .. " Define const '" .. diagn.var_name .. "'",
+		action = function()
+			local lines = {
+				"const " .. diagn.var_name .. " = ",
+				context.content[diagn.lnum + 1],
+			}
+			vim.api.nvim_buf_set_lines(context.bufnr, diagn.lnum, diagn.lnum + 1, false, lines)
+			vim.api.nvim_feedkeys(tostring(diagn.lnum + 1) .. "G", "n", false)
+			vim.api.nvim_feedkeys("==", "n", false)
+			vim.api.nvim_feedkeys("A", "n", false)
+		end,
+	}
+end
+
+local no_undef_code_action_class = function(context, diagn)
+	local custom_icon_class = "🧰"
+	return {
+		title = custom_icon_class .. " Define class '" .. diagn.var_name .. "'",
+		action = function()
+			local lines = {
+				"class " .. diagn.var_name .. " {",
+				"",
+				"}",
+				context.content[diagn.lnum + 1],
+			}
+			vim.api.nvim_buf_set_lines(context.bufnr, diagn.lnum, diagn.lnum + 1, false, lines)
+			vim.api.nvim_feedkeys(tostring(diagn.lnum + 1) .. "G", "n", false)
+			vim.api.nvim_feedkeys("=2j", "n", false)
+			vim.api.nvim_feedkeys("j", "n", false)
+			vim.api.nvim_feedkeys("S", "n", false)
+		end,
+	}
+end
+
 local custom_utils = {
 	code_actions = function(null_ls)
 		return {
@@ -31,28 +68,17 @@ local custom_utils = {
 							end
 						end
 
+						-- creates list of available actions
 						local actions = {}
 						if next(qf) ~= nil then
 							for _, diagn in pairs(qf) do
-								table.insert(actions, {
-									title = "🖌 Define const '" .. diagn.var_name .. "'",
-									action = function()
-										local lines = {
-											"const " .. diagn.var_name .. " = ",
-											context.content[diagn.lnum + 1],
-										}
-										vim.api.nvim_buf_set_lines(
-											context.bufnr,
-											diagn.lnum,
-											diagn.lnum + 1,
-											false,
-											lines
-										)
-										vim.api.nvim_feedkeys(tostring(diagn.lnum + 1) .. "G", "n", false)
-										vim.api.nvim_feedkeys("==", "n", false)
-										vim.api.nvim_feedkeys("A", "n", false)
-									end,
-								})
+								-- if first letter is uppercase should be a class
+								if string.match(diagn.var_name, "^[A-Z]") then
+									table.insert(actions, no_undef_code_action_class(context, diagn))
+								-- else should be a constant
+								else
+									table.insert(actions, no_undef_code_action_var(context, diagn))
+								end
 							end
 						end
 
