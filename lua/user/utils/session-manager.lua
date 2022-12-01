@@ -1,5 +1,5 @@
 local session_dir = "~/.config/nvim/session/"
-local dummy_session = "Connect to Workspace"
+local dummy_session = "Empty Session"
 
 -- Session Load
 function SessionLoad(session)
@@ -27,7 +27,7 @@ function SessionClose()
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 	if session == "" then
 		print("No session is loaded")
-    -- create dummy session if not exists
+		-- create dummy session if not exists
 		CreateDummySession()
 	else
 		if session ~= dummy_session then

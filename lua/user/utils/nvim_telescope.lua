@@ -5,48 +5,13 @@ local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local sorters = require("telescope.sorters")
 local entry_display = require("telescope.pickers.entry_display")
-local hl_categories = {
-	command = "TelescopeResultsVariable",
-	workspace = "TelescopeResultsIdentifier",
-	bookmark = "TelescopeResultsBookmark",
-	search = "TelescopeResultsConstant",
-	vcs = "TelescopeResultsFunction",
-}
--- TODO: create a better way of adding picker options 2022-11-18
--- TODO: create a better way of adding horizontal separators between options 2022-11-19
--- function to create a list of commands
-local common_actions = {
-	{ description = "e  Empty buffer", value = "enew", category = hl_categories.command },
-	{ description = "q  Quit", value = "q", category = hl_categories.command },
-	{ description = "", value = "" },
-	{ description = "🚀 Crypto Watcher", value = "SLoad Crypto Watcher", category = hl_categories.workspace },
-	{ description = "🚀 Dotfiles", value = "SLoad Dotfiles", category = hl_categories.workspace },
-	{ description = "🚀 JoaoLobao", value = "SLoad JoaoLobao", category = hl_categories.workspace },
-	{ description = "🚀 Muxinator", value = "SLoad Muxinator", category = hl_categories.workspace },
-	{ description = "🚀 Notes", value = "SLoad Notes", category = hl_categories.workspace },
-	{ description = "🚀 VimConfig", value = "SLoad VimConfig", category = hl_categories.workspace },
-	{ description = "❌ Close Session", value = "SClose", category = hl_categories.workspace },
-	{ description = "", value = "" },
-	{
-		description = "📊 ~/.config/nvim/init.lua",
-		value = "e ~/.config/nvim/init.lua",
-		category = hl_categories.bookmark,
-	},
-	{ description = "📊 ~/.tmux.conf", value = "e ~/.tmux.conf", category = hl_categories.bookmark },
-	{ description = "📊 ~/.zshrc", value = "e ~/.zshrc", category = hl_categories.bookmark },
-	{ description = "", value = "" },
-	{ description = "📁 Old files", value = "Telescope oldfiles", category = hl_categories.search },
-	{ description = "🅰  Keymaps", value = "Telescope keymaps", category = hl_categories.search },
-	{ description = "", value = "" },
-	{ description = " git push", value = "Git push", category = hl_categories.vcs },
-	{ description = " git push --force", value = "Git push --force", category = hl_categories.vcs },
-	{ description = " git log %", value = "Gclog -- %", category = hl_categories.vcs },
-	{ description = " git log last commit", value = "GitLastCommit", category = hl_categories.vcs },
-}
+local icons = require("user/utils/constants").icons
+local common_actions = require("user/utils/constants").common_actions
 
 local displayer = entry_display.create({
 	separator = " ",
 	items = {
+		{ remaining = true },
 		{ remaining = true },
 		{ remaining = true },
 	},
@@ -54,11 +19,14 @@ local displayer = entry_display.create({
 
 local make_display = function(entry)
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
+	-- if session is not empty add the opened session icon
 	if session ~= "" and string.match(entry.description, session) then
-		entry.description = "👷 " .. session
+		entry.icon = icons.opened_session
+		entry.description = session
 		entry.value = ""
 	end
 	return displayer({
+		{ entry.icon, entry.category },
 		{ entry.description, entry.category },
 		{ entry.value, "TelescopeResultsComment" },
 	})
@@ -66,19 +34,21 @@ end
 
 local task = function(input)
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
+	local prompt_title = icons.opened_session .. " " .. session
+	-- if session is empty add the closed session icon
 	if session == "" then
-		session = "Connect to Workspace"
+		prompt_title = icons.closed_session .. " Connect to Workspace"
 	end
 	local opts = {
-		prompt_prefix = " 📡 ",
-		prompt_title = "👷 " .. session,
-		results_title = "🗃 " .. vim.fn.getcwd(),
+		prompt_title = prompt_title,
+		results_title = icons.folder .. " " .. vim.fn.getcwd(),
 		layout_config = { anchor = "E", width = 0.5, height = 0.97 },
 		finder = finders.new_table({
 			results = input,
 			entry_maker = function(entry)
 				local new_entry = {
 					value = entry.value,
+					icon = entry.icon,
 					category = entry.category,
 					description = entry.description,
 					display = make_display,
