@@ -60,8 +60,6 @@ return packer.startup(function(use)
 	-- changes the working directory to the project root when a file or directory
 	-- is opened
 	use({ "airblade/vim-rooter" })
-	-- snippets
-	use({ "SirVer/ultisnips" })
 	-- package.json dependencies manager helpers
 	use({ "vuki656/package-info.nvim" })
 	use({ "MunifTanjim/nui.nvim" })
@@ -70,8 +68,6 @@ return packer.startup(function(use)
 	-- provides two text objects: ax and ix. They represent XML/HTML attributes.
 	use({ "kana/vim-textobj-user" })
 	use({ "whatyouhide/vim-textobj-xmlattr" })
-	-- hatch a duck or any emoji/character
-	use({ "tamton-aquib/duck.nvim" })
 	-- file explorer
 	use({ "nvim-tree/nvim-tree.lua" })
 	-- dev icons for multiple plugins
@@ -82,7 +78,6 @@ return packer.startup(function(use)
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
 	use("hrsh7th/cmp-path") -- source for file system paths
-	use("quangnguyen30192/cmp-nvim-ultisnips") -- support for ultisnips
 	use({ "tzachar/cmp-tabnine", run = "./install.sh" })
 	use({ "hrsh7th/cmp-calc" })
 
@@ -124,9 +119,6 @@ return packer.startup(function(use)
 	})
 	-- adds a scroll bar
 	use("petertriho/nvim-scrollbar")
-
-	-- buffer animation
-	use({ "Eandrju/cellular-automaton.nvim" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
