@@ -65,9 +65,6 @@ return packer.startup(function(use)
 	use({ "MunifTanjim/nui.nvim" })
 	-- alternate files / naviagation cmds / buffer configuration
 	use({ "tpope/vim-projectionist" })
-	-- provides two text objects: ax and ix. They represent XML/HTML attributes.
-	use({ "kana/vim-textobj-user" })
-	use({ "whatyouhide/vim-textobj-xmlattr" })
 	-- file explorer
 	use({ "nvim-tree/nvim-tree.lua" })
 	-- dev icons for multiple plugins
