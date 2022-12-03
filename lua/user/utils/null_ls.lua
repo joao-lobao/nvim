@@ -1,7 +1,7 @@
 local no_undef_code_action_var = function(context, diagn)
-	local custom_icon_var = "🔨"
+	local custom_icon = "🔨"
 	return {
-		title = custom_icon_var .. " Define const '" .. diagn.var_name .. "'",
+		title = custom_icon .. " Define const '" .. diagn.var_name .. "'",
 		action = function()
 			local lines = {
 				"const " .. diagn.var_name .. " = ",
@@ -15,10 +15,35 @@ local no_undef_code_action_var = function(context, diagn)
 	}
 end
 
-local no_undef_code_action_class = function(context, diagn)
-	local custom_icon_class = "🧰"
+local no_undef_jsx_code_action = function(context, diagn, type)
+	local custom_icon = "🧰"
+	local parentheses = ""
+	if type == "function" then
+		custom_icon = "🛠"
+		parentheses = "()"
+	end
 	return {
-		title = custom_icon_class .. " Define class '" .. diagn.var_name .. "'",
+		title = custom_icon .. " Define " .. type .. " '" .. diagn.var_name .. "'",
+		action = function()
+			local lines = {
+				type .. " " .. diagn.var_name .. parentheses .. " {",
+				"",
+				"}",
+			}
+			print(vim.inspect(vim.api.nvim_buf_line_count(0)))
+			local last_line = vim.api.nvim_buf_line_count(0)
+			vim.api.nvim_buf_set_lines(context.bufnr, last_line, last_line + 1, false, lines)
+			vim.api.nvim_feedkeys("G", "n", false)
+			vim.api.nvim_feedkeys("=k", "n", false)
+			vim.api.nvim_feedkeys("S", "n", false)
+		end,
+	}
+end
+
+local no_undef_code_action_class = function(context, diagn)
+	local custom_icon = "🧰"
+	return {
+		title = custom_icon .. " Define class '" .. diagn.var_name .. "'",
 		action = function()
 			local lines = {
 				"class " .. diagn.var_name .. " {",
@@ -50,7 +75,10 @@ local custom_utils = {
 				},
 				generator = {
 					fn = function(context)
-						local NO_UNDEF_CODES = { 2304, "no-undef" }
+						local ts_code = 2304
+						local eslint_d_js_code = "no-undef"
+						local eslint_d_react_code = "react/jsx-no-undef"
+						local NO_UNDEF_CODES = { ts_code, eslint_d_js_code, eslint_d_react_code }
 						local diagnostic =
 							vim.diagnostic.get(context.bufnr, { severity = vim.diagnostic.severity.ERROR })
 
@@ -70,15 +98,17 @@ local custom_utils = {
 
 						-- creates list of available actions
 						local actions = {}
-						if next(qf) ~= nil then
-							for _, diagn in pairs(qf) do
-								-- if first letter is uppercase should be a class
-								if string.match(diagn.var_name, "^[A-Z]") then
-									table.insert(actions, no_undef_code_action_class(context, diagn))
+						for _, diagn in pairs(qf) do
+							-- if code is from jsx not defined should be a function or a class
+							if diagn.code == eslint_d_react_code then
+								table.insert(actions, no_undef_jsx_code_action(context, diagn, "function"))
+								table.insert(actions, no_undef_jsx_code_action(context, diagn, "class"))
+							-- if first letter is uppercase should be a class
+							elseif string.match(diagn.var_name, "^[A-Z]") then
+								table.insert(actions, no_undef_code_action_class(context, diagn))
 								-- else should be a constant
-								else
-									table.insert(actions, no_undef_code_action_var(context, diagn))
-								end
+							else
+								table.insert(actions, no_undef_code_action_var(context, diagn))
 							end
 						end
 
