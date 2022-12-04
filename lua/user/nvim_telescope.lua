@@ -14,8 +14,6 @@ telescope.setup({
 		},
 	},
 })
--- load refactoring Telescope extension
-telescope.load_extension("refactoring")
 
 local M = require("telescope.builtin")
 function M.search_files_in_home()
