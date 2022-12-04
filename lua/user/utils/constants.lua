@@ -55,6 +55,12 @@ local common_actions = {
 	},
 	{
 		icon = icons.closed_session,
+		description = "Scripts",
+		value = "SLoad Scripts",
+		category = hl_categories.workspace,
+	},
+	{
+		icon = icons.closed_session,
 		description = "VimConfig",
 		value = "SLoad VimConfig",
 		category = hl_categories.workspace,
