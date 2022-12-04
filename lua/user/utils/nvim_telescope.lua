@@ -32,7 +32,7 @@ local make_display = function(entry)
 	})
 end
 
-local task = function(input)
+local task = function()
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 	local prompt_title = icons.opened_session .. " " .. session
 	-- if session is empty add the closed session icon
@@ -44,7 +44,7 @@ local task = function(input)
 		results_title = icons.folder .. " " .. vim.fn.getcwd(),
 		layout_config = { anchor = "E", width = 0.5, height = 0.97 },
 		finder = finders.new_table({
-			results = input,
+			results = common_actions,
 			entry_maker = function(entry)
 				local new_entry = {
 					value = entry.value,
@@ -71,7 +71,7 @@ local task = function(input)
 end
 
 M.common_actions = function()
-	task(common_actions)
+	task()
 end
 
 -- a (bad) workaround for the Telescope issue folds only exist after Folds only
