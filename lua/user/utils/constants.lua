@@ -15,6 +15,7 @@ local icons = {
 	files = "🗃",
 	keymap = "🅰 ",
 	git = "",
+  santa = "🎅",
 }
 
 -- TODO: create a better way of adding picker options 2022-11-18
@@ -23,6 +24,12 @@ local common_actions = {
 	{ icon = "e", description = "Empty buffer", value = "enew", category = hl_categories.command },
 	{ icon = "q", description = "Quit", value = "q", category = hl_categories.command },
 	{ icon = "", description = "", value = "" },
+	{
+		icon = icons.santa,
+		description = "Advent of Code",
+		value = "SLoad Advent-of-code",
+		category = hl_categories.workspace,
+	},
 	{
 		icon = icons.closed_session,
 		description = "Crypto Watcher",
