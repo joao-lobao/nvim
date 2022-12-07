@@ -69,11 +69,11 @@ cmp.setup({
 	-- sources for autocompletion
 	sources = cmp.config.sources({
 		{ name = "calc" }, -- cmp calc
-		{ name = "nvim_lsp" }, -- lsp
-		{ name = "luasnip" }, -- snippets
-		{ name = "ultisnips" }, -- snippets
-		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
+		{ name = "ultisnips" }, -- snippets
+		{ name = "luasnip" }, -- snippets
+		{ name = "nvim_lsp" }, -- lsp
+		{ name = "buffer" }, -- text within current buffer
 		{ name = "cmp_tabnine" }, -- tabnine
 		{ name = "emojis" }, -- custom emojis
 	}),
