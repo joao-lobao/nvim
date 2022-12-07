@@ -1,5 +1,5 @@
 ####################
-### CREATE CLASSES
+### CREATE CLASSES AND NAMED EXPORT WITHOUT CONSTRUCTOR
 ####################
 snippet ec "export class N {}" b
 export class ${1:N${VISUAL}} {
@@ -16,6 +16,75 @@ endsnippet
 snippet eci "export class N implements I {}" b
 export class ${1:N${VISUAL}} implements ${2:I${VISUAL}} {
 	${0}
+}
+endsnippet
+
+snippet edc "export default class N {}" b
+export default class ${1:N${VISUAL}} {
+	${0}
+}
+endsnippet
+
+snippet edce "export default class N extends S {}" b
+export default class ${1:N${VISUAL}} extends ${2:S${VISUAL}} {
+	${0}
+}
+endsnippet
+
+snippet edci "export default class N implements I {}" b
+export default class ${1:N${VISUAL}} implements ${2:I${VISUAL}} {
+	${0}
+}
+endsnippet
+
+####################
+### CREATE CLASSES AND EXPORT WITH CONSTRUCTORS
+####################
+snippet ecc "export class N {}" b
+export class ${1:Name${VISUAL}} {
+	constructor(${2:params${VISUAL}}) {
+		${0}
+	}
+}
+endsnippet
+
+snippet edcc "export default class N {}" b
+export default class ${1:Name${VISUAL}} {
+	constructor(${2:params${VISUAL}}) {
+		${0}
+	}
+}
+endsnippet
+
+snippet ecec "export class N extends S {}" b
+export class ${1:Name${VISUAL}} extends ${2:S${VISUAL}} {
+	constructor(${3:params${VISUAL}}) {
+		${0}
+	}
+}
+endsnippet
+
+snippet edcec "export default class N extends S {}" b
+export default class ${1:Name${VISUAL}} extends ${2:S${VISUAL}} {
+	constructor(${3:params${VISUAL}}) {
+		${0}
+	}
+}
+endsnippet
+
+snippet ecic "export class N implements I {}" b
+export class ${1:Name${VISUAL}} implements ${2:I${VISUAL}} {
+	constructor(${3:params${VISUAL}}) {
+		${0}
+	}
+}
+endsnippet
+
+snippet edcic "export default class N implements I {}" b
+export default class ${1:Name${VISUAL}} implements ${2:I${VISUAL}} {
+	constructor(${3:params${VISUAL}}) {
+		${0}
+	}
 }
 endsnippet
 
@@ -88,14 +157,26 @@ test('${1:}', () => {
 });
 endsnippet
 
-snippet befe "beforeEach(() => { ... })" b
+snippet bef "beforeEach(() => { ... })" b
 beforeEach(() => {
 	${0:${VISUAL}}
 });
 endsnippet
 
-snippet afte "afterEach(() => { ... })" b
+snippet aft "afterEach(() => { ... })" b
 afterEach(() => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet befa "beforeAll(() => { ... })" b
+beforeAll(() => {
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet afta "afterAll(() => { ... })" b
+afterAll(() => {
 	${0:${VISUAL}}
 });
 endsnippet
@@ -103,5 +184,3 @@ endsnippet
 snippet exp "expect(...)" b
 expect(${1:})${0};
 endsnippet
-
-
