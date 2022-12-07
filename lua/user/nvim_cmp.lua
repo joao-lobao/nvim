@@ -71,6 +71,7 @@ cmp.setup({
 		{ name = "calc" }, -- cmp calc
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "luasnip" }, -- snippets
+		{ name = "ultisnips" }, -- snippets
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
 		{ name = "cmp_tabnine" }, -- tabnine
@@ -89,6 +90,7 @@ cmp.setup({
 					path = "ﱮ",
 					buffer = "﬘",
 					luasnip = "",
+					ultisnips = "US",
 					cmp_tabnine = "TN",
 					emojis = "😀",
 				})[entry.source.name]

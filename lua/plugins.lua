@@ -60,6 +60,8 @@ return packer.startup(function(use)
 	-- changes the working directory to the project root when a file or directory
 	-- is opened
 	use({ "airblade/vim-rooter" })
+	-- snippets
+	use({ "SirVer/ultisnips" })
 	-- package.json dependencies manager helpers
 	use({ "vuki656/package-info.nvim" })
 	use({ "MunifTanjim/nui.nvim" })
@@ -75,6 +77,7 @@ return packer.startup(function(use)
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
 	use("hrsh7th/cmp-path") -- source for file system paths
+	use("quangnguyen30192/cmp-nvim-ultisnips") -- support for ultisnips
 	use({ "tzachar/cmp-tabnine", run = "./install.sh" })
 	use({ "hrsh7th/cmp-calc" })
 

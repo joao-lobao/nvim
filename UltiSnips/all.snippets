@@ -1,0 +1,27 @@
+global !p
+def complete(t, opts):
+	if t:
+		opts = [ m[len(t):] for m in opts if m.startswith(t) ]
+	if len(opts) == 1:
+		return opts[0]
+	return "(" + '|'.join(opts) + ')'
+endglobal
+
+####################
+### GENERAL
+####################
+snippet	st "Status" b
+status $1`!p snip.rv=complete(t[1], ['new','incomplete','invalid'])`
+endsnippet
+
+####################
+### COMMENTS
+####################
+snippet date "YYYY-MM-DD" w
+`!v strftime("%Y-%m-%d")`
+endsnippet
+
+snippet todo "TODO comment" b
+TODO: ${0} `!v strftime("%Y-%m-%d")`
+endsnippet
+
