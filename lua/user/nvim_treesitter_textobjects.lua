@@ -1,8 +1,39 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+	ensure_installed = {
+		"comment",
+		"javascript",
+		"scss",
+		"css",
+		"html",
+		"markdown",
+		"json",
+		"yaml",
+		"vim",
+		"lua",
+		"python",
+		"typescript",
+		"rust",
+		"help",
+		"haskell",
+		"bash",
+		"dockerfile",
+		"gitcommit",
+		"git_rebase",
+	}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = { "c", "rust" }, -- list of language that will be disabled
+	},
+	indent = {
+		enable = true,
+	},
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "<c-space>", -- set to `false` to disable one of the mappings
+			node_incremental = "<c-space>",
+			scope_incremental = "<c-i>",
+			node_decremental = "<c-space>",
+		},
 	},
 	textobjects = {
 		swap = {
@@ -16,22 +47,26 @@ require("nvim-treesitter.configs").setup({
 		},
 		select = {
 			enable = true,
-
 			-- Automatically jump forward to textobj, similar to targets.vim
 			lookahead = true,
-
 			keymaps = {
 				-- You can use the capture groups defined in textobjects.scm
 				["af"] = "@function.outer",
 				["if"] = "@function.inner",
 				["ac"] = "@class.outer",
 				["ic"] = "@class.inner",
-				-- Or you can define your own textobjects like this
-				--["iF"] = {
-				--  python = "(function_definition) @function",
-				--  cpp = "(function_definition) @function",
-				--  c = "(function_definition) @function",
-				--  java = "(method_declaration) @function",
+			},
+		},
+		move = {
+			enable = true,
+			set_jumps = true,
+			goto_next_start = {
+				["<c-n>f"] = "@function.outer",
+				["<c-n>p"] = "@parameter.outer",
+			},
+			goto_previous_start = {
+				["<c-p>f"] = "@function.outer",
+				["<c-p>p"] = "@parameter.outer",
 			},
 		},
 	},
