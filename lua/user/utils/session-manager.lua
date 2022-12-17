@@ -55,6 +55,9 @@ vim.api.nvim_create_autocmd("VimLeave", {
 -- command to run on vim startup
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
-		require("telescope.builtin").common_actions()
+		local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
+		if session == "" then
+			require("telescope.builtin").common_actions()
+		end
 	end,
 })
