@@ -80,6 +80,7 @@ return packer.startup(function(use)
 	use("quangnguyen30192/cmp-nvim-ultisnips") -- support for ultisnips
 	use({ "tzachar/cmp-tabnine", run = "./install.sh" })
 	use({ "hrsh7th/cmp-calc" })
+	use({ "hrsh7th/cmp-copilot" })
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") -- snippet engine
@@ -119,6 +120,9 @@ return packer.startup(function(use)
 	})
 	-- adds a scroll bar
 	use("petertriho/nvim-scrollbar")
+
+  -- github copilot
+  use({"github/copilot.vim"})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
