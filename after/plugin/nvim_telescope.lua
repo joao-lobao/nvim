@@ -1,4 +1,3 @@
-require("user.utils.nvim_telescope")
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 

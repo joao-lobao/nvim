@@ -1,10 +1,6 @@
 {
-  "lua/*": {
+  "lua/user/*": {
     "type": "lua",
-    "alternate": "init.lua"
-  },
-  "init.lua": {
-    "type": "lua",
-    "alternate": "lua/plugins.lua"
+    "alternate": "lua/user/plugins.lua"
   }
 }
