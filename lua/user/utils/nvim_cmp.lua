@@ -1586,7 +1586,7 @@ source.complete = function(self, request, callback)
 	local input = string.sub(request.context.cursor_before_line, request.offset - 1)
 
 	local items = {}
-	for key, value in pairs(emojis) do
+	for _, value in pairs(emojis) do
 		table.insert(items, {
 			filterText = value.text,
 			label = value.text .. " - " .. value.emoji,
