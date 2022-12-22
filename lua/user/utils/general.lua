@@ -3,7 +3,6 @@
 vim.cmd([[:autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>]])
 vim.cmd([[:autocmd FileType qf nnoremap <buffer> <Esc> :cclose<CR>]])
 
-
 --------------HELPER-------------
 --- for vim yank highlight
 vim.cmd([[
@@ -35,7 +34,7 @@ vim.api.nvim_create_user_command("GitLastCommit", "!(git -C . log | sed -n '5p' 
 
 -------------HELPER-------------
 -- autocorrect common mistakes
-vim.cmd [[ 
+vim.cmd([[ 
   let s:auto_correct_loaded=0
 
   function! AutoCorrect()
@@ -57,4 +56,15 @@ vim.cmd [[
   ia nubmer number
   endfunction
   call AutoCorrect()
-]]
+]])
+
+-------------HELPER-------------
+-- goto class and method definitions
+local custom_goto = require("user.utils.custom_goto")
+vim.api.nvim_create_user_command("GotoClass", function()
+	custom_goto.get_current()
+end, {})
+
+vim.api.nvim_create_user_command("GotoMethod", function()
+	custom_goto.get_current("method")
+end, {})
