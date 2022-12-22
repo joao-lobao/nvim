@@ -1,3 +1,4 @@
+-- undefined variable for typescript/javascript
 local no_undef_code_action_var = function(context, diagn)
 	local custom_icon = "🔨"
 	return {
@@ -15,11 +16,12 @@ local no_undef_code_action_var = function(context, diagn)
 	}
 end
 
+-- undefined variable/class for jsx
 local no_undef_jsx_code_action = function(context, diagn, type)
 	local custom_icon = "🧰"
 	local parentheses = ""
 	if type == "function" then
-		custom_icon = "🛠"
+		custom_icon = "🔨"
 		parentheses = "()"
 	end
 	return {
@@ -39,6 +41,7 @@ local no_undef_jsx_code_action = function(context, diagn, type)
 	}
 end
 
+-- undefined class for typescript/javascript
 local no_undef_code_action_class = function(context, diagn)
 	local custom_icon = "🧰"
 	return {
