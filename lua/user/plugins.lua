@@ -47,6 +47,7 @@ return packer.startup(function(use)
 	use({ "tpope/vim-fugitive" })
 	-- improve syntax highlighting
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({ "nvim-treesitter/playground" })
 	-- to create custom mappings for text objects (ex: `daf` to delete a function)
 	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
 	-- colorschemes
@@ -121,8 +122,8 @@ return packer.startup(function(use)
 	-- adds a scroll bar
 	use("petertriho/nvim-scrollbar")
 
-  -- github copilot
-  use({"github/copilot.vim"})
+	-- github copilot
+	use({ "github/copilot.vim" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
