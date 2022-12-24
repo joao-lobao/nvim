@@ -9,9 +9,7 @@ local no_undef_code_action_var = function(context, diagn)
 				context.content[diagn.lnum + 1],
 			}
 			vim.api.nvim_buf_set_lines(context.bufnr, diagn.lnum, diagn.lnum + 1, false, lines)
-			vim.api.nvim_feedkeys(tostring(diagn.lnum + 1) .. "G", "n", false)
-			vim.api.nvim_feedkeys("==", "n", false)
-			vim.api.nvim_feedkeys("A", "n", false)
+			vim.api.nvim_feedkeys(tostring(diagn.lnum + 1) .. "G==A", "n", false)
 		end,
 	}
 end
@@ -34,9 +32,7 @@ local no_undef_jsx_code_action = function(context, diagn, type)
 			}
 			local last_line = vim.api.nvim_buf_line_count(0)
 			vim.api.nvim_buf_set_lines(context.bufnr, last_line, last_line + 1, false, lines)
-			vim.api.nvim_feedkeys("G", "n", false)
-			vim.api.nvim_feedkeys("=k", "n", false)
-			vim.api.nvim_feedkeys("S", "n", false)
+			vim.api.nvim_feedkeys("G=kS", "n", false)
 		end,
 	}
 end
@@ -54,10 +50,7 @@ local no_undef_code_action_class = function(context, diagn)
 				context.content[diagn.lnum + 1],
 			}
 			vim.api.nvim_buf_set_lines(context.bufnr, diagn.lnum, diagn.lnum + 1, false, lines)
-			vim.api.nvim_feedkeys(tostring(diagn.lnum + 1) .. "G", "n", false)
-			vim.api.nvim_feedkeys("=2j", "n", false)
-			vim.api.nvim_feedkeys("j", "n", false)
-			vim.api.nvim_feedkeys("S", "n", false)
+			vim.api.nvim_feedkeys(tostring(diagn.lnum + 1) .. "G=2jjS", "n", false)
 		end,
 	}
 end
@@ -77,7 +70,7 @@ local custom_utils = {
 				},
 				generator = {
 					fn = function(context)
-						local ts_code_1= 2304
+						local ts_code_1 = 2304
 						local ts_code_2 = 2552
 						local eslint_d_js_code = "no-undef"
 						local eslint_d_react_code = "react/jsx-no-undef"
