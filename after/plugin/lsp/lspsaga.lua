@@ -4,28 +4,38 @@ if not saga_status then
 	return
 end
 
-saga.init_lsp_saga({
-	-- keybinds for navigation in lspsaga window
-	move_in_saga = { prev = "<C-k>", next = "<C-j>" },
+-- saga.init_lsp_saga({
+saga.setup({
 	-- use enter to open file with finder
-	finder_action_keys = {
-		open = "<CR>",
-		quit = "<Esc>",
+	finder = {
+		keys = {
+			edit = "<CR>",
+			quit = "<Esc>",
+		},
 	},
 	-- use enter to open file with definition preview
-	definition_action_keys = {
+	definition = {
 		edit = "<CR>",
 		quit = "<Esc>",
 	},
 	-- show outline
-	show_outline = {
-		jump_key = "<CR>",
+	outline = {
+		keys = {
+			jump = "<CR>",
+			quit = "<Esc>",
+		},
 	},
-	code_action_icon = "",
-	code_action_keys = {
+	lightbulb = {
+		enable = false,
+	},
+	code_action = {
+		keys = {
+			quit = { "q", "<Esc>" },
+		},
+	},
+	-- renaming
+	rename = {
 		quit = "<Esc>",
+		in_select = false,
 	},
-  -- renaming
-  rename_action_quit = '<Esc>',
-  rename_in_select = false,
 })
