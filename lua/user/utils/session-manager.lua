@@ -56,7 +56,8 @@ vim.api.nvim_create_autocmd("VimLeave", {
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
-		if session == "" then
+    -- if no session loaded and empty buffer
+		if session == "" and vim.fn.line("$") == 1 and vim.fn.getline(1) == "" then
 			require("telescope.builtin").common_actions()
 		end
 	end,
