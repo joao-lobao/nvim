@@ -27,7 +27,6 @@ treesitter.setup({
 		"python",
 		"typescript",
 		"rust",
-		"help",
 		"haskell",
 		"bash",
 		"dockerfile",
