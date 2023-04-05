@@ -26,14 +26,14 @@ local common_actions = {
 	{ icon = "", description = "", value = "" },
 	{
 		icon = icons.santa,
-		description = "Advent of Code",
-		value = "SLoad Advent-of-code",
+		description = "AdventOfCode",
+		value = "SLoad AdventOfCode",
 		category = hl_categories.workspace,
 	},
 	{
 		icon = icons.closed_session,
-		description = "Crypto Watcher",
-		value = "SLoad Crypto Watcher",
+		description = "CryptoWatcher",
+		value = "SLoad CryptoWatcher",
 		category = hl_categories.workspace,
 	},
 	{

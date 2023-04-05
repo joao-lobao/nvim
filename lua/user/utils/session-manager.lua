@@ -1,5 +1,5 @@
 local session_dir = "~/.config/nvim/session/"
-local dummy_session = "Empty Session"
+local dummy_session = "EmptySession"
 
 -- Session Load
 function SessionLoad(session)
