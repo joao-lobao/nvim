@@ -92,30 +92,6 @@ typescript.setup({
 	},
 })
 
--- need to install angular language server and language service
--- npm i -g @angular/language-server
--- npm i -g @angular/language-service
-local languageServerPath = "/usr/lib"
-local cmd = {
-	"node",
-	languageServerPath .. "/node_modules/@angular/language-server/index.js",
-	"--stdio",
-	"--tsProbeLocations",
-	languageServerPath,
-	"--ngProbeLocations",
-	languageServerPath,
-}
-
--- configure angular server
-lspconfig.angularls.setup({
-	cmd = cmd,
-	on_new_config = function(new_config, new_root_dir)
-		new_config.cmd = cmd
-	end,
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
 -- configure jsonls server
 lspconfig["jsonls"].setup({
 	capabilities = capabilities,

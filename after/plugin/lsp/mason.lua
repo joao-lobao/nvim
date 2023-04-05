@@ -59,7 +59,6 @@ mason_null_ls.setup({
 -- "dockerfile-language-server",
 -- "cssmodules-language-server",
 -- "bash-language-server",
--- "angular-language-server",
 -- "css-lsp",
 -- "html-lsp",
 -- "lua-language-server",
