@@ -20,6 +20,7 @@ treesitter.setup({
 		"css",
 		"html",
 		"markdown",
+    "markdown_inline",
 		"json",
 		"yaml",
 		"vim",
