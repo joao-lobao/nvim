@@ -123,6 +123,15 @@ return packer.startup(function(use)
 
 	-- github copilot
 	use({ "github/copilot.vim" })
+	-- chatgpt
+	use({
+		"jackMort/ChatGPT.nvim",
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
