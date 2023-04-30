@@ -71,7 +71,6 @@ cmp.setup({
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "buffer" }, -- text within current buffer
-		{ name = "cmp_tabnine" }, -- tabnine
 		{ name = "emojis" }, -- custom emojis
 	}),
 	-- configure lspkind for vs-code like icons
@@ -88,7 +87,6 @@ cmp.setup({
 					buffer = "﬘",
 					luasnip = "",
 					ultisnips = "US",
-					cmp_tabnine = "TN",
 					emojis = "😀",
 				})[entry.source.name]
 				return vim_item
