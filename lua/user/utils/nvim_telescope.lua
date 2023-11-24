@@ -87,11 +87,8 @@ vim.api.nvim_create_autocmd("BufRead", {
 
 -- Change highlight color for telescope matching search hits
 -- TODO: 2022-11-25 better way to implement hl color groups as below:
--- vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red", bg = "white" })
-vim.cmd([[
-  autocmd ColorScheme gruvbox highlight TelescopeMatching guifg=red
-  autocmd ColorScheme gruvbox highlight TelescopeResultsBookmark guifg=#de5d5d
-  autocmd ColorScheme gruvbox highlight TelescopePromptBorder guifg=#e993ed
-  autocmd ColorScheme gruvbox highlight TelescopeResultsBorder guifg=orange
-  autocmd ColorScheme gruvbox highlight TelescopePreviewBorder guifg=#de5d5d
-]])
+vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red" })
+vim.api.nvim_set_hl(0, "TelescopeResultsBookmark", { fg = "#de5d5d" })
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = "#e993ed" })
+vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { fg = "orange" })
+vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { fg = "#de5d5d" })
