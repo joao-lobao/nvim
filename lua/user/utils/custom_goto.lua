@@ -18,7 +18,7 @@ M.get_current = function(obj_type, obj_identifier, word_index)
 	local node_name = vim.treesitter.get_node_text(expr:child(word_index), 0)
 	local query_string = "(" .. obj_type .. " name: (".. obj_identifier .. ") @name (#match? @name " .. node_name .. "))"
 	local parser = vim.treesitter.get_parser()
-	local ok, query = pcall(vim.treesitter.query.parse_query, parser:lang(), query_string)
+	local ok, query = pcall(vim.treesitter.query.parse, parser:lang(), query_string)
 	if not ok then
 		return
 	end
