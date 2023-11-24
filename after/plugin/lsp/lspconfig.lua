@@ -10,17 +10,11 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
--- import typescript plugin safely
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
-	return
-end
-
 local keymap = vim.keymap -- for conciseness
 
 local opts = { noremap = true, silent = true }
 
-local on_attach = function(client)
+local on_attach = function()
 	-- set keybinds
 	keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- show definition, references
 	keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- go to definition
@@ -37,13 +31,6 @@ local on_attach = function(client)
 	keymap.set("n", "<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- show documentation for what is under cursor
-
-	-- typescript specific keymaps (e.g. rename file and update imports)
-	if client.name == "tsserver" then
-		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
-		keymap.set("n", "<leader>ri", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
-		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
-	end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -81,8 +68,8 @@ lspconfig["marksman"].setup({
 	on_attach = on_attach,
 })
 
--- configure typescript server with plugin
-typescript.setup({
+-- configure tsserver
+lspconfig["tsserver"].setup({
 	server = {
 		capabilities = capabilities,
 		on_attach = on_attach,

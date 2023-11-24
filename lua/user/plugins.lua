@@ -45,7 +45,6 @@ require("lazy").setup({
 			"jose-elias-alvarez/null-ls.nvim",
 		},
 	}, -- bridges gap b/w mason & null-ls
-	{ "jose-elias-alvarez/typescript.nvim" }, -- additional functionality for typescript server (e.g. rename file & update imports)
 
 	-- CMP
 	{
