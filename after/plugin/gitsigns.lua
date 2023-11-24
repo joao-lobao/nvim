@@ -5,6 +5,8 @@ if not setup then
 end
 
 local opts = { noremap = true, silent = true }
+-- configure/enable gitsigns on scrollbar
+require("scrollbar.handlers.gitsigns").setup()
 -- configure/enable gitsigns
 gitsigns.setup()
 vim.api.nvim_set_keymap("n", "<leader>gs", ":Gitsigns stage_hunk<CR>", opts)

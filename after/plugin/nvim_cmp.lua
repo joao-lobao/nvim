@@ -67,7 +67,6 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "calc" }, -- cmp calc
 		{ name = "path" }, -- file system paths
-		{ name = "ultisnips" }, -- snippets
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "buffer" }, -- text within current buffer
@@ -86,7 +85,6 @@ cmp.setup({
 					path = "ﱮ",
 					buffer = "﬘",
 					luasnip = "",
-					ultisnips = "US",
 					emojis = "😀",
 				})[entry.source.name]
 				return vim_item
