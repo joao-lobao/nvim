@@ -34,14 +34,6 @@ require("lazy").setup({
 	-- NOTE: Now, plugins that require configuration
 	-- LSP
 	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" } }, -- easily configure language servers
-	{
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
-		},
-	}, -- enhanced lsp uis
 	{ "williamboman/mason.nvim" }, -- in charge of managing lsp servers, linters & formatters
 	{ "williamboman/mason-lspconfig.nvim" }, -- bridges gap b/w mason & lspconfig
 	{ "jose-elias-alvarez/null-ls.nvim" }, -- configure formatters & linters
