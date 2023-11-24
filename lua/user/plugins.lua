@@ -29,15 +29,11 @@ require("lazy").setup({
 	{ "tpope/vim-commentary" }, -- plugin commentary feature
 	{ "tpope/vim-repeat" }, -- repeat commands from other plugins that are not atomic to vim
 	{ "airblade/vim-rooter" }, -- changes the cwd to the project root when a file or directory is opened
-	{ "hrsh7th/cmp-buffer" }, -- source completion for text in buffer
-	{ "hrsh7th/cmp-path" }, -- source completion for file system paths
-	{ "hrsh7th/cmp-calc" }, -- source completion for calc
-	{ "saadparwaiz1/cmp_luasnip" }, -- for snippets autocompletion
 	{ "windwp/nvim-ts-autotag" }, -- autoclose tags
 
 	-- NOTE: Now, plugins that require configuration
 	-- LSP
-	{ "neovim/nvim-lspconfig" }, -- easily configure language servers
+	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" } }, -- easily configure language servers
 	{
 		"glepnir/lspsaga.nvim",
 		branch = "main",
@@ -57,10 +53,23 @@ require("lazy").setup({
 			"jose-elias-alvarez/null-ls.nvim",
 		},
 	}, -- bridges gap b/w mason & null-ls
-	{ "hrsh7th/cmp-nvim-lsp" }, -- for autocompletion
 	{ "jose-elias-alvarez/typescript.nvim" }, -- additional functionality for typescript server (e.g. rename file & update imports)
-	{ "onsails/lspkind.nvim" }, -- vs-code like icons for autocompletion
-	-- Others
+
+	-- CMP
+	{
+		"hrsh7th/nvim-cmp", -- completion plugin
+		dependencies = {
+			"L3MON4D3/LuaSnip", -- snippets engine
+			"rafamadriz/friendly-snippets", -- useful snippets
+			"hrsh7th/cmp-buffer", -- source completion for text in buffer
+			"hrsh7th/cmp-path", -- source completion for file system paths
+			"hrsh7th/cmp-calc", -- source completion for calc
+			"saadparwaiz1/cmp_luasnip", -- for snippets autocompletion
+			"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
+		},
+	}, -- snippet engine
+
+	-- OTHERS
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -69,11 +78,6 @@ require("lazy").setup({
 	{ "github/copilot.vim" }, -- github copilot
 	{ "ellisonleao/gruvbox.nvim" }, -- colorscheme
 	{ "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons", opt = true } }, -- plugin for statusline
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets" }, -- useful snippets
-	}, -- snippet engine
-	{ "hrsh7th/nvim-cmp" }, -- completion plugin
 	{ "norcalli/nvim-colorizer.lua" }, -- color highlighter
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
