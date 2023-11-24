@@ -68,7 +68,6 @@ require("lazy").setup({
 		opts = {}, -- this is equalent to setup({}) function}, autoclose parens, brackets, quotes, etc...
 	},
 	{ "github/copilot.vim" }, -- github copilot
-	{ "lewis6991/gitsigns.nvim" }, -- git integration show line modifications on left hand side
 	{ "ellisonleao/gruvbox.nvim" }, -- colorscheme
 	{
 		"ray-x/lsp_signature.nvim",
@@ -84,13 +83,6 @@ require("lazy").setup({
 	}, -- snippet engine
 	{ "hrsh7th/nvim-cmp" }, -- completion plugin
 	{ "norcalli/nvim-colorizer.lua" }, -- color highlighter
-	{
-		"petertriho/nvim-scrollbar",
-		dependencies = {
-			"kevinhwang91/nvim-hlslens", -- optional
-			"lewis6991/gitsigns.nvim", -- optional
-		},
-	}, -- adds a scroll bar
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -99,15 +91,7 @@ require("lazy").setup({
 		},
 	}, -- file explorer
 	{ "vuki656/package-info.nvim", dependencies = { "MunifTanjim/nui.nvim" } }, -- package.json dependencies manager helpers
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-	}, -- refactor/extract tool
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- improve syntax highlighting
-	{ "nvim-treesitter/playground" }, -- useful for testing treesitter queries
 	{ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" }, -- to create custom mappings for text objects (ex: `daf` to delete a function)
 	{ "tpope/vim-fugitive" }, -- for git integration
 	{ "tpope/vim-projectionist" }, -- alternate files / naviagation cmds / buffer configuration
