@@ -32,7 +32,6 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-buffer" }, -- source completion for text in buffer
 	{ "hrsh7th/cmp-path" }, -- source completion for file system paths
 	{ "hrsh7th/cmp-calc" }, -- source completion for calc
-	{ "hrsh7th/cmp-copilot" }, -- source completion for copilot
 	{ "saadparwaiz1/cmp_luasnip" }, -- for snippets autocompletion
 	{ "windwp/nvim-ts-autotag" }, -- autoclose tags
 
@@ -69,13 +68,6 @@ require("lazy").setup({
 	},
 	{ "github/copilot.vim" }, -- github copilot
 	{ "ellisonleao/gruvbox.nvim" }, -- colorscheme
-	{
-		"ray-x/lsp_signature.nvim",
-		opts = {},
-		config = function(_, opts)
-			require("lsp_signature").setup(opts)
-		end,
-	},
 	{ "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons", opt = true } }, -- plugin for statusline
 	{
 		"L3MON4D3/LuaSnip",
