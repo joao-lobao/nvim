@@ -17,7 +17,7 @@ vim.api.nvim_create_user_command("SSave", ":lua SessionSave(<f-args>)", { nargs 
 function CreateDummySession()
 	-- creates dummy session in case it does not exist
 	if vim.fn.filereadable(vim.fn.expand("'" .. session_dir .. dummy_session .. "'")) == 0 then
-		vim.cmd("silent bufdo bd")
+		vim.cmd("silent bufdo bd!")
 		SessionSave(dummy_session)
 	end
 end
