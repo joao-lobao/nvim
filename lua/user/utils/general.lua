@@ -30,7 +30,7 @@ vim.cmd([[
 
 -------------HELPER-------------
 -- get last commit message
-vim.api.nvim_create_user_command("GitLastCommit", "!(git log -1 | sed -n '5p')", {})
+vim.api.nvim_create_user_command("GitLastCommit", "Git show -1", {})
 
 -------------HELPER-------------
 -- autocorrect common mistakes
