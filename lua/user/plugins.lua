@@ -34,17 +34,25 @@ require("lazy").setup({
 	-- NOTE: Now, plugins that require configuration
 	-- LSP
 	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" } }, -- easily configure language servers
-	{ "williamboman/mason.nvim" }, -- in charge of managing lsp servers, linters & formatters
-	{ "williamboman/mason-lspconfig.nvim" }, -- bridges gap b/w mason & lspconfig
-	{ "jose-elias-alvarez/null-ls.nvim" }, -- configure formatters & linters
 	{
-		"jayp0521/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		"williamboman/mason.nvim",
 		dependencies = {
-			"williamboman/mason.nvim",
-			"jose-elias-alvarez/null-ls.nvim",
+			"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
-	}, -- bridges gap b/w mason & null-ls
+	}, -- in charge of managing lsp servers, linters & formatters
+
+	--LINTING AND FORMATTING
+	{
+		"stevearc/conform.nvim",
+		lazy = true,
+		event = { "BufReadPre", "BufNewFile" },
+	},
+	{
+		"mfussenegger/nvim-lint",
+		lazy = true,
+		event = { "BufReadPre", "BufNewFile" },
+	},
 
 	-- CMP
 	{

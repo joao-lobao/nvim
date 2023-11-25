@@ -20,12 +20,6 @@ local on_attach = function()
 	keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- go to definition
 	keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- go to references
 	keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts) -- see available code actions
-	keymap.set(
-		"n",
-		"<leader>p",
-		"<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })<CR>",
-		opts
-	)
 	keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts) -- smart rename
 	keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts) -- show  diagnostics for line
 	keymap.set("n", "<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts) -- jump to previous diagnostic in buffer
@@ -53,12 +47,6 @@ lspconfig["bashls"].setup({
 
 -- configure html server
 lspconfig["html"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure emmet server
-lspconfig["emmet_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
@@ -91,6 +79,38 @@ lspconfig["cssls"].setup({
 
 -- configure vim server
 lspconfig["vimls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure tailwindcss server
+lspconfig["tailwindcss"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure prisma orm server
+lspconfig["prismals"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure graphql language server
+lspconfig["graphql"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+})
+
+-- configure emmet language server
+lspconfig["emmet_ls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+})
+
+-- configure python server
+lspconfig["pyright"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
