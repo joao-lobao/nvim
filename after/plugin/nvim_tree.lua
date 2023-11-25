@@ -4,7 +4,7 @@ local function my_on_attach(bufnr)
 		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 	end
 
-  api.config.mappings.default_on_attach(bufnr)
+	api.config.mappings.default_on_attach(bufnr)
 	vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
 	vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
 	vim.keymap.set("n", "q", api.tree.close, opts("Close"))
@@ -15,6 +15,9 @@ require("nvim-tree").setup({
 	update_focused_file = {
 		enable = true,
 		update_root = true,
+	},
+	filters = {
+		git_ignored = false,
 	},
 	actions = {
 		open_file = {
