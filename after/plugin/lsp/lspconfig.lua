@@ -39,61 +39,16 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
--- configure bash server
-lspconfig["bashls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
+-- configure multiple language servers
+local servers =
+	{ "html", "marksman", "tsserver", "jsonls", "cssls", "vimls", "bashls", "tailwindcss", "prismals", "pyright" }
 
--- configure html server
-lspconfig["html"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure markdown server
-lspconfig["marksman"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure tsserver
-lspconfig["tsserver"].setup({
-	server = {
+for _, lsp in pairs(servers) do
+	lspconfig[lsp].setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
-	},
-})
-
--- configure jsonls server
-lspconfig["jsonls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure css server
-lspconfig["cssls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure vim server
-lspconfig["vimls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure tailwindcss server
-lspconfig["tailwindcss"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure prisma orm server
-lspconfig["prismals"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
+	})
+end
 
 -- configure graphql language server
 lspconfig["graphql"].setup({
@@ -109,10 +64,21 @@ lspconfig["emmet_ls"].setup({
 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 })
 
--- configure python server
-lspconfig["pyright"].setup({
+-- configure svelte language server
+lspconfig["svelte"].setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			pattern = { "*.js", "*.ts" },
+			callback = function(ctx)
+				if client.name == "svelte" then
+					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+				end
+			end,
+		})
+	end,
 })
 
 -- configure lua server (with special settings)
