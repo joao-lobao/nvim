@@ -9,6 +9,7 @@ nvimlint.linters_by_ft = {
 	javascriptreact = { "eslint_d" },
 	typescriptreact = { "eslint_d" },
 	svelte = { "eslint_d" },
+	markdown = { "markdownlint" },
 	python = { "pylint" },
 }
 
