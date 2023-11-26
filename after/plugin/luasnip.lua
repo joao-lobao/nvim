@@ -1,8 +1,5 @@
-vim.cmd[[
-imap <silent><expr> <C-j> '<Plug>luasnip-jump-next'
-" -1 for jumping backwards.
-inoremap <silent> <C-k> <cmd>lua require'luasnip'.jump(-1)<Cr>
-
-snoremap <silent> <C-j> <cmd>lua require('luasnip').jump(1)<Cr>
-snoremap <silent> <C-k> <cmd>lua require('luasnip').jump(-1)<Cr>
-]]
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("s", "<C-j>", "<cmd>lua require('luasnip').jump(1)<CR>", opts)
+vim.api.nvim_set_keymap("i", "<C-j>", "<cmd>lua require('luasnip').jump(1)<CR>", opts)
+vim.api.nvim_set_keymap("s", "<C-k>", "<cmd>lua require('luasnip').jump(-1)<CR>", opts)
+vim.api.nvim_set_keymap("i", "<C-k>", "<cmd>lua require('luasnip').jump(-1)<CR>", opts)
