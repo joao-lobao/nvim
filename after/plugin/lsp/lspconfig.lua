@@ -32,7 +32,6 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
--- (not in youtube nvim video)
 local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
@@ -40,8 +39,7 @@ for type, icon in pairs(signs) do
 end
 
 -- configure multiple language servers
-local servers =
-	{ "html", "marksman", "tsserver", "jsonls", "cssls", "vimls", "bashls", "tailwindcss", "prismals", "pyright" }
+local servers = { "html", "marksman", "tsserver", "jsonls", "cssls", "vimls", "bashls", "pyright" }
 
 for _, lsp in pairs(servers) do
 	lspconfig[lsp].setup({
@@ -50,35 +48,11 @@ for _, lsp in pairs(servers) do
 	})
 end
 
--- configure graphql language server
-lspconfig["graphql"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-})
-
 -- configure emmet language server
 lspconfig["emmet_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-})
-
--- configure svelte language server
-lspconfig["svelte"].setup({
-	capabilities = capabilities,
-	on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
-
-		vim.api.nvim_create_autocmd("BufWritePost", {
-			pattern = { "*.js", "*.ts" },
-			callback = function(ctx)
-				if client.name == "svelte" then
-					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-				end
-			end,
-		})
-	end,
 })
 
 -- configure lua server (with special settings)

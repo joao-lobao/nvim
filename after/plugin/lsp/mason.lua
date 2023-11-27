@@ -31,10 +31,6 @@ mason_lspconfig.setup({
 		"vimls",
 		"bashls",
 		"marksman",
-		"tailwindcss",
-		"svelte",
-		"graphql",
-		"prismals",
 		"pyright",
 	},
 	-- auto-install configured servers (with lspconfig)
@@ -48,6 +44,7 @@ mason_tool.setup({
 		"stylua", -- lua formatter
 		"isort", -- python formatter
 		"black", -- python formatter
+    "shfmt", -- bash formatter
 		"eslint_d", -- ts/js linter
 		"markdownlint", -- markdown linter
 		"pylint", -- python linter
