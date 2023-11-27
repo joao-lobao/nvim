@@ -21,6 +21,10 @@ vim.api.nvim_set_keymap("n", "<leader>k", "<C-w>k", opts)
 vim.api.nvim_set_keymap("n", "<leader>l", "<C-w>l", opts)
 vim.api.nvim_set_keymap("n", "<leader>h", "<C-w>h", opts)
 
+-- adjust split sizes easier
+vim.api.nvim_set_keymap("n", "<C-Left>", ":vertical resize +3<CR>", opts)		-- Control+Left resizes vertical split +
+vim.api.nvim_set_keymap("n", "<C-Right>", ":vertical resize -3<CR>", opts)	-- Control+Right resizes vertical split -
+
 -- indent
 vim.api.nvim_set_keymap("n", "<leader>=", "gg=G", opts)
 
@@ -28,7 +32,7 @@ vim.api.nvim_set_keymap("n", "<leader>=", "gg=G", opts)
 vim.api.nvim_set_keymap("n", "-", ":nohl<CR>", { noremap = true })
 
 ------BUFFERS------
--- buffer naviagation, open and deleting
+-- buffer navigation, open and deleting
 vim.api.nvim_set_keymap("n", "<leader>bn", ":bn<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>bp", ":bp<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>H", ":sp<CR>", opts)
@@ -51,6 +55,15 @@ vim.api.nvim_set_keymap("i", "<Up>", "<NOP>", opts)
 vim.api.nvim_set_keymap("i", "<Down>", "<NOP>", opts)
 vim.api.nvim_set_keymap("i", "<Left>", "<NOP>", opts)
 vim.api.nvim_set_keymap("i", "<Right>", "<NOP>", opts)
+
+-- Visual Maps
+-- Replace all instances of highlighted words 
+vim.api.nvim_set_keymap("v", "<leader>r", "\"hy:%s/<C-r>h//g<left><left>", opts)
+-- Sort highlighted text in visual mode with Control+S
+vim.api.nvim_set_keymap("v", "<C-s>", ":sort<CR>", opts)
+-- Move current line down
+vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
+vim.api.nvim_set_keymap("v", "K", ":m '>-2<CR>gv=gv", opts)
 
 -- terminal mode
 vim.api.nvim_set_keymap("t", "<esc>", "<c-\\><c-n><c-w><CR>", opts)
