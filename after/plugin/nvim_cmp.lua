@@ -55,9 +55,9 @@ cmp.setup({
 			before = function(entry, vim_item)
 				vim_item.menu = ({
 					calc = "CALC",
-					nvim_lsp = "ﲳ",
-					path = "ﱮ",
-					buffer = "﬘",
+					nvim_lsp = "󰅟",
+					path = "",
+					buffer = "󰦪",
 					luasnip = "",
 					emojis = "😀",
 				})[entry.source.name]
