@@ -79,7 +79,3 @@ vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
 
 -- keymap to sync through SFTP server
 vim.api.nvim_set_keymap("n", "<leader>u", ":!$(pwd)/sync.sh<CR>", opts)
-
--- custom goto
-vim.api.nvim_set_keymap("n", "gtm", ":GotoFunction<CR>", opts)
-vim.api.nvim_set_keymap("n", "gtc", ":GotoClass<CR>", opts)

@@ -30,4 +30,9 @@ M.get_current = function(obj_type, obj_identifier, word_index)
 	end
 end
 
+-- custom goto mappings
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "gtm", ":GotoFunction<CR>", opts)
+vim.api.nvim_set_keymap("n", "gtc", ":GotoClass<CR>", opts)
+
 return M
