@@ -2,15 +2,14 @@ local custom_fname = require("lualine.components.filename"):extend()
 
 function custom_fname:update_status()
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
-  if session == "" then
-    return "No Session"
-  end
+	if session == "" then
+		return "No Session"
+	end
 	return "Session: " .. session
 end
 
 require("lualine").setup({
 	options = {
-		-- theme = "gruvbox",
 		theme = "material",
 	},
 	tabline = {
@@ -22,5 +21,13 @@ require("lualine").setup({
 			},
 		},
 		lualine_z = { custom_fname },
+	},
+	sections = {
+		lualine_c = {
+			{
+				"filename",
+				path = 3,
+			},
+		},
 	},
 })
