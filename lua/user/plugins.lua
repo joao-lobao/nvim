@@ -72,7 +72,6 @@ require("lazy").setup({
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		opts = {}, -- this is equalent to setup({}) function}, autoclose parens, brackets, quotes, etc...
 	},
 	{ "github/copilot.vim" }, -- github copilot
   { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
