@@ -81,5 +81,5 @@ vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>u", ":!$(pwd)/sync.sh<CR>", opts)
 
 -- custom goto
-vim.api.nvim_set_keymap("n", "ffm", ":GotoFunction<CR>", opts)
-vim.api.nvim_set_keymap("n", "ffc", ":GotoClass<CR>", opts)
+vim.api.nvim_set_keymap("n", "gtm", ":GotoFunction<CR>", opts)
+vim.api.nvim_set_keymap("n", "gtc", ":GotoClass<CR>", opts)
