@@ -76,8 +76,8 @@ local common_actions = {
 	{ icon = "", description = "", value = "" },
 	{
 		icon = icons.config,
-		description = "~/.config/nvim/init.lua",
-		value = "e ~/.config/nvim/init.lua",
+		description = "~/Documents/list.md",
+		value = "e ~/Documents/list.md",
 		category = hl_categories.bookmark,
 	},
 	{
