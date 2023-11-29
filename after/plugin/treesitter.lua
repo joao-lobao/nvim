@@ -20,7 +20,7 @@ treesitter.setup({
 		"css",
 		"html",
 		"markdown",
-    "markdown_inline",
+		"markdown_inline",
 		"json",
 		"yaml",
 		"vim",
@@ -31,8 +31,11 @@ treesitter.setup({
 		"haskell",
 		"bash",
 		"dockerfile",
-		"gitcommit",
+		"git_config",
 		"git_rebase",
+		"gitattributes",
+		"gitcommit",
+		"gitignore",
 	}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 	highlight = {
 		enable = true, -- false will disable the whole extension
