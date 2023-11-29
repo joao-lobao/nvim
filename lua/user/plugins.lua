@@ -70,6 +70,19 @@ require("lazy").setup({
 
 	-- OTHERS
 	{
+		"coffebar/transfer.nvim",
+		lazy = true,
+		cmd = {
+			"TransferInit",
+			"DiffRemote",
+			"TransferUpload",
+			"TransferDownload",
+			"TransferDirDiff",
+			"TransferRepeat",
+		},
+		opts = {},
+	},
+	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 	},
