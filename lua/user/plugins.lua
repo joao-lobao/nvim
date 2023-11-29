@@ -88,7 +88,6 @@ require("lazy").setup({
 	},
 	{ "github/copilot.vim" }, -- github copilot
   { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
-	{ "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons", opt = true } }, -- plugin for statusline
 	{ "norcalli/nvim-colorizer.lua" }, -- color highlighter
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
