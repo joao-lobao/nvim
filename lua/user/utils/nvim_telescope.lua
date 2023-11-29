@@ -85,8 +85,6 @@ vim.api.nvim_create_autocmd("BufRead", {
 	end,
 })
 
--- Change highlight color for telescope matching search hits
--- TODO: 2022-11-25 better way to implement hl color groups as below:
 vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red" })
 vim.api.nvim_set_hl(0, "TelescopeResultsBookmark", { fg = "#de5d5d" })
 vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = "#e993ed" })
