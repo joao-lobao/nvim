@@ -28,3 +28,10 @@ vim.keymap.set({ "n", "v" }, "<leader>p", function()
 		timeout_ms = 1000,
 	})
 end, { desc = "Format file or range (in visual mode)" })
+
+-- native lsp format command when Conform can't do it
+vim.api.nvim_create_user_command("GenericFormat", function()
+	vim.lsp.buf.format()
+end, {})
+-- native lsp format mapping when Conform can't do it
+vim.keymap.set({ "n", "v" }, "<leader>{", ":GenericFormat<CR>", {})
