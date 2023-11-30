@@ -12,5 +12,10 @@ colorizer.setup({
 		css = true,
 	},
 	"javascript",
+  "javascriptreact",
+  "typescript",
+  "typescriptreact",
 	"html",
+  "lua",
+  "sh",
 })
