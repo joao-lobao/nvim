@@ -1,4 +1,3 @@
---statusline highlights
 local dark_gray = "#282a36"
 local light_purple = "#bd93f9"
 local dark_purple = "#6272a4"
@@ -7,6 +6,10 @@ local green = "#50fa7b"
 local orange = "#ffb86c"
 local pink = "#ff79c6"
 
+--command line highlights
+vim.api.nvim_set_hl(0, "MsgArea", { bg = dark_gray, fg = green })
+
+-- statusline highlights
 vim.api.nvim_set_hl(0, "StatusType", { bg = dark_gray, fg = dark_purple })
 vim.api.nvim_set_hl(0, "StatusFile", { bg = dark_gray, fg = light_purple })
 vim.api.nvim_set_hl(0, "StatusModified", { bg = green, fg = dark_gray })
