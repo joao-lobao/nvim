@@ -68,6 +68,8 @@ treesitter.setup({
 			lookahead = true,
 			keymaps = {
 				-- You can use the capture groups defined in textobjects.scm
+				["aa"] = "@parameter.outer",
+				["ia"] = "@parameter.inner",
 				["af"] = "@function.outer",
 				["if"] = "@function.inner",
 				["ac"] = "@class.outer",
@@ -78,12 +80,14 @@ treesitter.setup({
 			enable = true,
 			set_jumps = true,
 			goto_next_start = {
-				["<c-n>f"] = "@function.outer",
-				["<c-n>p"] = "@parameter.outer",
+				["gna"] = "@parameter.inner",
+				["gnf"] = "@function.outer",
+				["gnb"] = "@block.outer",
 			},
 			goto_previous_start = {
-				["<c-p>f"] = "@function.outer",
-				["<c-p>p"] = "@parameter.outer",
+				["gpa"] = "@parameter.inner",
+				["gpf"] = "@function.outer",
+				["gpb"] = "@block.outer",
 			},
 		},
 	},
