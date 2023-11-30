@@ -7,8 +7,12 @@ gruvbox.setup({
 vim.cmd("colorscheme gruvbox")
 
 ToggleTransparent = function()
-  gruvbox.config.transparent_mode = not gruvbox.config.transparent_mode
-  vim.cmd("colorscheme gruvbox")
+	local background = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
+	if background == nil then
+		vim.api.nvim_set_hl(0, "Normal", { bg = "#1d2021" })
+	else
+		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	end
 end
 
 -- mapping to transparent mode
