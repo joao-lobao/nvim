@@ -78,4 +78,3 @@ vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
 -- console.log
 vim.api.nvim_set_keymap("n", "cl", "oconsole.log()<Esc>i", opts)
-vim.api.nvim_set_keymap("i", "cl", "<Esc>Sconsole.log()<Esc>i", opts)
