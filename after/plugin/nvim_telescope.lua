@@ -12,6 +12,7 @@ telescope.setup({
 			},
 			n = {
 				["q"] = actions.close,
+				["<Del>"] = actions.close,
 			},
 		},
 	},
