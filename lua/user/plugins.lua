@@ -78,10 +78,6 @@ require("lazy").setup({
 		},
 		opts = {},
 	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-	},
 	{ "github/copilot.vim" }, -- github copilot
   { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
@@ -93,7 +89,6 @@ require("lazy").setup({
 	}, -- file explorer
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- improve syntax highlighting
 	{ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" }, -- to create custom mappings for text objects (ex: `daf` to delete a function)
-  { "lewis6991/gitsigns.nvim" }, -- git integration show line modifications on left hand side
 	{ "tpope/vim-fugitive" }, -- for git integration
 	{ "tpope/vim-projectionist" }, -- alternate files / naviagation cmds / buffer configuration
 	{ "janko/vim-test" }, -- easily run tests
