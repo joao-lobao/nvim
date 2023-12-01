@@ -76,6 +76,3 @@ vim.api.nvim_set_keymap("n", '<leader>"', ":sp | term<CR>:NoNumbers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 -- create and goto file
 vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
-
--- keymap to sync through SFTP server
-vim.api.nvim_set_keymap("n", "<leader>u", ":!$(pwd)/sync.sh<CR>", opts)
