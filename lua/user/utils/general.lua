@@ -29,10 +29,6 @@ vim.cmd([[
 ]])
 
 -------------HELPER-------------
--- get last commit message
-vim.api.nvim_create_user_command("GitLastCommit", "Git show -1", {})
-
--------------HELPER-------------
 -- autocorrect common mistakes
 vim.cmd([[ 
   let s:auto_correct_loaded=0
