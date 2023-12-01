@@ -5,9 +5,13 @@ local cyan = "#8be9fd"
 local green = "#50fa7b"
 local orange = "#ffb86c"
 local pink = "#ff79c6"
+local red = "#ff5555"
+local bright_orange = "#fe8019"
 
 --command line highlights
 vim.api.nvim_set_hl(0, "MsgArea", { bg = dark_gray, fg = green })
+vim.api.nvim_set_hl(0, "ErrorMsg", { bg = dark_gray, fg = red })
+vim.api.nvim_set_hl(0, "WinSeparator", { bg = "none", fg = bright_orange })
 
 -- statusline highlights
 vim.api.nvim_set_hl(0, "StatusType", { bg = dark_gray, fg = dark_purple })
