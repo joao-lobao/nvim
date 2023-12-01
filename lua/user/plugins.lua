@@ -84,7 +84,6 @@ require("lazy").setup({
 	},
 	{ "github/copilot.vim" }, -- github copilot
   { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
-	{ "norcalli/nvim-colorizer.lua" }, -- color highlighter
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
 		"nvim-tree/nvim-tree.lua",
