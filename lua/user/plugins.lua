@@ -91,7 +91,6 @@ require("lazy").setup({
 			"nvim-tree/nvim-web-devicons", -- optional
 		},
 	}, -- file explorer
-	{ "vuki656/package-info.nvim", dependencies = { "MunifTanjim/nui.nvim" } }, -- package.json dependencies manager helpers
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- improve syntax highlighting
 	{ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" }, -- to create custom mappings for text objects (ex: `daf` to delete a function)
   { "lewis6991/gitsigns.nvim" }, -- git integration show line modifications on left hand side
