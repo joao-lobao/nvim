@@ -57,20 +57,3 @@ vim.cmd([[
   endfunction
   call AutoCorrect()
 ]])
-
--------------HELPER-------------
--- goto class and method definitions
-local custom_goto = require("user.utils.custom_goto")
-vim.api.nvim_create_user_command("GotoClass", function()
-  -- typescript class
-	custom_goto.get_current("class_declaration", "type_identifier", 1)
-  -- javascript class
-	custom_goto.get_current("class_declaration", "identifier", 1)
-end, {})
-
-vim.api.nvim_create_user_command("GotoFunction", function()
-  -- typescript and javascript class method
-	custom_goto.get_current("method_definition", "property_identifier", 0)
-  -- typescript and javascript function
-	custom_goto.get_current("function_declaration", "identifier", 1)
-end, {})
