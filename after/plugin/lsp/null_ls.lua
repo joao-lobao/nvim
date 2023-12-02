@@ -10,6 +10,36 @@ local code_actions = require("user.utils.null_ls").code_actions(null_ls)
 local formatting = null_ls.builtins.formatting -- to setup formatters
 local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
+local function json_has_eslint_config(pattern, utils)
+	local has_package_json = utils.root_has_file("package.json")
+	local has_eslint_config = false
+	local lines = ""
+	if has_package_json then
+		lines = vim.fn.readfile(vim.fn.expand(vim.fn.getcwd() .. "/" .. "package.json"))
+		for _, line in ipairs(lines) do
+			if line:match(pattern) then
+				has_eslint_config = true
+				break
+			end
+		end
+	end
+	return has_eslint_config
+end
+
+local utils = require("null-ls.utils").make_conditional_utils()
+local get_eslint_rules = function()
+	-- enable eslint from the project eslint own rules
+	if utils.root_has_file_matches("eslintrc") or json_has_eslint_config("eslintConfig", utils) then
+		return nil
+	end
+	-- else enable general airbnb eslint rules
+  -- requires eslint-config-airbnb to be installed globally 'npx install-peerdeps -g eslint-config-airbnb'
+	return {
+		"-c",
+		"/home/home/.nvm/versions/node/v18.15.0/lib/node_modules/eslint-config-airbnb/index.js",
+	}
+end
+
 -- configure null_ls
 null_ls.setup({
 	-- setup formatters & linters
@@ -20,7 +50,9 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.shfmt, -- bash formatter
 		diagnostics.markdownlint,
-		diagnostics.eslint_d,
+		diagnostics.eslint_d.with({
+			extra_args = get_eslint_rules(),
+		}),
 	},
 })
 null_ls.register(code_actions.no_undef)
