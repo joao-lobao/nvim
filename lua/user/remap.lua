@@ -80,12 +80,3 @@ vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
 vim.api.nvim_set_keymap("n", "cl", "oconsole.log()<Esc>i", opts)
 -- create tag
 vim.api.nvim_set_keymap("n", "ta", "<Esc>byiwi<<Esc>ea></><Esc>F/pF>a", opts)
-
--- Automatically close brackets, parethesis, quotes, etc.
-vim.api.nvim_set_keymap("i", '"', '""<left>', opts)
-vim.api.nvim_set_keymap("i", "'", "''<left>", opts)
-vim.api.nvim_set_keymap("i", "`", "``<left>", opts)
-vim.api.nvim_set_keymap("i", "(", "()<left>", opts)
-vim.api.nvim_set_keymap("i", "[", "[]<left>", opts)
-vim.api.nvim_set_keymap("i", "{", "{}<left>", opts)
-vim.api.nvim_set_keymap("i", "<", "<><left>", opts)
