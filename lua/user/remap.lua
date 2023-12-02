@@ -78,5 +78,3 @@ vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
 -- console.log
 vim.api.nvim_set_keymap("n", "cl", "oconsole.log()<Esc>i", opts)
--- create tag
-vim.api.nvim_set_keymap("n", "ta", "<Esc>byiwi<<Esc>ea></><Esc>F/pF>a", opts)
