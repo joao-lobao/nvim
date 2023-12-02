@@ -4,6 +4,12 @@ if not cmp_status then
 	return
 end
 
+-- import luasnip plugin safely
+local luasnip_status, luasnip = pcall(require, "luasnip")
+if not luasnip_status then
+	return
+end
+
 -- import lspkind plugin safely
 local lspkind_status, lspkind = pcall(require, "lspkind")
 if not lspkind_status then
@@ -13,6 +19,11 @@ end
 cmp.setup({
 	completion = {
 		completeopt = "menu,menuone,preview,noselect",
+	},
+	snippet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<Tab>"] = cmp.mapping.select_next_item(), -- navigate to next item
