@@ -16,6 +16,9 @@ if not lspkind_status then
 	return
 end
 
+-- load vs-code like snippets from plugins (e.g. friendly-snippets)
+require("luasnip/loaders/from_vscode").lazy_load()
+
 cmp.setup({
 	completion = {
 		completeopt = "menu,menuone,preview,noselect",
@@ -40,6 +43,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "calc" }, -- cmp calc
 		{ name = "path" }, -- file system paths
+		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "buffer" }, -- text within current buffer
 	}),
@@ -55,6 +59,7 @@ cmp.setup({
 					nvim_lsp = "󰅟",
 					path = "",
 					buffer = "󰦪",
+					luasnip = "",
 				})[entry.source.name]
 				return vim_item
 			end,
