@@ -78,8 +78,15 @@ vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
 -- console.log
 vim.api.nvim_set_keymap("n", "cl", "oconsole.log()<Esc>i", opts)
+
+-- html5 boilerplate
+vim.api.nvim_set_keymap("i", "h5>", "<Esc>:r ~/.config/nvim/templates/html.html<CR>kdd", opts)
 -- create tag
-vim.api.nvim_set_keymap("n", "ta", "<Esc>byiwi<<Esc>ea></><Esc>F/pF>a", opts)
+vim.api.nvim_set_keymap("n", "ta", "yiwi<<Esc>ea></><Esc>F/pF>a", opts)
+-- add class to tag
+vim.api.nvim_set_keymap("n", "tc", "/\\/<CR>F>i class=\"\"<left>", opts)
+-- add classname to tag
+vim.api.nvim_set_keymap("n", "tcn", "/\\/<CR>F>i classname=\"\"<left>", opts)
 
 -- Automatically close brackets, parethesis, quotes, etc.
 vim.api.nvim_set_keymap("i", '"', '""<left>', opts)
