@@ -29,6 +29,7 @@ require("lazy").setup({
 	{ "tpope/vim-commentary" }, -- plugin commentary feature
 	{ "tpope/vim-repeat" }, -- repeat commands from other plugins that are not atomic to vim
 	{ "airblade/vim-rooter" }, -- changes the cwd to the project root when a file or directory is opened
+	{ "windwp/nvim-ts-autotag" }, -- autoclose tags
 
 	-- NOTE: Now, plugins that require configuration
 	-- LSP
