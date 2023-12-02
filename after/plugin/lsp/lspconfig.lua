@@ -14,7 +14,7 @@ local keymap = vim.keymap -- for conciseness
 
 local opts = { noremap = true, silent = true }
 
-local on_attach = function()
+local on_attach = function(client)
 	-- set keybinds
 	keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- show definition, references
 	keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- go to definition
@@ -26,6 +26,9 @@ local on_attach = function()
 	keymap.set("n", "<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- show documentation for what is under cursor
 	keymap.set("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts) -- show documentation for what is under cursor
+  if client.name == "tsserver" then
+    client.resolved_capabilities.document_formatting = false
+  end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
