@@ -13,11 +13,6 @@ vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 -- get last commit message
 vim.api.nvim_create_user_command("GitLastCommit", "Git show -1", {})
 
--- example on how to create git gutter signs
--- vim.api.nvim_command("sign define diffchange text=󰏭 texthl=GruvboxAquaBold")
--- vim.api.nvim_command("sign place 1 line=" .. line_nr .. " name=diffchange file=" .. path)
--- vim.api.nvim_command("sign undefine diffchange")
-
 -- hunks navigation
 ToggleDiffView = function()
 	if vim.o.diff == false then
