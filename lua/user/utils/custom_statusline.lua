@@ -23,9 +23,6 @@ vim.api.nvim_set_hl(0, "StatusBuffer", { bg = dark_gray, fg = orange })
 vim.api.nvim_set_hl(0, "StatusLocation", { bg = dark_gray, fg = dark_purple })
 vim.api.nvim_set_hl(0, "StatusPercent", { bg = dark_gray, fg = cyan })
 
-local text_vars = "$1,$2,$4\\u0022+\\u0022,$6\\u0022-\\u0022"
-local git_changes = "%{system(\"git diff --shortstat | awk '{print " .. text_vars .. "\\u007D'\")}"
-
 -- statusline
 vim.o.statusline = "%#StatusType#"
 	.. " 󰉺 "
@@ -39,10 +36,6 @@ vim.o.statusline = "%#StatusType#"
 	.. "%m"
 	.. "%#StatusNorm#"
 	.. "%="
-	.. "%#StatusBuffer#"
-	.. git_changes
-	.. " "
-	.. "%#StatusNorm#"
 	.. "%{fugitive#statusline()}"
 	.. "%#StatusEncoding#"
 	.. " "
