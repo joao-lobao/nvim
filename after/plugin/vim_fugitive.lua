@@ -27,13 +27,3 @@ vim.api.nvim_set_keymap("n", "c<", "[c", opts)
 vim.api.nvim_set_keymap("n", "c>", "]c", opts)
 vim.api.nvim_set_keymap("n", "<leader>gp", "[c", opts)
 vim.api.nvim_set_keymap("n", "<leader>gn", "]c", opts)
-
--- git stage/reset hunks
-vim.api.nvim_set_keymap("n", "<leader>gu", ":diffput<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>gs", ":diffget<CR>", opts)
-
--- helper keymaps
--- ( or c< or <leader>gp - goto previous hunk
--- ) or c> or <leader>gn - goto next hunk
--- do or <leader>gs - goto stage hunk
--- dp or <leader>gu - goto reset hunk
