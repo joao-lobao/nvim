@@ -13,6 +13,3 @@ vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 -- get last commit message
 vim.api.nvim_create_user_command("GitLastCommit", "Git show -1", {})
 
--- use fugitive autocmds to a better goto Git status
-vim.cmd([[:autocmd User FugitiveIndex silent! /un]])
-vim.cmd([[:autocmd User FugitiveChanged silent! /un]])
