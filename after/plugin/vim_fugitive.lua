@@ -20,12 +20,11 @@ vim.api.nvim_create_user_command("GitLastCommit", "Git show -1", {})
 
 -- hunks navigation
 ToggleDiffView = function()
-  if vim.o.diff == false then
-    vim.api.nvim_command("Gdiffsplit")
-  else
-    vim.api.nvim_command("q")
-  end
-
+	if vim.o.diff == false then
+		vim.api.nvim_command("Gdiffsplit")
+	else
+		vim.api.nvim_command("q")
+	end
 end
 
 vim.api.nvim_set_keymap("n", "vd", "<cmd>lua ToggleDiffView()<CR>", opts)
