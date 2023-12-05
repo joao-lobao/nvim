@@ -33,6 +33,20 @@ end
 vim.api.nvim_set_keymap("n", "<leader>gu", "<cmd>lua ResetHunk()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua StageHunk()<CR>", opts)
 
+-- goto previous and next hunk
+Goto_prev_hunk = function()
+  vim.api.nvim_command("Gdiffsplit")
+  vim.api.nvim_command("normal! [c")
+  vim.api.nvim_command("q")
+end
+Goto_next_hunk = function()
+  vim.api.nvim_command("Gdiffsplit")
+  vim.api.nvim_command("normal! ]c")
+  vim.api.nvim_command("q")
+end
+vim.api.nvim_set_keymap("n", "<leader>gp", "<cmd>lua Goto_prev_hunk()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gn", "<cmd>lua Goto_next_hunk()<CR>", opts)
+
 -- Custom Git Gutter
 -- define signs
 vim.api.nvim_command("sign define diffchange text=| texthl=GruvboxAquaBold")
