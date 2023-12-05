@@ -23,7 +23,5 @@ ToggleDiffView = function()
 end
 
 vim.api.nvim_set_keymap("n", "vd", "<cmd>lua ToggleDiffView()<CR>", opts)
-vim.api.nvim_set_keymap("n", "c<", "[c", opts)
-vim.api.nvim_set_keymap("n", "c>", "]c", opts)
 vim.api.nvim_set_keymap("n", "<leader>gp", "[c", opts)
 vim.api.nvim_set_keymap("n", "<leader>gn", "]c", opts)
