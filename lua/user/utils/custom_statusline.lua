@@ -24,7 +24,9 @@ vim.api.nvim_set_hl(0, "StatusLocation", { bg = dark_gray, fg = dark_purple })
 vim.api.nvim_set_hl(0, "StatusPercent", { bg = dark_gray, fg = cyan })
 
 -- statusline
-vim.o.statusline = "%#StatusType#"
+vim.o.statusline = "%#StatusModified#"
+	.. "%m"
+	.. "%#StatusType#"
 	.. " 󰉺 "
 	.. "%y"
 	.. " "
