@@ -1,26 +1,37 @@
 -- stage/reset hunks
 local opts = { noremap = true, silent = true }
-Reset_or_Add_Hunk = function(action)
+StageHunk = function()
 	local buffer_lines = vim.fn.line("$")
 	local cursor_line = vim.fn.line(".")
 
 	vim.api.nvim_command("Gdiffsplit")
-	if action == "reset" then
-		if cursor_line == buffer_lines then
-			vim.api.nvim_command("wincmd l")
-			vim.api.nvim_command("normal! j")
-			vim.api.nvim_command("diffget")
-			vim.api.nvim_command("w")
-			vim.api.nvim_command("wincmd h")
-		end
-	else
+	if cursor_line == buffer_lines then
+		vim.api.nvim_command("normal! j")
+	end
+	vim.api.nvim_command("diffget")
+	vim.api.nvim_command("w")
+	vim.api.nvim_command("q")
+end
+
+ResetHunk = function()
+	local buffer_lines = vim.fn.line("$")
+	local cursor_line = vim.fn.line(".")
+
+	vim.api.nvim_command("Gdiffsplit")
+	if cursor_line == buffer_lines then
+		vim.api.nvim_command("wincmd l")
+		vim.api.nvim_command("normal! j")
 		vim.api.nvim_command("diffget")
+		vim.api.nvim_command("w")
+		vim.api.nvim_command("wincmd h")
+	else
+		vim.api.nvim_command("diffput")
 		vim.api.nvim_command("w")
 	end
 	vim.api.nvim_command("q")
 end
-vim.api.nvim_set_keymap("n", "<leader>gu", "<cmd>lua Reset_or_Add_Hunk('reset')<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua Reset_or_Add_Hunk('stage')<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gu", "<cmd>lua ResetHunk()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua StageHunk()<CR>", opts)
 
 -- Custom Git Gutter
 -- define signs
