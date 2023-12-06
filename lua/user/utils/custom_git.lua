@@ -82,8 +82,18 @@ local is_buffer_eligible_for_git = function()
 	return is_file_in_git_project or not is_diff_mode
 end
 
-SetDiffSigns = function()
-	if not is_buffer_eligible_for_git() then
+-- to check buffer for signs already present on BufEnter
+local buffer_has_signs_on_BufEnter = function(event_name)
+	local path = vim.fn.expand("%:p")
+  -- nvim_eval is used to convert vim list to lua table
+	local raw_signs_list =
+		vim.api.nvim_eval(vim.api.nvim_command_output("echo sign_getplaced('" .. path .. "' ,{'id':1})"))
+	local signs = raw_signs_list[1]["signs"]
+	return #signs > 0 and event_name == "BufEnter"
+end
+
+SetDiffSigns = function(event_name)
+	if not is_buffer_eligible_for_git() or buffer_has_signs_on_BufEnter(event_name) then
 		return
 	end
 
@@ -117,8 +127,8 @@ local group = vim.api.nvim_create_augroup("CustomGitGutter", { clear = true })
 -- autocommands
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 	pattern = { "*.js", "*.jsx", "*.json", "*.ts", "*.tsx", "*.lua", "*.css", "*.scss", "*.md" },
-	callback = function()
-		SetDiffSigns()
+	callback = function(e)
+		SetDiffSigns(e.event)
 	end,
 	group = group,
 })
