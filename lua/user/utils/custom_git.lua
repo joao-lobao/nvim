@@ -112,9 +112,13 @@ SetDiffSigns = function()
 	end
 end
 
+-- create autocommands group so they can be cleared later
+local group = vim.api.nvim_create_augroup("CustomGitGutter", { clear = true })
 -- autocommands
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+	pattern = { "*.js", "*.jsx", "*.json", "*.ts", "*.tsx", "*.lua", "*.css", "*.scss", "*.md" },
 	callback = function()
 		SetDiffSigns()
 	end,
+	group = group,
 })
