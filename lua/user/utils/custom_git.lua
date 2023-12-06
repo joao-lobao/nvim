@@ -35,14 +35,14 @@ vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua StageHunk()<CR>", opts)
 
 -- goto previous and next hunk
 Goto_prev_hunk = function()
-  vim.api.nvim_command("Gdiffsplit")
-  vim.api.nvim_command("normal! [c")
-  vim.api.nvim_command("q")
+	vim.api.nvim_command("Gdiffsplit")
+	vim.api.nvim_command("normal! [c")
+	vim.api.nvim_command("q")
 end
 Goto_next_hunk = function()
-  vim.api.nvim_command("Gdiffsplit")
-  vim.api.nvim_command("normal! ]c")
-  vim.api.nvim_command("q")
+	vim.api.nvim_command("Gdiffsplit")
+	vim.api.nvim_command("normal! ]c")
+	vim.api.nvim_command("q")
 end
 vim.api.nvim_set_keymap("n", "<leader>gp", "<cmd>lua Goto_prev_hunk()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gn", "<cmd>lua Goto_next_hunk()<CR>", opts)
@@ -64,7 +64,11 @@ local get_type = function(line)
 end
 
 local sign_line = function(line_number, line)
-	vim.api.nvim_command("sign place 1 line=" .. line_number .. " name=" .. get_type(line))
+	local line_nr = tonumber(line_number)
+	if line_nr == 0 then
+		line_nr = 1
+	end
+	vim.api.nvim_command("sign place 1 line=" .. line_nr .. " name=" .. get_type(line))
 end
 
 -- check buffer is a file in a git project
