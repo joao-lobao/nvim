@@ -41,7 +41,6 @@ cmp.setup({
 
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "calc" }, -- cmp calc
 		{ name = "path" }, -- file system paths
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
@@ -55,7 +54,6 @@ cmp.setup({
 
 			before = function(entry, vim_item)
 				vim_item.menu = ({
-					calc = "CALC",
 					nvim_lsp = "󰅟",
 					path = "",
 					buffer = "󰦪",

@@ -50,7 +50,6 @@ require("lazy").setup({
 			"rafamadriz/friendly-snippets", -- useful snippets
 			"hrsh7th/cmp-buffer", -- source completion for text in buffer
 			"hrsh7th/cmp-path", -- source completion for file system paths
-			"hrsh7th/cmp-calc", -- source completion for calc
 			"saadparwaiz1/cmp_luasnip", -- for snippets autocompletion
 			"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 		},
@@ -71,7 +70,7 @@ require("lazy").setup({
 		opts = {},
 	},
 	{ "github/copilot.vim" }, -- github copilot
-  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
+	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- improve syntax highlighting
 	{ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" }, -- to create custom mappings for text objects (ex: `daf` to delete a function)
