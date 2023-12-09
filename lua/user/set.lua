@@ -39,3 +39,5 @@ vim.opt.mouse = ""
 vim.g.netrw_banner = 0
 -- vim.g.netrw_liststyle = 3 -- show tree style
 vim.g.netrw_localcopydircmd = "cp -r" -- to enable copy directories recursively
+-- fixes the netrw bug move back again files already moved
+vim.g.netrw_keepdir = 0
