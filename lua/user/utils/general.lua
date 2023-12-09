@@ -69,7 +69,5 @@ vim.cmd([[
   function! NetrwMapping()
     nmap <buffer> h -^
     nmap <buffer> l <CR>
-    nmap <buffer> gq :bw!<CR>
-    nmap <buffer> <leader>e :Rex<CR>
   endfunction
 ]])

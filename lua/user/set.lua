@@ -31,12 +31,12 @@ vim.o.cul = true -- highlights the line where currently is the cursor
 vim.o.ai = true -- Auto indent
 vim.o.si = true -- Smart indent
 vim.o.laststatus = 3 -- show only one status line even if there are multiple splits
-
 -- no mouse
 vim.opt.mouse = ""
+
 -- netrw settings
-vim.g.netrw_banner = 0
 -- vim.g.netrw_liststyle = 3 -- show tree style
+vim.g.netrw_banner = 0
 vim.g.netrw_localcopydircmd = "cp -r" -- to enable copy directories recursively
 -- fixes the netrw bug move back again files already moved
 vim.g.netrw_keepdir = 0
