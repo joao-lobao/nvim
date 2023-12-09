@@ -75,6 +75,5 @@ require("lazy").setup({
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- improve syntax highlighting
 	{ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" }, -- to create custom mappings for text objects (ex: `daf` to delete a function)
 	{ "tpope/vim-fugitive" }, -- for git integration
-	{ "tpope/vim-projectionist" }, -- alternate files / naviagation cmds / buffer configuration
 	{ "janko/vim-test" }, -- easily run tests
 })

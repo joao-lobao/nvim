@@ -1,6 +1,0 @@
-{
-  "*.lua": {
-    "type": "lua",
-    "alternate": "lua/user/plugins.lua"
-  }
-}
