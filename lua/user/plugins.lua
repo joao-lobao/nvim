@@ -52,7 +52,7 @@ require("lazy").setup({
 			"hrsh7th/cmp-path", -- source completion for file system paths
 			"saadparwaiz1/cmp_luasnip", -- for snippets autocompletion
 		},
-	}, -- snippet engine
+	},
 
 	-- OTHERS
 	{
