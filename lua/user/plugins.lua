@@ -51,7 +51,6 @@ require("lazy").setup({
 			"hrsh7th/cmp-buffer", -- source completion for text in buffer
 			"hrsh7th/cmp-path", -- source completion for file system paths
 			"saadparwaiz1/cmp_luasnip", -- for snippets autocompletion
-			"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 		},
 	}, -- snippet engine
 

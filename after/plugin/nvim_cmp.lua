@@ -10,12 +10,6 @@ if not luasnip_status then
 	return
 end
 
--- import lspkind plugin safely
-local lspkind_status, lspkind = pcall(require, "lspkind")
-if not lspkind_status then
-	return
-end
-
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -30,7 +24,7 @@ cmp.setup({
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<Tab>"] = cmp.mapping.select_next_item(), -- navigate to next item
-    ["<S-Tab>"] = cmp.mapping.select_prev_item(), -- navigate to previous item
+		["<S-Tab>"] = cmp.mapping.select_prev_item(), -- navigate to previous item
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
@@ -46,21 +40,17 @@ cmp.setup({
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "buffer" }, -- text within current buffer
 	}),
-	-- configure lspkind for vs-code like icons
+	-- configure cmp for vs-code like icons
 	formatting = {
-		format = lspkind.cmp_format({
-			maxwidth = 50,
-			ellipsis_char = "...",
-
-			before = function(entry, vim_item)
-				vim_item.menu = ({
-					nvim_lsp = "󰅟",
-					path = "",
-					buffer = "󰦪",
-					luasnip = "",
-				})[entry.source.name]
-				return vim_item
-			end,
-		}),
+		format = function(entry, vim_item)
+      -- also can use vim_item.kind to customize cmp text
+			vim_item.menu = ({
+				nvim_lsp = "󰅟 ",
+				path = " ",
+				buffer = "󰦪",
+				luasnip = "",
+			})[entry.source.name]
+			return vim_item
+		end,
 	},
 })
