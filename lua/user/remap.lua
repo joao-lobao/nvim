@@ -76,5 +76,12 @@ vim.api.nvim_set_keymap("n", '<leader>"', ":sp | term<CR>:NoNumbers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 -- create and goto file
 vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
+-- Automatically close brackets, parethesis, and quotes
+vim.api.nvim_set_keymap("i", "'", "''<left>", opts)
+vim.api.nvim_set_keymap("i", "`", "``<left>", opts)
+vim.api.nvim_set_keymap("i", '"', '""<left>', opts)
+vim.api.nvim_set_keymap("i", "(", "()<left>", opts)
+vim.api.nvim_set_keymap("i", "[", "[]<left>", opts)
+vim.api.nvim_set_keymap("i", "{", "{}<left>", opts)
 -- netrw
 vim.api.nvim_set_keymap("n", "<leader>e", ":Ex<CR>", opts)
