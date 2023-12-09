@@ -9,8 +9,6 @@ end
 
 -- configure treesitter
 treesitter.setup({
-	-- enable autotagging (w/ nvim-ts-autotag plugin)
-	autotag = { enable = true },
 	-- auto install above language parsers
 	auto_install = true,
 	ensure_installed = {
