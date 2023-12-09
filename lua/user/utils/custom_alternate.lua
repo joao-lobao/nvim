@@ -30,7 +30,7 @@ local goto_test_file = function()
 	end
 end
 
-SearchForTest = function()
+SwitchAlternate = function()
 	local current_file = vim.fn.expand("%:t")
 	if current_file:match(".*test*") or current_file:match(".*spec*") then
 		goto_source_file(current_file)
@@ -41,4 +41,4 @@ SearchForTest = function()
 end
 
 local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>A", "<cmd>lua SearchForTest()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>A", "<cmd>lua SwitchAlternate()<CR>", opts)
