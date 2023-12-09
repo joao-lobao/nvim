@@ -49,17 +49,14 @@ vim.api.nvim_set_keymap("n", "<leader>gn", "<cmd>lua Goto_next_hunk()<CR>", opts
 
 -- Custom Git Gutter
 -- define signs
-vim.api.nvim_command("sign define diffchange text=| texthl=GruvboxAquaBold")
-vim.api.nvim_command("sign define diffadd text=| texthl=GruvboxGreenBold")
-vim.api.nvim_command("sign define diffdelete text=| texthl=GruvboxRedBold")
+vim.api.nvim_command("sign define diffadd text=+ texthl=DiffAdd" )
+vim.api.nvim_command("sign define diffdelete text=󰾞 texthl=DiffDelete")
 
 local get_type = function(line)
 	if vim.startswith(line, "+") then
 		return "diffadd"
-	elseif vim.startswith(line, "-") then
-		return "diffdelete"
 	else
-		return "diffchange"
+		return "diffdelete"
 	end
 end
 

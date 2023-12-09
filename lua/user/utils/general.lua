@@ -22,13 +22,6 @@ vim.cmd([[
 ]])
 
 -------------HELPER-------------
--- Change highlight color for search hits and quickfix selection
-vim.cmd([[
-  autocmd ColorScheme gruvbox highlight QuickFixLine guifg=#444444 guibg=#a19f0c
-  autocmd ColorScheme gruvbox highlight Search guibg=#444444 guifg=#a19f0c
-]])
-
--------------HELPER-------------
 -- autocorrect common mistakes
 vim.cmd([[ 
   let s:auto_correct_loaded=0
