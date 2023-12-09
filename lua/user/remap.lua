@@ -13,7 +13,7 @@ vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>5", ":e!<CR>", opts)
 
 -- Go to previous file
-vim.api.nvim_set_keymap("n", "<leader>P", ":e#<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>P", ":b#<CR>", opts)
 
 -- Switching windows
 vim.api.nvim_set_keymap("n", "<leader>j", "<C-w>j", opts)
@@ -22,8 +22,8 @@ vim.api.nvim_set_keymap("n", "<leader>l", "<C-w>l", opts)
 vim.api.nvim_set_keymap("n", "<leader>h", "<C-w>h", opts)
 
 -- adjust split sizes easier
-vim.api.nvim_set_keymap("n", "<C-Left>", ":vertical resize +3<CR>", opts)		-- Control+Left resizes vertical split +
-vim.api.nvim_set_keymap("n", "<C-Right>", ":vertical resize -3<CR>", opts)	-- Control+Right resizes vertical split -
+vim.api.nvim_set_keymap("n", "<C-Left>", ":vertical resize +3<CR>", opts) -- Control+Left resizes vertical split +
+vim.api.nvim_set_keymap("n", "<C-Right>", ":vertical resize -3<CR>", opts) -- Control+Right resizes vertical split -
 
 -- indent
 vim.api.nvim_set_keymap("n", "<leader>=", "gg=G", opts)
@@ -57,8 +57,8 @@ vim.api.nvim_set_keymap("i", "<Left>", "<NOP>", opts)
 vim.api.nvim_set_keymap("i", "<Right>", "<NOP>", opts)
 
 -- Visual Maps
--- Replace all instances of highlighted words 
-vim.api.nvim_set_keymap("v", "<leader>r", "\"hy:%s/<C-r>h//g<left><left>", opts)
+-- Replace all instances of highlighted words
+vim.api.nvim_set_keymap("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', opts)
 -- Sort highlighted text in visual mode with Control+S
 vim.api.nvim_set_keymap("v", "<C-s>", ":sort<CR>", opts)
 -- Move current line down
@@ -76,3 +76,5 @@ vim.api.nvim_set_keymap("n", '<leader>"', ":sp | term<CR>:NoNumbers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 -- create and goto file
 vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
+-- netrw
+vim.api.nvim_set_keymap("n", "<leader>e", ":Ex<CR>", opts)

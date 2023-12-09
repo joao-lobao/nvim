@@ -53,3 +53,22 @@ vim.cmd([[
   endfunction
   call AutoCorrect()
 ]])
+
+-- :Lexplore 25<CR> Will open Netrw in the current working directory in a 25% width vsplit.
+-------------HELPER-------------
+-- netrw mappings
+vim.cmd([[
+  function! NetrwMapping()
+  endfunction
+
+  augroup netrw_mapping
+    autocmd!
+    autocmd filetype netrw call NetrwMapping()
+  augroup END
+
+  function! NetrwMapping()
+    nmap <buffer> h -^
+    nmap <buffer> l <CR>
+    nmap <buffer> <leader>e :Rex<CR>
+  endfunction
+]])
