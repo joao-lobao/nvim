@@ -28,6 +28,7 @@ require("lazy").setup({
 	{ "tpope/vim-surround" }, -- plugin for surrounding feature
 	{ "tpope/vim-commentary" }, -- plugin commentary feature
 	{ "tpope/vim-repeat" }, -- repeat commands from other plugins that are not atomic to vim
+	{ "airblade/vim-rooter" }, -- changes the cwd to the project root when a file or directory is opened
 
 	-- NOTE: Now, plugins that require configuration
 	-- LSP
