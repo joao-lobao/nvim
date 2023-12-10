@@ -53,19 +53,6 @@ require("lazy").setup({
 	},
 
 	-- OTHERS
-	{
-		"coffebar/transfer.nvim",
-		lazy = true,
-		cmd = {
-			"TransferInit",
-			"DiffRemote",
-			"TransferUpload",
-			"TransferDownload",
-			"TransferDirDiff",
-			"TransferRepeat",
-		},
-		opts = {},
-	},
 	{ "github/copilot.vim" }, -- github copilot
 	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
