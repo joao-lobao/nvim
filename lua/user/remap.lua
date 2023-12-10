@@ -83,5 +83,3 @@ vim.api.nvim_set_keymap("i", '"', '""<left>', opts)
 vim.api.nvim_set_keymap("i", "(", "()<left>", opts)
 vim.api.nvim_set_keymap("i", "[", "[]<left>", opts)
 vim.api.nvim_set_keymap("i", "{", "{}<left>", opts)
--- netrw
-vim.api.nvim_set_keymap("n", "<leader>e", ":25 Lex<CR>", opts)
