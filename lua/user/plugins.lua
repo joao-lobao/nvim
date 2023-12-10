@@ -37,8 +37,6 @@ require("lazy").setup({
 		"williamboman/mason.nvim",
 		dependencies = {
 			"nvimtools/none-ls.nvim", -- configure formatters & linters (the fork of null-ls)
-			"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 	}, -- in charge of managing lsp servers, linters & formatters
 

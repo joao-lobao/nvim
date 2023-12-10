@@ -3,52 +3,48 @@ local mason_status, mason = pcall(require, "mason")
 if not mason_status then
 	return
 end
-
--- import mason-lspconfig plugin safely
-local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not mason_lspconfig_status then
-	return
-end
-
--- import mason-tool-installer plugin safely
-local mason_tool_installer_status, mason_tool = pcall(require, "mason-tool-installer")
-if not mason_tool_installer_status then
-	return
-end
+local registry = require("mason-registry")
 
 -- enable mason
 mason.setup()
 
-mason_lspconfig.setup({
-	-- list of servers for mason to install
-	ensure_installed = {
-		"tsserver",
-		"html",
-		"cssls",
-		"lua_ls",
-		"emmet_ls",
-		"jsonls",
-		"vimls",
-		"bashls",
-		"marksman",
-		"pyright",
-	},
-	-- auto-install configured servers (with lspconfig)
-	automatic_installation = true, -- not the same as ensure_installed
-})
+local language_servers = {
+	"css-lsp",
+	"json-lsp",
+	"typescript-language-server",
+	"html-lsp",
+	"marksman",
+	"lua-language-server",
+	"vim-language-server",
+	"pyright",
+	"bash-language-server",
+	"emmet-ls",
+}
 
-mason_tool.setup({
-	-- list of formatters & linters for mason to install
-	ensure_installed = {
-		"prettier", -- ts/js formatter
-		"stylua", -- lua formatter
-		"isort", -- python formatter
-		"black", -- python formatter
-    "shfmt", -- bash formatter
-		"eslint_d", -- ts/js linter
-		"markdownlint", -- markdown linter
-		"pylint", -- python linter
-	},
-	-- auto-install configured formatters & linters
-	automatic_installation = true,
-})
+local tools = {
+	"prettier", -- ts/js formatter
+	"eslint_d", -- ts/js linter
+	"markdownlint", -- markdown linter
+	"stylua", -- lua formatter
+	"shfmt", -- bash formatter
+	"isort", -- python formatter
+	"black", -- python formatter
+	"pylint", -- python linter
+}
+
+MasonInstallAll = function()
+  -- install all language servers
+	for _, server in ipairs(language_servers) do
+		if not registry.is_installed(server) then
+			vim.cmd("MasonInstall " .. server)
+		end
+	end
+
+  -- install all tools
+	for _, tool in ipairs(tools) do
+		if not registry.is_installed(tool) then
+			vim.cmd("MasonInstall " .. tool)
+		end
+	end
+end
+vim.api.nvim_create_user_command("MasonInstallAll", MasonInstallAll, {})
