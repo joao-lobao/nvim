@@ -9,6 +9,9 @@ telescope.setup({
 		mappings = {
 			i = {
 				["<Del>"] = actions.close,
+				["<Esc>"] = actions.close,
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
 			},
 			n = {
 				["q"] = actions.close,
@@ -68,6 +71,7 @@ vim.api.nvim_set_keymap("n", "<leader>m", "<Cmd>Telescope common_actions<CR>", {
 
 vim.api.nvim_set_keymap("n", "<leader>y", "<Cmd>Telescope registers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>B", "<Cmd>Telescope buffers<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>", "<Cmd>Telescope buffers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<Enter>", "<Cmd>Telescope buffers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>M", "<Cmd>Telescope marks<CR>", opts)
 -- find in current buffer
