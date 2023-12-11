@@ -4,8 +4,6 @@ if not setup then
 	return
 end
 
-local code_actions = require("user.utils.null_ls").code_actions(null_ls)
-
 -- for conciseness
 local formatting = null_ls.builtins.formatting -- to setup formatters
 local diagnostics = null_ls.builtins.diagnostics -- to setup linters
@@ -55,7 +53,6 @@ null_ls.setup({
 		}),
 	},
 })
-null_ls.register(code_actions.no_undef)
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set(
