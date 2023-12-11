@@ -47,7 +47,10 @@ null_ls.setup({
 		formatting.prettier, -- js/ts formatter
 		formatting.stylua, -- lua formatter
 		formatting.shfmt, -- bash formatter
-		diagnostics.markdownlint,
+		formatting.isort, -- python formatter
+		formatting.black, -- python formatter
+		diagnostics.pylint, -- python linter
+		diagnostics.markdownlint, -- markdown linter
 		diagnostics.eslint_d.with({
 			extra_args = get_eslint_rules(),
 		}),
