@@ -15,7 +15,7 @@ local icons = {
 	files = "🗃",
 	keymap = "🅰 ",
 	git = "",
-  santa = "🎅",
+	santa = "🎅",
 }
 
 -- TODO: create a better way of adding picker options 2022-11-18

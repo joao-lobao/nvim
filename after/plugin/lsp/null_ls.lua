@@ -33,7 +33,7 @@ local get_eslint_rules = function()
 		return nil
 	end
 	-- else enable general airbnb eslint rules
-  -- requires eslint-config-airbnb to be installed globally 'npx install-peerdeps -g eslint-config-airbnb'
+	-- requires eslint-config-airbnb to be installed globally 'npx install-peerdeps -g eslint-config-airbnb'
 	return {
 		"-c",
 		"/home/home/.nvm/versions/node/v18.15.0/lib/node_modules/eslint-config-airbnb/index.js",

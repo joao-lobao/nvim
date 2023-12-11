@@ -43,7 +43,7 @@ cmp.setup({
 	-- configure cmp for vs-code like icons
 	formatting = {
 		format = function(entry, vim_item)
-      -- also can use vim_item.kind to customize cmp text
+			-- also can use vim_item.kind to customize cmp text
 			vim_item.menu = ({
 				nvim_lsp = "󰅟 ",
 				path = " ",

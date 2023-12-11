@@ -33,14 +33,14 @@ local tools = {
 }
 
 MasonInstallAll = function()
-  -- install all language servers
+	-- install all language servers
 	for _, server in ipairs(language_servers) do
 		if not registry.is_installed(server) then
 			vim.cmd("MasonInstall " .. server)
 		end
 	end
 
-  -- install all tools
+	-- install all tools
 	for _, tool in ipairs(tools) do
 		if not registry.is_installed(tool) then
 			vim.cmd("MasonInstall " .. tool)
