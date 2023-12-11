@@ -64,6 +64,5 @@ vim.keymap.set(
 	"<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })<CR>",
 	opts
 )
-
 -- native lsp format mapping when null_ls can't do it
-vim.keymap.set({ "n", "v" }, "<leader>{", "<cmd>lua vim.lsp.buf.format()<CR>", {})
+vim.keymap.set({ "n", "v" }, "<leader>{", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
