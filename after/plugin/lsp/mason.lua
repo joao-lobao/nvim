@@ -18,7 +18,6 @@ local language_servers = {
 	"vim-language-server",
 	"pyright",
 	"bash-language-server",
-	"emmet-ls",
 }
 
 local tools = {
