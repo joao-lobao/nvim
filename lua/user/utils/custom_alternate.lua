@@ -30,6 +30,8 @@ local goto_test_file = function()
 	end
 end
 
+--TODO: add support for multiple test files
+--TODO: add better regex
 SwitchAlternate = function()
 	local current_file = vim.fn.expand("%:t")
 	if current_file:match(".*test*") or current_file:match(".*spec*") then
