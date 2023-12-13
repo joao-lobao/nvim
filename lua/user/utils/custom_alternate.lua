@@ -26,7 +26,18 @@ local goto_test_file = function()
 	if #find_test_file > 0 then
 		vim.cmd("edit " .. find_test_file[1])
 	else
-		print("No test file found")
+		-- show message with error hl if no test file
+		vim.cmd("echohl ErrorMsg | echo 'No test file found' | echohl None")
+
+		local current_file_dir = vim.fn.expand("%:p:h")
+		local current_file = vim.fn.expand("%:t")
+		local test_file = vim.split(current_file, "[.]")[1] .. ".test." .. vim.split(current_file, "[.]")[2]
+		-- ask with a prompt if user wants to create a test file
+		local is_create_file = vim.fn.input("Create test file? (y/n) ")
+		if is_create_file == "y" then
+			local create_test_file = vim.fn.input("File name: ", test_file)
+			vim.cmd("edit " .. current_file_dir .. "/" .. create_test_file)
+		end
 	end
 end
 
