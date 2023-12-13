@@ -1,12 +1,13 @@
 -- alternate between source and test files
-local goto_source_file = function(file)
-	local source_file1 = string.gsub(file, ".test", "")
+local goto_source_file = function(current_file, current_file_dir)
+	local source_file1 = string.gsub(current_file, ".test", "")
 	local source_file2 = string.gsub(source_file1, ".spec", "")
 
+	-- finds recursively up in current directory
 	local find_source_file = vim.fs.find(function(name)
 		return name:match(source_file2)
 	end, {
-		path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+		path = current_file_dir,
 		stop = vim.loop.os_homedir(),
 		upward = true,
 		type = "file",
@@ -15,11 +16,16 @@ local goto_source_file = function(file)
 	vim.cmd("edit " .. find_source_file[1])
 end
 
-local goto_test_file = function()
-	local find_test_file = vim.fs.find(function(name)
-		return name:match(".*test*") or name:match(".*spec*")
-	end, {
-		path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+-- I believe Lua's pattern matching doesn't directly support alternation (|)
+-- for this purpose hence calling match twice
+local has_test_match = function(name)
+	return name:match(".*test.*") or name:match(".*spec.*")
+end
+
+local goto_test_file = function(current_file, current_file_dir)
+	-- finds recursively down in current directory
+	local find_test_file = vim.fs.find(has_test_match, {
+		path = current_file_dir,
 		type = "file",
 	})
 
@@ -29,9 +35,7 @@ local goto_test_file = function()
 		-- show message with error hl if no test file
 		vim.cmd("echohl ErrorMsg | echo 'No test file found' | echohl None")
 
-		local current_file_dir = vim.fn.expand("%:p:h")
-		local current_file = vim.fn.expand("%:t")
-		local test_file = vim.split(current_file, "[.]")[1] .. ".test." .. vim.split(current_file, "[.]")[2]
+		local test_file = string.gsub(current_file, "[.]", ".test.")
 		-- ask with a prompt if user wants to create a test file
 		local is_create_file = vim.fn.input("Create test file? (y/n) ")
 		if is_create_file == "y" then
@@ -41,16 +45,15 @@ local goto_test_file = function()
 	end
 end
 
---TODO: add support for multiple test files
---TODO: add better regex
 SwitchAlternate = function()
-	local current_file = vim.fn.expand("%:t")
-	if current_file:match(".*test*") or current_file:match(".*spec*") then
-		goto_source_file(current_file)
+	local file = vim.fn.expand("%:t")
+	local directory = vim.fn.expand("%:p:h")
+	if has_test_match(file) then
+		goto_source_file(file, directory)
 		return
 	end
 
-	goto_test_file()
+	goto_test_file(file, directory)
 end
 
 local opts = { noremap = true, silent = true }
