@@ -8,7 +8,7 @@ local goto_source_file = function(current_file, current_file_dir)
 		return name:match(source_file2)
 	end, {
 		path = current_file_dir,
-		stop = vim.loop.os_homedir(),
+		stop = "../..",
 		upward = true,
 		type = "file",
 	})
