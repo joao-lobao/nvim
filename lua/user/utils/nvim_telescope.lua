@@ -84,7 +84,15 @@ vim.api.nvim_create_autocmd("BufRead", {
 		})
 	end,
 })
-
+-- command to run on vim startup
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		-- if empty buffer
+		if vim.fn.line("$") == 1 and vim.fn.getline(1) == "" then
+			require("telescope.builtin").common_actions()
+		end
+	end,
+})
 -- Change highlight color for telescope matching search hits
 vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red" })
 vim.api.nvim_set_hl(0, "TelescopeResultsBookmark", { fg = "#de5d5d" })

@@ -72,7 +72,6 @@ local common_actions = {
 		value = "SLoad VimConfig",
 		category = hl_categories.workspace,
 	},
-	{ icon = icons.close, description = "Close Session", value = "SClose", category = hl_categories.workspace },
 	{ icon = "", description = "", value = "" },
 	{
 		icon = icons.config,
