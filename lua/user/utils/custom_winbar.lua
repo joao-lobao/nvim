@@ -20,9 +20,7 @@ List_opened_buffers = function()
 	return "%#StatusType#" .. table.concat(buffer_names, " ") .. "%="
 end
 
-local dark_gray = "#282a36"
 local dark_purple = "#6272a4"
-vim.api.nvim_set_hl(0, "StatusTypeInverse", { bg = dark_purple, fg = dark_gray })
 vim.api.nvim_set_hl(0, "StatusTypeInverseLight", { bg = dark_purple })
 
 Get_git_info = function()
@@ -33,8 +31,9 @@ Get_git_info = function()
 	local git_info = " No git repo "
 	if is_file_in_git_project then
 		git_info = " " .. string.sub(vim.fn.system("git -C " .. file_dir .. " show -s --format=%s"), 0, 50) .. " "
+    git_info = string.gsub(git_info, "\n", "")
 	end
-	return "%#StatusTypeInverse# " .. current_cwd .. "| " .. git_info
+	return "%#StatusNorm#" .. git_info .. "%#StatusType# " .. current_cwd
 end
 
 -- on BufEnter update winbar
