@@ -5,8 +5,6 @@ local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local sorters = require("telescope.sorters")
 local entry_display = require("telescope.pickers.entry_display")
-local icons = require("user/utils/constants").icons
-local common_actions = require("user/utils/constants").common_actions
 
 local displayer = entry_display.create({
 	separator = " ",
@@ -21,7 +19,7 @@ local make_display = function(entry)
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 	-- if session is not empty add the opened session icon
 	if session ~= "" and string.match(entry.description, session) then
-		entry.icon = icons.opened_session
+		entry.icon = Icons.opened_session
 		entry.description = session
 		entry.value = ""
 	end
@@ -34,17 +32,17 @@ end
 
 local task = function()
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
-	local prompt_title = icons.opened_session .. " " .. session
+	local prompt_title = Icons.opened_session .. " " .. session
 	-- if session is empty add the closed session icon
 	if session == "" then
-		prompt_title = icons.closed_session .. " Connect to Workspace"
+		prompt_title = Icons.closed_session .. " Connect to Workspace"
 	end
 	local opts = {
 		prompt_title = prompt_title,
-		results_title = icons.folder .. " " .. vim.fn.getcwd(),
-		layout_config = { anchor = "E", width = 0.5, height = 0.97 },
+		results_title = Icons.folder .. " " .. vim.fn.getcwd(),
+		layout_config = { anchor = "C", width = 0.3, height = 0.57 },
 		finder = finders.new_table({
-			results = common_actions,
+			results = Common_actions,
 			entry_maker = function(entry)
 				local new_entry = {
 					value = entry.value,
