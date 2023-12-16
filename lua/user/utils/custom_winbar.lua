@@ -16,7 +16,7 @@ Buffers = function()
 
 		-- buffer name is current buffer
 		if buffer_path == current_buffer_path then
-			table.insert(buffer_names, "%#StatusFileInverseLight# 󰉺" .. " %t" .. "%M " .. "%#StatusTypeLight#")
+			table.insert(buffer_names, "%#StatusFileInverseLight#" .. " %t" .. "%M " .. "%#StatusTypeLight#")
 		else
 			table.insert(buffer_names, " " .. buffer_name .. is_modified)
 		end
