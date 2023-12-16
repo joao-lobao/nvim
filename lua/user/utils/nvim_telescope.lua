@@ -72,16 +72,6 @@ M.common_actions = function()
 	task()
 end
 
--- a (bad) workaround for the Telescope issue folds only exist after Folds only
--- exist after using zx (E490: No fold found) when using "telescope" fzf plugin
-vim.api.nvim_create_autocmd("BufRead", {
-	callback = function()
-		vim.api.nvim_create_autocmd("BufWinEnter", {
-			once = true,
-			command = "normal! zx",
-		})
-	end,
-})
 -- command to run on vim startup
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
