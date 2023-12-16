@@ -12,13 +12,13 @@ List_opened_buffers = function()
 
 			-- buffer name is current buffer
 			if buffer_path == current_buffer_path then
-				table.insert(buffer_names, "%#StatusFile#󰉺" .. " %t" .. "%M " .. "%#StatusType#")
+				table.insert(buffer_names, "%#StatusFile# 󰉺" .. " %t" .. "%M " .. "%#StatusType#")
 			else
 				table.insert(buffer_names, " " .. buffer_name .. is_modified)
 			end
 		end
 	end
-	return "%#StatusType# " .. table.concat(buffer_names, " ") .. "%="
+	return "%#StatusType#" .. table.concat(buffer_names, " ") .. "%="
 end
 
 Get_git_info = function()
