@@ -54,6 +54,7 @@ local searches = {
 	{ icon = Icons.keymap, description = "Keymaps", value = "Telescope keymaps", category = hl_categories.search },
 }
 local git_cmds = {
+	{ icon = Icons.git, description = "git commit", value = "Git commit", category = hl_categories.vcs },
 	{ icon = Icons.git, description = "git push", value = "Git push", category = hl_categories.vcs },
 	{ icon = Icons.git, description = "git push --force", value = "Git push --force", category = hl_categories.vcs },
 	{ icon = Icons.git, description = "git log %", value = "Gclog -- %", category = hl_categories.vcs },

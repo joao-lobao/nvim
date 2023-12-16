@@ -40,7 +40,7 @@ local task = function()
 	local opts = {
 		prompt_title = prompt_title,
 		results_title = Icons.folder .. " " .. vim.fn.getcwd(),
-		layout_config = { anchor = "C", width = 0.3, height = 0.57 },
+		layout_config = { anchor = "C", width = 0.3, height = 0.58 },
 		finder = finders.new_table({
 			results = Common_actions,
 			entry_maker = function(entry)
