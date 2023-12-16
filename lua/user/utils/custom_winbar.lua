@@ -7,15 +7,16 @@ List_opened_buffers = function()
 		local buffer_path = buffer.name
 		local buffer_name = vim.fn.fnamemodify(buffer_path, ":t")
 		-- buffer name is different from empty string
-		if buffer_name ~= "" then
-			local is_modified = buffer.changed == 1 and " + " or " "
+		if buffer_name == "" then
+			buffer_name = "[No Name]"
+		end
+		local is_modified = buffer.changed == 1 and " + " or " "
 
-			-- buffer name is current buffer
-			if buffer_path == current_buffer_path then
-				table.insert(buffer_names, "%#StatusFile# 󰉺" .. " %t" .. "%M " .. "%#StatusType#")
-			else
-				table.insert(buffer_names, " " .. buffer_name .. is_modified)
-			end
+		-- buffer name is current buffer
+		if buffer_path == current_buffer_path then
+			table.insert(buffer_names, "%#StatusFile# 󰉺" .. " %t" .. "%M " .. "%#StatusType#")
+		else
+			table.insert(buffer_names, " " .. buffer_name .. is_modified)
 		end
 	end
 	return "%#StatusType#" .. table.concat(buffer_names, " ") .. "%="
