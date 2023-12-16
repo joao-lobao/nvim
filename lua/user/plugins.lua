@@ -46,8 +46,6 @@ require("lazy").setup({
 		dependencies = {
 			"L3MON4D3/LuaSnip", -- snippets engine
 			"rafamadriz/friendly-snippets", -- useful snippets
-			"hrsh7th/cmp-buffer", -- source completion for text in buffer
-			"hrsh7th/cmp-path", -- source completion for file system paths
 			"saadparwaiz1/cmp_luasnip", -- for snippets autocompletion
 		},
 	},
