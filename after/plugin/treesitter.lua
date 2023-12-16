@@ -51,15 +51,6 @@ treesitter.setup({
 		},
 	},
 	textobjects = {
-		swap = {
-			enable = true,
-			swap_next = {
-				["<leader>z"] = "@parameter.inner",
-			},
-			swap_previous = {
-				["<leader>Z"] = "@parameter.inner",
-			},
-		},
 		select = {
 			enable = true,
 			-- Automatically jump forward to textobj, similar to targets.vim
@@ -78,14 +69,10 @@ treesitter.setup({
 			enable = true,
 			set_jumps = true,
 			goto_next_start = {
-				["gna"] = "@parameter.inner",
-				["gnf"] = "@function.outer",
-				["gnb"] = "@block.outer",
+				["gtn"] = "@function.outer",
 			},
 			goto_previous_start = {
-				["gpa"] = "@parameter.inner",
-				["gpf"] = "@function.outer",
-				["gpb"] = "@block.outer",
+				["gtp"] = "@function.outer",
 			},
 		},
 	},
