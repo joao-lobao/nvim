@@ -34,8 +34,10 @@ vim.api.nvim_create_user_command(
 )
 
 -- close and save sessions on vim leave
+local group = vim.api.nvim_create_augroup("CustomSessionManager", { clear = true })
 vim.api.nvim_create_autocmd("VimLeave", {
 	callback = function()
 		session_save()
 	end,
+  group = group
 })
