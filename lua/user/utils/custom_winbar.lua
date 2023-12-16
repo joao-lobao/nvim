@@ -1,16 +1,5 @@
--- other possible color combinations on winbar with white, light_purple, dark_purple
-local dark_gray = "#282a36"
-local light_purple = "#bd93f9"
-local dark_purple = "#6272a4"
-local cyan = "#8be9fd"
-local green = "#50fa7b"
-local orange = "#ffb86c"
-local pink = "#ff79c6"
-local red = "#ff5555"
-local bright_orange = "#fe8019"
-local white = "#ffffff"
-vim.api.nvim_set_hl(0, "StatusTypeLight", { bg = dark_gray, fg = "#aaaaaa" })
-vim.api.nvim_set_hl(0, "StatusFileLight", { bg = dark_purple, fg = white })
+vim.api.nvim_set_hl(0, "StatusTypeLight", { bg = Dark_gray, fg = Gray})
+vim.api.nvim_set_hl(0, "StatusFileInverseLight", { bg = Dark_purple, fg = White })
 
 Buffers = function()
 	local buffers = vim.fn.getbufinfo({ buflisted = 1 })
@@ -27,7 +16,7 @@ Buffers = function()
 
 		-- buffer name is current buffer
 		if buffer_path == current_buffer_path then
-			table.insert(buffer_names, "%#StatusFileLight# 󰉺" .. " %t" .. "%M " .. "%#StatusTypeLight#")
+			table.insert(buffer_names, "%#StatusFileInverseLight# 󰉺" .. " %t" .. "%M " .. "%#StatusTypeLight#")
 		else
 			table.insert(buffer_names, " " .. buffer_name .. is_modified)
 		end
