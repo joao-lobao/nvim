@@ -62,13 +62,9 @@ local git_cmds = {
 }
 
 Common_actions = {}
-local add_to_common_actions = function(group)
-	for _, item in ipairs(group) do
+local groups = { vim_cmds, sessions_actions(), config_files, searches, git_cmds }
+table.foreach(groups, function(_, group)
+	table.foreach(group, function(_, item)
 		table.insert(Common_actions, item)
-	end
-end
-add_to_common_actions(vim_cmds)
-add_to_common_actions(sessions_actions())
-add_to_common_actions(config_files)
-add_to_common_actions(searches)
-add_to_common_actions(git_cmds)
+	end)
+end)
