@@ -29,7 +29,7 @@ end
 Session = function()
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 	if session ~= "" then
-		session = " " .. session
+		session = "  " .. session
 	end
 	return "%#StatusType#" .. session
 end
