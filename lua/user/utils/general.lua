@@ -1,8 +1,3 @@
--- makes quickfix list close after list item selection (override the <CR>
--- mapping that is used in the quickfix window)
-vim.cmd([[:autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>]])
-vim.cmd([[:autocmd FileType qf nnoremap <buffer> <Esc> :cclose<CR>]])
-
 --------------HELPER-------------
 --- for vim yank highlight
 vim.cmd([[
