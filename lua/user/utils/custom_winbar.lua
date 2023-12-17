@@ -1,3 +1,4 @@
+-- TODO: winbar can be improved by using WinBarNC and nvim_eval_statusline
 vim.api.nvim_set_hl(0, "StatusTypeLight", { bg = Dark_gray, fg = Gray })
 vim.api.nvim_set_hl(0, "StatusFileInverseLight", { bg = Dark_purple, fg = White })
 

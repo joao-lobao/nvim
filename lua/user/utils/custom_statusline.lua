@@ -1,3 +1,4 @@
+--TODO: statusline can be improved with nvim_eval_statusline
 --command line highlights
 vim.api.nvim_set_hl(0, "MsgArea", { bg = Dark_gray, fg = Green })
 vim.api.nvim_set_hl(0, "ErrorMsg", { bg = Dark_gray, fg = Red })
