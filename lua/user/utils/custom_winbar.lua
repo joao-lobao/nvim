@@ -50,12 +50,3 @@ Git_message = function()
 end
 
 vim.o.showtabline = 2
--- on BufEnter update winbar
-local group = vim.api.nvim_create_augroup("CustomWinBar", { clear = true })
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	callback = function()
-		vim.cmd("lua vim.o.winbar = Buffers()")
-		vim.cmd("lua vim.o.tabline = ' ' .. Session() .. ' ' .. Cwd() .. ' %=' .. Git_message() .. ' '")
-	end,
-	group = group,
-})

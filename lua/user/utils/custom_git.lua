@@ -69,7 +69,7 @@ local sign_line = function(line_number, line)
 end
 
 -- check buffer is a file in a git project
-local is_buffer_eligible_for_signing = function()
+IsBufferEligibleForSigning = function()
 	-- is file inside a git project
 	local file_dir = vim.fn.expand("%:p:h")
 	local is_file_in_git_project = vim.fn.system("git -C " .. file_dir .. " rev-parse --is-inside-work-tree")
@@ -104,16 +104,3 @@ SetDiffSigns = function()
 		end
 	end
 end
-
--- create autocommands group so they can be cleared later
-local group = vim.api.nvim_create_augroup("CustomGitGutter", { clear = true })
--- autocommands
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-	pattern = { "*.js", "*.jsx", "*.json", "*.ts", "*.tsx", "*.lua", "*.css", "*.scss", "*.md" },
-	callback = function()
-		if is_buffer_eligible_for_signing() then
-			SetDiffSigns()
-		end
-	end,
-	group = group,
-})

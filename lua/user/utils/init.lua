@@ -1,5 +1,4 @@
 require("user.utils.constants")
-require("user.utils.general")
 require("user.utils.custom_alternate")
 require("user.utils.custom_git")
 require("user.utils.custom_session_manager")
@@ -8,6 +7,7 @@ require("user.utils.custom_winbar")
 require("user.utils.luasnip")
 require("user.utils.netrw")
 require("user.utils.nvim_telescope")
+require("user.utils.autocommands")
 
 -- TODO: remove this
 -- unused constants

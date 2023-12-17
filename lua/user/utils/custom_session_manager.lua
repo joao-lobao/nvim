@@ -1,4 +1,4 @@
-local session_save = function()
+SessionSave = function()
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 	if session == "" then
 		print("No session is loaded")
@@ -8,7 +8,7 @@ local session_save = function()
 end
 
 function SessionLoad(session)
-	session_save()
+	SessionSave()
 	vim.cmd("bufdo bw")
 	vim.cmd("source " .. Session_dir .. session)
 end
@@ -32,12 +32,3 @@ vim.api.nvim_create_user_command(
 	":lua SessionDelete(<f-args>)",
 	{ complete = Get_sessions_names, nargs = "?" }
 )
-
--- close and save sessions on vim leave
-local group = vim.api.nvim_create_augroup("CustomSessionManager", { clear = true })
-vim.api.nvim_create_autocmd("VimLeave", {
-	callback = function()
-		session_save()
-	end,
-  group = group
-})
