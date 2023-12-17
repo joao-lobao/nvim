@@ -1,6 +1,7 @@
 require("user.utils.constants")
 require("user.utils.general")
 require("user.utils.custom_alternate")
+require("user.utils.custom_git")
 require("user.utils.custom_goto")
 require("user.utils.custom_session_manager")
 require("user.utils.custom_statusline")
