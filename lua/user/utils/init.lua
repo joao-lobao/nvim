@@ -9,3 +9,11 @@ require("user.utils.custom_winbar")
 require("user.utils.luasnip")
 require("user.utils.netrw")
 require("user.utils.nvim_telescope")
+
+-- TODO: remove this
+-- unused constants
+-- require("user.utils.custom_git")
+-- require("user.utils.custom_goto")
+-- require("user.utils.custom_statusline")
+-- require("user.utils.custom_winbar")
+-- require("user.utils.netrw")
