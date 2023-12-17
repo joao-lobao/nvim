@@ -28,11 +28,16 @@ vim.cmd([[
       let s:autocorrect_loaded='1'
     endif
   ia funciton function
+  ia functon function
+  ia functoin function
+  ia funtoin function
+  ia funtion function
   ia cosnt const
   ia conts const
   ia thsi this
   ia htis this
   ia tset test
+  ia retrun return
   ia reutrn return
   ia retunr return
   ia retun return
