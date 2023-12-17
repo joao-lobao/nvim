@@ -1,4 +1,16 @@
 local opts = { noremap = true, silent = true }
+--- makes quickfix list close after list item selection (override the <CR>
+--- mapping that is used in the quickfix window)
+local group_quickfix = vim.api.nvim_create_augroup("CustomQFLMapping", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":cclose<CR>", opts)
+	end,
+	group = group_quickfix,
+})
+
 -- telescope common_actions to run on vim startup
 local group_telescope = vim.api.nvim_create_augroup("CustomTelescope", { clear = true })
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -52,7 +64,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 
 -- on BufEnter update winbar
 local group_winbar = vim.api.nvim_create_augroup("CustomWinBar", { clear = true })
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
+vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		vim.cmd("lua vim.o.winbar = Buffers()")
 		vim.cmd("lua vim.o.tabline = ' ' .. Session() .. ' ' .. Cwd() .. ' %=' .. Git_message() .. ' '")
