@@ -44,8 +44,8 @@ Goto_next_hunk = function()
 	vim.api.nvim_command("normal! ]c")
 	vim.api.nvim_command("q")
 end
-vim.api.nvim_set_keymap("n", "<leader>gp", "<cmd>lua Goto_prev_hunk()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>gn", "<cmd>lua Goto_next_hunk()<CR>", opts)
+vim.api.nvim_set_keymap("n", "gp", "<cmd>lua Goto_prev_hunk()<CR>", opts)
+vim.api.nvim_set_keymap("n", "gn", "<cmd>lua Goto_next_hunk()<CR>", opts)
 
 -- Custom Git Gutter
 -- define signs
