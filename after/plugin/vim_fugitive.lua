@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "gs", ":G<CR>", opts)
+
 vim.api.nvim_set_keymap("n", "gl", ":Gclog<CR><C-w>j", opts)
 vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
@@ -50,15 +51,24 @@ vim.api.nvim_set_keymap("n", "<leader>gu", "<cmd>lua ResetHunk()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua StageHunk()<CR>", opts)
 
 -- goto previous and next hunk
-Goto_prev_hunk = function()
-	vim.api.nvim_command("Gdiffsplit")
-	vim.api.nvim_command("normal! [c")
-	vim.api.nvim_command("q")
+Goto_hunk = function(direction)
+	local path = vim.fn.expand("%:p")
+	local diff = vim.fn.systemlist("git diff --unified=0 " .. path)
+	local cursor_line = vim.fn.line(".")
+	for _, line in ipairs(diff) do
+	  -- iterate over changed hunks
+		if vim.startswith(line, "@@") then
+			local cline_nlines_pair = string.sub(vim.split(line, " ")[3], 2)
+			local line_number = tonumber(vim.split(cline_nlines_pair, ",")[1])
+			if line_number > cursor_line and direction == "down" then
+				vim.api.nvim_command("normal! " .. line_number .. "G")
+				break
+			end
+			if line_number < cursor_line and direction == "up" then
+				vim.api.nvim_command("normal! " .. line_number .. "G")
+			end
+		end
+	end
 end
-Goto_next_hunk = function()
-	vim.api.nvim_command("Gdiffsplit")
-	vim.api.nvim_command("normal! ]c")
-	vim.api.nvim_command("q")
-end
-vim.api.nvim_set_keymap("n", "gp", "<cmd>lua Goto_prev_hunk()<CR>", opts)
-vim.api.nvim_set_keymap("n", "gn", "<cmd>lua Goto_next_hunk()<CR>", opts)
+vim.api.nvim_set_keymap("n", "gp", "<cmd>lua Goto_hunk('up')<CR>", opts)
+vim.api.nvim_set_keymap("n", "gn", "<cmd>lua Goto_hunk('down')<CR>", opts)
