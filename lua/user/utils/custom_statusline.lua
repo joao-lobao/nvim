@@ -14,7 +14,6 @@ vim.api.nvim_set_hl(0, "StatusLocation", { bg = Dark_gray, fg = Dark_purple })
 vim.api.nvim_set_hl(0, "StatusPercent", { bg = Dark_gray, fg = Cyan })
 
 -- statusline
-vim.o.laststatus = 3 -- show only one status line even if there are multiple splits
 vim.o.statusline = "%#StatusModified#"
 	.. "%m"
 	.. "%#StatusType#"
