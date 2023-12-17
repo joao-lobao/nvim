@@ -42,6 +42,8 @@ vim.api.nvim_set_keymap("n", "gq", ":bd<CR>", opts)
 vim.api.nvim_set_keymap("n", "gQ", ":bd!<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>bd", ":bp|bd #<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>bD", ":bp|bd! #<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>bw", ":bp|bw #<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>bW", ":bp|bw! #<CR>", opts)
 -- Quitting vim
 vim.api.nvim_set_keymap("n", "<leader>q", ":q<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>Q", ":q!<CR>", opts)
