@@ -52,3 +52,23 @@ Git_message = function()
 end
 
 vim.o.showtabline = 2
+
+-- on WinLeave remove winbar
+local group_winbar = vim.api.nvim_create_augroup("CustomWinBar", { clear = true })
+vim.api.nvim_create_autocmd("WinLeave", {
+	callback = function()
+		vim.cmd("lua vim.wo.winbar = ''")
+	end,
+	group = group_winbar,
+})
+-- on BufEnter, WinEnter update winbar
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+	callback = function()
+		vim.cmd("lua vim.o.tabline = Buffers()")
+		if vim.bo.filetype == "" then
+			return
+		end
+		vim.cmd("lua vim.wo.winbar = '' .. Session() .. ' ' .. Cwd() .. ' %=' .. Git_message() .. ' '")
+	end,
+	group = group_winbar,
+})

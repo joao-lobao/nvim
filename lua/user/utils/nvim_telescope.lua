@@ -78,3 +78,15 @@ vim.api.nvim_set_hl(0, "TelescopeResultsBookmark", { fg = "#de5d5d" })
 vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = "#e993ed" })
 vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { fg = "orange" })
 vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { fg = "#de5d5d" })
+
+-- telescope common_actions to run on vim startup
+local group_telescope = vim.api.nvim_create_augroup("CustomTelescope", { clear = true })
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		-- if empty buffer
+		if vim.fn.line("$") == 1 and vim.fn.getline(1) == "" then
+			require("telescope.builtin").common_actions()
+		end
+	end,
+	group = group_telescope,
+})

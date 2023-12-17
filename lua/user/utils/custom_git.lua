@@ -55,3 +55,15 @@ SetDiffSigns = function()
 		end
 	end
 end
+
+-- create autocommands group so they can be cleared later
+local group_git = vim.api.nvim_create_augroup("CustomGit", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+	pattern = { "*.js", "*.jsx", "*.json", "*.ts", "*.tsx", "*.lua", "*.css", "*.scss", "*.md" },
+	callback = function()
+		if IsBufferEligibleForSigning() then
+			SetDiffSigns()
+		end
+	end,
+	group = group_git,
+})

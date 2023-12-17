@@ -32,3 +32,14 @@ vim.api.nvim_create_user_command(
 	":lua SessionDelete(<f-args>)",
 	{ complete = Get_sessions_names, nargs = "?" }
 )
+
+-- close and save sessions on vim leave
+local group_session_manager = vim.api.nvim_create_augroup("CustomSessionManager", { clear = true })
+vim.api.nvim_create_autocmd("VimLeave", {
+	callback = function()
+		SessionSave()
+	end,
+	group = group_session_manager,
+})
+
+
