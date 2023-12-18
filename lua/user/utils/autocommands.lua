@@ -58,3 +58,39 @@ vim.cmd([[
   endfunction
   call AutoCorrect()
 ]])
+
+-- netrw
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+-- statusline and winbar
+local dark_gray = "#282a36"
+local green = "#50fa7b"
+local red = "#ff5555"
+local light_purple = "#bd93f9"
+local bright_orange = "#fe8019"
+vim.api.nvim_set_hl(0, "MsgArea", { bg = dark_gray, fg = green })
+vim.api.nvim_set_hl(0, "ErrorMsg", { bg = dark_gray, fg = red })
+vim.api.nvim_set_hl(0, "WinSeparator", { bg = dark_gray, fg = bright_orange })
+vim.api.nvim_set_hl(0, "StatusLine", { bg = dark_gray, fg = bright_orange })
+vim.api.nvim_set_hl(0, "WinBar", { bg = dark_gray, fg = light_purple })
+-- winbar
+vim.o.winbar = "%= %y %F %m%="
+
+--TODO: features removed
+--custom_git
+  --git signs
+  --hunk stage/reset
+  --hunk navigation
+--custom fugitive
+  --git signs
+  --hunk navigation
+--custom_null_ls
+  --js/ts utils custom diagnostic
+  --eslint custom conditional rules depending on eslint rules present or not 
+--custom_goto
+  --replaced by treesitter textobjects
+--custom_winbar
+--custom_statusline
+--custom_netrw
+--constants
+  --colors
