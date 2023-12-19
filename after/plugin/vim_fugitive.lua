@@ -6,8 +6,8 @@ vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
 vim.api.nvim_create_user_command("GitLastCommit", "Git show -1", {})
-vim.api.nvim_set_keymap("n", "gp", "[c", opts)
-vim.api.nvim_set_keymap("n", "gn", "]c", opts)
+vim.api.nvim_set_keymap("n", "«", "[c", opts)
+vim.api.nvim_set_keymap("n", "»", "]c", opts)
 
 ToggleDiffView = function()
 	if vim.o.diff == false then
@@ -17,3 +17,4 @@ ToggleDiffView = function()
 	end
 end
 vim.api.nvim_set_keymap("n", "vd", "<cmd>lua ToggleDiffView()<CR>", opts)
+
