@@ -69,10 +69,11 @@ treesitter.setup({
 			enable = true,
 			set_jumps = true,
 			goto_next_start = {
-				["gtn"] = "@function.outer",
+				["ffn"] = "@function.outer",
 			},
 			goto_previous_start = {
-				["gtp"] = "@function.outer",
+				["ffc"] = "@class.outer",
+				["ffm"] = "@function.outer",
 			},
 		},
 	},
