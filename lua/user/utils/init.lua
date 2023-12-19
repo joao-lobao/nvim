@@ -1,6 +1,7 @@
 require("user.utils.constants")
 require("user.utils.custom_alternate")
 require("user.utils.custom_session_manager")
+require("user.utils.custom_qflist")
 require("user.utils.luasnip")
 require("user.utils.netrw")
 require("user.utils.nvim_telescope")

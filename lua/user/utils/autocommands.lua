@@ -7,6 +7,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":cclose<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "f", "/", opts)
+		for i = 1, 10, 1 do
+			vim.api.nvim_buf_set_keymap(0, "n", tostring(i), tostring(i) .. "G<CR>:cclose<CR>", opts)
+		end
+		vim.o.relativenumber = false
 	end,
 	group = group_quickfix,
 })
@@ -66,8 +71,10 @@ local red = "#ff5555"
 local light_purple = "#bd93f9"
 local bright_orange = "#fe8019"
 vim.api.nvim_set_hl(0, "MsgArea", { bg = dark_gray, fg = green })
+vim.api.nvim_set_hl(0, "QuickfixLine", { bg = "none", fg = "none" })
+vim.api.nvim_set_hl(0, "qfFileName", { bg = "none", fg = green })
 vim.api.nvim_set_hl(0, "ErrorMsg", { bg = dark_gray, fg = red })
-vim.api.nvim_set_hl(0, "WinSeparator", { bg = dark_gray, fg = bright_orange })
+vim.api.nvim_set_hl(0, "WinSeparator", { bg = "none", fg = bright_orange })
 vim.api.nvim_set_hl(0, "StatusLine", { bg = dark_gray, fg = bright_orange })
 vim.api.nvim_set_hl(0, "WinBar", { bg = dark_gray, fg = bright_orange })
 vim.api.nvim_set_hl(0, "TabLineFill", { bg = dark_gray, fg = light_purple })
@@ -104,3 +111,4 @@ vim.o.tabline = " %f %#CustomMod#%m%*"
 --custom_netrw
 --constants
 ----colors
+--custom quickfix list for listed buffers

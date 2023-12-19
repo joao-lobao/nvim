@@ -70,9 +70,7 @@ vim.api.nvim_set_keymap("n", "<leader>~", "<Cmd>Telescope search_files_in_home<C
 vim.api.nvim_set_keymap("n", "<leader>m", "<Cmd>Telescope common_actions<CR>", {})
 
 vim.api.nvim_set_keymap("n", "<leader>y", "<Cmd>Telescope registers<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>B", "<Cmd>Telescope buffers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader><leader>", "<Cmd>Telescope buffers<CR>", opts)
-vim.api.nvim_set_keymap("n", "<Enter>", "<Cmd>Telescope buffers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>M", "<Cmd>Telescope marks<CR>", opts)
 -- find in current buffer
 vim.api.nvim_set_keymap("n", "<leader>/", "<Cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
