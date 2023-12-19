@@ -59,9 +59,6 @@ vim.cmd([[
   call AutoCorrect()
 ]])
 
--- netrw
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrw = 1
 -- statusline and winbar
 local dark_gray = "#282a36"
 local green = "#50fa7b"
