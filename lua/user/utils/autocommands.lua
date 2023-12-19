@@ -59,7 +59,7 @@ vim.cmd([[
   call AutoCorrect()
 ]])
 
--- statusline and winbar
+-- statusline and tabline
 local dark_gray = "#282a36"
 local green = "#50fa7b"
 local red = "#ff5555"
@@ -69,25 +69,38 @@ vim.api.nvim_set_hl(0, "MsgArea", { bg = dark_gray, fg = green })
 vim.api.nvim_set_hl(0, "ErrorMsg", { bg = dark_gray, fg = red })
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = dark_gray, fg = bright_orange })
 vim.api.nvim_set_hl(0, "StatusLine", { bg = dark_gray, fg = bright_orange })
-vim.api.nvim_set_hl(0, "WinBar", { bg = dark_gray, fg = light_purple })
--- winbar
-vim.o.winbar = "%= %y %F %m%="
+vim.api.nvim_set_hl(0, "WinBar", { bg = dark_gray, fg = bright_orange })
+vim.api.nvim_set_hl(0, "TabLineFill", { bg = dark_gray, fg = light_purple })
+vim.api.nvim_set_hl(0, "CustomMod", { bg = green, fg = dark_gray })
+vim.o.statusline = " %y%=%F %#CustomMod#%m%*%= %l:%c %L %p%% "
+vim.o.showtabline = 2
+local is_git_repo = "system('git -C  . rev-parse --is-inside-work-tree') == 'true\n'"
+local git_branch = "%#MsgArea#%{" .. is_git_repo .. " ? system('git -C . branch --show-current')[0:-2] : '-'}"
+local git_message = "%#TabLineFill#%{"
+	.. is_git_repo
+	.. " ? substitute(system('git -C . show -s --format=%s'), '\n', '', '')[0:50] : 'Not a git repo'}"
+vim.o.tabline = " %f %#CustomMod#%m%*"
+	.. "%=%#WinBar#%{fnamemodify(v:this_session, ':t')} "
+	.. git_branch
+	.. " "
+	.. git_message
+	.. " "
 
 --TODO: features removed
 --custom_git
-  --git signs
-  --hunk stage/reset
-  --hunk navigation
+----git signs
+----hunk stage/reset
+----hunk navigation
 --custom fugitive
-  --git signs
-  --hunk navigation
+----git signs
+----hunk navigation
 --custom_null_ls
-  --js/ts utils custom diagnostic
-  --eslint custom conditional rules depending on eslint rules present or not 
+----js/ts utils custom diagnostic
+----eslint custom conditional rules depending on eslint rules present or not
 --custom_goto
-  --replaced by treesitter textobjects
+----replaced by treesitter textobjects
 --custom_winbar
 --custom_statusline
 --custom_netrw
 --constants
-  --colors
+----colors
