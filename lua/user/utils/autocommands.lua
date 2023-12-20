@@ -79,19 +79,17 @@ vim.api.nvim_set_hl(0, "StatusLine", { bg = dark_gray, fg = bright_orange })
 vim.api.nvim_set_hl(0, "WinBar", { bg = dark_gray, fg = bright_orange })
 vim.api.nvim_set_hl(0, "TabLineFill", { bg = dark_gray, fg = light_purple })
 vim.api.nvim_set_hl(0, "CustomMod", { bg = green, fg = dark_gray })
-vim.o.statusline = " %y%=%F %#CustomMod#%m%*%= %l:%c %L %p%% "
 vim.o.showtabline = 2
 local is_git_repo = "system('git -C  . rev-parse --is-inside-work-tree') == 'true\n'"
-local git_branch = "%#MsgArea#%{" .. is_git_repo .. " ? system('git -C . branch --show-current')[0:-2] : '-'}"
+local pwd = "%{fnamemodify('', ':p:h')}"
+local file = "%#StatusLine#/%f"
+local modified = "%=%#CustomMod#%{&modified ? ' 󰆓 ' : ''}"
+local session = "%#WinBar# %{fnamemodify(v:this_session, ':t')} "
+local git_branch = "%#MsgArea#%{" .. is_git_repo .. " ? system('git -C . branch --show-current')[0:-2] : '-'} "
 local git_message = "%#TabLineFill#%{"
 	.. is_git_repo
 	.. " ? substitute(system('git -C . show -s --format=%s'), '\n', '', '')[0:50] : 'Not a git repo'}"
-vim.o.tabline = " %f %#CustomMod#%m%*"
-	.. "%=%#WinBar#%{fnamemodify(v:this_session, ':t')} "
-	.. git_branch
-	.. " "
-	.. git_message
-	.. " "
+vim.o.tabline = pwd .. file .. modified .. session .. git_branch .. git_message
 
 --TODO: features removed
 --custom_git
