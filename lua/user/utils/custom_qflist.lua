@@ -25,32 +25,27 @@ vim.api.nvim_set_hl(0, "WinBar", { bg = dark_gray, fg = bright_orange })
 vim.api.nvim_set_hl(0, "TabLineFill", { bg = dark_gray, fg = light_purple })
 vim.api.nvim_set_hl(0, "CustomMod", { bg = green, fg = dark_gray })
 local is_git_repo = "system('git -C  . rev-parse --is-inside-work-tree') == 'true\n'"
-local modified = "%#CustomMod#%{&modified ? '  󰆓 ' : ''}%*"
 local pwd = "%{fnamemodify('', ':p:h')}"
 local file = "%#StatusLine#/%f"
-local session = "%=%#WinBar# %{fnamemodify(v:this_session, ':t')} "
+local modified = "%=%#CustomMod#%{&modified ? ' 󰆓 ' : ''}"
+local session = "%#WinBar# %{fnamemodify(v:this_session, ':t')} "
 local git_branch = "%#MsgArea#%{" .. is_git_repo .. " ? system('git -C . branch --show-current')[0:-2] : '-'} "
 local git_message = "%#TabLineFill#%{"
 	.. is_git_repo
 	.. " ? substitute(system('git -C . show -s --format=%s'), '\n', '', '')[0:50] : 'Not a git repo'}"
 vim.o.showtabline = 2
-vim.o.tabline = modified
+vim.o.tabline = pwd .. file .. modified .. session .. git_branch .. git_message
 
 -- Toggle Quickfix window
-function Close_qf()
-	vim.o.tabline = modified
-	vim.cmd("cclose")
-end
 BufferName = function()
 	local buf_name = vim.fn.expand("%:f")
 	if is_any_quickfix_open() then
-		Close_qf()
+		vim.cmd("cclose")
 		return
 	end
 	local opened_bufs = vim.fn.getbufinfo({ buflisted = 1 })
 	vim.fn.setqflist(opened_bufs)
 	vim.cmd("top copen " .. #opened_bufs)
-	vim.o.tabline = pwd .. file .. session .. git_branch .. git_message
 	vim.fn.search(buf_name)
 end
 local opts = { noremap = true, silent = true }
