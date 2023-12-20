@@ -6,6 +6,17 @@ local hl_categories = {
 	vcs = "TelescopeResultsFunction",
 }
 
+Dark_gray = "#282a36"
+Light_purple = "#bd93f9"
+Dark_purple = "#6272a4"
+Cyan = "#8be9fd"
+Green = "#50fa7b"
+Orange = "#ffb86c"
+Pink = "#ff79c6"
+Red = "#ff5555"
+Bright_orange = "#fe8019"
+Gray = "#bbbbbb"
+White = "#ffffff"
 Session_dir = "~/.config/nvim/session/"
 Icons = {
 	folder = "📂",
