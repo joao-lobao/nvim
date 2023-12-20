@@ -63,23 +63,3 @@ vim.cmd([[
   endfunction
   call AutoCorrect()
 ]])
-
---TODO: features removed
---custom_git
-----git signs
-----hunk stage/reset
-----hunk navigation
---custom fugitive
-----git signs
-----hunk navigation
---custom_null_ls
-----js/ts utils custom diagnostic
-----eslint custom conditional rules depending on eslint rules present or not
---custom_goto
-----replaced by treesitter textobjects
---custom_winbar
---custom_statusline
---custom_netrw
---constants
-----colors
---custom quickfix list for listed buffers
