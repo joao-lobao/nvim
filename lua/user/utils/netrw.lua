@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "netrw",
 	callback = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "l", ":e <cfile><CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "h", ":Ex ..<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "gq", ":Rex<CR>", opts)
 	end,
 	group = group_netrw,
