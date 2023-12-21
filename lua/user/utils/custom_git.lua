@@ -19,6 +19,20 @@ local sign_line = function(line_number, line)
 	vim.api.nvim_command("sign place 1 line=" .. line_nr .. " name=" .. get_type(line))
 end
 
+Get_git_info = function()
+	local is_git_repo = vim.fn.system("git -C  . rev-parse --is-inside-work-tree") == "true\n"
+	if is_git_repo then
+		local git_branch = "-- " .. string.gsub(vim.fn.system("git branch --show-current"), "\n", "")
+		local git_message = "-- "
+			.. string.sub(string.gsub(vim.fn.system("git show -s --format=%s"), "\n", ""), 1, 50)
+		local git_status = " --" .. string.sub(string.gsub(vim.fn.system("git diff --shortstat"), "\n", ""), 1, 50)
+		return print(git_branch .. " " .. git_message .. git_status)
+	end
+	print("Not a git repo")
+end
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "gi", "<cmd>lua Get_git_info()<CR>", opts)
+
 -- check buffer is a file in a git project
 IsBufferEligibleForSigning = function()
 	-- is file inside a git project
