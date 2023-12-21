@@ -32,4 +32,4 @@ vim.o.ai = true -- Auto indent
 vim.o.si = true -- Smart indent
 vim.o.laststatus = 3 -- show only one status line even if there are multiple splits
 -- no mouse
-vim.opt.mouse = ""
+vim.o.mouse = ""
