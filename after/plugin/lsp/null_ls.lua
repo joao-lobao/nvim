@@ -27,19 +27,21 @@ null_ls.setup({
 null_ls.register(code_actions.no_undef)
 
 function Format_Null_ls()
-	vim.cmd("lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })")
+	-- async format with null_ls so it doesn't block or interfere with git signs
+	vim.cmd(
+		"lua vim.lsp.buf.format({async = true, filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })"
+	)
 end
-
 function Format_Native()
 	vim.cmd("lua vim.lsp.buf.format()")
 end
 
 local opts = { noremap = true, silent = true }
-  vim.keymap.set({ "n", "v" }, "<leader>p", "<cmd>lua Format_Null_ls()<CR>", opts)
+vim.keymap.set({ "n", "v" }, "<leader>p", "<cmd>lua Format_Null_ls()<CR>", opts)
 -- native lsp format mapping when null_ls can't do it
 vim.keymap.set({ "n", "v" }, "<leader>{", "<cmd>lua Format_Native()<CR>", opts)
 
-  -- Format On Save
+-- Format On Save
 local group_format = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = function()
