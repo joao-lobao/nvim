@@ -19,24 +19,27 @@ vim.api.nvim_set_hl(0, "StatusLine", { bg = Dark_gray, fg = Light_purple })
 -- statusline highlights
 vim.api.nvim_set_hl(0, "StatusA", { bg = Dark_gray, fg = Dark_purple })
 vim.api.nvim_set_hl(0, "StatusB", { bg = Dark_gray, fg = Light_purple })
-vim.api.nvim_set_hl(0, "StatusC", { bg = Dark_gray, fg = Pink })
-vim.api.nvim_set_hl(0, "StatusD", { bg = Dark_gray, fg = Bright_orange })
+vim.api.nvim_set_hl(0, "StatusC", { bg = Dark_gray, fg = Bright_orange })
 vim.api.nvim_set_hl(0, "StatusModified", { bg = Green, fg = Dark_gray })
+vim.api.nvim_set_hl(0, "StatusD", { bg = Dark_gray, fg = Pink })
 vim.api.nvim_set_hl(0, "StatusE", { bg = Dark_gray, fg = Orange })
 vim.api.nvim_set_hl(0, "StatusF", { bg = Dark_gray, fg = Cyan })
+vim.api.nvim_set_hl(0, "TablineFill", { bg = Dark_gray, fg = Green })
 -- statusline components
 local ft = "%#StatusA#%y "
 local pwd = "%#StatusB#%{fnamemodify('', ':p:h')}"
-local file = "%#StatusD#/%f"
-local modified = "%=%#StatusModified#%{&modified ? ' 󰆓 ' : ''}"
-local session = "%#StatusC# %{fnamemodify(v:this_session, ':t')} "
+local file = "%#StatusC#/%f "
+local modified = "%#StatusModified#%{&modified ? ' 󰆓 ' : ''}%*%="
+local session = "%#StatusD# %{fnamemodify(v:this_session, ':t')} "
 local lines = "%#StatusE#%ll "
 local cols = "%#StatusA#%cc "
 local total_lines = "%#StatusF#%LL"
+vim.o.showtabline = 2
+vim.o.tabline = "%#TablineFill#%t"
 vim.o.statusline = ft .. pwd .. file .. modified .. session .. lines .. cols .. total_lines
 
 -- Toggle Quickfix window
-BufferName = function()
+ToggleListedBuffers = function()
 	local buf_name = vim.fn.expand("%:f")
 	if is_any_quickfix_open() then
 		vim.cmd("cclose")
@@ -48,4 +51,4 @@ BufferName = function()
 	vim.fn.search(buf_name)
 end
 local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua BufferName()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua ToggleListedBuffers()<CR>", opts)
