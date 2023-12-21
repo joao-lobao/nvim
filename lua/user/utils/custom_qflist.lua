@@ -31,9 +31,9 @@ local pwd = "%#StatusB#%{fnamemodify('', ':p:h')}"
 local file = "%#StatusC#/%f "
 local modified = "%#StatusModified#%{&modified ? ' 󰆓 ' : ''}%*%="
 local session = "%#StatusD# %{fnamemodify(v:this_session, ':t')} "
-local lines = "%#StatusE#%ll "
-local cols = "%#StatusA#%cc "
-local total_lines = "%#StatusF#%LL"
+local lines = "%#StatusE#l:%l "
+local cols = "%#StatusA#c:%c "
+local total_lines = "%#StatusF#L:%L"
 vim.o.showtabline = 2
 vim.o.tabline = "%#TablineFill#%t"
 vim.o.statusline = ft .. pwd .. file .. modified .. session .. lines .. cols .. total_lines
