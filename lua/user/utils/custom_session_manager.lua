@@ -41,5 +41,3 @@ vim.api.nvim_create_autocmd("VimLeave", {
 	end,
 	group = group_session_manager,
 })
-
-
