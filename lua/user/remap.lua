@@ -36,8 +36,8 @@ vim.api.nvim_set_keymap("n", "-", ":nohl<CR>", { noremap = true })
 
 ------BUFFERS------
 -- buffer navigation, open and deleting
-vim.api.nvim_set_keymap("n", "gn", ":bn<CR>", opts)
-vim.api.nvim_set_keymap("n", "gp", ":bp<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>bn", ":bn<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>bp", ":bp<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>H", ":sp<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>V", ":vsp<CR>", opts)
 -- Quitting buffer
