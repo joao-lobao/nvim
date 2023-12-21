@@ -38,3 +38,12 @@ local opts = { noremap = true, silent = true }
   vim.keymap.set({ "n", "v" }, "<leader>p", "<cmd>lua Format_Null_ls()<CR>", opts)
 -- native lsp format mapping when null_ls can't do it
 vim.keymap.set({ "n", "v" }, "<leader>{", "<cmd>lua Format_Native()<CR>", opts)
+
+  -- Format On Save
+local group_format = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+	callback = function()
+		vim.cmd("lua Format_Null_ls()")
+	end,
+	group = group_format,
+})

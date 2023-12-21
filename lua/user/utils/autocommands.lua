@@ -34,15 +34,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	group = group_cursor,
 })
 
-  -- Format On Save
-local group_format = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", {
-	callback = function()
-		vim.cmd("lua Format_Null_ls()")
-	end,
-	group = group_format,
-})
-
 -- autocorrect common mistakes
 vim.cmd([[ 
   let s:auto_correct_loaded=0
