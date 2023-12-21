@@ -24,20 +24,16 @@ vim.api.nvim_set_hl(0, "StatusD", { bg = Dark_gray, fg = Bright_orange })
 vim.api.nvim_set_hl(0, "StatusModified", { bg = Green, fg = Dark_gray })
 vim.api.nvim_set_hl(0, "StatusE", { bg = Dark_gray, fg = Orange })
 vim.api.nvim_set_hl(0, "StatusF", { bg = Dark_gray, fg = Cyan })
-local is_git_repo = "system('git -C  . rev-parse --is-inside-work-tree') == 'true\n'"
 -- statusline components
 local ft = "%#StatusA#%y "
 local pwd = "%#StatusB#%{fnamemodify('', ':p:h')}"
 local file = "%#StatusD#/%f"
 local modified = "%=%#StatusModified#%{&modified ? ' 󰆓 ' : ''}"
-local git_branch = "%#MsgArea# %{" .. is_git_repo .. " ? system('git -C . branch --show-current')[0:-2] : '-'} "
-local git_message = "%#StatusC#%{"
-	.. is_git_repo
-	.. " ? substitute(system('git -C . show -s --format=%s'), '\n', '', '')[0:50] : 'Not a git repo'}"
-local session = "%#StatusE# %{fnamemodify(v:this_session, ':t')} "
-local lines_cols = "%#StatusA#l%l:c%c"
-local total_lines = "%#StatusF# L:%L"
-vim.o.statusline = ft .. pwd .. file .. modified .. git_branch .. git_message .. session .. lines_cols .. total_lines
+local session = "%#StatusC# %{fnamemodify(v:this_session, ':t')} "
+local lines = "%#StatusE#%ll "
+local cols = "%#StatusA#%cc "
+local total_lines = "%#StatusF#%LL"
+vim.o.statusline = ft .. pwd .. file .. modified .. session .. lines .. cols .. total_lines
 
 -- Toggle Quickfix window
 BufferName = function()
