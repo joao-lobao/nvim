@@ -55,20 +55,18 @@ vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua StageHunk()<CR>", opts)
 -- goto previous and next hunk
 Goto_hunk = function(direction)
 	local path = vim.fn.expand("%:p")
-	local diff = vim.fn.systemlist("git diff --unified=0 " .. path)
+	local diff = vim.fn.systemlist("git diff --unified=0 " .. path .. " | grep '^@@'")
 	local cursor_line = vim.fn.line(".")
 	for _, line in ipairs(diff) do
 		-- iterate over changed hunks
-		if vim.startswith(line, "@@") then
-			local cline_nlines_pair = string.sub(vim.split(line, " ")[3], 2)
-			local line_number = tonumber(vim.split(cline_nlines_pair, ",")[1])
-			if line_number > cursor_line and direction == "down" then
-				vim.api.nvim_command("normal! " .. line_number .. "G")
-				break
-			end
-			if line_number < cursor_line and direction == "up" then
-				vim.api.nvim_command("normal! " .. line_number .. "G")
-			end
+		local cline_nlines_pair = string.sub(vim.split(line, " ")[3], 2)
+		local line_number = tonumber(vim.split(cline_nlines_pair, ",")[1])
+		if line_number > cursor_line and direction == "down" then
+			vim.api.nvim_command("normal! " .. line_number .. "G")
+			break
+		end
+		if line_number < cursor_line and direction == "up" then
+			vim.api.nvim_command("normal! " .. line_number .. "G")
 		end
 	end
 end
