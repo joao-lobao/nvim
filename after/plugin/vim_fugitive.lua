@@ -72,5 +72,5 @@ Goto_hunk = function(direction)
 		end
 	end
 end
-vim.api.nvim_set_keymap("n", "<leader>gp", "<cmd>lua Goto_hunk('up')<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>gn", "<cmd>lua Goto_hunk('down')<CR>", opts)
+vim.api.nvim_set_keymap("n", "gp", "<cmd>lua Goto_hunk('up')<CR>", opts)
+vim.api.nvim_set_keymap("n", "gn", "<cmd>lua Goto_hunk('down')<CR>", opts)
