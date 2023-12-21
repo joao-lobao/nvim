@@ -6,12 +6,12 @@ vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
 vim.api.nvim_create_user_command("GitLastCommit", "Git show -1", {})
-vim.api.nvim_set_keymap("n", "«", "[c", opts)
-vim.api.nvim_set_keymap("n", "»", "]c", opts)
 
 ToggleDiffView = function()
 	if vim.o.diff == false then
 		vim.api.nvim_command("Gdiffsplit")
+		vim.api.nvim_buf_set_keymap(0, "n", "gp", "[c", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "gn", "]c", opts)
 	else
 		vim.api.nvim_command("q")
 	end
