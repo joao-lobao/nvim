@@ -27,10 +27,7 @@ null_ls.setup({
 null_ls.register(code_actions.no_undef)
 
 function Format_Null_ls()
-	-- async format with null_ls so it doesn't block or interfere with git signs
-	vim.cmd(
-		"lua vim.lsp.buf.format({async = true, filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })"
-	)
+	vim.cmd("lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })")
 end
 function Format_Native()
 	vim.cmd("lua vim.lsp.buf.format()")
@@ -46,6 +43,8 @@ local group_format = vim.api.nvim_create_augroup("FormatOnSave", { clear = true 
 vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = function()
 		vim.cmd("lua Format_Null_ls()")
+		-- a bad fix for making vim notify git signing that file has changed
+		vim.cmd("write")
 	end,
 	group = group_format,
 })
