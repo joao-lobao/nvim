@@ -12,7 +12,7 @@ end
 
 local keymap = vim.keymap -- for conciseness
 
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = false }
 
 local on_attach = function(client)
 	-- set keybinds
