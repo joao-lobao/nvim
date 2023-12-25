@@ -29,14 +29,15 @@ vim.api.nvim_set_hl(0, "TablineFill", { bg = Dark_gray, fg = Green })
 local ft = "%#StatusA#%y "
 local pwd = "%#StatusB#%{fnamemodify('', ':p:h')}"
 local file = "%#StatusC#/%f "
-local modified = "%#StatusModified#%{&modified ? ' 󰆓 ' : ''}%*%="
+local modified = "%#StatusModified#%{&modified ? ' 󰆓 ' : ''}"
+local readonly = "%#StatusModified#%{&readonly ? ' readonly ' : ''}%*%="
 local session = "%#StatusD# %{fnamemodify(v:this_session, ':t')} "
 local lines = "%#StatusE#l:%l "
 local cols = "%#StatusA#c:%c "
 local total_lines = "%#StatusF#L:%L"
 vim.o.showtabline = 2
 vim.o.tabline = "%#TablineFill#%t"
-vim.o.statusline = ft .. pwd .. file .. modified .. session .. lines .. cols .. total_lines
+vim.o.statusline = ft .. pwd .. file .. modified .. readonly .. session .. lines .. cols .. total_lines
 
 -- Toggle Quickfix window
 ToggleListedBuffers = function()
