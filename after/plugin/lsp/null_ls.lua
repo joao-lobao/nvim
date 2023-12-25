@@ -30,14 +30,15 @@ function Format_Null_ls()
 	--get lsp clients attached to current buffer
 	local buffer = vim.api.nvim_get_current_buf()
 	local clients = vim.lsp.get_active_clients({ bufnr = buffer })
+	local is_diff_mode = vim.o.diff
 
-	if #clients > 0 then
+	if #clients > 0 and not is_diff_mode then
 		vim.cmd(
 			"lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })"
 		)
+		-- a bad fix for making vim notify git signing that file has changed
+		vim.cmd("silent write")
 	end
-	-- a bad fix for making vim notify git signing that file has changed
-	vim.cmd("silent write")
 end
 function Format_Native()
 	vim.cmd("lua vim.lsp.buf.format()")
