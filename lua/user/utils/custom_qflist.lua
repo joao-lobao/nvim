@@ -46,8 +46,14 @@ ToggleListedBuffers = function()
 		vim.cmd("cclose")
 		return
 	end
+	local buffers = {}
 	local opened_bufs = vim.fn.getbufinfo({ buflisted = 1 })
-	vim.fn.setqflist(opened_bufs)
+	for _, buf in ipairs(opened_bufs) do
+		-- display buffer number on quickfix list item
+		buf.text = buf.bufnr
+		table.insert(buffers, buf)
+	end
+	vim.fn.setqflist(buffers)
 	vim.cmd("copen " .. #opened_bufs)
 	vim.fn.search(buf_name)
 end
