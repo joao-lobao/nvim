@@ -53,7 +53,7 @@ require("lazy").setup({
 	-- OTHERS
 	{ "github/copilot.vim" }, -- github copilot
 	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
-	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-lua/plenary.nvim" },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- improve syntax highlighting
 	{ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" }, -- to create custom mappings for text objects (ex: `daf` to delete a function)
 	{ "tpope/vim-fugitive" }, -- for git integration
