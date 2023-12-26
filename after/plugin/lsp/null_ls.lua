@@ -36,8 +36,6 @@ function Format_Null_ls()
 		vim.cmd(
 			"lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })"
 		)
-		-- a bad fix for making vim notify git signing that file has changed
-		vim.cmd("silent write")
 	end
 end
 function Format_Native()
@@ -51,7 +49,7 @@ vim.keymap.set({ "n", "v" }, "<leader>{", "<cmd>lua Format_Native()<CR>", opts)
 
 -- Format On Save
 local group_format = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", {
+vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
 		vim.cmd("lua Format_Null_ls()")
 	end,
