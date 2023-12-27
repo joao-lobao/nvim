@@ -28,7 +28,7 @@ vim.api.nvim_set_hl(0, "TablineFill", { bg = Dark_gray, fg = Green })
 -- statusline components
 local ft = "%#StatusA#%y "
 local pwd = "%#StatusB#%{fnamemodify('', ':p:h')}"
-local file = "%#StatusC#/%f "
+local filename = "%#StatusC#/%f "
 local modified = "%#StatusModified#%{&modified ? ' 󰆓 ' : ''}"
 local readonly = "%#StatusModified#%{&readonly ? ' readonly ' : ''}%*%="
 local session = "%#StatusD# %{fnamemodify(v:this_session, ':t')} "
@@ -37,10 +37,10 @@ local cols = "%#StatusA#c:%c "
 local total_lines = "%#StatusF#L:%L"
 vim.o.showtabline = 2
 vim.o.tabline = "%#TablineFill#%t"
-vim.o.statusline = ft .. pwd .. file .. modified .. readonly .. session .. lines .. cols .. total_lines
+vim.o.statusline = ft .. pwd .. filename .. modified .. readonly .. session .. lines .. cols .. total_lines
 
 -- Toggle Quickfix window
-ToggleListedBuffers = function()
+ListedBuffers = function()
 	local buf_name = vim.fn.expand("%:f")
 	if is_any_quickfix_open() then
 		vim.cmd("cclose")
@@ -57,5 +57,44 @@ ToggleListedBuffers = function()
 	vim.cmd("copen " .. #opened_bufs)
 	vim.fn.search(buf_name)
 end
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua ToggleListedBuffers()<CR>", opts)
+
+GitFiles = function()
+	local git_files = vim.fn.systemlist("git ls-files")
+	local files = {}
+	for _, g_file in ipairs(git_files) do
+		local file = { filename = g_file }
+		table.insert(files, file)
+	end
+	vim.fn.setqflist(files)
+	vim.cmd("copen")
+end
+
+GitGrep = function()
+	local pattern = vim.fn.input("Search pattern: ")
+	local git_grep = vim.fn.systemlist("rg -i --vimgrep --hidden --glob '!.git' '" .. pattern .. "'")
+	local matches = {}
+	for _, rg_match in ipairs(git_grep) do
+		local file, line, col, text = rg_match:match("([^:]+):(%d+):(%d+):(.*)")
+		table.insert(matches, { filename = file, lnum = line, col = col, text = text })
+	end
+	vim.fn.setqflist(matches)
+	vim.cmd("copen")
+end
+
+Oldfiles = function()
+	local oldfiles = vim.api.nvim_command_output("oldfiles")
+	oldfiles = vim.split(oldfiles, "\n")
+	local files = {}
+	for _, o_file in ipairs(oldfiles) do
+		local file = { filename = vim.split(o_file, ": ")[2] }
+		table.insert(files, file)
+	end
+	vim.fn.setqflist(files)
+	vim.cmd("copen")
+end
+
+local opts = { noremap = true, silent = false }
+vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua ListedBuffers()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua GitFiles()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua GitGrep()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>", opts)
