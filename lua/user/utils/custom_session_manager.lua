@@ -44,6 +44,8 @@ vim.api.nvim_create_user_command(
 	":lua SessionDelete(<f-args>)",
 	{ complete = Get_sessions_names, nargs = "?" }
 )
+local opts = { noremap = true, silent = false }
+vim.api.nvim_set_keymap("n", "sl", ":SLoad ", opts)
 
 -- close and save sessions on vim leave
 local group_session_manager = vim.api.nvim_create_augroup("CustomSessionManager", { clear = true })
