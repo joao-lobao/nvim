@@ -55,16 +55,19 @@ GitFiles = function()
 end
 
 GitGrep = function()
-	local pattern = vim.fn.input("Search pattern: ", "", "color")
-	if pattern == "" then
+	local pattern = vim.fn.input("Search pattern: ")
+	local git_grep = vim.fn.systemlist("rg -i --vimgrep --hidden --glob '!.git' '" .. pattern .. "'")
+	if pattern == "" or #git_grep == 0 then
+		print("\nNo results found")
 		return
 	end
-	local git_grep = vim.fn.systemlist("rg -i --vimgrep --hidden --glob '!.git' '" .. pattern .. "'")
+
 	local matches = {}
 	for _, rg_match in ipairs(git_grep) do
 		local file, line, col, text = rg_match:match("([^:]+):(%d+):(%d+):(.*)")
 		table.insert(matches, { filename = file, lnum = line, col = col, text = text })
 	end
+
 	vim.fn.setqflist(matches)
 	vim.cmd("copen")
 end
