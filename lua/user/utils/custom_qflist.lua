@@ -78,6 +78,9 @@ Oldfiles = function()
 	vim.cmd("copen")
 end
 
+-- add symbols to perform fuzzy search
+vim.api.nvim_set_keymap("c", ",", ".*", {})
+
 local opts = { noremap = true, silent = false }
 vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua ListedBuffers()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua GitFiles()<CR>/", opts)
