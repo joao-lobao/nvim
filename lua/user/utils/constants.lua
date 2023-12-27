@@ -10,11 +10,15 @@ Bright_orange = "#fe8019"
 Gray = "#bbbbbb"
 White = "#ffffff"
 Session_dir = "~/.config/nvim/session/"
-function Get_sessions_names()
+function Get_sessions_names(pattern)
 	local sessions = vim.fn.glob(Session_dir .. "*", true, true)
 	local sessions_names = {}
 	for _, session in ipairs(sessions) do
-		table.insert(sessions_names, vim.fn.fnamemodify(session, ":t"))
+		if pattern == nil then
+			table.insert(sessions_names, vim.fn.fnamemodify(session, ":t"))
+		elseif string.find(vim.fn.fnamemodify(session:lower(), ":t"), pattern) ~= nil then
+			table.insert(sessions_names, vim.fn.fnamemodify(session, ":t"))
+		end
 	end
 	return sessions_names
 end
