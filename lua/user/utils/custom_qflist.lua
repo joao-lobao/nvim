@@ -1,14 +1,3 @@
--- Function to check if any Quickfix list window is open
-local function is_any_quickfix_open()
-	-- Iterate over all open windows
-	for _, winid in ipairs(vim.fn.getwininfo()) do
-		-- Check if the window is a Quickfix window
-		if vim.fn.getwinvar(winid.winid, "&buftype") == "quickfix" then
-			return true
-		end
-	end
-	return false
-end
 -- general highlights
 vim.api.nvim_set_hl(0, "MsgArea", { bg = Dark_gray, fg = Green })
 vim.api.nvim_set_hl(0, "QuickfixLine", { bg = "none", fg = "none" })
@@ -42,10 +31,6 @@ vim.o.statusline = ft .. pwd .. filename .. modified .. readonly .. session .. l
 -- Toggle Quickfix window
 ListedBuffers = function()
 	local buf_name = vim.fn.expand("%:f")
-	if is_any_quickfix_open() then
-		vim.cmd("cclose")
-		return
-	end
 	local buffers = {}
 	local opened_bufs = vim.fn.getbufinfo({ buflisted = 1 })
 	for _, buf in ipairs(opened_bufs) do
@@ -95,6 +80,6 @@ end
 
 local opts = { noremap = true, silent = false }
 vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua ListedBuffers()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua GitFiles()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua GitFiles()<CR>/", opts)
 vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua GitGrep()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>/", opts)

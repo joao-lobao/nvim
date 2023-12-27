@@ -8,7 +8,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":cclose<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "q", ":cclose<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "f", "/", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "<leader>n", ":cclose<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "f", "/", {})
 		for i = 1, 10, 1 do
 			vim.api.nvim_buf_set_keymap(0, "n", tostring(i), tostring(i) .. "G<CR>:cclose<CR>", opts)
 		end
