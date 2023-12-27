@@ -55,7 +55,10 @@ GitFiles = function()
 end
 
 GitGrep = function()
-	local pattern = vim.fn.input("Search pattern: ")
+	local pattern = vim.fn.input("Search pattern: ", "", "color")
+	if pattern == "" then
+		return
+	end
 	local git_grep = vim.fn.systemlist("rg -i --vimgrep --hidden --glob '!.git' '" .. pattern .. "'")
 	local matches = {}
 	for _, rg_match in ipairs(git_grep) do
