@@ -43,8 +43,9 @@ ListedBuffers = function()
 	vim.fn.search(buf_name)
 end
 
-GitFiles = function()
-	local git_files = vim.fn.systemlist("git ls-files")
+Files = function(params)
+	params = params or ""
+	local git_files = vim.fn.systemlist("git ls-files " .. params)
 	local files = {}
 	for _, g_file in ipairs(git_files) do
 		local file = { filename = g_file }
@@ -54,9 +55,10 @@ GitFiles = function()
 	vim.cmd("copen")
 end
 
-GitGrep = function()
+Grep = function(params)
+	params = params or ""
 	local pattern = vim.fn.input("Search pattern: ")
-	local git_grep = vim.fn.systemlist("rg -i --vimgrep --hidden --glob '!.git' '" .. pattern .. "'")
+	local git_grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
 	if pattern == "" or #git_grep == 0 then
 		print("\nNo results found")
 		return
@@ -86,6 +88,12 @@ end
 
 local opts = { noremap = true, silent = false }
 vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua ListedBuffers()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua GitFiles()<CR>/", opts)
-vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua GitGrep()<CR>", opts)
+-- git files
+vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua Files()<CR>/", opts)
+-- all files
+vim.api.nvim_set_keymap("n", "<leader>F", "<cmd>lua Files('--cached --others')<CR>/", opts)
+-- git grep
+vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua Grep()<CR>", opts)
+-- all grep
+vim.api.nvim_set_keymap("n", "<leader>R", "<cmd>lua Grep('--no-ignore')<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>/", opts)
