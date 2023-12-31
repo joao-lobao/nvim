@@ -10,17 +10,12 @@ end
 function SessionLoad(session)
 	SessionSave()
 	-- stop all clients before deleting buffers and loading session
-	local opened_bufs = vim.fn.getbufinfo({ buflisted = 1 })
-	for _, buf in ipairs(opened_bufs) do
-		vim.lsp.for_each_buffer_client(buf.bufnr, function(client)
-			-- even though this stops in fact all clients, when loading session Lsp
-			-- throws error message like a previous client is still running but in fact it's not
-			-- a bug that can be ignored (it has to do with loading the session but
-			-- if buffers where not Entered on before loading new session Lsp gets
-			-- confused)
-			client.stop()
-		end)
-	end
+	-- even though this stops in fact all clients, when loading session Lsp
+	-- throws error message like a previous client is still running but in fact it's not
+	-- a bug that can be ignored (it has to do with loading the session but
+	-- if buffers where not Entered on before loading new session Lsp gets
+	-- confused)
+	vim.lsp.stop_client(vim.lsp.get_active_clients())
 	vim.cmd("bufdo bw")
 	vim.cmd("source " .. Session_dir .. session)
 end
