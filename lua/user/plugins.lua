@@ -25,10 +25,14 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require("lazy").setup({
 	-- NOTE: First, some plugins that don't require any configuration
+	{ "airblade/vim-rooter" }, -- changes the cwd to the project root when a file or directory is opened
+	{ "nvim-lua/plenary.nvim" },
 	{ "tpope/vim-surround" }, -- plugin for surrounding feature
 	{ "tpope/vim-commentary" }, -- plugin commentary feature
 	{ "tpope/vim-repeat" }, -- repeat commands from other plugins that are not atomic to vim
-	{ "airblade/vim-rooter" }, -- changes the cwd to the project root when a file or directory is opened
+	{ "tpope/vim-fugitive" }, -- for git integration
+	{ "janko/vim-test" }, -- easily run tests
+	{ "github/copilot.vim" }, -- github copilot
 
 	-- NOTE: Now, plugins that require configuration
 	-- LSP
@@ -51,11 +55,7 @@ require("lazy").setup({
 	},
 
 	-- OTHERS
-	{ "github/copilot.vim" }, -- github copilot
 	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
-	{ "nvim-lua/plenary.nvim" },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- improve syntax highlighting
 	{ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" }, -- to create custom mappings for text objects (ex: `daf` to delete a function)
-	{ "tpope/vim-fugitive" }, -- for git integration
-	{ "janko/vim-test" }, -- easily run tests
 })
