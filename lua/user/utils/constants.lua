@@ -16,7 +16,7 @@ function Get_sessions_names(pattern)
 	for _, session in ipairs(sessions) do
 		if pattern == nil then
 			table.insert(sessions_names, vim.fn.fnamemodify(session, ":t"))
-		elseif string.find(vim.fn.fnamemodify(session:lower(), ":t"), pattern) ~= nil then
+		elseif string.find(vim.fn.fnamemodify(session:lower(), ":t"), pattern:lower()) ~= nil then
 			table.insert(sessions_names, vim.fn.fnamemodify(session, ":t"))
 		end
 	end
