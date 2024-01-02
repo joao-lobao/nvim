@@ -1,7 +1,7 @@
 SessionSave = function()
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 	if session == "" then
-		print("No session is loaded")
+		vim.notify("No session is loaded", vim.log.levels.INFO)
 		return
 	end
 	vim.cmd("mksession! " .. Session_dir .. session)
