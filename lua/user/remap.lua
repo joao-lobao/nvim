@@ -47,7 +47,6 @@ vim.api.nvim_set_keymap("n", "gQ", ":bd!<CR>", opts)
 -- Quitting vim
 vim.api.nvim_set_keymap("n", "<leader>q", ":q<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>Q", ":q!<CR>", opts)
-vim.api.nvim_set_keymap("n", "qa", ":qa<CR>", opts)
 
 -- no operation keys
 vim.api.nvim_set_keymap("n", "<Up>", "<NOP>", opts)
@@ -78,7 +77,7 @@ vim.api.nvim_set_keymap("n", '<leader>"', ":sp | term<CR>:NoNumbers<CR>", opts)
 -- other customizations
 vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 -- create and goto file
-vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
+vim.api.nvim_set_keymap("n", "tcf", ":e <cfile><CR>", opts)
 -- Automatically close brackets, parethesis, and quotes
 vim.api.nvim_set_keymap("i", "'", "''<left>", opts)
 vim.api.nvim_set_keymap("i", "`", "``<left>", opts)
