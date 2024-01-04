@@ -45,13 +45,18 @@ end
 
 Files = function(params)
 	params = params or ""
-	local git_files = vim.fn.systemlist("git ls-files " .. params)
-	local files = {}
-	for _, g_file in ipairs(git_files) do
-		local file = { filename = g_file }
-		table.insert(files, file)
+	local is_file_in_git_project = vim.fn.system("git -C . rev-parse --is-inside-work-tree") == "true\n"
+	local files = vim.fn.systemlist("git ls-files " .. params)
+	if not is_file_in_git_project then
+		-- in case not a git repo
+		files = vim.fn.systemlist("ls -a")
 	end
-	vim.fn.setqflist(files)
+	local results = {}
+	for _, g_file in ipairs(files) do
+		local file = { filename = g_file }
+		table.insert(results, file)
+	end
+	vim.fn.setqflist(results)
 	vim.cmd("copen")
 end
 
