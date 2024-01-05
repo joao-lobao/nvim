@@ -5,6 +5,8 @@ local group_quickfix = vim.api.nvim_create_augroup("CustomQFLMapping", { clear =
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "qf",
 	callback = function()
+		vim.api.nvim_buf_set_keymap(0, "n", "<C-j>", "<CR>:cnext<CR>:copen<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", "<CR>:cprev<CR>:copen<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":cclose<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "q", ":cclose<CR>", opts)
