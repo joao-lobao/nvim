@@ -2,6 +2,7 @@
 -- define signs
 vim.api.nvim_command("sign define diffadd text=+ texthl=DiffAdd")
 vim.api.nvim_command("sign define diffdelete text=󰾞 texthl=DiffDelete")
+vim.api.nvim_set_hl(0, "DiffText", { bg = Green, fg = Dark_gray })
 
 local get_type = function(line)
 	if vim.startswith(line, "+") then
