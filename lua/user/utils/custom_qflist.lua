@@ -35,10 +35,12 @@ Grep = function(params)
 	local pattern = vim.fn.input("Search pattern: ")
 	local git_grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
 	if pattern == "" then
-		vim.notify("Exited Grep", vim.log.levels.INFO)
+		vim.notify("Exited Grep", vim.log.levels.WARN)
+		Notification("Exited Grep", vim.log.levels.WARN)
 		return
 	elseif #git_grep == 0 then
 		vim.notify(" No results found", vim.log.levels.WARN)
+		Notification("No results found", vim.log.levels.ERROR)
 		return
 	end
 

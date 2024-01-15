@@ -29,7 +29,8 @@ Get_git_info = function()
 		local git_status = " --" .. string.sub(string.gsub(vim.fn.system("git diff --shortstat"), "\n", ""), 1, 50)
 		return vim.notify(git_branch .. " " .. git_message .. git_status, vim.log.levels.INFO)
 	end
-	vim.notify("Not a git repo", vim.log.levels.WARN)
+	vim.notify("Not a git repo", vim.log.levels.ERROR)
+	Notification("Not a git repo", vim.log.levels.ERROR)
 end
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "gi", "<cmd>lua Get_git_info()<CR>", opts)
