@@ -5,6 +5,8 @@ SessionSave = function()
 		return
 	end
 	vim.cmd("mksession! " .. Session_dir .. session)
+	vim.notify(session .. " session saved", vim.log.levels.INFO)
+	Notification(session .. " session saved")
 end
 
 function SessionLoad(session)
@@ -18,6 +20,7 @@ function SessionLoad(session)
 	vim.lsp.stop_client(vim.lsp.get_active_clients())
 	vim.cmd("bufdo bw")
 	vim.cmd("source " .. Session_dir .. session)
+	Notification(session .. " session is loaded")
 end
 
 function SessionDelete(session)
