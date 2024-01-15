@@ -1,6 +1,7 @@
 require("user.utils.constants")
 require("user.utils.custom_alternate")
 require("user.utils.custom_git")
+require("user.utils.custom_notification")
 require("user.utils.custom_session_manager")
 require("user.utils.custom_qflist")
 require("user.utils.luasnip")
