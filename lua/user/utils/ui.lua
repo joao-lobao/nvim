@@ -1,8 +1,11 @@
 -- general highlights
 vim.api.nvim_set_hl(0, "MsgArea", { bg = Dark_gray, fg = Green })
 vim.api.nvim_set_hl(0, "NotificationInfo", { bg = Green, fg = Dark_gray })
+vim.api.nvim_set_hl(0, "NotificationInfoEmphasis", { bg = Green, fg = Light_purple })
 vim.api.nvim_set_hl(0, "NotificationWarn", { bg = Bright_orange, fg = Dark_gray })
+vim.api.nvim_set_hl(0, "NotificationWarnEmphasis", { bg = Bright_orange, fg = White })
 vim.api.nvim_set_hl(0, "NotificationError", { bg = Red, fg = Dark_gray })
+vim.api.nvim_set_hl(0, "NotificationErrorEmphasis", { bg = Red, fg = White })
 vim.api.nvim_set_hl(0, "QuickfixLine", { bg = "none", fg = "none" })
 vim.api.nvim_set_hl(0, "qfFileName", { bg = "none", fg = Bright_orange })
 vim.api.nvim_set_hl(0, "ErrorMsg", { bg = Dark_gray, fg = Red })
