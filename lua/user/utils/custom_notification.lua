@@ -23,8 +23,8 @@ function Notification(message, level, emphasis)
 		txt_emphasis = emphasis .. " "
 	end
 	local buffer = vim.api.nvim_get_current_buf()
-	local txt_icon = "            " .. config[level].icon .. "  "
-	local txt_msg = message .. "            "
+	local txt_icon = "    " .. config[level].icon .. "  "
+	local txt_msg = message .. "    "
 	local extmarks = vim.api.nvim_buf_get_extmarks(buffer, namespace, 0, -1, {})
 	local id = 1
 
