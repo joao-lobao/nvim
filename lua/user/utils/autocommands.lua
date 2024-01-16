@@ -38,6 +38,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	group = group_cursor,
 })
 
+-- Remember cursor position
+local group_write = vim.api.nvim_create_augroup("WriteBuffer", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+	callback = function()
+		local filename = vim.fn.expand("%:t")
+		Notification("saved", vim.log.levels.INFO, filename)
+	end,
+	group = group_write,
+})
+
 -- autocorrect common mistakes
 vim.cmd([[ 
   let s:auto_correct_loaded=0
