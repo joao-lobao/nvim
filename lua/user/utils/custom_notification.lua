@@ -17,10 +17,13 @@ local config = {
 	},
 }
 
-function Notification(message, level, emphasis)
+function Notification(message, level, emphasis, timeout)
 	local txt_emphasis = ""
 	if emphasis ~= nil then
 		txt_emphasis = emphasis .. " "
+	end
+	if timeout == nil then
+		timeout = 5000
 	end
 	local buffer = vim.api.nvim_get_current_buf()
 	local txt_icon = "    " .. config[level].icon .. "  "
@@ -43,10 +46,7 @@ function Notification(message, level, emphasis)
 		virt_text_pos = "right_align",
 		priority = 50,
 	})
-	extmarks = vim.api.nvim_buf_get_extmarks(buffer, namespace, 0, -1, {})
-	for _, extmark in ipairs(extmarks) do
-		vim.fn.timer_start(5000, function()
-			vim.api.nvim_buf_del_extmark(buffer, namespace, extmark[1])
-		end)
-	end
+	vim.fn.timer_start(timeout, function()
+		vim.api.nvim_buf_del_extmark(buffer, namespace, id)
+	end)
 end
