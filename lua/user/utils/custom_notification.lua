@@ -33,7 +33,7 @@ function Notification(message, level, emphasis)
 			{ txt_emphasis, config[level].hl_emphasis },
 			{ txt_msg, config[level].hl },
 		},
-		virt_text_pos = "overlay",
+		virt_text_pos = "right_align",
 		priority = 50,
 	})
 	vim.fn.timer_start(5000, function()
