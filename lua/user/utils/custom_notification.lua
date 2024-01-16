@@ -23,11 +23,18 @@ function Notification(message, level, emphasis)
 		txt_emphasis = emphasis .. " "
 	end
 	local buffer = vim.api.nvim_get_current_buf()
-	local screen_topline = vim.fn.line("w0") - 1
 	local txt_icon = "            " .. config[level].icon .. "  "
 	local txt_msg = message .. "            "
+	local extmarks = vim.api.nvim_buf_get_extmarks(buffer, namespace, 0, -1, {})
+	local id = 1
+
+	-- id working also as an offset when there will be multiple active notifications
+	if #extmarks > 0 then
+		id = extmarks[#extmarks][1] + 2
+	end
+	local screen_topline = vim.fn.line("w0") - 2 + id
 	vim.api.nvim_buf_set_extmark(buffer, namespace, screen_topline, 0, {
-		id = 1,
+		id = id,
 		virt_text = {
 			{ txt_icon, config[level].hl },
 			{ txt_emphasis, config[level].hl_emphasis },
@@ -37,6 +44,9 @@ function Notification(message, level, emphasis)
 		priority = 50,
 	})
 	vim.fn.timer_start(5000, function()
-		vim.api.nvim_buf_del_extmark(buffer, namespace, 1)
+		extmarks = vim.api.nvim_buf_get_extmarks(buffer, namespace, 0, -1, {})
+		for _, extmark in ipairs(extmarks) do
+			vim.api.nvim_buf_del_extmark(buffer, namespace, extmark[1])
+		end
 	end)
 end
