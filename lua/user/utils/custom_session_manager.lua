@@ -6,7 +6,6 @@ SessionSave = function()
 	end
 	vim.cmd("mksession! " .. Session_dir .. session)
 	vim.notify(session .. " session saved", vim.log.levels.INFO)
-	Notification("session saved", vim.log.levels.INFO, session)
 end
 
 function SessionLoad(session)
