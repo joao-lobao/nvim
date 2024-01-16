@@ -36,8 +36,10 @@ function Format_Null_ls()
 		vim.cmd(
 			"lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })"
 		)
-		Notification("File formated", vim.log.levels.INFO)
+		Notification("File formatted", vim.log.levels.INFO)
+		return
 	end
+	Notification("Format not supported on this buffer", vim.log.levels.WARN)
 end
 function Format_Native()
 	vim.cmd("lua vim.lsp.buf.format()")
