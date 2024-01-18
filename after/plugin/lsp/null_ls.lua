@@ -28,18 +28,23 @@ null_ls.register(code_actions.no_undef)
 
 function Format_Null_ls()
 	--get lsp clients attached to current buffer
-	local buffer = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_active_clients({ bufnr = buffer })
+	local bufnr = vim.api.nvim_get_current_buf()
+	local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
 	local is_diff_mode = vim.o.diff
 
+	local filter = function(client)
+		if client.name == "null-ls" then
+			Notification("File formatted", vim.log.levels.INFO)
+			return true
+		else
+			return false
+		end
+	end
+
 	if #clients > 0 and not is_diff_mode then
-		vim.cmd(
-			"lua vim.lsp.buf.format({ filter = function(client) return client.name == 'null-ls' end, bufnr = bufnr, })"
-		)
-		Notification("File formatted", vim.log.levels.INFO)
+		vim.lsp.buf.format({ filter = filter, bufnr = bufnr })
 		return
 	end
-	Notification("Format not supported on this buffer", vim.log.levels.WARN)
 end
 function Format_Native()
 	vim.cmd("lua vim.lsp.buf.format()")
