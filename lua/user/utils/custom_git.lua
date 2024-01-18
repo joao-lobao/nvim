@@ -43,7 +43,7 @@ IsBufferEligibleForSigning = function()
 		== "true\n"
 	-- is buffer in diff mode
 	local is_diff_mode = vim.api.nvim_command_output([[echo &diff]]) == "1"
-	return is_file_in_git_project and not is_diff_mode and vim.bo.filetype ~= ""
+	return is_file_in_git_project and not is_diff_mode
 end
 
 SetDiffSigns = function()
@@ -75,7 +75,21 @@ end
 -- create autocommands group so they can be cleared later
 local group_git = vim.api.nvim_create_augroup("CustomGit", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-	pattern = { "*.js", "*.jsx", "*.json", "*.ts", "*.tsx", "*.lua", "*.css", "*.scss", "*.md" },
+	pattern = {
+		"*.js",
+		"*.jsx",
+		"*.json",
+		"*.ts",
+		"*.tsx",
+		"*.lua",
+		"*.css",
+		"*.scss",
+		"*.md",
+		"*.keymap",
+		"*.yml",
+		"*.yaml",
+		"*.conf",
+	},
 	callback = function()
 		if IsBufferEligibleForSigning() then
 			SetDiffSigns()
