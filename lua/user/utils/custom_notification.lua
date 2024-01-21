@@ -47,6 +47,8 @@ function Notification(message, level, emphasis, timeout)
 		priority = 50,
 	})
 	vim.fn.timer_start(timeout, function()
-		vim.api.nvim_buf_del_extmark(buffer, namespace, id)
+		if vim.api.nvim_buf_is_loaded(buffer) then
+			vim.api.nvim_buf_del_extmark(buffer, namespace, id)
+		end
 	end)
 end
