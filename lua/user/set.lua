@@ -33,3 +33,4 @@ vim.o.si = true -- Smart indent
 vim.o.laststatus = 3 -- show only one status line even if there are multiple splits
 -- no mouse
 vim.o.mouse = ""
+vim.o.conceallevel = 1 -- for obsidian.nvim plugin features on markdown files
