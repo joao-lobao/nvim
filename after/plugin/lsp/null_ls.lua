@@ -10,6 +10,31 @@ local code_actions = require("user.utils.null_ls").code_actions(null_ls)
 local formatting = null_ls.builtins.formatting -- to setup formatters
 local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
+local function json_has_eslint_config(pattern, utils)
+	local has_package_json = utils.root_has_file("package.json")
+	local has_eslint_config = false
+	local lines = ""
+	if has_package_json then
+		lines = vim.fn.readfile(vim.fn.expand(vim.fn.getcwd() .. "/" .. "package.json"))
+		for _, line in ipairs(lines) do
+			if line:match(pattern) then
+				has_eslint_config = true
+				break
+			end
+		end
+	end
+	return has_eslint_config
+end
+
+local utils = require("null-ls.utils").make_conditional_utils()
+local has_eslint_rules = function()
+	-- enable eslint from the project eslint own rules
+	if utils.root_has_file_matches("eslint") or json_has_eslint_config("eslintConfig", utils) then
+		return true
+	end
+	return false
+end
+
 -- configure null_ls
 null_ls.setup({
 	-- setup formatters & linters
@@ -20,7 +45,9 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.shfmt, -- bash formatter
 		diagnostics.markdownlint, -- markdown linter
-		diagnostics.eslint_d,
+		diagnostics.eslint_d.with({
+			condition = has_eslint_rules,
+		}),
 	},
 })
 
