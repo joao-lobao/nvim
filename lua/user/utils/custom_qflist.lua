@@ -1,5 +1,14 @@
--- Toggle Quickfix window
+local is_qf_open = function()
+	local quickfix_window = vim.fn.getqflist({ winid = 1 }).winid
+	return quickfix_window ~= 0
+end
+
 ListedBuffers = function()
+	if is_qf_open() then
+		vim.cmd("cclose")
+		return
+	end
+
 	local buf_name = vim.fn.expand("%:f")
 	local buffers = {}
 	local opened_bufs = vim.fn.getbufinfo({ buflisted = 1 })
