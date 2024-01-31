@@ -23,7 +23,7 @@ vim.api.nvim_set_hl(0, "TablineFill", { bg = Dark_gray, fg = Green })
 -- statusline components
 local ft = "%#StatusA#%y "
 local pwd = "%#StatusB#%{fnamemodify('', ':p:h')}"
-local filename = "%#StatusC#/%f "
+local filename = "%#StatusC# %f "
 local modified = "%#StatusModified#%{&modified ? ' 󰆓 ' : ''}"
 local readonly = "%#StatusModified#%{&readonly ? ' readonly ' : ''}%*%="
 local session = "%#StatusD# %{fnamemodify(v:this_session, ':t')} "
