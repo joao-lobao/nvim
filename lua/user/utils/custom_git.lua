@@ -34,6 +34,7 @@ Get_git_info = function()
 end
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "gi", "<cmd>lua Get_git_info()<CR>", opts)
+vim.api.nvim_set_keymap("n", "gh", ":e ~/.config/nvim/lua/user/utils/git_commit_msg_help.txt<CR>", opts)
 
 -- check buffer is a file in a git project
 IsBufferEligibleForSigning = function()
