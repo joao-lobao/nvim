@@ -65,6 +65,8 @@ local config_files = {
 	{ icon = Icons.config, description = "~/.zshrc", value = "e ~/.zshrc", category = hl_categories.bookmark },
 }
 local searches = {
+	{ icon = Icons.files, description = "ObsidianSearch", value = "ObsidianSearch", category = hl_categories.search },
+	{ icon = Icons.files, description = "ObsidianNew", value = "ObsidianNew", category = hl_categories.search },
 	{ icon = Icons.files, description = "Old files", value = "Telescope oldfiles", category = hl_categories.search },
 	{ icon = Icons.keymap, description = "Keymaps", value = "Telescope keymaps", category = hl_categories.search },
 }
