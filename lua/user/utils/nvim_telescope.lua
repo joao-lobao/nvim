@@ -37,12 +37,20 @@ local task = function()
 	if session == "" then
 		prompt_title = Icons.closed_session .. " Connect to Workspace"
 	end
+
+	-- 32 is the number of actions needed to fill the height
+	local max_num_of_actions = 32
+	local num_of_common_actions = #Common_actions
+	local win_height = num_of_common_actions / max_num_of_actions
+	if win_height > 0.99 then
+		win_height = 0.99
+	end
+
 	local opts = {
 		prompt_title = prompt_title,
 		results_title = Icons.folder .. " " .. vim.fn.getcwd(),
 		-- dynamic window height based on the number of actions
-		-- 33 is the number of actions needed to fill the height
-		layout_config = { anchor = "C", width = 0.3, height = #Common_actions / 32 },
+		layout_config = { anchor = "C", width = 0.3, height = win_height },
 		finder = finders.new_table({
 			results = Common_actions,
 			entry_maker = function(entry)
