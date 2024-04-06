@@ -76,7 +76,7 @@ Oldfiles = function()
 end
 
 local opts = { noremap = true, silent = false }
--- vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua ListedBuffers()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>B", "<cmd>lua ListedBuffers()<CR>", opts)
 -- git files
 -- vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua Files()<CR>/", opts)
 -- all files
