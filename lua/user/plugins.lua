@@ -74,12 +74,24 @@ require("lazy").setup({
 		opts = {
 			workspaces = {
 				{
-					name = "personal",
-					path = "~/vaults/personal",
+					name = "0_Inbox",
+					path = "~/vaults/0_Inbox",
 				},
 				{
-					name = "work",
-					path = "~/vaults/work",
+					name = "1_Projects",
+					path = "~/vaults/1_Projects",
+				},
+				{
+					name = "2_Areas",
+					path = "~/vaults/2_Areas",
+				},
+				{
+					name = "3_Resources",
+					path = "~/vaults/3_Resources",
+				},
+				{
+					name = "4_Archive",
+					path = "~/vaults/4_Archive",
 				},
 			},
 		},
