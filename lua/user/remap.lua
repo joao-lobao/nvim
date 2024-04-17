@@ -48,16 +48,6 @@ vim.api.nvim_set_keymap("n", "gQ", ":bd!<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", ":q<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>Q", ":q!<CR>", opts)
 
--- no operation keys
-vim.api.nvim_set_keymap("n", "<Up>", "<NOP>", opts)
-vim.api.nvim_set_keymap("n", "<Down>", "<NOP>", opts)
-vim.api.nvim_set_keymap("n", "<Left>", "<NOP>", opts)
-vim.api.nvim_set_keymap("n", "<Right>", "<NOP>", opts)
-vim.api.nvim_set_keymap("i", "<Up>", "<NOP>", opts)
-vim.api.nvim_set_keymap("i", "<Down>", "<NOP>", opts)
-vim.api.nvim_set_keymap("i", "<Left>", "<NOP>", opts)
-vim.api.nvim_set_keymap("i", "<Right>", "<NOP>", opts)
-
 -- Visual Maps
 -- Replace all instances of highlighted words
 vim.api.nvim_set_keymap("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', opts)
