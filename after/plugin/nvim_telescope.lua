@@ -8,14 +8,12 @@ telescope.setup({
 		sorting_strategy = "ascending",
 		mappings = {
 			i = {
-				["<Del>"] = actions.close,
 				["<Esc>"] = actions.close,
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
 			},
 			n = {
 				["q"] = actions.close,
-				["<Del>"] = actions.close,
 			},
 		},
 	},
