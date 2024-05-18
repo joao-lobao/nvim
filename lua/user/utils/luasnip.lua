@@ -32,4 +32,15 @@ luasnip.add_snippets(nil, {
 			text({ "", "---" }),
 		}),
 	},
+	typescript = {
+		snip({
+			trig = "cl",
+			name = "console.log",
+			desc = "console log",
+		}, {
+			text({ "console.log(" }),
+			insert(1, "test"),
+			text({ ")" }),
+		}),
+	},
 })
