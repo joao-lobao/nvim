@@ -77,6 +77,7 @@ vim.api.nvim_set_keymap("i", '"', '""<left>', opts)
 vim.api.nvim_set_keymap("i", "(", "()<left>", opts)
 vim.api.nvim_set_keymap("i", "[", "[]<left>", opts)
 vim.api.nvim_set_keymap("i", "{", "{}<left>", opts)
-vim.api.nvim_set_keymap("i", "<", "<><left>", opts)
+-- autotag commented
+-- vim.api.nvim_set_keymap("i", "<", "<><left>", opts)
 -- calculate math expression
 vim.api.nvim_set_keymap("n", "==", '0yt=A<C-r>=<C-r>"<CR><Esc>', opts)
