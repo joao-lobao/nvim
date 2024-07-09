@@ -31,7 +31,9 @@ local on_attach = function(client)
 		local ns = vim.lsp.diagnostic.get_namespace(client.id)
 		vim.diagnostic.disable(nil, ns)
 		-- disable formatting for tsserver, since it's handled by prettier
-		client.resolved_capabilities.document_formatting = false
+		if client.resolved_capabilities ~= nil then
+			client.resolved_capabilities.document_formatting = false
+		end
 	end
 end
 
