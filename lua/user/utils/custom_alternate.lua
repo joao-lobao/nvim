@@ -13,7 +13,11 @@ local goto_source_file = function(current_file, current_file_dir)
 		type = "file",
 	})
 
-	vim.cmd("edit " .. find_source_file[1])
+	if #find_source_file > 0 then
+		vim.cmd("edit " .. find_source_file[1])
+	else
+		vim.cmd("edit index.js")
+	end
 end
 
 -- I believe Lua's pattern matching doesn't directly support alternation (|)
