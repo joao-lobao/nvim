@@ -21,9 +21,11 @@ local goto_source_file = function(current_file, current_file_dir)
 end
 
 -- I believe Lua's pattern matching doesn't directly support alternation (|)
--- for this purpose hence calling match twice
+-- for this purpose calling match twice
 local has_test_match = function(name)
-	return name:match(".*test.*") or name:match(".*spec.*")
+	-- get current file name without the file extension
+	local fname_without_ext = string.gsub(vim.fn.expand("%:t"), "%..*$", "")
+	return name:match(fname_without_ext .. ".*test.*") or name:match(fname_without_ext .. ".*spec.*")
 end
 
 local goto_test_file = function(current_file, current_file_dir)
@@ -36,11 +38,11 @@ local goto_test_file = function(current_file, current_file_dir)
 	if #find_test_file > 0 then
 		vim.cmd("edit " .. find_test_file[1])
 	else
-		-- show message with error hl if no test file
+		-- show message with error hl in case there is no test file
 		vim.cmd("echohl ErrorMsg | echo 'No test file found' | echohl None")
 
 		local test_file = string.gsub(current_file, "[.]", ".test.")
-		-- ask with a prompt if user wants to create a test file
+		-- ask with a prompt in case user wants to create a test file
 		local is_create_file = vim.fn.input("Create test file? (y/n) ")
 		if is_create_file == "y" then
 			local create_test_file = vim.fn.input("File name: ", test_file)
