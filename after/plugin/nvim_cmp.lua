@@ -35,20 +35,37 @@ cmp.setup({
 
 	-- sources for autocompletion
 	sources = cmp.config.sources({
+		{ name = "copilot", group_index = 2 },
 		{ name = "path" }, -- file system paths
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
+		{ name = "cmp_tabnine" }, -- tabnine
 		{ name = "buffer" }, -- text within current buffer
+		{ name = "calc" }, -- text for math operations
 	}),
 	-- configure cmp for vs-code like icons
 	formatting = {
 		format = function(entry, vim_item)
-			-- also can use vim_item.kind to customize cmp text
+			-- use vim_item.kind to customize cmp text
+			vim_item.kind = ({
+				copilot = "Copilot",
+				cmp_tabnine = "Tabnine",
+				nvim_lsp = "LSP",
+				path = "Path",
+				buffer = "Buffer",
+				luasnip = "Luasnip",
+				calc = "Math",
+			})[entry.source.name]
+
+			-- use vim_item.menu to customize cmp icon
 			vim_item.menu = ({
+				copilot = "󰚩",
+				cmp_tabnine = "󰭆",
 				nvim_lsp = "󰅟 ",
 				path = " ",
 				buffer = "󰦪",
 				luasnip = "",
+				calc = "",
 			})[entry.source.name]
 			return vim_item
 		end,

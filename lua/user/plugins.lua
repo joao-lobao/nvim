@@ -51,7 +51,16 @@ require("lazy").setup({
 			"L3MON4D3/LuaSnip", -- snippets engine
 			"rafamadriz/friendly-snippets", -- useful snippets
 			"saadparwaiz1/cmp_luasnip", -- for snippets autocompletion
+			"hrsh7th/cmp-path", -- for path autocompletion
+			"hrsh7th/cmp-buffer", -- for buffer autocompletion
+			"hrsh7th/cmp-calc", -- for math operations autocompletion
+			"hrsh7th/cmp-copilot", -- for github copilot autocompletion
 		},
+	},
+	{
+		"tzachar/cmp-tabnine",
+		build = "./install.sh",
+		dependencies = "hrsh7th/nvim-cmp",
 	},
 
 	-- OTHERS
