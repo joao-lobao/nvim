@@ -33,6 +33,7 @@ require("lazy").setup({
 	{ "tpope/vim-fugitive" }, -- for git integration
 	{ "janko/vim-test" }, -- easily run tests
 	{ "github/copilot.vim" }, -- github copilot
+	{ "windwp/nvim-ts-autotag" }, -- auto close tag
 
 	-- NOTE: Now, plugins that require configuration
 	-- LSP
@@ -133,4 +134,11 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- improve syntax highlighting
 	{ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" }, -- to create custom mappings for text objects (ex: `daf` to delete a function)
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+		-- use opts = {} for passing setup options
+		-- this is equalent to setup({}) function
+	},
 })
