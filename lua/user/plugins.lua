@@ -55,7 +55,6 @@ require("lazy").setup({
 			"hrsh7th/cmp-path", -- for path autocompletion
 			"hrsh7th/cmp-buffer", -- for buffer autocompletion
 			"hrsh7th/cmp-calc", -- for math operations autocompletion
-			"hrsh7th/cmp-copilot", -- for github copilot autocompletion
 		},
 	},
 	{

@@ -35,7 +35,6 @@ cmp.setup({
 
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "copilot", group_index = 2 },
 		{ name = "path" }, -- file system paths
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
@@ -48,7 +47,6 @@ cmp.setup({
 		format = function(entry, vim_item)
 			-- use vim_item.kind to customize cmp text
 			vim_item.kind = ({
-				copilot = "Copilot",
 				cmp_tabnine = "Tabnine",
 				nvim_lsp = "LSP",
 				path = "Path",
@@ -59,8 +57,7 @@ cmp.setup({
 
 			-- use vim_item.menu to customize cmp icon
 			vim_item.menu = ({
-				copilot = "󰚩",
-				cmp_tabnine = "󰭆",
+				cmp_tabnine = "󰚩",
 				nvim_lsp = "󰅟 ",
 				path = " ",
 				buffer = "󰦪",
