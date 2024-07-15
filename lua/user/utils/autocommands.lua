@@ -62,7 +62,12 @@ vim.cmd([[
   ia functoin function
   ia funtoin function
   ia funtion function
+  ia fucntion function
+  ia funtcion function
+  ia fnuction function
   ia cosnt const
+  ia csont const
+  ia scont const
   ia conts const
   ia thsi this
   ia htis this
