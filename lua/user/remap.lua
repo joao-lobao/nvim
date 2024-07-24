@@ -57,7 +57,6 @@ vim.api.nvim_set_keymap("v", "<C-s>", ":sort<CR>", opts)
 vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
 vim.api.nvim_set_keymap("v", "K", ":m '>-2<CR>gv=gv", opts)
 vim.api.nvim_set_keymap("v", "K", ":m '>-2<CR>gv=gv", opts)
-vim.api.nvim_set_keymap("v", "<leader>h", 'c==<C-r>"<Esc>a==<Esc>', opts)
 
 -- terminal mode
 vim.api.nvim_set_keymap("t", "<esc>", "<c-\\><c-n><c-w><CR>", opts)
@@ -70,3 +69,7 @@ vim.api.nvim_set_keymap("n", '<leader>"', ":sp | term<CR>:NoNumbers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 -- create and goto file
 vim.api.nvim_set_keymap("n", "tcf", ":e <cfile><CR>", opts)
+-- highlight all line on markdown files
+vim.api.nvim_set_keymap("n", "<leader>h", "I==<Esc>A==<Esc>", opts)
+-- highlight visual selected text on markdown files
+vim.api.nvim_set_keymap("v", "<leader>h", 'c==<C-r>"<Esc>a==<Esc>', opts)
