@@ -73,3 +73,6 @@ vim.api.nvim_set_keymap("n", "tcf", ":e <cfile><CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>*", "I==<Esc>A==<Esc>", opts)
 -- highlight visual selected text on markdown files
 vim.api.nvim_set_keymap("v", "<leader>*", 'c==<C-r>"<Esc>a==<Esc>', opts)
+-- command and keymap to run REST API calls
+vim.api.nvim_create_user_command("Rest", "vnew | read !sh #", {})
+vim.api.nvim_set_keymap("n", "<leader>x", ":Rest<CR>", opts)
