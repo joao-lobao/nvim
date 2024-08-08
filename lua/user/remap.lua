@@ -70,6 +70,6 @@ vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 -- create and goto file
 vim.api.nvim_set_keymap("n", "tcf", ":e <cfile><CR>", opts)
 -- highlight all line on markdown files
-vim.api.nvim_set_keymap("n", "<leader>h", "I==<Esc>A==<Esc>", opts)
+vim.api.nvim_set_keymap("n", "<leader>*", "I==<Esc>A==<Esc>", opts)
 -- highlight visual selected text on markdown files
-vim.api.nvim_set_keymap("v", "<leader>h", 'c==<C-r>"<Esc>a==<Esc>', opts)
+vim.api.nvim_set_keymap("v", "<leader>*", 'c==<C-r>"<Esc>a==<Esc>', opts)
