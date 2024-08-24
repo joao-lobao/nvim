@@ -58,6 +58,8 @@ vim.cmd([[
       let s:autocorrect_loaded='1'
     endif
   ia funciton function
+  ia funciotn function
+  ia funcitno function
   ia functon function
   ia functoin function
   ia funtoin function
