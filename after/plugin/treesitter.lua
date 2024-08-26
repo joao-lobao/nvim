@@ -70,11 +70,20 @@ treesitter.setup({
 			enable = true,
 			set_jumps = true,
 			goto_next_start = {
-				["tn"] = "@function.outer",
+				["tnms"] = "@function.outer",
+				["tncs"] = "@class.inner",
+			},
+			goto_next_end = {
+				["tnme"] = "@function.outer",
+				["tnce"] = "@class.inner",
 			},
 			goto_previous_start = {
-				["tc"] = "@class.outer",
-				["tm"] = "@function.outer",
+				["tpms"] = "@function.outer",
+				["tpcs"] = "@class.inner",
+			},
+			goto_previous_end = {
+				["tpme"] = "@function.outer",
+				["tpce"] = "@class.inner",
 			},
 		},
 	},
