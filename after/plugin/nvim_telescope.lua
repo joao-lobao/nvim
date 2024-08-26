@@ -30,7 +30,19 @@ function M.search_files_in_home()
 	M.find_files(opts)
 end
 
-function M.grep_git()
+function M.grep_all()
+	local grepOpts = {
+		additional_args = function()
+			return { "--no-ignore", "--hidden" }
+		end,
+		prompt_title = "Live grep on all files",
+	}
+	return M.live_grep(grepOpts)
+end
+
+function M.grep_in_cwd()
+	local file_dir = vim.fn.expand("%:p:h")
+	local is_git_repo = vim.fn.system("git -C " .. file_dir .. " rev-parse --is-inside-work-tree") == "true\n"
 	local grepOpts = {
 		file_ignore_patterns = { ".git/" },
 		additional_args = function()
@@ -38,40 +50,51 @@ function M.grep_git()
 		end,
 		prompt_title = "Live grep on git files",
 	}
-	M.live_grep(grepOpts)
+
+	-- if git repo then grep in git files
+	if is_git_repo then
+		return M.live_grep(grepOpts)
+	end
+
+	-- else grep in project files
+	grepOpts.file_ignore_patterns = { "node_modules" }
+	grepOpts.prompt_title = "Live grep on project files"
+	return M.live_grep(grepOpts)
 end
 
-function M.grep_all()
-	local grepOpts = {
-		file_ignore_patterns = { ".git/" },
-		additional_args = function()
-			return { "--no-ignore", "--hidden" }
-		end,
-		prompt_title = "Live grep on all files",
-	}
-	M.live_grep(grepOpts)
+-- find git files or files in cwd ignoring node_modules
+-- use Telescope find_files to search in .git or node_modules
+function M.find_in_cwd()
+	local file_dir = vim.fn.expand("%:p:h")
+	local is_git_repo = vim.fn.system("git -C " .. file_dir .. " rev-parse --is-inside-work-tree") == "true\n"
+	if is_git_repo then
+		return M.git_files()
+	end
+	local opts = {}
+	opts.prompt_title = "Search files in cwd ignoring node_modules"
+	opts.hidden = true
+	opts.no_ignore = true
+	opts.file_ignore_patterns = { "node_modules" }
+	return M.find_files(opts)
 end
 
 local opts = { noremap = true, silent = true }
 
--- find git files
-vim.api.nvim_set_keymap("n", "<leader>gf", "<Cmd>Telescope git_files<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader><leader>", "<Cmd>Telescope git_files<CR>", opts)
--- find all files (doesn't respect .gitignore)
-vim.api.nvim_set_keymap("n", "<leader>F", "<Cmd>Telescope find_files no_ignore=true hidden=true<CR>", opts)
--- grep respecting .gitignore
-vim.api.nvim_set_keymap("n", "<leader>r", "<Cmd>Telescope grep_git<CR>", opts)
--- grep not respecting .gitignore
-vim.api.nvim_set_keymap("n", "<leader>R", "<Cmd>Telescope grep_all<CR>", opts)
--- find files from home dir as cwd
-vim.api.nvim_set_keymap("n", "<leader>~", "<Cmd>Telescope search_files_in_home<CR>", opts)
--- common or useful commands
-vim.api.nvim_set_keymap("n", "<leader>m", "<Cmd>Telescope common_actions<CR>", {})
+-- find git/project files in cwd
+vim.api.nvim_set_keymap("n", "Tf", "<Cmd>Telescope find_in_cwd<CR>", opts)
+-- find all files in cwd
+vim.api.nvim_set_keymap("n", "TF", "<Cmd>Telescope find_files no_ignore=true hidden=true<CR>", opts)
+-- grep git/project in cwd
+vim.api.nvim_set_keymap("n", "Tg", "<Cmd>Telescope grep_in_cwd<CR>", opts)
+-- grep all files in cwd
+vim.api.nvim_set_keymap("n", "TG", "<Cmd>Telescope grep_all<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "<leader>y", "<Cmd>Telescope registers<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>o", "<Cmd>Telescope oldfiles<CR>", opts)
--- vim.api.nvim_set_keymap("n", "<leader>B", "<Cmd>Telescope buffers<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>n", "<Cmd>Telescope buffers<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>M", "<Cmd>Telescope marks<CR>", opts)
--- find in current buffer
-vim.api.nvim_set_keymap("n", "<leader>/", "<Cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
+-- find files from home dir as cwd
+vim.api.nvim_set_keymap("n", "T~", "<Cmd>Telescope search_files_in_home<CR>", opts)
+-- common or useful commands
+vim.api.nvim_set_keymap("n", "Tm", "<Cmd>Telescope common_actions<CR>", {})
+
+vim.api.nvim_set_keymap("n", "Ty", "<Cmd>Telescope registers<CR>", opts)
+vim.api.nvim_set_keymap("n", "To", "<Cmd>Telescope oldfiles<CR>", opts)
+vim.api.nvim_set_keymap("n", "Tn", "<Cmd>Telescope buffers<CR>", opts)
+vim.api.nvim_set_keymap("n", "TM", "<Cmd>Telescope marks<CR>", opts)
