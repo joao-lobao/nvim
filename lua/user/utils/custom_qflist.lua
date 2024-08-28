@@ -22,14 +22,22 @@ ListedBuffers = function()
 	vim.fn.search(buf_name)
 end
 
-Files = function(params)
-	params = params or ""
+local search = {
+	project = { git = "git ls-files", no_git = "find . -type f -name '*' ! -path '*node_modules*'" },
+	all = { git = "git ls-files --cached --others", no_git = "find . -type f -name '*'" },
+}
+
+local getFiles = function(type)
 	local is_file_in_git_project = vim.fn.system("git -C . rev-parse --is-inside-work-tree") == "true\n"
-	local files = vim.fn.systemlist("git ls-files " .. params)
-	if not is_file_in_git_project then
-		-- in case not a git repo
-		files = vim.fn.systemlist("ls -a")
+	if is_file_in_git_project then
+		return vim.fn.systemlist(search[type].git)
 	end
+	-- in case not a git repo
+	return vim.fn.systemlist(search[type].no_git)
+end
+
+Files = function(type)
+	local files = getFiles(type)
 	local results = {}
 	for _, g_file in ipairs(files) do
 		local file = { filename = g_file }
@@ -76,11 +84,11 @@ Oldfiles = function()
 end
 
 local opts = { noremap = true, silent = false }
-vim.api.nvim_set_keymap("n", "<leader>B", "<cmd>lua ListedBuffers()<CR>", opts)
--- git files
--- vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua Files()<CR>/", opts)
+-- vim.api.nvim_set_keymap("n", "<leader>B", "<cmd>lua ListedBuffers()<CR>", opts)
+-- git/project files
+-- vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua Files('project')<CR>/", opts)
 -- all files
--- vim.api.nvim_set_keymap("n", "<leader>F", "<cmd>lua Files('--cached --others')<CR>/", opts)
+-- vim.api.nvim_set_keymap("n", "<leader>F", "<cmd>lua Files('all')<CR>/", opts)
 -- git grep
 -- vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua Grep()<CR>", opts)
 -- all grep
