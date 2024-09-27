@@ -68,7 +68,7 @@ vim.api.nvim_set_keymap("n", '<leader>"', ":sp | term<CR>:NoNumbers<CR>", opts)
 -- other customizations
 vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
 -- create and goto file
-vim.api.nvim_set_keymap("n", "tcf", ":e <cfile><CR>", opts)
+vim.api.nvim_set_keymap("n", "gcf", ":e <cfile><CR>", opts)
 -- highlight all line on markdown files
 vim.api.nvim_set_keymap("n", "<leader>*", "I==<Esc>A==<Esc>", opts)
 -- highlight visual selected text on markdown files
