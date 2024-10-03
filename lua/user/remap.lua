@@ -56,7 +56,6 @@ vim.api.nvim_set_keymap("v", "<leader>s", ":sort<CR>", opts)
 -- Move current line down
 vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
 vim.api.nvim_set_keymap("v", "K", ":m '>-2<CR>gv=gv", opts)
-vim.api.nvim_set_keymap("v", "K", ":m '>-2<CR>gv=gv", opts)
 
 -- terminal mode
 vim.api.nvim_set_keymap("t", "<esc>", "<c-\\><c-n><c-w><CR>", opts)
