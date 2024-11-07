@@ -36,8 +36,8 @@ cmp.setup({
 	-- sources for autocompletion
 	sources = cmp.config.sources({
 		{ name = "path" }, -- file system paths
-		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
+		{ name = "luasnip" }, -- snippets
 		{ name = "cmp_tabnine" }, -- tabnine
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "calc" }, -- text for math operations
@@ -47,8 +47,8 @@ cmp.setup({
 		format = function(entry, vim_item)
 			-- use vim_item.kind to customize cmp text
 			vim_item.kind = ({
-				cmp_tabnine = "Tabnine",
 				nvim_lsp = "LSP",
+				cmp_tabnine = "Tabnine",
 				path = "Path",
 				buffer = "Buffer",
 				luasnip = "Luasnip",
@@ -57,8 +57,8 @@ cmp.setup({
 
 			-- use vim_item.menu to customize cmp icon
 			vim_item.menu = ({
-				cmp_tabnine = "󰚩",
 				nvim_lsp = "󰅟 ",
+				cmp_tabnine = "󰚩",
 				path = " ",
 				buffer = "󰦪",
 				luasnip = "",
