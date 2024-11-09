@@ -141,4 +141,17 @@ require("lazy").setup({
 		-- use opts = {} for passing setup options
 		-- this is equalent to setup({}) function
 	},
+	{
+		"coffebar/transfer.nvim",
+		lazy = true,
+		cmd = {
+			"TransferInit",
+			"DiffRemote",
+			"TransferUpload",
+			"TransferDownload",
+			"TransferDirDiff",
+			"TransferRepeat",
+		},
+		opts = {},
+	},
 })
