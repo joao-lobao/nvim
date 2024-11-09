@@ -11,6 +11,7 @@ require("nvim-ts-autotag").setup({
 	per_filetype = {
 		["html"] = {
 			enable_close = true,
+			enable_close_on_slash = true, -- Auto close on trailing </
 		},
 	},
 })
