@@ -74,6 +74,7 @@ vim.cmd([[
   ia thsi this
   ia htis this
   ia tset test
+  ia tets test
   ia retrun return
   ia reutrn return
   ia retunr return
