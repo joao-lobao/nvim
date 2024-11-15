@@ -26,7 +26,7 @@ function M.search_files_in_home()
 	opts.cwd = "~"
 	opts.hidden = true
 	opts.no_ignore = true
-	opts.file_ignore_patterns = { ".git/" }
+	opts.file_ignore_patterns = { ".git/", "node_modules" }
 	M.find_files(opts)
 end
 
