@@ -4,7 +4,8 @@ vim.keymap.set({ "n", "v" }, "<leader>ac", ":CopilotChatCommit<CR>", { desc = "A
 vim.keymap.set({ "n", "v" }, "<leader>ae", ":CopilotChat Explain<CR>", { desc = "AI Explain" })
 vim.keymap.set({ "n", "v" }, "<leader>af", ":CopilotChat Fix<CR>", { desc = "AI Fix" })
 vim.keymap.set({ "n", "v" }, "<leader>ao", ":CopilotChat Optimize<CR>", { desc = "AI Optimize" })
-vim.keymap.set({ "n" }, "<leader>ar", chat.reset, { desc = "AI Reset" })
+vim.keymap.set({ "n", "v" }, "<leader>ar", ":CopilotChat Review<CR>", { desc = "AI Review" })
+vim.keymap.set({ "n" }, "<leader>ad", chat.reset, { desc = "AI Reset" })
 vim.keymap.set({ "n", "v" }, "<leader>at", ":CopilotChat Tests<CR>", { desc = "AI Tests" })
 -- AI ask
 vim.keymap.set({ "n", "v" }, "<leader>aa", function()
