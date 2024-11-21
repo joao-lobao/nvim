@@ -30,7 +30,7 @@ local make_display = function(entry)
 	})
 end
 
-local task = function()
+local task = function(custom_actions)
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 	local prompt_title = Icons.opened_session .. " " .. session
 	-- if session is empty add the closed session icon
@@ -40,8 +40,8 @@ local task = function()
 
 	-- 32 is the number of actions needed to fill the height
 	local max_num_of_actions = 32
-	local num_of_common_actions = #Common_actions
-	local win_height = num_of_common_actions / max_num_of_actions
+	local num_of_common_actions = #custom_actions
+	local win_height = num_of_common_actions / max_num_of_actions + 0.08
 	if win_height > 0.99 then
 		win_height = 0.99
 	end
@@ -52,7 +52,7 @@ local task = function()
 		-- dynamic window height based on the number of actions
 		layout_config = { anchor = "C", width = 0.3, height = win_height },
 		finder = finders.new_table({
-			results = Common_actions,
+			results = custom_actions,
 			entry_maker = function(entry)
 				local new_entry = {
 					value = entry.value,
@@ -79,7 +79,8 @@ local task = function()
 end
 
 M.common_actions = function()
-	task()
+	task(Common_actions)
+end
 end
 
 -- Change highlight color for telescope matching search hits
