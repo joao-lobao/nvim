@@ -80,6 +80,8 @@ end
 
 local opts = { noremap = true, silent = true }
 
+-- CopilotChat actions
+vim.api.nvim_set_keymap("n", "ta", "<Cmd>Telescope CopilotChat<CR>", opts)
 -- find git/project files in cwd
 vim.api.nvim_set_keymap("n", "tf", "<Cmd>Telescope find_in_cwd<CR>", opts)
 -- find all files in cwd

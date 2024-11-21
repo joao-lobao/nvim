@@ -81,6 +81,9 @@ end
 M.common_actions = function()
 	task(Common_actions)
 end
+
+M.CopilotChat = function()
+	task(Copilot_actions)
 end
 
 -- Change highlight color for telescope matching search hits

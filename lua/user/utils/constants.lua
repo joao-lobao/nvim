@@ -91,3 +91,60 @@ table.foreach(groups, function(_, group)
 		table.insert(Common_actions, item)
 	end)
 end)
+
+Copilot_actions = {
+	{
+		icon = Icons.git,
+		value = "CopilotChatCommit",
+		description = "Commit",
+		category = hl_categories.vcs,
+	},
+	{
+		icon = Icons.keymap,
+		value = "CopilotChat BetterNamings",
+		description = "BetterNamings",
+		category = hl_categories.command,
+	},
+	{
+		icon = Icons.keymap,
+		value = "CopilotChat Optimize",
+		description = "Optimize",
+		category = hl_categories.command,
+	},
+	{
+		icon = Icons.keymap,
+		value = "CopilotChat Refactor",
+		description = "Refactor",
+		category = hl_categories.command,
+	},
+	{
+		icon = Icons.keymap,
+		value = "CopilotChat Review",
+		description = "Review",
+		category = hl_categories.command,
+	},
+	{
+		icon = Icons.opened_session,
+		value = "CopilotChat Explain",
+		description = "Explain",
+		category = hl_categories.workspace,
+	},
+	{
+		icon = Icons.config,
+		value = "CopilotChat Docs",
+		description = "Docs",
+		category = hl_categories.bookmark,
+	},
+	{
+		icon = Icons.config,
+		value = "CopilotChat Fix",
+		description = "Fix",
+		category = hl_categories.bookmark,
+	},
+	{
+		icon = Icons.config,
+		value = "CopilotChat Tests",
+		description = "Tests",
+		category = hl_categories.bookmark,
+	},
+}
