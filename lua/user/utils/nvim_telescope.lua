@@ -41,7 +41,7 @@ local task = function(custom_actions)
 	-- 32 is the number of actions needed to fill the height
 	local max_num_of_actions = 32
 	local num_of_common_actions = #custom_actions
-	local win_height = num_of_common_actions / max_num_of_actions + 0.7 / num_of_common_actions
+	local win_height = num_of_common_actions / max_num_of_actions + 0.75 / num_of_common_actions
 	if win_height > 0.99 then
 		win_height = 0.99
 	end
