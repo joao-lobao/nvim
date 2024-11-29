@@ -27,6 +27,8 @@ Icons = {
 	keymap = "🅰 ",
 	git = " ",
 	santa = "🎅",
+	tool = "🛠",
+	toolbox = "🧰",
 }
 function Get_sessions_names(pattern)
 	local sessions = vim.fn.glob(Session_dir .. "*", true, true)
@@ -67,8 +69,6 @@ local config_files = {
 local searches = {
 	{ icon = Icons.files, description = "ObsidianSearch", value = "ObsidianSearch", category = hl_categories.search },
 	{ icon = Icons.files, description = "ObsidianNew", value = "ObsidianNew", category = hl_categories.search },
-	{ icon = Icons.files, description = "Old files", value = "Telescope oldfiles", category = hl_categories.search },
-	{ icon = Icons.keymap, description = "Keymaps", value = "Telescope keymaps", category = hl_categories.search },
 }
 local git_cmds = {
 	{ icon = Icons.git, description = "git commit", value = "Git commit", category = hl_categories.vcs },
@@ -146,5 +146,66 @@ Copilot_actions = {
 		value = "CopilotChat Tests",
 		description = "Tests",
 		category = hl_categories.bookmark,
+	},
+	{
+		icon = Icons.tool,
+		value = "AiAsk",
+		description = "Ask",
+		category = hl_categories.search,
+	},
+	{
+		icon = Icons.tool,
+		value = "CopilotChatToggle",
+		description = "Toggle",
+		category = hl_categories.search,
+	},
+	{
+		icon = Icons.tool,
+		value = "CopilotChatReset",
+		description = "Reset",
+		category = hl_categories.search,
+	},
+}
+
+Telescope_actions = {
+	{
+		icon = Icons.git,
+		description = "Find Files",
+		value = "Telescope find_in_cwd",
+		category = hl_categories.command,
+	},
+	{
+		icon = Icons.git,
+		description = "Grep Files",
+		value = "Telescope grep_in_cwd",
+		category = hl_categories.command,
+	},
+	{
+		icon = Icons.files,
+		description = "Find All Files",
+		value = "Telescope find_files no_ignore=true hidden=true",
+		category = hl_categories.workspace,
+	},
+	{
+		icon = Icons.files,
+		description = "Grep All Files",
+		value = "Telescope grep_all",
+		category = hl_categories.workspace,
+	},
+	{
+		icon = Icons.folder,
+		description = "Find In Home",
+		value = "Telescope search_files_in_home",
+		category = hl_categories.bookmark,
+	},
+	{ icon = Icons.toolbox, description = "Buffers", value = "Telescope buffers", category = hl_categories.search },
+	{ icon = Icons.toolbox, description = "Keymaps", value = "Telescope keymaps", category = hl_categories.search },
+	{ icon = Icons.toolbox, description = "Marks", value = "Telescope marks", category = hl_categories.search },
+	{ icon = Icons.toolbox, description = "Oldfiles", value = "Telescope oldfiles", category = hl_categories.search },
+	{
+		icon = Icons.toolbox,
+		description = "Registers",
+		value = "Telescope registers",
+		category = hl_categories.search,
 	},
 }
