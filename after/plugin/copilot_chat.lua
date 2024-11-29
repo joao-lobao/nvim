@@ -1,8 +1,6 @@
 local chat = require("CopilotChat")
-vim.keymap.set({ "n", "v" }, "<leader>ai", chat.toggle, { desc = "AI Toggle" })
-vim.keymap.set({ "n" }, "<leader>ad", chat.reset, { desc = "AI Reset" })
--- AI ask
-vim.keymap.set({ "n", "v" }, "<leader>aa", function()
+
+AiAsk = function()
 	vim.ui.input({
 		prompt = "AI Question> ",
 	}, function(input)
@@ -10,7 +8,8 @@ vim.keymap.set({ "n", "v" }, "<leader>aa", function()
 			chat.ask(input)
 		end
 	end)
-end, { desc = "AI Quick Chat" })
+end
+vim.api.nvim_create_user_command("AiAsk", AiAsk, {})
 
 chat.setup({
 	prompts = {
