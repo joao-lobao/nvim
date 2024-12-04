@@ -36,8 +36,8 @@ cmp.setup({
 	-- sources for autocompletion
 	sources = cmp.config.sources({
 		{ name = "path" }, -- file system paths
-		{ name = "nvim_lsp" }, -- lsp
 		{ name = "luasnip" }, -- snippets
+		{ name = "nvim_lsp" }, -- lsp
 		{ name = "cmp_tabnine" }, -- tabnine
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "calc" }, -- text for math operations
