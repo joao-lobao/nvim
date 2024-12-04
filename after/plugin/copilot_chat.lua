@@ -11,6 +11,10 @@ AiAsk = function()
 end
 vim.api.nvim_create_user_command("AiAsk", AiAsk, {})
 
+vim.keymap.set({ "n", "v" }, "<leader>aa", AiAsk, { desc = "AI Toggle" })
+vim.keymap.set({ "n", "v" }, "<leader>ai", chat.toggle, { desc = "AI Toggle" })
+vim.keymap.set({ "n", "v" }, "<leader>ad", chat.reset, { desc = "AI Reset" })
+
 chat.setup({
 	prompts = {
 		BetterNamings = {
