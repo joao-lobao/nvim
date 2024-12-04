@@ -14,6 +14,20 @@ local date = function()
 	return { os.date("%d/%m/%Y") }
 end
 
+local log_snip = function()
+	return {
+		snip({
+			trig = "cl",
+			name = "console.log",
+			desc = "console log",
+		}, {
+			text({ "console.log(" }),
+			insert(1, "test"),
+			text({ ")" }),
+		}),
+	}
+end
+
 luasnip.add_snippets(nil, {
 	all = {
 		snip({
@@ -32,15 +46,8 @@ luasnip.add_snippets(nil, {
 			text({ "", "---" }),
 		}),
 	},
-	typescript = {
-		snip({
-			trig = "cl",
-			name = "console.log",
-			desc = "console log",
-		}, {
-			text({ "console.log(" }),
-			insert(1, "test"),
-			text({ ")" }),
-		}),
-	},
+	javascriptreact = log_snip(),
+	javascript = log_snip(),
+	typescriptreact = log_snip(),
+	typescript = log_snip(),
 })
