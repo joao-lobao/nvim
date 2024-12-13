@@ -36,16 +36,25 @@ end
 
 local goto_alternate = function(alternate_type)
 	local file = vim.fn.expand("%:t")
+	local ext = vim.fn.expand("%:e")
 	local source_file = {}
-	if file:match(".[j|t]s.*") and alternate_type:match("css") then
-		-- find css/scss file
-		source_file = find_alternate_file(".*css")
-	elseif file:match(".*test.*") or file:match(".*spec.*") or file:match(".*css") then
-		-- find js/ts/jsx/tsx file
-		source_file = find_alternate_file(".[j|t]s.*")
+
+	if alternate_type:match("css") then
+		if file:match(".*test.*") or file:match(".*spec.*") or ext:match(".*[j|t]s.*") then
+			-- find css/scss file
+			source_file = find_alternate_file(".*css")
+		else
+			-- find js/ts/jsx/tsx file
+			source_file = find_alternate_file(".[j|t]s.*")
+		end
 	elseif alternate_type:match("test") then
-		-- find test/spec file. Pattern could also be .*[t|s][e|p][s|e][t|c].[j|t]s.* to match specifically ts, js, jsx, tsx extensions
-		source_file = find_alternate_file(".*[t|s][e|p][s|e][t|c].*")
+		if file:match(".*test.*") or file:match(".*spec.*") or ext:match(".*css") then
+			-- find js/ts/jsx/tsx file
+			source_file = find_alternate_file(".[j|t]s.*")
+		else
+			-- find test/spec file. Pattern could also be .*[t|s][e|p][s|e][t|c].[j|t]s.* to match specifically ts, js, jsx, tsx extensions
+			source_file = find_alternate_file(".*[t|s][e|p][s|e][t|c].*")
+		end
 	end
 
 	if #source_file > 0 then
