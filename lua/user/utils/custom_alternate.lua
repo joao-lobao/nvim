@@ -37,26 +37,15 @@ end
 local goto_alternate = function(alternate_type)
 	local file = vim.fn.expand("%:t")
 	local ext = vim.fn.expand("%:e")
-	local source_file = {}
+	local pattern = ".[j|t]s.*"
 
 	if alternate_type:match("css") then
-		if file:match(".*test.*") or file:match(".*spec.*") or ext:match(".*[j|t]s.*") then
-			-- find css/scss file
-			source_file = find_alternate_file(".*css")
-		else
-			-- find js/ts/jsx/tsx file
-			source_file = find_alternate_file(".[j|t]s.*")
-		end
-	elseif alternate_type:match("test") then
-		if file:match(".*test.*") or file:match(".*spec.*") or ext:match(".*css") then
-			-- find js/ts/jsx/tsx file
-			source_file = find_alternate_file(".[j|t]s.*")
-		else
-			-- find test/spec file. Pattern could also be .*[t|s][e|p][s|e][t|c].[j|t]s.* to match specifically ts, js, jsx, tsx extensions
-			source_file = find_alternate_file(".*[t|s][e|p][s|e][t|c].*")
-		end
+		pattern = ".*css"
+	elseif alternate_type:match("test") and not (file:match(".*[t|s][e|p][s|e][t|c].*") or ext:match(".*css")) then
+		pattern = ".*[t|s][e|p][s|e][t|c].*"
 	end
 
+	local source_file = find_alternate_file(pattern)
 	if #source_file > 0 then
 		vim.cmd("edit " .. source_file[1])
 	else
