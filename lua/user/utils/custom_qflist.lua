@@ -84,13 +84,13 @@ Oldfiles = function()
 end
 
 local opts = { noremap = true, silent = false }
--- vim.api.nvim_set_keymap("n", "<leader>B", "<cmd>lua ListedBuffers()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>B", "<cmd>lua ListedBuffers()<CR>", opts)
 -- git/project files
--- vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua Files('project')<CR>/", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua Files('project')<CR>/", opts)
 -- all files
--- vim.api.nvim_set_keymap("n", "<leader>F", "<cmd>lua Files('all')<CR>/", opts)
+vim.api.nvim_set_keymap("n", "<leader>F", "<cmd>lua Files('all')<CR>/", opts)
 -- git grep
--- vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua Grep()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua Grep()<CR>", opts)
 -- all grep
--- vim.api.nvim_set_keymap("n", "<leader>R", "<cmd>lua Grep('--no-ignore')<CR>", opts)
--- vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>/", opts)
+vim.api.nvim_set_keymap("n", "<leader>R", "<cmd>lua Grep('--no-ignore')<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>/", opts)
