@@ -67,18 +67,9 @@ local config_files = {
 	{ icon = Icons.config, description = "~/.zshrc", value = "e ~/.zshrc", category = hl_categories.bookmark },
 }
 local searches = {
-	{ icon = Icons.files, description = "ObsidianSearch", value = "ObsidianSearch", category = hl_categories.search },
-	{ icon = Icons.files, description = "ObsidianNew", value = "ObsidianNew", category = hl_categories.search },
+	{ icon = Icons.toolbox, description = "Oldfiles", value = "Telescope oldfiles", category = hl_categories.search },
 }
 local git_cmds = {
-	{ icon = Icons.git, description = "git commit", value = "Git commit", category = hl_categories.vcs },
-	{
-		icon = Icons.git,
-		description = "git commit --amend",
-		value = "Git commit --amend",
-		category = hl_categories.vcs,
-	},
-	{ icon = Icons.git, description = "git push", value = "Git push", category = hl_categories.vcs },
 	{ icon = Icons.git, description = "git push --force", value = "Git push --force", category = hl_categories.vcs },
 	{ icon = Icons.git, description = "git log %", value = "Gclog -- %", category = hl_categories.vcs },
 	{ icon = Icons.git, description = "git log last commit", value = "GitLastCommit", category = hl_categories.vcs },
@@ -208,4 +199,6 @@ Telescope_actions = {
 		value = "Telescope registers",
 		category = hl_categories.search,
 	},
+	{ icon = Icons.files, description = "ObsidianSearch", value = "ObsidianSearch", category = hl_categories.vcs },
+	{ icon = Icons.files, description = "ObsidianNew", value = "ObsidianNew", category = hl_categories.vcs },
 }
