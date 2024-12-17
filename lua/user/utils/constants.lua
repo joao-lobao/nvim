@@ -199,6 +199,14 @@ Telescope_actions = {
 		value = "Telescope registers",
 		category = hl_categories.search,
 	},
-	{ icon = Icons.files, description = "ObsidianSearch", value = "ObsidianSearch", category = hl_categories.vcs },
-	{ icon = Icons.files, description = "ObsidianNew", value = "ObsidianNew", category = hl_categories.vcs },
+	{
+		icon = Icons.git,
+		description = "Git Buffer Commits",
+		value = "Telescope git_bcommits",
+		category = hl_categories.vcs,
+	},
+	{ icon = Icons.git, description = "Git Commits", value = "Telescope git_commits", category = hl_categories.vcs },
+	{ icon = Icons.git, description = "Git Branches", value = "Telescope git_branches", category = hl_categories.vcs },
+	{ icon = Icons.git, description = "ObsidianSearch", value = "ObsidianSearch", category = hl_categories.vcs },
+	{ icon = Icons.git, description = "ObsidianNew", value = "ObsidianNew", category = hl_categories.vcs },
 }
