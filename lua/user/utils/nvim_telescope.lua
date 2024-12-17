@@ -81,10 +81,10 @@ end
 M.common_actions = function()
 	task(Common_actions)
 end
-M.CopilotChat = function()
+M.copilot_chat = function()
 	task(Copilot_actions)
 end
-M.Find = function()
+M.finders = function()
 	task(Telescope_actions)
 end
 

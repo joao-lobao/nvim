@@ -81,8 +81,8 @@ end
 local opts = { noremap = true, silent = true }
 
 -- Actions
-vim.api.nvim_set_keymap("n", "ta", "<Cmd>Telescope CopilotChat<CR>", opts)
-vim.api.nvim_set_keymap("n", "tt", "<Cmd>Telescope Find<CR>", opts)
+vim.api.nvim_set_keymap("n", "ta", "<Cmd>Telescope copilot_chat<CR>", opts)
+vim.api.nvim_set_keymap("n", "tt", "<Cmd>Telescope finders<CR>", opts)
 vim.api.nvim_set_keymap("n", "tm", "<Cmd>Telescope common_actions<CR>", {})
 -- Find files
 vim.api.nvim_set_keymap("n", "tf", "<Cmd>Telescope find_in_cwd<CR>", opts)
