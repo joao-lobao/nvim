@@ -90,6 +90,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 		"*.yml",
 		"*.yaml",
 		"*.conf",
+		"*rc",
+		"*ignore",
 	},
 	callback = function()
 		if IsBufferEligibleForSigning() then
