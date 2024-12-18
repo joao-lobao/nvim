@@ -84,9 +84,6 @@ end
 M.copilot_chat = function()
 	task(Copilot_actions)
 end
-M.finders = function()
-	task(Telescope_actions)
-end
 
 -- Change highlight color for telescope matching search hits
 vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red" })
