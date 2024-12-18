@@ -68,10 +68,33 @@ local config_files = {
 }
 local searches = {
 	{ icon = Icons.toolbox, description = "Oldfiles", value = "Telescope oldfiles", category = hl_categories.search },
+	{
+		icon = Icons.toolbox,
+		description = "Find Files",
+		value = "Telescope find_in_cwd",
+		category = hl_categories.search,
+	},
+	{
+		icon = Icons.toolbox,
+		description = "Find All Files",
+		value = "Telescope find_files no_ignore=true hidden=true",
+		category = hl_categories.search,
+	},
+	{
+		icon = Icons.toolbox,
+		description = "Find In Home",
+		value = "Telescope search_files_in_home",
+		category = hl_categories.search,
+	},
 }
 local git_cmds = {
-	{ icon = Icons.git, description = "git push --force", value = "Git push --force", category = hl_categories.vcs },
-	{ icon = Icons.git, description = "git log %", value = "Gclog -- %", category = hl_categories.vcs },
+	{
+		icon = Icons.git,
+		description = "git b_commits",
+		value = "Telescope git_bcommits",
+		category = hl_categories.vcs,
+	},
+	{ icon = Icons.git, description = "git commits", value = "Telescope git_commits", category = hl_categories.vcs },
 }
 
 Common_actions = {}
