@@ -72,7 +72,6 @@ local searches = {
 local git_cmds = {
 	{ icon = Icons.git, description = "git push --force", value = "Git push --force", category = hl_categories.vcs },
 	{ icon = Icons.git, description = "git log %", value = "Gclog -- %", category = hl_categories.vcs },
-	{ icon = Icons.git, description = "git log last commit", value = "GitLastCommit", category = hl_categories.vcs },
 }
 
 Common_actions = {}
