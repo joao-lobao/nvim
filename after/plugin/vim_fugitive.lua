@@ -2,11 +2,11 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "gs", ":G<CR>", opts)
 
 vim.api.nvim_set_keymap("n", "gl", ":Gclog<CR><C-w>j", opts)
+vim.api.nvim_set_keymap("n", "g%", ":Gclog -- %<CR>", opts)
 vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
-vim.api.nvim_create_user_command("GitPushForce", "Git push --force", {})
-vim.api.nvim_create_user_command("GitFileLog", "Gclog -- %", {})
+vim.api.nvim_set_keymap("n", "<leader>gp", ":Git push --force", { noremap = true })
 
 ToggleDiffView = function()
 	if vim.o.diff == false then
