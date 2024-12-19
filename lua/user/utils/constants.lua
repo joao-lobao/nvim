@@ -46,7 +46,6 @@ end
 -- put actions here
 local vim_cmds = {
 	{ icon = "e", description = "Empty buffer", value = "enew", category = hl_categories.command },
-	{ icon = "q", description = "Quit", value = "q", category = hl_categories.command },
 }
 local sessions_actions = function()
 	local sessions = vim.fn.glob(Session_dir .. "*", true, true)
@@ -62,43 +61,24 @@ local sessions_actions = function()
 	end
 	return actions
 end
-local config_files = {
-	{ icon = Icons.config, description = "~/.tmux.conf", value = "e ~/.tmux.conf", category = hl_categories.bookmark },
-	{ icon = Icons.config, description = "~/.zshrc", value = "e ~/.zshrc", category = hl_categories.bookmark },
-}
 local searches = {
 	{ icon = Icons.toolbox, description = "Oldfiles", value = "Telescope oldfiles", category = hl_categories.search },
 	{
 		icon = Icons.toolbox,
-		description = "Find Files",
+		description = "Find in Project",
 		value = "Telescope find_in_cwd",
 		category = hl_categories.search,
 	},
 	{
 		icon = Icons.toolbox,
-		description = "Find All Files",
-		value = "Telescope find_files no_ignore=true hidden=true",
-		category = hl_categories.search,
-	},
-	{
-		icon = Icons.toolbox,
-		description = "Find In Home",
+		description = "Find In ~/",
 		value = "Telescope search_files_in_home",
 		category = hl_categories.search,
 	},
 }
-local git_cmds = {
-	{
-		icon = Icons.git,
-		description = "git b_commits",
-		value = "Telescope git_bcommits",
-		category = hl_categories.vcs,
-	},
-	{ icon = Icons.git, description = "git commits", value = "Telescope git_commits", category = hl_categories.vcs },
-}
 
 Common_actions = {}
-local groups = { vim_cmds, sessions_actions(), config_files, searches, git_cmds }
+local groups = { vim_cmds, sessions_actions(), searches }
 table.foreach(groups, function(_, group)
 	table.foreach(group, function(_, item)
 		table.insert(Common_actions, item)
