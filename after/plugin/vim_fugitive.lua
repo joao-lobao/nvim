@@ -6,7 +6,18 @@ vim.api.nvim_set_keymap("n", "g%", ":Gclog -- %<CR>", opts)
 vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>gp", ":Git push --force", { noremap = true })
+
+local group_fugitive = vim.api.nvim_create_augroup("CustomFugitiveMapping", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "fugitive",
+	callback = function()
+		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git push<CR>", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "gp", ":Git push --force", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "P", ":Git pull<CR>", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "gP", ":Git pull --force", { noremap = true })
+	end,
+	group = group_fugitive,
+})
 
 ToggleDiffView = function()
 	if vim.o.diff == false then
