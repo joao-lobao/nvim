@@ -75,6 +75,11 @@ Goto_hunk = function(direction)
 	local path = vim.fn.expand("%:p")
 	local diff = vim.fn.systemlist("git diff --unified=0 " .. path .. " | grep '^@@'")
 	local cursor_line = vim.fn.line(".")
+
+	if #diff == 0 then
+		return Notification("No valid changes to move to", vim.log.levels.ERROR, "Git")
+	end
+
 	for i, _ in ipairs(diff) do
 		-- iterate over changed hunks
 		local line_number = hunk_line_number(diff, i)
