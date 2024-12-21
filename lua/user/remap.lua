@@ -44,7 +44,6 @@ vim.api.nvim_set_keymap("n", "<leader>H", ":sp<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>V", ":vsp<CR>", opts)
 -- Quitting buffer
 vim.api.nvim_set_keymap("n", "gq", ":bd<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>bd", ":bd<CR>", opts)
 vim.api.nvim_set_keymap("n", "gQ", ":bd!<CR>", opts)
 -- Quitting vim
 vim.api.nvim_set_keymap("n", "<leader>q", ":q<CR>", opts)
