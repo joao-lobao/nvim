@@ -1,8 +1,8 @@
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "gs", ":G<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "gl", ":Gclog<CR><C-w>j", opts)
-vim.api.nvim_set_keymap("n", "g%", ":Gclog -- %<CR>", opts)
+vim.api.nvim_set_keymap("n", "gl", ":Gclog<CR>:b#<CR><C-w>j", opts)
+vim.api.nvim_set_keymap("n", "g%", ":Gclog -- %<CR>:b#<CR><C-w>j", opts)
 vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
