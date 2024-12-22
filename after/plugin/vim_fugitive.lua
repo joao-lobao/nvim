@@ -15,7 +15,10 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "gp", ":Git push --force", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "P", ":Git pull<CR>", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "gP", ":Git pull --force", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":bd<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "K", "?^M \\|^D \\|^\\? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "J", "/^M \\|^D \\|^? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>", opts)
 	end,
 	group = group_fugitive,
 })
