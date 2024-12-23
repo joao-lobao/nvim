@@ -39,6 +39,7 @@ local goto_alternate = function(alternate_type)
 	local ext = vim.fn.expand("%:e")
 	local pattern = ".[j|t]s.*"
 
+	-- check for specific filetype css or test files
 	if alternate_type:match("css") then
 		pattern = ".*css"
 	elseif alternate_type:match("test") and not (file:match(".*[t|s][e|p][s|e][t|c].*") or ext:match(".*css")) then
