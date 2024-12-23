@@ -62,19 +62,19 @@ local sessions_actions = function()
 	return actions
 end
 local searches = {
-	{ icon = Icons.toolbox, description = "Oldfiles", value = "Telescope oldfiles", category = hl_categories.search },
 	{
 		icon = Icons.toolbox,
-		description = "Find in Project",
-		value = "Telescope find_in_cwd",
-		category = hl_categories.search,
-	},
-	{
-		icon = Icons.toolbox,
-		description = "Find In ~/",
+		description = "Find Home Files",
 		value = "Telescope search_files_in_home",
 		category = hl_categories.search,
 	},
+	{
+		icon = Icons.toolbox,
+		description = "Find Project Files",
+		value = "Telescope find_in_cwd",
+		category = hl_categories.search,
+	},
+	{ icon = Icons.toolbox, description = "Oldfiles", value = "Telescope oldfiles", category = hl_categories.search },
 }
 
 Common_actions = {}
