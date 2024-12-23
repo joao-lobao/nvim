@@ -9,7 +9,7 @@ vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
 
 local group_fugitive = vim.api.nvim_create_augroup("CustomFugitiveMapping", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "fugitive",
+	pattern = { "fugitive", "git", "fugitiveblame" },
 	callback = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git push<CR>", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "gp", ":Git push --force", { noremap = true })
