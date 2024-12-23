@@ -11,10 +11,10 @@ local group_fugitive = vim.api.nvim_create_augroup("CustomFugitiveMapping", { cl
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "fugitive", "git", "fugitiveblame" },
 	callback = function()
-		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git push<CR>", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "gp", ":Git push --force", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "P", ":Git pull<CR>", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "gP", ":Git pull --force", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "P", ":Git push", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "gP", ":Git push --force", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git pull", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "gp", ":Git pull --force", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":bd<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "K", "?^M \\|^D \\|^\\? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>", opts)
