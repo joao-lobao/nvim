@@ -30,6 +30,10 @@ local create_alternate_file = function(alternate_type)
 	local is_create_file = vim.fn.input("Create " .. alternate_type .. " file? (y/n) ")
 	if is_create_file == "y" then
 		local create_alternate_file = vim.fn.input("File name: ", alternate_file)
+		-- if user doesn't provide any file name or leaves operation, return
+		if create_alternate_file == "" then
+			return
+		end
 		vim.cmd("edit " .. directory .. "/" .. create_alternate_file)
 	end
 end
