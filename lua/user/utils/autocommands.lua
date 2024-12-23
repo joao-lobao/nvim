@@ -19,6 +19,16 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = group_quickfix,
 })
 
+--- use q to close help windows
+local group_help = vim.api.nvim_create_augroup("CustomHelpMapping", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "help",
+	callback = function()
+		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", opts)
+	end,
+	group = group_help,
+})
+
 --- for vim yank highlight
 local group_yank = vim.api.nvim_create_augroup("HighlightYank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
