@@ -14,7 +14,7 @@ ListedBuffers = function()
 	local opened_bufs = vim.fn.getbufinfo({ buflisted = 1 })
 	for _, buf in ipairs(opened_bufs) do
 		-- display buffer number on quickfix list item
-		buf.text = buf.bufnr
+		buf["text"] = buf.bufnr
 		table.insert(buffers, buf)
 	end
 	vim.fn.setqflist(buffers)
@@ -72,8 +72,8 @@ Grep = function(params)
 end
 
 Oldfiles = function()
-	local oldfiles = vim.api.nvim_command_output("oldfiles")
-	oldfiles = vim.split(oldfiles, "\n")
+	local oldfiles = vim.api.nvim_exec2("oldfiles", { output = true })
+	oldfiles = vim.split(oldfiles.output, "\n")
 	local files = {}
 	for _, o_file in ipairs(oldfiles) do
 		local file = { filename = vim.split(o_file, ": ")[2] }

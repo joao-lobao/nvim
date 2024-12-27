@@ -16,7 +16,7 @@ function SessionLoad(session)
 	-- a bug that can be ignored (it has to do with loading the session but
 	-- if buffers where not Entered on before loading new session Lsp gets
 	-- confused)
-	vim.lsp.stop_client(vim.lsp.get_active_clients())
+	vim.lsp.stop_client(vim.lsp.get_clients())
 	vim.cmd("bufdo bw")
 	vim.cmd("source " .. Session_dir .. session)
 	Notification("session is loaded", vim.log.levels.INFO, session)

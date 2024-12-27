@@ -62,7 +62,7 @@ require("lazy").setup({
 	}, -- animation/screensaver
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "canary",
+		branch = "main",
 		dependencies = {
 			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
 			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
@@ -81,6 +81,7 @@ require("lazy").setup({
 		"williamboman/mason.nvim",
 		dependencies = {
 			"nvimtools/none-ls.nvim", -- configure formatters & linters (the fork of null-ls)
+			"nvimtools/none-ls-extras.nvim",
 		},
 	}, -- in charge of managing lsp servers, linters & formatters
 

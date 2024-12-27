@@ -45,7 +45,7 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.shfmt, -- bash formatter
 		diagnostics.markdownlint, -- markdown linter
-		diagnostics.eslint_d.with({
+		require("none-ls.diagnostics.eslint_d").with({
 			condition = has_eslint_rules,
 		}),
 	},
@@ -56,7 +56,7 @@ null_ls.register(code_actions.no_undef)
 function Format_Null_ls()
 	--get lsp clients attached to current buffer
 	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+	local clients = vim.lsp.get_clients({ bufnr = bufnr })
 	local is_diff_mode = vim.o.diff
 
 	local filter = function(client)

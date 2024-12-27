@@ -17,7 +17,7 @@ local sign_line = function(line_number, line)
 	if line_nr == 0 then
 		line_nr = 1
 	end
-	vim.api.nvim_command("sign place 1 line=" .. line_nr .. " name=" .. get_type(line))
+	vim.api.nvim_command("sign place " .. line_nr .. " line=" .. line_nr .. " name=" .. get_type(line))
 end
 
 Get_git_info = function()
@@ -43,7 +43,7 @@ IsBufferEligibleForSigning = function()
 	local is_file_in_git_project = vim.fn.system("git -C " .. file_dir .. " rev-parse --is-inside-work-tree")
 		== "true\n"
 	-- is buffer in diff mode
-	local is_diff_mode = vim.api.nvim_command_output([[echo &diff]]) == "1"
+	local is_diff_mode = vim.api.nvim_exec2([[echo &diff]], { output = true }) == "1"
 	return is_file_in_git_project and not is_diff_mode
 end
 
@@ -51,7 +51,7 @@ SetDiffSigns = function()
 	local path = vim.fn.expand("%:p")
 	local diff = vim.fn.systemlist("git diff --unified=0 " .. path)
 	-- sign unplace on current buffer
-	vim.api.nvim_command("sign unplace 1 group=* file=" .. path .. "")
+	vim.api.nvim_command("sign unplace * file=" .. path .. "")
 
 	-- iterate over changed hunks
 	for index, line in ipairs(diff) do

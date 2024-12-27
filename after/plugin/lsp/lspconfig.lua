@@ -26,11 +26,11 @@ local on_attach = function(client)
 	keymap.set("n", "dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- show documentation for what is under cursor
 	keymap.set("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts) -- show documentation for what is under cursor
-	if client.name == "tsserver" then
-		-- disable diagnostics for tsserver, since it's handled by eslint
+	if client.name == "ts_ls" then
+		-- disable diagnostics since it's handled by eslint
 		local ns = vim.lsp.diagnostic.get_namespace(client.id)
-		vim.diagnostic.disable(nil, ns)
-		-- disable formatting for tsserver, since it's handled by prettier
+		vim.diagnostic.enable(false, { ns_id = ns })
+		-- disable formatting since it's handled by prettier
 		if client.resolved_capabilities ~= nil then
 			client.resolved_capabilities.document_formatting = false
 		end
@@ -48,7 +48,7 @@ for type, icon in pairs(signs) do
 end
 
 -- configure multiple language servers
-local servers = { "html", "marksman", "tsserver", "jsonls", "cssls", "vimls", "bashls", "pyright" }
+local servers = { "html", "marksman", "ts_ls", "jsonls", "cssls", "vimls", "bashls", "pyright" }
 
 for _, lsp in pairs(servers) do
 	lspconfig[lsp].setup({
