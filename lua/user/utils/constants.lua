@@ -79,11 +79,11 @@ local searches = {
 
 Common_actions = {}
 local groups = { vim_cmds, sessions_actions(), searches }
-table.foreach(groups, function(_, group)
-	table.foreach(group, function(_, item)
+for _, group in ipairs(groups) do
+	for _, item in ipairs(group) do
 		table.insert(Common_actions, item)
-	end)
-end)
+	end
+end
 
 Copilot_actions = {
 	{
