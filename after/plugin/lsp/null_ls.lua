@@ -27,7 +27,7 @@ local function json_has_eslint_config(pattern, utils)
 end
 
 local utils = require("null-ls.utils").make_conditional_utils()
-local has_eslint_rules = function()
+Has_eslint_rules = function()
 	-- enable eslint from the project eslint own rules
 	if utils.root_has_file_matches("eslint") or json_has_eslint_config("eslintConfig", utils) then
 		return true
@@ -45,9 +45,9 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.shfmt, -- bash formatter
 		diagnostics.markdownlint, -- markdown linter
-		require("none-ls.diagnostics.eslint_d").with({
-			condition = has_eslint_rules,
-		}),
+		require("none-ls.diagnostics.eslint_d").with({ condition = Has_eslint_rules }),
+		require("none-ls.code_actions.eslint_d").with({ condition = Has_eslint_rules }),
+		-- require("none-ls.formatting.eslint_d").with({ condition = Has_eslint_rules }),
 	},
 })
 

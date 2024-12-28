@@ -26,10 +26,9 @@ local on_attach = function(client)
 	keymap.set("n", "dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- show documentation for what is under cursor
 	keymap.set("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts) -- show documentation for what is under cursor
-	if client.name == "ts_ls" then
+	if client.name == "ts_ls" and Has_eslint_rules() then
 		-- disable diagnostics since it's handled by eslint
-		local ns = vim.lsp.diagnostic.get_namespace(client.id)
-		vim.diagnostic.enable(false, { ns_id = ns })
+		client.handlers["textDocument/publishDiagnostics"] = function() end
 		-- disable formatting since it's handled by prettier
 		if client.resolved_capabilities ~= nil then
 			client.resolved_capabilities.document_formatting = false
