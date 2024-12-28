@@ -15,6 +15,13 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "l", ":e <cfile><CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "h", ":Ex ..<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "gq", ":Rex<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":Rex<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "q", ":Rex<CR>", opts)
+		-- deletes unused keymaps so that they don't conflict with "q" keymap
+		vim.api.nvim_buf_del_keymap(0, "n", "qF")
+		vim.api.nvim_buf_del_keymap(0, "n", "qL")
+		vim.api.nvim_buf_del_keymap(0, "n", "qb")
+		vim.api.nvim_buf_del_keymap(0, "n", "qf")
 	end,
 	group = group_netrw,
 })
