@@ -101,3 +101,5 @@ vim.api.nvim_set_keymap("n", "<leader>R", "<cmd>lua Grep('--no-ignore')<CR>", op
 vim.api.nvim_set_keymap("n", "<leader>B", "<cmd>lua ListedBuffers()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua Diagnostics()<CR>", opts)
+-- open quickfix list
+vim.api.nvim_set_keymap("n", "co", ":copen<CR>", {})
