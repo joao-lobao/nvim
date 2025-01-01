@@ -52,7 +52,7 @@ local group_write = vim.api.nvim_create_augroup("WriteBuffer", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = function()
 		local filename = vim.fn.expand("%:t")
-		Notification("saved", vim.log.levels.INFO, filename)
+		Notification("saved", vim.log.levels.INFO, filename, 5000, false)
 	end,
 	group = group_write,
 })

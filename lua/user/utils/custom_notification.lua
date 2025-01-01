@@ -17,7 +17,7 @@ local config = {
 	},
 }
 
-function Notification(message, level, emphasis, timeout)
+function Notification(message, level, emphasis, timeout, notify_vim)
 	emphasis = emphasis ~= nil and emphasis .. " " or ""
 	timeout = timeout ~= nil and timeout or 5000
 	local buffer = vim.api.nvim_get_current_buf()
@@ -43,4 +43,7 @@ function Notification(message, level, emphasis, timeout)
 			vim.api.nvim_buf_del_extmark(buffer, namespace, id)
 		end
 	end)
+	if notify_vim == nil or notify_vim then
+		vim.notify(emphasis .. " " .. message, level)
+	end
 end
