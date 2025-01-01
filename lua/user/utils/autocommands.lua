@@ -25,6 +25,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "help",
 	callback = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":bd<CR>", opts)
 	end,
 	group = group_help,
 })
