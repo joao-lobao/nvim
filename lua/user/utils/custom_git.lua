@@ -21,12 +21,14 @@ local sign_line = function(line_number, line)
 end
 
 Get_git_info = function()
+	local msg_char_limit = 72
 	local is_git_repo = vim.fn.system("git -C  . rev-parse --is-inside-work-tree") == "true\n"
 	if is_git_repo then
 		local git_branch = "-- " .. string.gsub(vim.fn.system("git branch --show-current"), "\n", "")
 		local git_message = "-- "
-			.. string.sub(string.gsub(vim.fn.system("git show -s --format=%s"), "\n", ""), 1, 50)
-		local git_status = " --" .. string.sub(string.gsub(vim.fn.system("git diff --shortstat"), "\n", ""), 1, 50)
+			.. string.sub(string.gsub(vim.fn.system("git show -s --format=%s"), "\n", ""), 1, msg_char_limit)
+		local git_status = " --"
+			.. string.sub(string.gsub(vim.fn.system("git diff --shortstat"), "\n", ""), 1, msg_char_limit)
 		return vim.notify(git_branch .. " " .. git_message .. git_status, vim.log.levels.INFO)
 	end
 	vim.notify("Not a git repo", vim.log.levels.ERROR)
