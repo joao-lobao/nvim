@@ -18,10 +18,14 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":Rex<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "q", ":Rex<CR>", opts)
 		-- deletes unused keymaps so that they don't conflict with "q" keymap
-		vim.api.nvim_buf_del_keymap(0, "n", "qF")
-		vim.api.nvim_buf_del_keymap(0, "n", "qL")
-		vim.api.nvim_buf_del_keymap(0, "n", "qb")
-		vim.api.nvim_buf_del_keymap(0, "n", "qf")
+		local keymaps = vim.api.nvim_buf_get_keymap(0, "n")
+		for _, keymap in ipairs(keymaps) do
+			---@diagnostic disable-next-line: undefined-field
+			if keymap.lhs:match("^q.") then
+				---@diagnostic disable-next-line: undefined-field
+				vim.api.nvim_buf_del_keymap(0, "n", keymap.lhs)
+			end
+		end
 	end,
 	group = group_netrw,
 })
