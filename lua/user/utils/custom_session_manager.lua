@@ -1,3 +1,8 @@
+local session_exists = function(session)
+	local find_session = vim.fs.find(session, { path = Session_dir, type = "file" })
+	return #find_session > 0
+end
+
 SessionSave = function()
 	local session = vim.fn.fnamemodify(vim.v.this_session, ":t")
 	if session == "" then
@@ -9,6 +14,9 @@ SessionSave = function()
 end
 
 function SessionLoad(session)
+	if not session_exists(session) then
+		return Notification("session does not exist", vim.log.levels.ERROR, session)
+	end
 	SessionSave()
 	-- stop all clients before deleting buffers and loading session
 	-- even though this stops in fact all clients, when loading session Lsp
