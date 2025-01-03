@@ -101,3 +101,5 @@ vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua Diagnostics()<CR>", opts)
 -- open quickfix list
 vim.api.nvim_set_keymap("n", "co", ":copen<CR>", {})
+vim.api.nvim_set_keymap("n", "cn", ":cnext<CR>", {})
+vim.api.nvim_set_keymap("n", "cp", ":cprev<CR>", {})
