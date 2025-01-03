@@ -9,8 +9,6 @@ telescope.setup({
 		mappings = {
 			i = {
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-				["<C-j>"] = actions.move_selection_next,
-				["<C-k>"] = actions.move_selection_previous,
 			},
 			n = {
 				["q"] = actions.close,
