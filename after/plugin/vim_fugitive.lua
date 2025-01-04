@@ -7,6 +7,17 @@ vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
 
+Browse_to_commit = function(cursor_commit)
+	local remote_origin = vim.fn.systemlist("git config --get remote.origin.url | sed -e 's/\\.git$//g'")[1]
+	local hash = vim.fn.expand("%:t")
+	if cursor_commit ~= "" and cursor_commit ~= nil then
+		hash = cursor_commit
+	elseif hash == "" then
+		return Notification("No commit hash found", vim.log.levels.ERROR, "Git")
+	end
+	vim.api.nvim_command("silent !xdg-open " .. remote_origin .. "/commit/" .. hash)
+end
+
 local group_fugitive = vim.api.nvim_create_augroup("CustomFugitiveMapping", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "fugitive", "git", "fugitiveblame" },
@@ -15,6 +26,10 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "gP", ":Git push --force", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git pull", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "gp", ":Git pull --force", { noremap = true })
+		-- open commit url from git log diffs
+		vim.api.nvim_buf_set_keymap(0, "n", "o", "<cmd>lua Browse_to_commit()<CR>", opts)
+		-- open commit url from gitblame hashes
+		vim.api.nvim_buf_set_keymap(0, "n", "go", "<cmd>lua Browse_to_commit(vim.fn.expand('<cfile>'))<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":bd<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", "?^M \\|^D \\|^\\? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>", opts)
