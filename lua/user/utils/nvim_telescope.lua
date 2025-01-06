@@ -35,7 +35,7 @@ local task = function(custom_actions)
 	local prompt_title = Icons.opened_session .. " " .. session
 	-- if session is empty add the closed session icon
 	if session == "" then
-		prompt_title = Icons.closed_session .. " Connect to Workspace"
+		prompt_title = Icons.closed_session .. " No session is loaded"
 	end
 
 	-- 32 is the number of actions needed to fill the height
