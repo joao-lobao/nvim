@@ -51,6 +51,8 @@ vim.api.nvim_create_user_command(
 )
 local opts = { noremap = true, silent = false }
 vim.api.nvim_set_keymap("n", "sl", ":SLoad ", opts)
+vim.api.nvim_set_keymap("n", "sc", ":SCreate ", opts)
+vim.api.nvim_set_keymap("n", "sd", ":SDelete ", opts)
 
 -- close and save sessions on vim leave
 local group_session_manager = vim.api.nvim_create_augroup("CustomSessionManager", { clear = true })
