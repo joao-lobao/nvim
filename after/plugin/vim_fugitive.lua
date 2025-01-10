@@ -22,6 +22,8 @@ Browse_to_commit = function()
 	end
 	Notification("No commit hash found", vim.log.levels.ERROR, "Git")
 end
+-- open commit url from git log diff or hash under cursor
+vim.api.nvim_set_keymap("n", "go", "<cmd>lua Browse_to_commit()<CR>", opts)
 
 local group_fugitive = vim.api.nvim_create_augroup("CustomFugitiveMapping", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
@@ -31,8 +33,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "fP", ":Git push --force", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git pull", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "fp", ":Git pull --force", { noremap = true })
-		-- open commit url from git log diff or hash under cursor
-		vim.api.nvim_buf_set_keymap(0, "n", "o", "<cmd>lua Browse_to_commit()<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":bd<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", "?^M \\|^D \\|^\\? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>", opts)
