@@ -23,9 +23,9 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "fugitive", "git", "fugitiveblame" },
 	callback = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "P", ":Git push", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "gP", ":Git push --force", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "fP", ":Git push --force", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git pull", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "gp", ":Git pull --force", { noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "fp", ":Git pull --force", { noremap = true })
 		-- open commit url from git log diffs
 		vim.api.nvim_buf_set_keymap(0, "n", "o", "<cmd>lua Browse_to_commit()<CR>", opts)
 		-- open commit url from gitblame hashes
