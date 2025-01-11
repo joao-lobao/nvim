@@ -18,7 +18,7 @@ ListedBuffers = function()
 		table.insert(buffers, buf)
 	end
 	vim.fn.setqflist(buffers)
-	vim.cmd("copen " .. #opened_bufs)
+	vim.cmd("copen")
 	vim.fn.search(buf_name)
 end
 
