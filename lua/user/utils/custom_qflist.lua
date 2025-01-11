@@ -56,6 +56,10 @@ Grep = function(params)
 	end
 
 	local pattern = vim.fn.input("Search pattern in " .. scope .. " files: ")
+	-- -i (ignore case)
+	-- --vimgrep (output format, a line with more than one match will be printed more than once)
+	-- --hidden (search hidden files)
+	-- --glob '!.git' (excludes the .git directory)
 	local git_grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
 	if pattern == "" then
 		Notification("Exited Grep", vim.log.levels.WARN)
