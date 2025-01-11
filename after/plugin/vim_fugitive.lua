@@ -1,6 +1,7 @@
 local opts = { noremap = true, silent = true }
 
-local search_down_cmd = "/^M \\|^D \\|^? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>"
+local search_down_cmd = ":silent! /^M \\|^D \\|^? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>"
+local search_up_cmd = ":silent! ?^M \\|^D \\|^\\? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>"
 vim.api.nvim_set_keymap("n", "gs", ":G<CR>" .. search_down_cmd, opts)
 
 vim.api.nvim_set_keymap("n", "gl", ":Gclog<CR>:b#<CR><C-w>j", opts)
@@ -37,7 +38,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "fp", ":Git pull --force", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":bd<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", "?^M \\|^D \\|^\\? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", search_up_cmd, opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<C-j>", search_down_cmd, opts)
 	end,
 	group = group_fugitive,
