@@ -88,15 +88,15 @@ end
 
 local opts = { noremap = true, silent = false }
 -- git/project files
-vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua Files('project')<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>f", "<cmd>lua Files('project')<CR>", opts)
 -- all files
-vim.api.nvim_set_keymap("n", "<leader>F", "<cmd>lua Files('all')<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>F", "<cmd>lua Files('all')<CR>", opts)
 -- git grep
-vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua Grep()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>g", "<cmd>lua Grep()<CR>", opts)
 -- all grep
-vim.api.nvim_set_keymap("n", "<leader>R", "<cmd>lua Grep('--no-ignore')<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>G", "<cmd>lua Grep('--no-ignore')<CR>", opts)
 -- others
-vim.api.nvim_set_keymap("n", "tb", "<cmd>lua ListedBuffers()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>b", "<cmd>lua ListedBuffers()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua Diagnostics()<CR>", opts)
 -- open quickfix list
