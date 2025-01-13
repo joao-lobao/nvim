@@ -80,7 +80,7 @@ Grep = function(params)
 end
 
 Oldfiles = function()
-	local oldfiles = vim.api.nvim_exec2("oldfiles", { output = true })
+	local oldfiles = vim.api.nvim_exec2("filter /\\v^(fugitive|.*fugitiveblame$)@!/ oldfiles", { output = true })
 	oldfiles = vim.split(oldfiles.output, "\n")
 	local files = {}
 	for _, o_file in ipairs(oldfiles) do
