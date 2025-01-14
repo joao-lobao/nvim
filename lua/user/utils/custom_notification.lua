@@ -18,7 +18,7 @@ local config = {
 }
 
 function Notification(message, level, emphasis, timeout, notify_vim)
-	emphasis = emphasis ~= nil and emphasis .. " " or ""
+	emphasis = emphasis ~= nil and emphasis or ""
 	timeout = timeout ~= nil and timeout or 5000
 	local buffer = vim.api.nvim_get_current_buf()
 	local extmarks = vim.api.nvim_buf_get_extmarks(buffer, namespace, 0, -1, {})
@@ -32,7 +32,7 @@ function Notification(message, level, emphasis, timeout, notify_vim)
 		id = id,
 		virt_text = {
 			{ config[level].icon, config[level].hl },
-			{ emphasis, config[level].hl_emphasis },
+			{ emphasis .. " ", config[level].hl_emphasis },
 			{ message .. "    ", config[level].hl },
 		},
 		virt_text_pos = "right_align",
@@ -44,6 +44,7 @@ function Notification(message, level, emphasis, timeout, notify_vim)
 		end
 	end)
 	if notify_vim == nil or notify_vim then
-		vim.notify(emphasis .. " " .. message, level)
+		emphasis = emphasis == "" and "" or emphasis .. ": "
+		vim.notify(emphasis .. message, level)
 	end
 end
