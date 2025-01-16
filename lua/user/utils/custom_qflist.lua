@@ -27,13 +27,9 @@ local search = {
 	all = { git = "git ls-files --cached --others", no_git = "find . -type f -name '*'" },
 }
 
-local getFiles = function(type)
-	local is_git_repo = Is_git_repo()
-	if is_git_repo then
-		return vim.fn.systemlist(search[type].git)
-	end
-	-- in case not a git repo
-	return vim.fn.systemlist(search[type].no_git)
+local getFiles = function(scope)
+	local search_scope_vsc = Is_git_repo() and search[scope].git or search[scope].no_git
+	return vim.fn.systemlist(search_scope_vsc)
 end
 
 Files = function(type)
