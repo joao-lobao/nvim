@@ -39,8 +39,7 @@ function M.grep_all()
 end
 
 function M.grep_in_cwd()
-	local file_dir = vim.fn.expand("%:p:h")
-	local is_git_repo = vim.fn.system("git -C " .. file_dir .. " rev-parse --is-inside-work-tree") == "true\n"
+	local is_git_repo = Is_git_repo()
 	local grepOpts = {
 		file_ignore_patterns = { ".git/" },
 		additional_args = function()
@@ -63,8 +62,7 @@ end
 -- find git files or files in cwd ignoring node_modules
 -- use Telescope find_files to search in .git or node_modules
 function M.find_in_cwd()
-	local file_dir = vim.fn.expand("%:p:h")
-	local is_git_repo = vim.fn.system("git -C " .. file_dir .. " rev-parse --is-inside-work-tree") == "true\n"
+	local is_git_repo = Is_git_repo()
 	if is_git_repo then
 		return M.git_files()
 	end

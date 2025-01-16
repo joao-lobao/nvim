@@ -22,7 +22,7 @@ end
 
 Get_git_info = function()
 	local msg_char_limit = 72
-	local is_git_repo = vim.fn.system("git -C  . rev-parse --is-inside-work-tree") == "true\n"
+	local is_git_repo = Is_git_repo()
 	if is_git_repo then
 		local git_branch = "-- " .. string.gsub(vim.fn.system("git branch --show-current"), "\n", "")
 		local git_message = "-- "
@@ -39,13 +39,11 @@ vim.api.nvim_set_keymap("n", "gh", ":e ~/.config/nvim/lua/user/utils/git_commit_
 
 -- check buffer is a file in a git project
 IsBufferEligibleForSigning = function()
-	-- is file inside a git project
-	local file_dir = vim.fn.expand("%:p:h")
-	local is_file_in_git_project = vim.fn.system("git -C " .. file_dir .. " rev-parse --is-inside-work-tree")
-		== "true\n"
+	-- is file dir inside a git project
+	local is_git_repo = Is_git_repo()
 	-- is buffer in diff mode
 	local is_diff_mode = vim.api.nvim_exec2([[echo &diff]], { output = true }) == "1"
-	return is_file_in_git_project and not is_diff_mode
+	return is_git_repo and not is_diff_mode
 end
 
 SetDiffSigns = function()

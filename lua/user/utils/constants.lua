@@ -30,6 +30,11 @@ Icons = {
 	tool = "🛠",
 	toolbox = "🧰",
 }
+function Is_git_repo()
+	local directory = vim.fn.expand("%:p:h")
+	return vim.fn.system("git -C " .. directory .. " rev-parse --is-inside-work-tree") == "true\n"
+end
+
 function Get_sessions_names(pattern)
 	local sessions = vim.fn.glob(Session_dir .. "*", true, true)
 	local sessions_names = {}

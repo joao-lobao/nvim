@@ -28,8 +28,8 @@ local search = {
 }
 
 local getFiles = function(type)
-	local is_file_in_git_project = vim.fn.system("git -C . rev-parse --is-inside-work-tree") == "true\n"
-	if is_file_in_git_project then
+	local is_git_repo = Is_git_repo()
+	if is_git_repo then
 		return vim.fn.systemlist(search[type].git)
 	end
 	-- in case not a git repo
