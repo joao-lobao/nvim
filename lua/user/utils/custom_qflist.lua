@@ -92,6 +92,31 @@ Diagnostics = function()
 	vim.cmd("copen")
 end
 
+Eslint_to_qflist = function()
+	local home_path = vim.fn.expand("$HOME/")
+	-- this can be also achieved by having a lint script in package.json and calling 'npm run lint' in here
+	local eslint = vim.fn.systemlist("eslint . -f " .. home_path .. ".config/nvim/lua/user/utils/custom_formatter.cjs")
+	local diagnostics = vim.json.decode(eslint[1])
+
+	local lints = {}
+	local severity = { s2 = "E", s1 = "W" }
+	for _, diag in ipairs(diagnostics) do
+		table.insert(lints, {
+			type = severity["s" .. diag.severity] or "N",
+			filename = diag.filename,
+			lnum = diag.lnum,
+			col = diag.col,
+			text = diag.text,
+		})
+	end
+	if #lints == 0 then
+		Notification("No linting errors found", vim.log.levels.INFO)
+		return
+	end
+	vim.fn.setqflist(lints)
+	vim.cmd("copen")
+end
+
 local opts = { noremap = true, silent = false }
 -- git/project files
 vim.api.nvim_set_keymap("n", "<leader><leader>f", "<cmd>lua Files('project')<CR>/", opts)
@@ -105,6 +130,7 @@ vim.api.nvim_set_keymap("n", "<leader><leader>G", "<cmd>lua Grep('--no-ignore')<
 vim.api.nvim_set_keymap("n", "<leader><leader>b", "<cmd>lua ListedBuffers()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>/", opts)
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua Diagnostics()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>E", "<cmd>lua Eslint_to_qflist()<CR>", opts)
 -- open quickfix list
 vim.api.nvim_set_keymap("n", "co", ":copen<CR>", opts)
 vim.api.nvim_set_keymap("n", "cc", ":cclose<CR>", opts)
