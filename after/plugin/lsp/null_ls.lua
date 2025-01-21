@@ -29,10 +29,7 @@ end
 local utils = require("null-ls.utils").make_conditional_utils()
 Has_eslint_rules = function()
 	-- enable eslint from the project eslint own rules
-	if utils.root_has_file_matches("eslint") or json_has_eslint_config("eslintConfig", utils) then
-		return true
-	end
-	return false
+	return utils.root_has_file_matches("eslint") or json_has_eslint_config("eslintConfig", utils)
 end
 
 -- configure null_ls
