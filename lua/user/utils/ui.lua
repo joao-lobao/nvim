@@ -22,6 +22,7 @@ vim.api.nvim_set_hl(0, "StatusF", { bg = Dark_gray, fg = Cyan })
 vim.api.nvim_set_hl(0, "TablineFill", { bg = Dark_gray, fg = Green })
 -- statusline components
 local ft = "%#StatusA#%y "
+local listed_buffers = "%#StatusA#B:%{len(getcompletion('', 'buffer'))} "
 local pwd = "%#StatusB#%{fnamemodify('', ':p:h')}"
 local filename = "%#StatusC# %f "
 local modified = "%#StatusModified#%{&filetype!='TelescopePrompt' && &modified ? ' 󰆓 ' : ''}"
@@ -30,6 +31,20 @@ local session = "%#StatusD# %{fnamemodify(v:this_session, ':t')} "
 local lines = "%#StatusE#l:%l "
 local cols = "%#StatusA#c:%c "
 local total_lines = "%#StatusF#L:%L"
+-- tabline components
+local bufnr = "%#StatusA#n:%{bufnr('%')} "
+local bufname = "%#TablineFill#%t%*%="
+local get_buf_size = "%#StatusD#%{printf('%.2f', str2float(getfsize(expand('%')))/1024)}kb "
+local last_modified = "%#StatusA#%{strftime('%d %b %Y %H:%M:%S', getftime(expand('%')))} "
 vim.o.showtabline = 2
-vim.o.tabline = "%#TablineFill#%t"
-vim.o.statusline = ft .. pwd .. filename .. modified .. readonly .. session .. lines .. cols .. total_lines
+vim.o.tabline = bufnr .. bufname .. get_buf_size .. last_modified
+vim.o.statusline = ft
+	.. listed_buffers
+	.. pwd
+	.. filename
+	.. modified
+	.. readonly
+	.. session
+	.. lines
+	.. cols
+	.. total_lines
