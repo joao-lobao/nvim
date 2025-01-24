@@ -35,7 +35,7 @@ local total_lines = "%#StatusF#L:%L"
 local bufnr = "%#StatusA#n:%{bufnr('%')} "
 local bufname = "%#TablineFill#%t%*%="
 local get_buf_size = "%#StatusD#%{printf('%.2f', str2float(getfsize(expand('%')))/1024)}kb "
-local last_modified = "%#StatusA#%{strftime('%d %b %Y %H:%M:%S', getftime(expand('%')))} "
+local last_modified = "%#StatusA#%{strftime('%d %b %Y %H:%M:%S', getftime(expand('%')))}"
 vim.o.showtabline = 2
 vim.o.tabline = bufnr .. bufname .. get_buf_size .. last_modified
 vim.o.statusline = ft
