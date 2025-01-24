@@ -35,9 +35,13 @@ end
 Files = function(type)
 	local files = getFiles(type)
 	local results = {}
+
+	local pattern = vim.fn.input("Search file: ", "", "file")
 	for _, g_file in ipairs(files) do
-		local file = { filename = g_file }
-		table.insert(results, file)
+		if g_file:find(pattern) then
+			local file = { filename = g_file }
+			table.insert(results, file)
+		end
 	end
 	vim.fn.setqflist(results)
 	vim.cmd("copen")
@@ -79,9 +83,14 @@ Oldfiles = function()
 	local oldfiles = vim.api.nvim_exec2("filter /\\v^(fugitive|.*fugitiveblame$)@!/ oldfiles", { output = true })
 	oldfiles = vim.split(oldfiles.output, "\n")
 	local files = {}
+
+	local pattern = vim.fn.input("Search file: ")
 	for _, o_file in ipairs(oldfiles) do
-		local file = { filename = vim.split(o_file, ": ")[2] }
-		table.insert(files, file)
+		local fname = vim.split(o_file, ": ")[2]
+		if fname ~= nil and fname:find(pattern) then
+			local file = { filename = fname }
+			table.insert(files, file)
+		end
 	end
 	vim.fn.setqflist(files)
 	vim.cmd("copen")
@@ -119,16 +128,16 @@ end
 
 local opts = { noremap = true, silent = false }
 -- git/project files
-vim.api.nvim_set_keymap("n", "<leader><leader>f", "<cmd>lua Files('project')<CR>/", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>f", "<cmd>lua Files('project')<CR>", opts)
 -- all files
-vim.api.nvim_set_keymap("n", "<leader><leader>F", "<cmd>lua Files('all')<CR>/", opts)
+vim.api.nvim_set_keymap("n", "<leader><leader>F", "<cmd>lua Files('all')<CR>", opts)
 -- git grep
 vim.api.nvim_set_keymap("n", "<leader><leader>g", "<cmd>lua Grep()<CR>", opts)
 -- all grep
 vim.api.nvim_set_keymap("n", "<leader><leader>G", "<cmd>lua Grep('--no-ignore')<CR>", opts)
 -- others
 vim.api.nvim_set_keymap("n", "<leader><leader>b", "<cmd>lua ListedBuffers()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>/", opts)
+vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua Diagnostics()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>E", "<cmd>lua Eslint_to_qflist()<CR>", opts)
 -- open quickfix list
