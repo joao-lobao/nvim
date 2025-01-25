@@ -105,7 +105,17 @@ Eslint_to_qflist = function()
 	local home_path = vim.fn.expand("$HOME/")
 	-- this can be also achieved by having a lint script in package.json and calling 'npm run lint' in here
 	local eslint = vim.fn.systemlist("eslint . -f " .. home_path .. ".config/nvim/lua/user/utils/custom_formatter.cjs")
-	local diagnostics = vim.json.decode(eslint[1])
+	local decode_eslint_result = function()
+		return vim.json.decode(eslint[1])
+	end
+
+	-- error handling
+	if not pcall(decode_eslint_result) then
+		Notification("No eslint configuration", vim.log.levels.ERROR)
+		return
+	end
+
+	local diagnostics = decode_eslint_result()
 
 	local lints = {}
 	local severity = { s2 = "E", s1 = "W" }
