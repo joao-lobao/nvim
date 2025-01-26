@@ -92,6 +92,9 @@ vim.cmd([[
   ia retun return
   ia retur return
   ia nubmer number
+  ia lcoal local
+  ia lcola local
+  ia lcocal local
   endfunction
   call AutoCorrect()
 ]])
