@@ -7,50 +7,36 @@ local map_to = {
 }
 
 local common_all = function(extract_to)
-	vim.cmd("normal! G")
-	vim.cmd("normal! o")
-	vim.api.nvim_feedkeys("o" .. extract_to, "i", false)
+	vim.cmd("normal! d")
+	vim.api.nvim_feedkeys("O" .. extract_to, "i", false)
 	vim.api.nvim_feedkeys("", "x", false)
 	vim.api.nvim_feedkeys("i\n", "n", false)
 	vim.api.nvim_feedkeys("", "x", false)
-	vim.api.nvim_feedkeys("P", "n", false)
+	vim.api.nvim_feedkeys("Pk_wve", "n", false)
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-g>", true, true, true), "n", true)
 end
 
-local common_file = function()
+local common_file = function(to)
 	local fname = vim.fn.input("Enter file name: ", vim.fn.expand("%:p:h"), "file")
-	if fname == "" then
-		return
-	end
 	vim.cmd("e " .. fname)
-	return fname
+	common_all(to)
 end
 
 local extract_choose = function(to)
 	local extraction_list = {
 		[map_to.class] = function()
-			vim.cmd("normal! d")
-			common_all("class ClassName {\n}")
+			common_all("class Name {}")
 		end,
 		[map_to.func] = function()
-			vim.cmd("normal! d")
 			common_all("function name() {\n}")
 		end,
 		[map_to.file_as_class] = function()
-			vim.cmd("normal! d")
-			if common_file() == nil then
-				return
-			end
-			common_all("class ClassName {\n}")
+			common_file("class Name {\n}")
 		end,
 		[map_to.file_as_func] = function()
-			vim.cmd("normal! d")
-			if common_file() == nil then
-				return
-			end
-			common_all("function name() {\n}")
+			common_file("function name() {\n}")
 		end,
 		[map_to.method] = function()
-			vim.cmd("normal! d")
 			common_all("name() {\n}")
 		end,
 	}
