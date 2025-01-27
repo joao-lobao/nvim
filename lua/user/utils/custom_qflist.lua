@@ -97,6 +97,10 @@ Oldfiles = function()
 end
 
 Diagnostics = function()
+	if #vim.diagnostic.get() == 0 then
+		Notification("No diagnostics found", vim.log.levels.INFO)
+		return
+	end
 	vim.diagnostic.setqflist()
 	vim.cmd("copen")
 end
