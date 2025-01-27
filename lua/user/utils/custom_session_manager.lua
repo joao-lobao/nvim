@@ -18,13 +18,6 @@ function SessionLoad(session)
 		return Notification("session does not exist", vim.log.levels.ERROR, session)
 	end
 	SessionSave()
-	-- stop all clients before deleting buffers and loading session
-	-- even though this stops in fact all clients, when loading session Lsp
-	-- throws error message like a previous client is still running but in fact it's not
-	-- a bug that can be ignored (it has to do with loading the session but
-	-- if buffers where not Entered on before loading new session Lsp gets
-	-- confused)
-	vim.lsp.stop_client(vim.lsp.get_clients())
 	vim.cmd("bufdo bw")
 	vim.cmd("source " .. Session_dir .. session)
 	Notification("session is loaded", vim.log.levels.INFO, session)
