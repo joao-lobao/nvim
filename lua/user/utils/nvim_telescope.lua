@@ -22,6 +22,7 @@ local make_display = function(entry)
 		entry.icon = Icons.opened_session
 		entry.description = session
 		entry.value = ""
+		entry.category = "GruvboxAquaBold"
 	end
 	return displayer({
 		{ entry.icon, entry.category },
