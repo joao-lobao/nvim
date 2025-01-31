@@ -1,7 +1,19 @@
 local opts = { noremap = true, silent = true }
 
-local search_down_cmd = ":silent! /^M \\|^D \\|^? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>"
-local search_up_cmd = ":silent! ?^M \\|^D \\|^\\? \\|^@@ \\|^Unpushed \\|^Unpulled <CR>"
+local function find_hunk(flag)
+	local line = vim.fn.search("^M \\|^D \\|^? \\|^@@ \\|^Unpushed \\|^Unpulled ", flag or "")
+	vim.api.nvim_command("normal! " .. line .. "G")
+end
+
+vim.api.nvim_create_user_command("FindHunkNext", function()
+	find_hunk()
+end, {})
+vim.api.nvim_create_user_command("FindHunkPrev", function()
+	find_hunk("b")
+end, {})
+
+local search_down_cmd = ":FindHunkNext<CR>"
+local search_up_cmd = ":FindHunkPrev<CR>"
 vim.api.nvim_set_keymap("n", "gs", ":G<CR>" .. search_down_cmd, opts)
 
 vim.api.nvim_set_keymap("n", "gl", ":Gclog<CR>:b#<CR><C-w>j", opts)
