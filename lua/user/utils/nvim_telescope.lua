@@ -9,9 +9,9 @@ local entry_display = require("telescope.pickers.entry_display")
 local displayer = entry_display.create({
 	separator = " ",
 	items = {
-		{ remaining = true },
-		{ remaining = true },
-		{ remaining = true },
+		{},
+		{},
+		{},
 	},
 })
 
@@ -51,7 +51,7 @@ local task = function(custom_actions)
 		prompt_title = prompt_title,
 		results_title = Icons.folder .. " " .. vim.fn.getcwd(),
 		-- dynamic window height based on the number of actions
-		layout_config = { anchor = "C", width = 0.3, height = win_height },
+		layout_config = { anchor = "C", width = 0.32, height = win_height },
 		finder = finders.new_table({
 			results = custom_actions,
 			entry_maker = function(entry)

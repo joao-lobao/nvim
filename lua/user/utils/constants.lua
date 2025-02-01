@@ -24,8 +24,9 @@ Icons = {
 	closed_session = "📓",
 	config = "⚙️ ",
 	files = "🗃",
+	buffer = " ",
 	keymap = "🅰 ",
-	git = " ",
+	git = " ",
 	santa = "🎅",
 	tool = "🛠",
 	toolbox = "🧰",
@@ -50,7 +51,7 @@ end
 
 -- put actions here
 local vim_cmds = {
-	{ icon = "e", description = "Empty buffer", value = "enew", category = hl_categories.command },
+	{ icon = Icons.buffer, description = "Empty buffer", value = "enew", category = hl_categories.command },
 }
 local sessions_actions = function()
 	local sessions = vim.fn.glob(Session_dir .. "*", true, true)
