@@ -57,16 +57,12 @@ function Format_Null_ls()
 	local is_diff_mode = vim.o.diff
 
 	local filter = function(client)
-		if client.name == "null-ls" then
-			Notification("File formatted", vim.log.levels.INFO)
-			return true
-		else
-			return false
-		end
+		return client.name == "null-ls"
 	end
 
 	if #clients > 0 and not is_diff_mode then
 		vim.lsp.buf.format({ filter = filter, bufnr = bufnr })
+		Notification("File formatted", vim.log.levels.INFO)
 		return
 	end
 end
