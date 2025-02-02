@@ -1,61 +1,67 @@
-local map_to = {
-	class = "1. to_class",
-	func = "2. to_function",
+local map_as = {
+	class = "1. as_class",
+	func = "2. as_function",
 	file_as_class = "3. to_file_as_class",
 	file_as_func = "4. to_file_as_function",
-	method = "5. to_method",
+	method = "5. as_method",
 }
 
-local common_all = function(extract_to)
-	vim.cmd("normal! d")
-	vim.api.nvim_feedkeys("O" .. extract_to, "i", false)
+local feedkeys = function(extract_as)
+	vim.api.nvim_feedkeys("O" .. extract_as, "i", false)
 	vim.api.nvim_feedkeys("", "x", false)
 	vim.api.nvim_feedkeys("i\n", "n", false)
 	vim.api.nvim_feedkeys("", "x", false)
-	vim.api.nvim_feedkeys("Pk_wve", "n", false)
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-g>", true, true, true), "n", true)
+	vim.api.nvim_feedkeys("Pk$B", "n", false)
+	vim.api.nvim_feedkeys(
+		vim.api.nvim_replace_termcodes(":lua vim.lsp.buf.format()<CR>ve<C-g>", true, true, true),
+		"n",
+		true
+	)
 end
 
-local common_file = function(to)
-	local fname = vim.fn.input("Enter file name: ", vim.fn.expand("%:p:h"), "file")
-	vim.cmd("e " .. fname)
-	common_all(to)
+local extract = function(as, to)
+	vim.cmd("normal! d")
+	if to == "file" then
+		local fname = vim.fn.input("Enter file name: ", vim.fn.expand("%:p:h"), "file")
+		vim.cmd("e " .. fname)
+	end
+	feedkeys(as)
 end
 
-local extract_choose = function(to)
+local choose_extract = function(as)
 	local extraction_list = {
-		[map_to.class] = function()
-			common_all("class Name {}")
+		[map_as.class] = function()
+			extract("class Name {}")
 		end,
-		[map_to.func] = function()
-			common_all("function name() {\n}")
+		[map_as.func] = function()
+			extract("function name() {\n}")
 		end,
-		[map_to.file_as_class] = function()
-			common_file("class Name {\n}")
+		[map_as.file_as_class] = function()
+			extract("class Name {\n}", "file")
 		end,
-		[map_to.file_as_func] = function()
-			common_file("function name() {\n}")
+		[map_as.file_as_func] = function()
+			extract("function name() {\n}", "file")
 		end,
-		[map_to.method] = function()
-			common_all("name() {\n}")
+		[map_as.method] = function()
+			extract("name() {\n}")
 		end,
 	}
 
-	return extraction_list[to]()
+	return extraction_list[as]()
 end
 
 Extract = function()
-	local to_map = { map_to.class, map_to.func, map_to.file_as_class, map_to.file_as_func, map_to.method }
-	local to = vim.fn.inputlist({
-		"Extract to: ",
-		map_to.class,
-		map_to.func,
-		map_to.file_as_class,
-		map_to.file_as_func,
-		map_to.method,
+	local as_map = { map_as.class, map_as.func, map_as.file_as_class, map_as.file_as_func, map_as.method }
+	local as = vim.fn.inputlist({
+		"Extract as: ",
+		map_as.class,
+		map_as.func,
+		map_as.file_as_class,
+		map_as.file_as_func,
+		map_as.method,
 	})
-	if to ~= nil and to > 0 then
-		extract_choose(to_map[to])
+	if as ~= nil and as > 0 then
+		choose_extract(as_map[as])
 	end
 end
 
