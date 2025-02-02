@@ -50,11 +50,6 @@ vim.api.nvim_set_keymap("n", "<leader>Q", ":q!<CR>", opts)
 -- Visual Maps
 -- Replace all instances of highlighted words
 vim.api.nvim_set_keymap("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', opts)
--- Sort highlighted text in visual mode with Control+S
-vim.api.nvim_set_keymap("v", "<leader>s", ":sort<CR>", opts)
--- Move current line down
-vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
-vim.api.nvim_set_keymap("v", "K", ":m '>-2<CR>gv=gv", opts)
 
 -- terminal mode
 vim.api.nvim_set_keymap("t", "<esc>", "<c-\\><c-n><c-w><CR>", opts)
