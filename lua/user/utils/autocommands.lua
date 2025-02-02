@@ -78,10 +78,23 @@ vim.cmd([[
   ia fucntion function
   ia funtcion function
   ia fnuction function
+  ia Funciton Function
+  ia Funciotn Function
+  ia Funcitno Function
+  ia Functon Function
+  ia Functoin Function
+  ia Funtoin Function
+  ia Funtion Function
+  ia Fucntion Function
+  ia Funtcion Function
+  ia Fnuction Function
   ia cosnt const
   ia csont const
   ia scont const
   ia conts const
+  ia Cosnt Const
+  ia Csont Const
+  ia Conts Const
   ia thsi this
   ia htis this
   ia tset test
@@ -95,6 +108,18 @@ vim.cmd([[
   ia lcoal local
   ia lcola local
   ia lcocal local
+  ia Thsi this
+  ia Tset Test
+  ia Tets Test
+  ia Retrun Return
+  ia Reutrn Return
+  ia Retunr Return
+  ia Retun Return
+  ia Retur Return
+  ia Nubmer Number
+  ia Lcoal Local
+  ia Lcola Local
+  ia Lcocal Local
   endfunction
   call AutoCorrect()
 ]])
