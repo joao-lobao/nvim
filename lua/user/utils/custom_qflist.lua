@@ -122,9 +122,8 @@ Diagnostics = function()
 end
 
 Eslint_to_qflist = function()
-	local home_path = vim.fn.expand("$HOME/")
 	-- this can be also achieved by having a lint script in package.json and calling 'npm run lint' in here
-	local eslint = vim.fn.systemlist("eslint . -f " .. home_path .. ".config/nvim/lua/user/utils/custom_formatter.cjs")
+	local eslint = vim.fn.systemlist("eslint . -f ~/.config/nvim/lua/user/utils/custom_formatter.cjs")
 	local decode_eslint_result = function()
 		return vim.json.decode(eslint[1])
 	end
