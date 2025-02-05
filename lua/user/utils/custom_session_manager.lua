@@ -15,12 +15,12 @@ end
 
 function SessionLoad(session)
 	if not session_exists(session) then
-		return Notification("session does not exist", vim.log.levels.ERROR, session)
+		return Notification(session .. " session does not exist", vim.log.levels.ERROR)
 	end
 	SessionSave()
 	vim.cmd("bufdo bw")
 	vim.cmd("source " .. Session_dir .. session)
-	Notification("session is loaded", vim.log.levels.INFO, session)
+	Notification(session .. " session is loaded", vim.log.levels.INFO)
 end
 
 function SessionDelete(session)

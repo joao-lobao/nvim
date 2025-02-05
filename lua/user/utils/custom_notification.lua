@@ -17,9 +17,7 @@ local config = {
 	},
 }
 
-function Notification(message, level, emphasis, timeout, notify_vim)
-	emphasis = emphasis ~= nil and emphasis or ""
-	timeout = timeout ~= nil and timeout or 5000
+function Notification(message, level)
 	local buffer = vim.api.nvim_get_current_buf()
 	local extmarks = vim.api.nvim_buf_get_extmarks(buffer, namespace, 0, -1, {})
 	-- id working also as an offset when there will be multiple active notifications, or set to line 2 if there are none
@@ -32,19 +30,14 @@ function Notification(message, level, emphasis, timeout, notify_vim)
 		id = id,
 		virt_text = {
 			{ config[level].icon, config[level].hl },
-			{ emphasis .. " ", config[level].hl_emphasis },
 			{ message .. "    ", config[level].hl },
 		},
 		virt_text_pos = "right_align",
 		priority = 50,
 	})
-	vim.fn.timer_start(timeout, function()
+	vim.fn.timer_start(5000, function()
 		if vim.api.nvim_buf_is_loaded(buffer) then
 			vim.api.nvim_buf_del_extmark(buffer, namespace, id)
 		end
 	end)
-	if notify_vim == nil or notify_vim then
-		emphasis = emphasis == "" and "" or emphasis .. ": "
-		vim.notify(emphasis .. message, level)
-	end
 end
