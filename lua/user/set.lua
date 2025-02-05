@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 vim.o.termguicolors = true
 vim.o.encoding = "utf-8"
-vim.o.hlsearch = false
 vim.o.shortmess = vim.o.shortmess:gsub("S", "")
 vim.o.belloff = "all"
 vim.o.ignorecase = true -- search case insensitive
