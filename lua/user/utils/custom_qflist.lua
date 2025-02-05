@@ -59,6 +59,9 @@ Files = function(type)
 	if #results == 0 then
 		Notification("No files found", vim.log.levels.INFO)
 		return
+	elseif #results == 1 then
+		vim.cmd("edit " .. results[1].filename)
+		return
 	end
 
 	vim.fn.setqflist(results)
@@ -105,6 +108,9 @@ Oldfiles = function()
 
 	if #files == 0 then
 		Notification("No files found", vim.log.levels.INFO)
+		return
+	elseif #files == 1 then
+		vim.cmd("edit " .. files[1].filename)
 		return
 	end
 
