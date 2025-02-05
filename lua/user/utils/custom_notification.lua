@@ -26,17 +26,16 @@ function Notification(message, level)
 	-- id working also as an offset when there will be multiple active notifications, or set to line 0
 	local id = #extmarks > 0 and extmarks[#extmarks][1] + 2 or 2
 	local line_count = vim.api.nvim_buf_line_count(buffer)
-	local screen_topline = vim.fn.line("w0") - 3 + id
+	local screen_topline = vim.fn.line("w0") - 2 + id
 	-- check notification position, higher than buffer size
 	screen_topline = screen_topline > line_count and 0 or screen_topline
 	vim.api.nvim_buf_set_extmark(buffer, namespace, screen_topline, 0, {
 		id = id,
 		virt_text = {
 			{ " " .. config[level].icon .. " ", config[level].icon_hl },
-			{ " " .. message, config[level].hl },
+			{ " " .. message .. " ", config[level].hl },
 		},
-		virt_text_win_col = 0,
-		line_hl_group = config[level].hl_blur,
+		virt_text_win_col = 166 / 2,
 		priority = 50,
 	})
 	vim.fn.timer_start(5000, function()
