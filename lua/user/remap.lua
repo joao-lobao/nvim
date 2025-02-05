@@ -6,6 +6,8 @@ vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", opts)
 -- escape insert mode
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", opts)
 vim.api.nvim_set_keymap("i", "Ç", "ç", opts)
+-- clears message area and also clears hl on Esc
+vim.api.nvim_set_keymap("n", "<Esc>", ":nohl | echo ''<CR><Esc>", opts)
 -- Save file
 vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", opts)
 
@@ -30,9 +32,6 @@ vim.api.nvim_set_keymap("n", "<leader>_", "<C-w>_", opts)
 -- adjust split sizes easier
 vim.api.nvim_set_keymap("n", "<C-Left>", ":vertical resize +3<CR>", opts) -- Control+Left resizes vertical split +
 vim.api.nvim_set_keymap("n", "<C-Right>", ":vertical resize -3<CR>", opts) -- Control+Right resizes vertical split -
-
--- no highlight
-vim.api.nvim_set_keymap("n", "-", ":nohl<CR>", { noremap = true })
 
 ------BUFFERS------
 -- buffer navigation, open and deleting
