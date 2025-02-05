@@ -27,16 +27,28 @@ local search = {
 	all = { git = "git ls-files --cached --others", no_git = "find . -type f -name '*'" },
 }
 
-local getFiles = function(scope)
+local get_home_files = function(pattern)
+	local home_files =
+		-- find all files and directories in the home directory
+		-- ~ is the home directory
+		-- -type f,d (file or directory)
+		-- -name '*pattern*' (search for files or directories with the pattern)
+		-- ! -path '*node_modules*' (exclude node_modules directory)
+		-- ! -path '*.git/*' (exclude .git directory)
+		vim.fn.systemlist("find ~ -type f,d -name '*" .. pattern .. "*' ! -path '*node_modules*' ! -path '*.git/*'")
+	return home_files
+end
+
+local get_files = function(scope)
 	local search_scope_vsc = Is_git_repo() and search[scope].git or search[scope].no_git
 	return vim.fn.systemlist(search_scope_vsc)
 end
 
 Files = function(type)
-	local files = getFiles(type)
-	local results = {}
-
 	local pattern = vim.fn.input("Search file: ", "", "file")
+
+	local files = type == "home" and get_home_files(pattern) or get_files(type)
+	local results = {}
 	for _, g_file in ipairs(files) do
 		if g_file:find(pattern) then
 			local file = { filename = g_file }
@@ -149,6 +161,8 @@ local opts = { noremap = true, silent = false }
 -- vim.api.nvim_set_keymap("n", "<leader><leader>f", "<cmd>lua Files('project')<CR>", opts)
 -- all files
 -- vim.api.nvim_set_keymap("n", "<leader><leader>F", "<cmd>lua Files('all')<CR>", opts)
+-- home files
+-- vim.api.nvim_set_keymap("n", "<leader><leader>h", "<cmd>lua Files('home')<CR>", opts)
 -- git grep
 -- vim.api.nvim_set_keymap("n", "<leader><leader>g", "<cmd>lua Grep()<CR>", opts)
 -- all grep
