@@ -28,7 +28,6 @@ require("lazy").setup({
 	{ "airblade/vim-rooter" }, -- changes the cwd to the project root when a file or directory is opened
 	{ "nvim-lua/plenary.nvim" },
 	{ "tpope/vim-surround" }, -- plugin for surrounding feature
-	{ "tpope/vim-commentary" }, -- plugin commentary feature
 	{ "tpope/vim-repeat" }, -- repeat commands from other plugins that are not atomic to vim
 	{ "tpope/vim-fugitive" }, -- for git integration
 	{ "janko/vim-test" }, -- easily run tests
