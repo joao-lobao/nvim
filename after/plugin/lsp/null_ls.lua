@@ -65,6 +65,7 @@ function Format_Null_ls()
 		Notification("File formatted", vim.log.levels.INFO)
 		return
 	end
+	Notification("File not formatted", vim.log.levels.WARN)
 end
 function Format_Native()
 	vim.cmd("lua vim.lsp.buf.format()")
