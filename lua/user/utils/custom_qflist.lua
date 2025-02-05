@@ -43,6 +43,12 @@ Files = function(type)
 			table.insert(results, file)
 		end
 	end
+
+	if #results == 0 then
+		Notification("No files found", vim.log.levels.INFO)
+		return
+	end
+
 	vim.fn.setqflist(results)
 	vim.cmd("copen")
 end
@@ -50,27 +56,19 @@ end
 Grep = function(params)
 	params = params or ""
 
-	local scope = "all"
-	if params == "" then
-		scope = "project/git"
-	end
-
-	local pattern = vim.fn.input("Search pattern in " .. scope .. " files: ")
+	local pattern = vim.fn.input("Search pattern: ")
 	-- -i (ignore case)
 	-- --vimgrep (output format, a line with more than one match will be printed more than once)
 	-- --hidden (search hidden files)
 	-- --glob '!.git' (excludes the .git directory)
-	local git_grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
-	if pattern == "" then
-		Notification("Exited Grep", vim.log.levels.WARN)
-		return
-	elseif #git_grep == 0 then
-		Notification("No results found", vim.log.levels.ERROR)
+	local grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
+	if pattern == "" or #grep == 0 then
+		Notification("No results to show", vim.log.levels.ERROR)
 		return
 	end
 
 	local matches = {}
-	for _, rg_match in ipairs(git_grep) do
+	for _, rg_match in ipairs(grep) do
 		local file, line, col, text = rg_match:match("([^:]+):(%d+):(%d+):(.*)")
 		table.insert(matches, { filename = file, lnum = line, col = col, text = text })
 	end
@@ -92,6 +90,12 @@ Oldfiles = function()
 			table.insert(files, file)
 		end
 	end
+
+	if #files == 0 then
+		Notification("No files found", vim.log.levels.INFO)
+		return
+	end
+
 	vim.fn.setqflist(files)
 	vim.cmd("copen")
 end
