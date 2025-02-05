@@ -32,7 +32,7 @@ local lines = "%#StatusE#l:%l "
 local cols = "%#StatusA#c:%c "
 local total_lines = "%#StatusF#L:%L"
 -- tabline components
-local bufnr = "%#StatusA#n:%{bufnr('%')} "
+local bufnr = "%#StatusA#:%{bufnr('%')} "
 local bufname = "%#TablineFill#%t%*%="
 local get_buf_size = "%#StatusD#%{printf('%.2f', str2float(getfsize(expand('%')))/1024)}kb "
 local encoding = "%#StatusE#%{&fileencoding} "
