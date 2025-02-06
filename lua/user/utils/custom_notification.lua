@@ -1,24 +1,26 @@
 local namespace = vim.api.nvim_create_namespace("notify")
 local config = {
 	[vim.log.levels.INFO] = {
-		icon = "Info",
+		icon = "I",
 		icon_hl = "NotificationInfoInv",
 		hl = "NotificationInfo",
 		hl_blur = "NotificationInfoBlur",
 	},
 	[vim.log.levels.WARN] = {
-		icon = "Warn",
+		icon = "W",
 		icon_hl = "NotificationWarnInv",
 		hl = "NotificationWarn",
 		hl_blur = "NotificationWarnBlur",
 	},
 	[vim.log.levels.ERROR] = {
-		icon = "Error",
+		icon = "X",
 		icon_hl = "NotificationErrorInv",
 		hl = "NotificationError",
 		hl_blur = "NotificationErrorBlur",
 	},
 }
+
+local notifications = {}
 
 function Notification(message, level)
 	local buffer = vim.api.nvim_get_current_buf()
@@ -35,7 +37,7 @@ function Notification(message, level)
 			{ " " .. config[level].icon .. " ", config[level].icon_hl },
 			{ " " .. message .. " ", config[level].hl },
 		},
-		virt_text_win_col = 166 / 2,
+		virt_text_pos = "right_align",
 		priority = 50,
 	})
 	vim.fn.timer_start(5000, function()
@@ -43,4 +45,14 @@ function Notification(message, level)
 			vim.api.nvim_buf_del_extmark(buffer, namespace, id)
 		end
 	end)
+	table.insert(notifications, { message = message, level = level })
 end
+
+function Get_last_notification()
+	local index = #notifications
+	if #notifications > 0 then
+		Notification(notifications[index].message, notifications[index].level)
+	end
+end
+
+vim.api.nvim_create_user_command("LastNotification", ":lua Get_last_notification()", {})
