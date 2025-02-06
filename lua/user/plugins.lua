@@ -25,17 +25,16 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require("lazy").setup({
 	-- NOTE: First, some plugins that don't require any configuration
-	{ "airblade/vim-rooter", lazy = false }, -- changes the cwd to the project root when a file or directory is opened
+	{ "airblade/vim-rooter" }, -- changes the cwd to the project root when a file or directory is opened
 	{ "nvim-lua/plenary.nvim" },
-	{ "tpope/vim-surround", lazy = false }, -- plugin for surrounding feature
-	{ "tpope/vim-repeat", lazy = false }, -- repeat commands from other plugins that are not atomic to vim
-	{ "tpope/vim-fugitive", lazy = false }, -- for git integration
-	{ "janko/vim-test", lazy = false }, -- easily run tests
+	{ "tpope/vim-surround" }, -- plugin for surrounding feature
+	{ "tpope/vim-repeat" }, -- repeat commands from other plugins that are not atomic to vim
+	{ "tpope/vim-fugitive" }, -- for git integration
+	{ "janko/vim-test" }, -- easily run tests
 	{ "github/copilot.vim" }, -- github copilot
 	{ "windwp/nvim-ts-autotag" }, -- auto close tag
 	{
 		"folke/drop.nvim",
-		lazy = false,
 		opts = {
 			theme = "auto", -- when auto, it will choose a theme based on the date
 			themes = {
@@ -99,7 +98,6 @@ require("lazy").setup({
 	},
 	{
 		"tzachar/cmp-tabnine",
-		lazy = false,
 		build = "./install.sh",
 		dependencies = "hrsh7th/nvim-cmp",
 	},
@@ -195,4 +193,4 @@ require("lazy").setup({
 		},
 		opts = {},
 	},
-}, { defaults = { lazy = true } })
+})
