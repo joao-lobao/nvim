@@ -37,9 +37,11 @@ function Notification(message, level)
 			{ " " .. config[level].icon .. " ", config[level].icon_hl },
 			{ " " .. message .. " ", config[level].hl },
 		},
-		virt_text_pos = "right_align",
+		-- center notification horizontally
+		virt_text_win_col = math.floor(vim.api.nvim_win_get_width(0) / 2) - math.floor(#message / 2) - 6,
 		priority = 50,
 	})
+
 	vim.fn.timer_start(5000, function()
 		if vim.api.nvim_buf_is_loaded(buffer) then
 			vim.api.nvim_buf_del_extmark(buffer, namespace, id)
