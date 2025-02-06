@@ -7,6 +7,7 @@ local hl_categories = {
 }
 
 Dark_gray = "#282a36"
+Medium_gray = "#3c3836"
 Light_purple = "#bd93f9"
 Dark_purple = "#6272a4"
 Cyan = "#8be9fd"
