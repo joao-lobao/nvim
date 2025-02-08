@@ -38,7 +38,6 @@ cmp.setup({
 		{ name = "path" }, -- file system paths
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
-		{ name = "cmp_tabnine" }, -- tabnine
 		{ name = "spell" }, -- spell check
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "calc" }, -- text for math operations
@@ -49,7 +48,6 @@ cmp.setup({
 			-- use vim_item.kind to customize cmp text
 			vim_item.kind = ({
 				nvim_lsp = "LSP",
-				cmp_tabnine = "Tabnine",
 				spell = "Spell",
 				path = "Path",
 				buffer = "Buffer",
@@ -60,7 +58,6 @@ cmp.setup({
 			-- use vim_item.menu to customize cmp icon
 			vim_item.menu = ({
 				nvim_lsp = "󰅟 ",
-				cmp_tabnine = "󰚩",
 				spell = "󰓆",
 				path = " ",
 				buffer = "󰦪",
