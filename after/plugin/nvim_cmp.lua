@@ -39,6 +39,7 @@ cmp.setup({
 		{ name = "luasnip" }, -- snippets
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "cmp_tabnine" }, -- tabnine
+		{ name = "spell" }, -- spell check
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "calc" }, -- text for math operations
 	}),
@@ -49,6 +50,7 @@ cmp.setup({
 			vim_item.kind = ({
 				nvim_lsp = "LSP",
 				cmp_tabnine = "Tabnine",
+				spell = "Spell",
 				path = "Path",
 				buffer = "Buffer",
 				luasnip = "Luasnip",
@@ -59,6 +61,7 @@ cmp.setup({
 			vim_item.menu = ({
 				nvim_lsp = "󰅟 ",
 				cmp_tabnine = "󰚩",
+				spell = "󰓆",
 				path = " ",
 				buffer = "󰦪",
 				luasnip = "",
