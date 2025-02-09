@@ -68,3 +68,5 @@ vim.api.nvim_set_keymap("v", "<leader>*", 'c==<C-r>"<Esc>a==<Esc>', opts)
 -- command and keymap to run REST API calls
 vim.api.nvim_create_user_command("Rest", "vnew | read !sh #", {})
 vim.api.nvim_set_keymap("n", "<leader>x", ":Rest<CR>", opts)
+-- set nohl
+vim.api.nvim_set_keymap("n", "-", ":nohl<CR>", opts)

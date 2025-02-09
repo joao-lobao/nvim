@@ -61,6 +61,8 @@ ToggleDiffView = function()
 		vim.api.nvim_command("Gdiffsplit")
 		vim.api.nvim_buf_set_keymap(0, "n", "gp", "[c", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "gn", "]c", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":q<CR>", opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "gq", ":q<CR>", opts)
 	else
 		vim.api.nvim_command("q")
 	end
