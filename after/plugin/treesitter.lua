@@ -15,6 +15,7 @@ treesitter.setup({
 		"bash",
 		"comment",
 		"css",
+		"diff",
 		"dockerfile",
 		"git_config",
 		"git_rebase",
