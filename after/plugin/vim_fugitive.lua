@@ -126,7 +126,8 @@ Goto_hunk = function(direction)
 	local cursor_line = vim.fn.line(".")
 
 	if #diff == 0 then
-		return Notification("No valid changes to move to", vim.log.levels.ERROR)
+		Notification("No valid changes to move to", vim.log.levels.ERROR)
+		return
 	end
 
 	for i, _ in ipairs(diff) do

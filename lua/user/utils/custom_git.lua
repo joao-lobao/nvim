@@ -29,7 +29,8 @@ Get_git_info = function()
 			.. string.sub(string.gsub(vim.fn.system("git show -s --format=%s"), "\n", ""), 1, msg_char_limit)
 		local git_status = " --"
 			.. string.sub(string.gsub(vim.fn.system("git diff --shortstat"), "\n", ""), 1, msg_char_limit)
-		return Notification(git_branch .. " " .. git_message .. git_status, vim.log.levels.INFO)
+		Notification(git_branch .. " " .. git_message .. git_status, vim.log.levels.INFO)
+		return
 	end
 	Notification("Not a git repo", vim.log.levels.ERROR)
 end
