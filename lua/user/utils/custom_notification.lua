@@ -53,7 +53,7 @@ end
 function Get_last_notification()
 	local index = #notifications
 	if #notifications > 0 then
-		Notification(notifications[index].message, notifications[index].level)
+		vim.notify(notifications[index].message, notifications[index].level)
 	end
 end
 
