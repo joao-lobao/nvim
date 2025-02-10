@@ -68,7 +68,17 @@ ToggleDiffView = function()
 	end
 end
 vim.api.nvim_set_keymap("n", "vd", "<cmd>lua ToggleDiffView()<CR>", opts)
-vim.api.nvim_set_keymap("n", "vt", ":Git difftool<CR>:copen<CR>", opts)
+
+DiffTool = function()
+	vim.cmd("Git difftool")
+	if next(vim.fn.getqflist()) == nil then
+		vim.cmd("cclose")
+		Notification("No changes to show", vim.log.levels.INFO)
+		return
+	end
+	vim.cmd("copen")
+end
+vim.api.nvim_set_keymap("n", "vt", "<cmd>lua DiffTool()<CR>", opts)
 
 -- stage/reset hunks
 StageHunk = function()
