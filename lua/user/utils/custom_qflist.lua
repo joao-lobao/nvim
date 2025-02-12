@@ -45,12 +45,12 @@ local get_files = function(scope)
 end
 
 Files = function(type)
-	local pattern = vim.fn.input("Search file: ", "", "file")
+	local pattern = vim.fn.tolower(vim.fn.input("Search file: ", "", "file"))
 
 	local files = type == "home" and get_home_files(pattern) or get_files(type)
 	local results = {}
 	for _, g_file in ipairs(files) do
-		if g_file:find(pattern) then
+		if vim.fn.tolower(g_file):find(pattern) then
 			local file = { filename = g_file }
 			table.insert(results, file)
 		end
@@ -97,10 +97,10 @@ Oldfiles = function()
 	oldfiles = vim.split(oldfiles.output, "\n")
 	local files = {}
 
-	local pattern = vim.fn.input("Search file: ")
+	local pattern = vim.fn.tolower(vim.fn.input("Search file: "))
 	for _, o_file in ipairs(oldfiles) do
 		local fname = vim.split(o_file, ": ")[2]
-		if fname ~= nil and fname:find(pattern) then
+		if fname ~= nil and vim.fn.tolower(fname):find(pattern) then
 			local file = { filename = fname }
 			table.insert(files, file)
 		end
