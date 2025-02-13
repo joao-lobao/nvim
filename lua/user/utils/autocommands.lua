@@ -5,26 +5,17 @@ local group_quickfix = vim.api.nvim_create_augroup("CustomQFLMapping", { clear =
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "qf",
 	callback = function()
-		vim.api.nvim_buf_set_keymap(0, "n", "<C-j>", "<CR>:cnext<CR>:copen<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", "<CR>:cprev<CR>:copen<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":cclose<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "q", ":cclose<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "f", "/", {})
-		for i = 1, 9, 1 do
-			vim.api.nvim_buf_set_keymap(0, "n", tostring(i), tostring(i) .. "G<CR>:cclose<CR>", opts)
-		end
-		vim.o.relativenumber = false
 	end,
 	group = group_quickfix,
 })
 
 --- use q to close help windows
-local group_help = vim.api.nvim_create_augroup("CustomHelpMapping", { clear = true })
+local group_help = vim.api.nvim_create_augroup("CustomCloseMapping", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "help",
+	pattern = { "help", "netrw", "qf", "fugitive", "git", "fugitiveblame", "copilot-*" },
 	callback = function()
-		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":bd<CR>", opts)
 	end,
 	group = group_help,

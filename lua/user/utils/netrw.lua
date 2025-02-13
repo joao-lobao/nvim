@@ -6,26 +6,3 @@ vim.g.netrw_fastbrowse = 0 -- solution to netrw leaving buffers open
 
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<leader>e", ":Ex<CR>", opts)
-
--- create autocommand to set keymaps on specific filetype
-local group_netrw = vim.api.nvim_create_augroup("CustomNetrwMapping", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "netrw",
-	callback = function()
-		vim.api.nvim_buf_set_keymap(0, "n", "l", ":e <cfile><CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "h", ":Ex ..<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "gq", ":Rex<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":Rex<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "q", ":Rex<CR>", opts)
-		-- deletes unused keymaps so that they don't conflict with "q" keymap
-		local keymaps = vim.api.nvim_buf_get_keymap(0, "n")
-		for _, keymap in ipairs(keymaps) do
-			---@diagnostic disable-next-line: undefined-field
-			if keymap.lhs:match("^q.") then
-				---@diagnostic disable-next-line: undefined-field
-				vim.api.nvim_buf_del_keymap(0, "n", keymap.lhs)
-			end
-		end
-	end,
-	group = group_netrw,
-})

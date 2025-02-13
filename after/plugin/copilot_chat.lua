@@ -31,12 +31,3 @@ chat.setup({
 		},
 	},
 })
-
-local group_copilot_chat = vim.api.nvim_create_augroup("CustomCopilotChat", { clear = true })
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "copilot-*",
-	callback = function()
-		vim.keymap.set("n", "<Esc>", chat.close, { desc = "AI Close" })
-	end,
-	group = group_copilot_chat,
-})

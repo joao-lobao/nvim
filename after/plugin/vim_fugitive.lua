@@ -48,8 +48,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "fP", ":Git push --force", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git pull", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "fp", ":Git pull --force", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "q", ":bd<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":bd<CR>", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", search_up_cmd, opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<C-j>", search_down_cmd, opts)
 	end,
@@ -62,7 +60,6 @@ ToggleDiffView = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "gp", "[c", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "gn", "]c", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":q<CR>", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "gq", ":q<CR>", opts)
 	else
 		vim.api.nvim_command("q")
 	end
