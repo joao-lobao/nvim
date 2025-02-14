@@ -1,21 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-local function find_hunk(flag)
-	local line = vim.fn.search("^M \\|^D \\|^? \\|^@@ \\|^Unpushed \\|^Unpulled ", flag or "")
-	vim.api.nvim_command("normal! " .. line .. "G")
-end
-
-vim.api.nvim_create_user_command("FindHunkNext", function()
-	find_hunk()
-end, {})
-vim.api.nvim_create_user_command("FindHunkPrev", function()
-	find_hunk("b")
-end, {})
-
-local search_down_cmd = ":FindHunkNext<CR>"
-local search_up_cmd = ":FindHunkPrev<CR>"
-vim.api.nvim_set_keymap("n", "gs", ":G<CR>" .. search_down_cmd, opts)
-
+vim.api.nvim_set_keymap("n", "gs", ":G<CR>)j", opts)
 vim.api.nvim_set_keymap("n", "gl", ":Gclog<CR>:b#<CR><C-w>j", opts)
 vim.api.nvim_set_keymap("n", "g%", ":Gclog -- %<CR>:b#<CR><C-w>j", opts)
 vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
@@ -39,20 +24,6 @@ Browse_to_commit = function()
 end
 -- open commit url from git log diff or hash under cursor
 vim.api.nvim_set_keymap("n", "go", "<cmd>lua Browse_to_commit()<CR>", opts)
-
-local group_fugitive = vim.api.nvim_create_augroup("CustomFugitiveMapping", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "fugitive", "git", "fugitiveblame" },
-	callback = function()
-		vim.api.nvim_buf_set_keymap(0, "n", "P", ":Git push", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "fP", ":Git push --force", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git pull", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "fp", ":Git pull --force", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "gp", search_up_cmd, opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "gn", search_down_cmd, opts)
-	end,
-	group = group_fugitive,
-})
 
 ToggleDiffView = function()
 	if not vim.o.diff then
