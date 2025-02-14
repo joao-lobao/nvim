@@ -55,13 +55,11 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 ToggleDiffView = function()
-	if vim.o.diff == false then
+	if not vim.o.diff then
 		vim.api.nvim_command("Gdiffsplit")
 		vim.api.nvim_buf_set_keymap(0, "n", "gp", "[c", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "gn", "]c", opts)
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":q<CR>", opts)
-	else
-		vim.api.nvim_command("q")
 	end
 end
 vim.api.nvim_set_keymap("n", "vd", "<cmd>lua ToggleDiffView()<CR>", opts)
