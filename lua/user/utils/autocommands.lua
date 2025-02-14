@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
 --- use q to close help windows
 local group_help = vim.api.nvim_create_augroup("CustomCloseMapping", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "help", "netrw", "qf", "fugitive", "git", "fugitiveblame", "copilot-*" },
+	pattern = { "help", "netrw", "qf", "fugitive", "git", "fugitiveblame", "copilot-*", "lazy" },
 	callback = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", ":bd<CR>", opts)
 	end,
