@@ -35,3 +35,5 @@ vim.o.mouse = ""
 vim.o.wildignore = "*/node_modules/**, */dist/**, .git/**" -- list of file patterns to ignore by default on commands like vimgrep and find
 vim.opt.exrc = true -- allow local .nvim.lua .vimrc .exrc files
 vim.opt.secure = true -- disable shell and write commands in local .nvim.lua .vimrc .exrc files
+-- vim.opt.spell = true -- important maps: zw zg zuw zug z=
+-- vim.opt.spelllang = { "en_us", "pt_pt" }
