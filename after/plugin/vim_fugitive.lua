@@ -48,8 +48,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "fP", ":Git push --force", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "p", ":Git pull", { noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "fp", ":Git pull --force", { noremap = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", search_up_cmd, opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "<C-j>", search_down_cmd, opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "gp", search_up_cmd, opts)
+		vim.api.nvim_buf_set_keymap(0, "n", "gn", search_down_cmd, opts)
 	end,
 	group = group_fugitive,
 })
