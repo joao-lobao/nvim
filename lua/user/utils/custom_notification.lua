@@ -4,25 +4,46 @@ local config = {
 		icon = "I",
 		icon_hl = "NotificationInfoInv",
 		hl = "NotificationInfo",
-		hl_blur = "NotificationInfoBlur",
 	},
 	[vim.log.levels.WARN] = {
 		icon = "W",
 		icon_hl = "NotificationWarnInv",
 		hl = "NotificationWarn",
-		hl_blur = "NotificationWarnBlur",
 	},
 	[vim.log.levels.ERROR] = {
 		icon = "X",
 		icon_hl = "NotificationErrorInv",
 		hl = "NotificationError",
-		hl_blur = "NotificationErrorBlur",
 	},
 }
 
 local notifications = {}
+local function set_ext_mark(modifier, col, buffer, screen_topline, id, icon, msg, level, total_length)
+	vim.fn.timer_start(10, function()
+		if vim.api.nvim_buf_is_loaded(buffer) then
+			if modifier == "show" then
+				col = col - 1
+			else
+				col = col + 1
+			end
+
+			vim.api.nvim_buf_set_extmark(buffer, namespace, screen_topline, 0, {
+				id = id,
+				virt_text = {
+					{ icon, config[level].icon_hl },
+					{ msg, config[level].hl },
+				},
+				virt_text_win_col = col,
+				priority = 50,
+			})
+		end
+	end, { ["repeat"] = total_length })
+end
 
 function Notification(message, level)
+	local icon = " " .. config[level].icon .. " "
+	local msg = " " .. message .. " "
+	local total_length = #icon + #msg
 	local buffer = vim.api.nvim_get_current_buf()
 	local extmarks = vim.api.nvim_buf_get_extmarks(buffer, namespace, 0, -1, {})
 	-- id working also as an offset when there will be multiple active notifications, or set to line 0
@@ -31,22 +52,21 @@ function Notification(message, level)
 	local screen_topline = vim.fn.line("w0") - 2 + id
 	-- check notification position, higher than buffer size
 	screen_topline = screen_topline > line_count and 0 or screen_topline
-	vim.api.nvim_buf_set_extmark(buffer, namespace, screen_topline, 0, {
-		id = id,
-		virt_text = {
-			{ " " .. config[level].icon .. " ", config[level].icon_hl },
-			{ " " .. message .. " ", config[level].hl },
-		},
-		-- center notification horizontally
-		virt_text_win_col = math.floor(vim.api.nvim_win_get_width(0) / 2) - math.floor(#message / 2) - 6,
-		priority = 50,
-	})
+	local width = vim.api.nvim_win_get_width(0) - 7
 
+	-- animate notification (can also be achieved with loop timer)
+	-- show
+	set_ext_mark("show", width, buffer, screen_topline, id, icon, msg, level, total_length)
+	-- hiding starts after 5 seconds
 	vim.fn.timer_start(5000, function()
-		if vim.api.nvim_buf_is_loaded(buffer) then
-			vim.api.nvim_buf_del_extmark(buffer, namespace, id)
-		end
+		set_ext_mark("hide", width - total_length, buffer, screen_topline, id, icon, msg, level, total_length)
 	end)
+
+	-- clean notification
+	vim.fn.timer_start(5100 + (total_length * 10), function()
+		vim.api.nvim_buf_del_extmark(buffer, namespace, id)
+	end)
+
 	table.insert(notifications, { message = message, level = level })
 end
 

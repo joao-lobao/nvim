@@ -3,15 +3,12 @@ vim.api.nvim_set_hl(0, "MsgArea", { bg = Dark_gray, fg = Green })
 --Info
 vim.api.nvim_set_hl(0, "NotificationInfo", { bold = true, bg = Green, fg = Medium_gray })
 vim.api.nvim_set_hl(0, "NotificationInfoInv", { bold = true, bg = Medium_gray, fg = Green })
-vim.api.nvim_set_hl(0, "NotificationInfoBlur", { bg = Green, fg = Green })
 --Warn
 vim.api.nvim_set_hl(0, "NotificationWarn", { bold = true, bg = Bright_orange, fg = Medium_gray })
 vim.api.nvim_set_hl(0, "NotificationWarnInv", { bold = true, bg = Medium_gray, fg = Bright_orange })
-vim.api.nvim_set_hl(0, "NotificationWarnBlur", { bg = Bright_orange, fg = Bright_orange })
 --Error
 vim.api.nvim_set_hl(0, "NotificationError", { bold = true, bg = Red, fg = Medium_gray })
 vim.api.nvim_set_hl(0, "NotificationErrorInv", { bold = true, bg = Medium_gray, fg = Red })
-vim.api.nvim_set_hl(0, "NotificationErrorBlur", { bg = Red, fg = Red })
 
 vim.api.nvim_set_hl(0, "QuickfixLine", { bg = "none", fg = "none" })
 vim.api.nvim_set_hl(0, "qfFileName", { bg = "none", fg = Bright_orange })
