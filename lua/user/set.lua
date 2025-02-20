@@ -11,6 +11,7 @@ vim.o.relativenumber = true
 vim.o.wrap = false
 vim.o.path = "**"
 vim.o.wildmenu = true
+vim.o.wildignorecase = true
 -- on neovim 0.5 onwards need to install xclip (sudo apt-get install xclip)
 vim.o.clipboard = "unnamedplus"
 vim.o.foldmethod = "indent"
