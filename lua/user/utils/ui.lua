@@ -26,8 +26,8 @@ vim.api.nvim_set_hl(0, "StatusF", { bg = Dark_gray, fg = Cyan })
 vim.api.nvim_set_hl(0, "TablineFill", { bg = Dark_gray, fg = Green })
 -- statusline components
 local ft = "%#StatusA#%y "
-local pwd = "%#StatusB#%{fnamemodify('', ':p:h')}"
-local filename = "%#StatusC# %f "
+local pwd = "%#StatusB#%{fnamemodify('', ':p:h')} "
+local filename = "%#StatusC#%f "
 local modified = "%#StatusModified#%{&filetype!='TelescopePrompt' && &modified ? ' 󰆓 ' : ''}"
 local readonly = "%#StatusModified#%r%*%="
 local session_listed_buffers = "%#MsgArea# %{len(getcompletion('', 'buffer'))} "
