@@ -30,7 +30,7 @@ local pwd = "%#StatusB#%{fnamemodify('', ':p:h')} "
 local filename = "%#StatusC#%f "
 local modified = "%#StatusModified#%{&filetype!='TelescopePrompt' && &modified ? ' 󰆓 ' : ''}"
 local readonly = "%#StatusModified#%r%*%="
-local session_listed_buffers = "%#MsgArea# %{len(getcompletion('', 'buffer'))} "
+local loaded_buffers = "%#MsgArea# %{len(getcompletion('', 'buffer'))} "
 local session = "%#StatusD#%{fnamemodify(v:this_session, ':t')} "
 local lines = "%#StatusE#l:%l "
 local cols = "%#StatusA#c:%c "
@@ -45,11 +45,11 @@ local format = "%#StatusF#%{&fileformat}"
 vim.o.showtabline = 2
 vim.o.tabline = bufnr .. bufname .. get_buf_size .. encoding .. last_modified .. format
 vim.o.statusline = ft
+	.. loaded_buffers
 	.. pwd
 	.. filename
 	.. modified
 	.. readonly
-	.. session_listed_buffers
 	.. session
 	.. lines
 	.. cols
