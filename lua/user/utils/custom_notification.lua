@@ -65,7 +65,9 @@ function Notification(message, level)
 	-- clean notification
 	vim.fn.timer_start(5100 + (total_length * 10), function()
 		vim.api.nvim_buf_del_extmark(buffer, namespace, id)
-	end)
+		-- because lua thread might be busy when del_extmark is called, sometimes extmark deletion won't work
+		-- so try to clear notification 2 more times
+	end, { ["repeat"] = 2 })
 
 	table.insert(notifications, { message = message, level = level })
 end
