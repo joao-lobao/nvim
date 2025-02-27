@@ -26,12 +26,13 @@ vim.api.nvim_set_hl(0, "StatusF", { bg = Dark_gray, fg = Cyan })
 vim.api.nvim_set_hl(0, "TablineFill", { bg = Dark_gray, fg = Green })
 -- statusline components
 local ft = "%#StatusA#%y "
+local loaded_buffers = "%#MsgArea# %{len(getcompletion('', 'buffer'))} "
 local pwd = "%#StatusB#%{fnamemodify('', ':p:h')} "
 local filename = "%#StatusC#%f "
+local session = "%#StatusD#%{fnamemodify(v:this_session, ':t')} "
 local modified = "%#StatusModified#%{&filetype!='TelescopePrompt' && &modified ? ' 󰆓 ' : ''}"
 local readonly = "%#StatusModified#%r%*%="
-local loaded_buffers = "%#MsgArea# %{len(getcompletion('', 'buffer'))} "
-local session = "%#StatusD#%{fnamemodify(v:this_session, ':t')} "
+local line_percentage = "%#StatusD#%p%% "
 local lines = "%#StatusE#l:%l "
 local cols = "%#StatusA#c:%c "
 local total_lines = "%#StatusF#L:%L"
@@ -46,11 +47,12 @@ vim.o.showtabline = 2
 vim.o.tabline = bufnr .. bufname .. get_buf_size .. encoding .. last_modified .. format
 vim.o.statusline = ft
 	.. loaded_buffers
+	.. session
 	.. pwd
 	.. filename
 	.. modified
 	.. readonly
-	.. session
+	.. line_percentage
 	.. lines
 	.. cols
 	.. total_lines
