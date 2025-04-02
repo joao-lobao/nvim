@@ -30,8 +30,8 @@ vim.api.nvim_set_keymap("n", "<leader>|", "<C-w>|", opts)
 vim.api.nvim_set_keymap("n", "<leader>_", "<C-w>_", opts)
 
 -- adjust split sizes easier
-vim.api.nvim_set_keymap("n", "<C-Left>", ":vertical resize +3<CR>", opts) -- Control+Left resizes vertical split +
-vim.api.nvim_set_keymap("n", "<C-Right>", ":vertical resize -3<CR>", opts) -- Control+Right resizes vertical split -
+vim.api.nvim_set_keymap("n", "<C-l>", ":vertical resize +3<CR>", opts) -- Control+Left resizes vertical split +
+vim.api.nvim_set_keymap("n", "<C-h>", ":vertical resize -3<CR>", opts) -- Control+Right resizes vertical split -
 
 ------BUFFERS------
 -- buffer navigation, open and deleting
