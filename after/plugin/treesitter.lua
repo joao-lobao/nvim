@@ -48,10 +48,9 @@ treesitter.setup({
 	incremental_selection = {
 		enable = true,
 		keymaps = {
-			init_selection = "<c-space>", -- set to `false` to disable one of the mappings
-			node_incremental = "<c-space>",
+			init_selection = "<c-n>", -- set to `false` to disable one of the mappings
+			node_incremental = "<c-n>",
 			scope_incremental = "<c-i>",
-			node_decremental = "<c-space>",
 		},
 	},
 	textobjects = {

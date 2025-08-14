@@ -34,6 +34,19 @@ require("lazy").setup({
 	{ "github/copilot.vim" }, -- github copilot
 	{ "windwp/nvim-ts-autotag" }, -- auto close tag
 	{
+		"olimorris/codecompanion.nvim",
+		cmd = {
+			"CodeCompanion",
+			"CodeCompanionChat",
+			"CodeCompanionActions",
+			"CodeCompanionChat Toggle",
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		branch = "main",
 		dependencies = {
