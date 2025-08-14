@@ -31,6 +31,8 @@ treesitter.setup({
 		"markdown",
 		"markdown_inline",
 		"python",
+		"prisma",
+		"sql",
 		"rust",
 		"scss",
 		"typescript",
