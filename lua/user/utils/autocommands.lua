@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("FileType", {
 local group_yank = vim.api.nvim_create_augroup("HighlightYank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
-		vim.cmd("lua require'vim.highlight'.on_yank({timeout = 200})")
+		vim.hl.on_yank({ timeout = 200 })
 	end,
 	group = group_yank,
 })
