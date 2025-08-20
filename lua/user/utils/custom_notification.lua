@@ -64,7 +64,10 @@ function Notification(message, level)
 
 	-- clean notification
 	vim.fn.timer_start(5100 + (total_length * 10), function()
-		vim.api.nvim_buf_del_extmark(buffer, namespace, id)
+		-- if extmark still exists, delete it
+		if vim.api.nvim_buf_is_valid(buffer) then
+			vim.api.nvim_buf_del_extmark(buffer, namespace, id)
+		end
 	end)
 
 	table.insert(notifications, { message = message, level = level })
