@@ -41,8 +41,23 @@ codecompanion.setup({
 					schema = {
 						model = {
 							-- default = "qwen/qwen3-coder",
-							default = "deepseek/deepseek-chat-v3-0324:free",
+							default = "qwen/qwen3-coder:free",
+							-- default = "anthropic/claude-sonnet-4"
+							-- default = "anthropic/claude-3.7-sonnet"
+							-- default = "deepseek/deepseek-chat-v3-0324:free",
 						},
+						-- this temperature attribute configuration is just an example not for default = "deepseek-r1-671b"
+						-- temperature = {
+						-- 	order = 2,
+						-- 	mapping = "parameters",
+						-- 	type = "number",
+						-- 	optional = true,
+						-- 	default = 0.8,
+						-- 	desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
+						-- 	validate = function(n)
+						-- 		return n >= 0 and n <= 2, "Must be between 0 and 2"
+						-- 	end,
+						-- },
 					},
 				})
 			end,
