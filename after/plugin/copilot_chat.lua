@@ -1,4 +1,8 @@
-local chat = require("CopilotChat")
+-- import nvim-cmp plugin safely
+local chat_status, chat = pcall(require, "CopilotChat")
+if not chat_status then
+	return
+end
 
 AiAsk = function()
 	vim.ui.input({
