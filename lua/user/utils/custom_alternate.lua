@@ -1,6 +1,13 @@
+local get_fname_no_ext = function()
+	local filename = vim.fn.expand("%:t")
+	-- remove the last extension (e.g. .ts, .js, .lua)
+	return filename:gsub("%.%w+$", "")
+end
+
 local find_alternate_file = function(pattern)
-	-- file name before any "." eg: filename.test.js will return filename
-	local fname_no_ext = string.gsub(vim.fn.expand("%:t"), "%..*$", "")
+	local fname_no_ext = get_fname_no_ext()
+	-- remove trailing .test or .spec if present
+	fname_no_ext = fname_no_ext:gsub("%.test$", ""):gsub("%.spec$", "")
 	local directory = vim.fn.expand("%:p:h")
 
 	return vim.fs.find(function(name)
@@ -17,7 +24,7 @@ local create_alternate_file = function(alternate_type)
 	-- show message with error hl in case there is no alternate file
 	vim.cmd("echohl ErrorMsg | echo 'No alternate file found' | echohl None")
 
-	local fname_no_ext = string.gsub(vim.fn.expand("%:t"), "%..*$", "")
+	local fname_no_ext = get_fname_no_ext()
 	local directory = vim.fn.expand("%:p:h")
 
 	local alternate_file = fname_no_ext .. "." .. alternate_type
