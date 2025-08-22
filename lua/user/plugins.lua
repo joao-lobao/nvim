@@ -35,12 +35,6 @@ require("lazy").setup({
 	{ "windwp/nvim-ts-autotag" }, -- auto close tag
 	{
 		"olimorris/codecompanion.nvim",
-		cmd = {
-			"CodeCompanion",
-			"CodeCompanionChat",
-			"CodeCompanionActions",
-			"CodeCompanionChat Toggle",
-		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
