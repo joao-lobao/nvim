@@ -14,6 +14,20 @@ local date = function()
 	return { os.date("%d/%m/%Y") }
 end
 
+local log_warn_snip = function()
+	return {
+		snip({
+			trig = "cw",
+			name = "console.warn",
+			desc = "console warn",
+		}, {
+			text({ "console.warn(" }),
+			insert(1, "test"),
+			text({ ")" }),
+		}),
+	}
+end
+
 local log_snip = function()
 	return {
 		snip({
@@ -46,8 +60,8 @@ luasnip.add_snippets(nil, {
 			text({ "", "---" }),
 		}),
 	},
-	javascriptreact = log_snip(),
-	javascript = log_snip(),
-	typescriptreact = log_snip(),
-	typescript = log_snip(),
+	javascriptreact = vim.list_extend(log_snip(), log_warn_snip()),
+	javascript = vim.list_extend(log_snip(), log_warn_snip()),
+	typescriptreact = vim.list_extend(log_snip(), log_warn_snip()),
+	typescript = vim.list_extend(log_snip(), log_warn_snip()),
 })
