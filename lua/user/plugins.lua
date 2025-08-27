@@ -64,6 +64,18 @@ require("lazy").setup({
 			"nvimtools/none-ls-extras.nvim",
 		},
 	}, -- in charge of managing lsp servers, linters & formatters
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "InsertEnter",
+		opts = {
+			bind = true,
+			handler_opts = {
+				border = "rounded",
+			},
+		},
+		-- or use config
+		-- config = function(_, opts) require'lsp_signature'.setup({you options}) end
+	},
 
 	-- CMP
 	{
