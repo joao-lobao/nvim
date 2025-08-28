@@ -95,6 +95,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 		"*.java",
 		"*.rb",
 		"*.sql",
+		"*.prisma",
 		"*.swift",
 		"*.r",
 		"*.php",
@@ -107,9 +108,13 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 		"*.keymap",
 		"*.yml",
 		"*.yaml",
+		"*.toml",
 		"*.conf",
+		"*.dev",
+		"*.env",
 		"*rc",
 		"*ignore",
+		"*config",
 	},
 	callback = function()
 		if IsBufferEligibleForSigning() then
