@@ -4,6 +4,11 @@ local get_fname_no_ext = function()
 	return filename:gsub("%.%w+$", "")
 end
 
+-- ([^%w]) matches any non-alphanumeric character (like ., -, _, etc.)
+-- %%%1 escapes it with % so Lua treats it literally.
+local function escape_pattern(text)
+	return text:gsub("([^%w])", "%%%1")
+end
 local find_alternate_file = function(pattern)
 	local fname_no_ext = get_fname_no_ext()
 	-- remove trailing .test or .spec if present
@@ -11,7 +16,7 @@ local find_alternate_file = function(pattern)
 	local directory = vim.fn.expand("%:p:h")
 
 	return vim.fs.find(function(name)
-		return name:match(fname_no_ext .. pattern)
+		return name:match(escape_pattern(fname_no_ext) .. pattern)
 	end, {
 		path = directory,
 		stop = "../..",
