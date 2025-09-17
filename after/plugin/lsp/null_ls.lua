@@ -4,8 +4,6 @@ if not setup then
 	return
 end
 
-local code_actions = require("user.utils.null_ls").code_actions(null_ls)
-
 -- for conciseness
 local formatting = null_ls.builtins.formatting -- to setup formatters
 local diagnostics = null_ls.builtins.diagnostics -- to setup linters
@@ -47,8 +45,6 @@ null_ls.setup({
 		-- require("none-ls.formatting.eslint_d").with({ condition = Has_eslint_rules }),
 	},
 })
-
-null_ls.register(code_actions.no_undef)
 
 function Format_Null_ls()
 	--get lsp clients attached to current buffer
