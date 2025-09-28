@@ -178,7 +178,7 @@ local opts = { noremap = true, silent = false }
 -- vim.api.nvim_set_keymap("n", "tg", ":vim  **/* **/.*<C-Left><C-Left><Left>", opts) -- use f as /test/f for fuzzy or \C as test\C for case sensitive search
 -- vim.api.nvim_set_keymap("n", "tb", ":buffers<CR>:b", opts)
 -- vim.api.nvim_set_keymap("n", "to", ":browse filter ** oldfiles<C-Left><Left><Left>", opts)
-vim.api.nvim_set_keymap("n", "tb", "<cmd>lua ListedBuffers()<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "tb", "<cmd>lua ListedBuffers()<CR>", opts)
 -- vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Oldfiles()<CR>", opts)
 vim.api.nvim_set_keymap("n", "td", "<cmd>lua Diagnostics()<CR>", opts)
 vim.api.nvim_set_keymap("n", "tE", "<cmd>lua Eslint_to_qflist()<CR>", opts)
