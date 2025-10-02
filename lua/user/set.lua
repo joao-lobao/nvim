@@ -31,8 +31,6 @@ vim.o.cul = true -- highlights the line where currently is the cursor
 vim.o.ai = true -- Auto indent
 vim.o.si = true -- Smart indent
 vim.o.laststatus = 3 -- show only one status line even if there are multiple splits
--- no mouse
-vim.o.mouse = ""
 vim.o.wildignore = "*/node_modules/**, */dist/**, .git/**" -- list of file patterns to ignore by default on commands like vimgrep and find
 vim.opt.exrc = true -- allow local .nvim.lua .vimrc .exrc files
 vim.opt.secure = true -- disable shell and write commands in local .nvim.lua .vimrc .exrc files
