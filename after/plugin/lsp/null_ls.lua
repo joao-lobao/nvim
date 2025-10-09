@@ -72,11 +72,20 @@ vim.keymap.set({ "n", "v" }, "<leader>p", "<cmd>lua Format_Null_ls()<CR>", opts)
 -- native lsp format mapping when null_ls can't do it
 vim.keymap.set({ "n", "v" }, "<leader>{", "<cmd>lua Format_Native()<CR>", opts)
 
+-- Define a command to save without formatting
+vim.api.nvim_create_user_command("NoFormatOnSave", function()
+	vim.b.disable_autoformat = true
+	vim.cmd("write")
+	vim.b.disable_autoformat = false
+end, {})
+
 -- Format On Save
 local group_format = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
-	callback = function()
-		vim.cmd("lua Format_Null_ls()")
-	end,
 	group = group_format,
+	callback = function()
+		if not vim.b.disable_autoformat then
+			vim.cmd("lua Format_Null_ls()")
+		end
+	end,
 })
