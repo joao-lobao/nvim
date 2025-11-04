@@ -81,11 +81,11 @@ treesitter.setup({
 			},
 			goto_previous_start = {
 				["M0"] = "@function.outer",
-				["C0"] = "@class.inner",
+				-- ["C0"] = "@class.inner",
 			},
 			goto_previous_end = {
 				["M$"] = "@function.outer",
-				["C$"] = "@class.inner",
+				-- ["C$"] = "@class.inner",
 			},
 		},
 	},
