@@ -71,6 +71,7 @@ vim.cmd([[
   ia Fnuction Function
   ia cosnt const
   ia csont const
+  ia cnost const
   ia scont const
   ia conts const
   ia Cosnt Const
@@ -82,6 +83,11 @@ vim.cmd([[
   ia tets test
   ia retrun return
   ia reutrn return
+  ia ruetrn return
+  ia retrn return
+  ia retnur return
+  ia retnr return
+  ia retnru return
   ia retunr return
   ia retun return
   ia retur return
@@ -90,6 +96,14 @@ vim.cmd([[
   ia lcola local
   ia lcocal local
   ia Thsi this
+  ia thsi this
+  ia htis this
+  ia tsih this
+  ia tish this
+  ia tshi this
+  ia etst test
+  ia tset test
+  ia tets test
   ia Tset Test
   ia Tets Test
   ia Retrun Return
