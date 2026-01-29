@@ -12,6 +12,8 @@ end
 
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
+-- extend javascript snippets to typescript (like 'describe' and 'it')
+require("luasnip").filetype_extend("typescript", { "javascript" })
 
 cmp.setup({
 	completion = {
