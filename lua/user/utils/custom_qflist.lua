@@ -33,15 +33,31 @@ local search = {
 }
 
 local get_home_files = function(pattern)
-	local home_files =
-		-- find all files and directories in the home directory
-		-- ~ is the home directory
-		-- -type f,d (file or directory)
-		-- -name '*pattern*' (search for files or directories with the pattern)
-		-- ! -path '*node_modules*' (exclude node_modules directory)
-		-- ! -path '*.git/*' (exclude .git directory)
-		vim.fn.systemlist("find ~ -type f,d -name '*" .. pattern .. "*' ! -path '*node_modules*' ! -path '*.git/*'")
-	return home_files
+	local pat = "*" .. pattern .. "*"
+
+	local results = vim.fn.systemlist({
+		-- vim.fn.expand("~") -> resolves ~ to your absolute home directory because there is no shell to expand it, only shell can do it
+		-- group paths to exclude, -o as OR and parenthesis to group conditions -> (-path '*/node_modules/*' -o -path '*/.git/*')
+		-- skip those directories -> -prune
+		-- Either it was pruned, OR evaluate what comes next -> -o
+		-- case-insensitive match on the entire path -> -ipath
+		-- output matching paths -> -print
+		"find",
+		vim.fn.expand("~"),
+		"(",
+		"-path",
+		"*/node_modules/*",
+		"-o",
+		"-path",
+		"*/.git/*",
+		")",
+		"-prune",
+		"-o",
+		"-ipath",
+		pat,
+		"-print",
+	})
+	return results
 end
 
 local get_files = function(scope)
@@ -60,7 +76,9 @@ Files = function(type)
 	local results = {}
 
 	for _, g_file in ipairs(files) do
-		if vim.fn.tolower(g_file):find(pattern) then
+		if type == "home" then
+			table.insert(results, { filename = g_file })
+		elseif vim.fn.tolower(g_file):find(pattern) then
 			local file = { filename = g_file }
 			table.insert(results, file)
 		end
