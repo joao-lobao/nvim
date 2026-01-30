@@ -52,8 +52,13 @@ end
 Files = function(type)
 	local pattern = vim.fn.tolower(vim.fn.input("Search file: ", "", "file"))
 
+	if pattern == "" then
+		return
+	end
+
 	local files = type == "home" and get_home_files(pattern) or get_files(type)
 	local results = {}
+
 	for _, g_file in ipairs(files) do
 		if vim.fn.tolower(g_file):find(pattern) then
 			local file = { filename = g_file }
@@ -75,14 +80,17 @@ end
 Grep = function(params)
 	params = params or ""
 
-	local pattern = vim.fn.input("Search pattern: ")
+	local pattern = vim.fn.input("Grep pattern: ")
+	if pattern == "" then
+		return
+	end
 	-- -i (ignore case)
 	-- --vimgrep (output format, a line with more than one match will be printed more than once)
 	-- --hidden (search hidden files)
 	-- --glob '!.git' (excludes the .git directory)
 	local grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
-	if pattern == "" or #grep == 0 then
-		Notification("No results to show", vim.log.levels.ERROR)
+	if #grep == 0 then
+		Notification("No matches found", vim.log.levels.ERROR)
 		return
 	end
 
@@ -100,7 +108,11 @@ Oldfiles = function()
 	oldfiles = vim.split(oldfiles.output, "\n")
 	local results = {}
 
-	local pattern = vim.fn.tolower(vim.fn.input("Search file: "))
+	local pattern = vim.fn.tolower(vim.fn.input("Oldfiles pattern: "))
+	if pattern == "" then
+		return
+	end
+
 	for _, o_file in ipairs(oldfiles) do
 		local fname = vim.split(o_file, ": ")[2]
 		if fname ~= nil and vim.fn.tolower(fname):find(pattern) then
@@ -167,7 +179,10 @@ end
 Mappings = function()
 	local results = {}
 
-	local pattern = vim.fn.input("Search pattern: ")
+	local pattern = vim.fn.input("Mappings pattern: ")
+	if pattern == "" then
+		return
+	end
 	-- filter keys by pattern
 	local keys = vim.tbl_filter(function(key)
 		-- check key["lhs"] starts with a space
