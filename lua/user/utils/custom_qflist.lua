@@ -163,9 +163,31 @@ Eslint_to_qflist = function()
 		Notification("No linting errors found", vim.log.levels.INFO)
 		return
 	end
-	vim.fn.setqflist(lints)
-	vim.cmd("copen")
-	vim.notify(#lints .. " linting issues found", vim.log.levels.INFO)
+	open_list_and_notify(lints)
+end
+
+Mappings = function()
+	local mappings = {}
+
+	local pattern = vim.fn.input("Search pattern: ")
+	-- filter keys by pattern
+	local keys = vim.tbl_filter(function(key)
+		-- check key["lhs"] starts with a space
+		if key["lhs"]:sub(1, 1) == " " then
+			key["lhs"] = "<leader>" .. key["lhs"]:sub(2)
+		end
+
+		if key["rhs"] == nil then
+			key["rhs"] = ""
+		end
+		return (key["lhs"] .. " -------> " .. key["rhs"]):lower():find(pattern:lower())
+	end, vim.api.nvim_get_keymap("n"))
+
+	for _, key in ipairs(keys) do
+		table.insert(mappings, { filename = key["lhs"] .. " -------> " .. key["rhs"] })
+	end
+
+	open_list_and_notify(mappings)
 end
 
 local opts = { noremap = true, silent = false }
@@ -179,6 +201,8 @@ vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>lua Files('home')<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua Grep()<CR>", opts)
 -- all grep
 vim.api.nvim_set_keymap("n", "<leader>tG", "<cmd>lua Grep('--no-ignore')<CR>", opts)
+-- keymaps
+vim.api.nvim_set_keymap("n", "<leader>tk", "<cmd>lua Mappings()<CR>", opts)
 -- others
 -- vim.api.nvim_set_keymap("n", "tf", ":find *", opts) -- to find hidden files have to replace "*" for ".*"
 -- vim.api.nvim_set_keymap("n", "th", ":find ~/", opts)
