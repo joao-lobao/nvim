@@ -3,6 +3,12 @@ local is_qf_open = function()
 	return quickfix_window ~= 0
 end
 
+local open_list_and_notify = function(results)
+	vim.fn.setqflist(results)
+	vim.cmd("copen")
+	vim.notify(#results .. " results found", vim.log.levels.INFO)
+end
+
 ListedBuffers = function()
 	if is_qf_open() then
 		vim.cmd("cclose")
@@ -17,10 +23,8 @@ ListedBuffers = function()
 		buf["text"] = buf.bufnr
 		table.insert(buffers, buf)
 	end
-	vim.fn.setqflist(buffers)
-	vim.cmd("copen")
+	open_list_and_notify(buffers)
 	vim.fn.search(buf_name)
-	vim.notify(#buffers .. " buffers listed", vim.log.levels.INFO)
 end
 
 local search = {
@@ -65,9 +69,7 @@ Files = function(type)
 		return
 	end
 
-	vim.fn.setqflist(results)
-	vim.cmd("copen")
-	vim.notify(#results .. " files found", vim.log.levels.INFO)
+	open_list_and_notify(results)
 end
 
 Grep = function(params)
@@ -90,9 +92,7 @@ Grep = function(params)
 		table.insert(matches, { filename = file, lnum = line, col = col, text = text })
 	end
 
-	vim.fn.setqflist(matches)
-	vim.cmd("copen")
-	vim.notify(#matches .. " matches found", vim.log.levels.INFO)
+	open_list_and_notify(matches)
 end
 
 Oldfiles = function()
@@ -117,9 +117,7 @@ Oldfiles = function()
 		return
 	end
 
-	vim.fn.setqflist(files)
-	vim.cmd("copen")
-	vim.notify(#files .. " files found", vim.log.levels.INFO)
+	open_list_and_notify(files)
 end
 
 Diagnostics = function()
