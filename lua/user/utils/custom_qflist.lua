@@ -165,7 +165,7 @@ Eslint_to_qflist = function()
 end
 
 Mappings = function()
-	local mappings = {}
+	local results = {}
 
 	local pattern = vim.fn.input("Search pattern: ")
 	-- filter keys by pattern
@@ -182,10 +182,14 @@ Mappings = function()
 	end, vim.api.nvim_get_keymap("n"))
 
 	for _, key in ipairs(keys) do
-		table.insert(mappings, { filename = key["lhs"] .. " -------> " .. key["rhs"] })
+		table.insert(results, { filename = key["lhs"] .. " -------> " .. key["rhs"] })
 	end
 
-	open_list_and_notify(mappings)
+	if #results == 0 then
+		Notification("No mappings found", vim.log.levels.INFO)
+		return
+	end
+	open_list_and_notify(results)
 end
 
 local opts = { noremap = true, silent = false }
