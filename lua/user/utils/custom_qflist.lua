@@ -20,6 +20,7 @@ ListedBuffers = function()
 	vim.fn.setqflist(buffers)
 	vim.cmd("copen")
 	vim.fn.search(buf_name)
+	vim.notify(#buffers .. " buffers listed", vim.log.levels.INFO)
 end
 
 local search = {
@@ -66,6 +67,7 @@ Files = function(type)
 
 	vim.fn.setqflist(results)
 	vim.cmd("copen")
+	vim.notify(#results .. " files found", vim.log.levels.INFO)
 end
 
 Grep = function(params)
@@ -90,6 +92,7 @@ Grep = function(params)
 
 	vim.fn.setqflist(matches)
 	vim.cmd("copen")
+	vim.notify(#matches .. " matches found", vim.log.levels.INFO)
 end
 
 Oldfiles = function()
@@ -116,15 +119,18 @@ Oldfiles = function()
 
 	vim.fn.setqflist(files)
 	vim.cmd("copen")
+	vim.notify(#files .. " files found", vim.log.levels.INFO)
 end
 
 Diagnostics = function()
-	if #vim.diagnostic.get() == 0 then
+	local diagnostics = vim.diagnostic.get()
+	if #diagnostics == 0 then
 		Notification("No diagnostics found", vim.log.levels.INFO)
 		return
 	end
 	vim.diagnostic.setqflist()
 	vim.cmd("copen")
+	vim.notify(#diagnostics .. " diagnostics found", vim.log.levels.INFO)
 end
 
 Eslint_to_qflist = function()
@@ -159,6 +165,7 @@ Eslint_to_qflist = function()
 	end
 	vim.fn.setqflist(lints)
 	vim.cmd("copen")
+	vim.notify(#lints .. " linting issues found", vim.log.levels.INFO)
 end
 
 local opts = { noremap = true, silent = false }
