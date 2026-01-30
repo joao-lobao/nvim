@@ -190,25 +190,25 @@ end
 
 local opts = { noremap = true, silent = false }
 -- git/project files
-vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>lua Files('project')<CR>", opts)
+vim.api.nvim_set_keymap("n", "tf", "<cmd>lua Files('project')<CR>", opts)
 -- all files
-vim.api.nvim_set_keymap("n", "<leader>tF", "<cmd>lua Files('all')<CR>", opts)
+vim.api.nvim_set_keymap("n", "tF", "<cmd>lua Files('all')<CR>", opts)
 -- home files
-vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>lua Files('home')<CR>", opts)
+vim.api.nvim_set_keymap("n", "th", "<cmd>lua Files('home')<CR>", opts)
 -- git grep
-vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua Grep()<CR>", opts)
+vim.api.nvim_set_keymap("n", "tg", "<cmd>lua Grep()<CR>", opts)
 -- all grep
-vim.api.nvim_set_keymap("n", "<leader>tG", "<cmd>lua Grep('--no-ignore')<CR>", opts)
+vim.api.nvim_set_keymap("n", "tG", "<cmd>lua Grep('--no-ignore')<CR>", opts)
 -- keymaps
-vim.api.nvim_set_keymap("n", "<leader>tk", "<cmd>lua Mappings()<CR>", opts)
+vim.api.nvim_set_keymap("n", "tk", "<cmd>lua Mappings()<CR>", opts)
 -- others
 -- vim.api.nvim_set_keymap("n", "tf", ":find *", opts) -- to find hidden files have to replace "*" for ".*"
 -- vim.api.nvim_set_keymap("n", "th", ":find ~/", opts)
 -- vim.api.nvim_set_keymap("n", "tg", ":vim  **/* **/.*<C-Left><C-Left><Left>", opts) -- use f as /test/f for fuzzy or \C as test\C for case sensitive search
 -- vim.api.nvim_set_keymap("n", "tb", ":buffers<CR>:b", opts)
 -- vim.api.nvim_set_keymap("n", "to", ":browse filter ** oldfiles<C-Left><Left><Left>", opts)
-vim.api.nvim_set_keymap("n", "<leader>tb", "<cmd>lua ListedBuffers()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>to", "<cmd>lua Oldfiles()<CR>", opts)
+vim.api.nvim_set_keymap("n", "tb", "<cmd>lua ListedBuffers()<CR>", opts)
+vim.api.nvim_set_keymap("n", "to", "<cmd>lua Oldfiles()<CR>", opts)
 vim.api.nvim_set_keymap("n", "td", "<cmd>lua Diagnostics()<CR>", opts)
 vim.api.nvim_set_keymap("n", "tE", "<cmd>lua Eslint_to_qflist()<CR>", opts)
 -- open quickfix list
