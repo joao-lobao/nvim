@@ -183,8 +183,10 @@ Mappings = function()
 	if pattern == "" then
 		return
 	end
-	-- filter keys by pattern
-	local keys = vim.tbl_filter(function(key)
+
+	local keys = vim.api.nvim_get_keymap("n")
+
+	for _, key in ipairs(keys) do
 		-- check key["lhs"] starts with a space
 		if key["lhs"]:sub(1, 1) == " " then
 			key["lhs"] = "<leader>" .. key["lhs"]:sub(2)
@@ -193,11 +195,17 @@ Mappings = function()
 		if key["rhs"] == nil then
 			key["rhs"] = ""
 		end
-		return (key["lhs"] .. " -------> " .. key["rhs"]):lower():find(pattern:lower())
-	end, vim.api.nvim_get_keymap("n"))
 
-	for _, key in ipairs(keys) do
-		table.insert(results, { filename = key["lhs"] .. " -------> " .. key["rhs"] })
+		local left = key["lhs"]:lower():find(pattern:lower())
+		local right = key["rhs"]:lower():find(pattern:lower())
+
+		if not (left == nil) or not (right == nil) then
+			if left ~= nil then
+				table.insert(results, 1, { filename = key["lhs"], pattern = key["rhs"] })
+			else
+				table.insert(results, { pattern = key["lhs"], filename = key["rhs"]:gsub("|", "") })
+			end
+		end
 	end
 
 	if #results == 0 then
