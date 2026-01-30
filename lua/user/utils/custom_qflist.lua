@@ -27,10 +27,18 @@ ListedBuffers = function()
 	vim.fn.search(buf_name)
 end
 
-local search = {
-	project = { git = "git ls-files", no_git = "find . -type f -name '*' ! -path '*node_modules*'" },
-	all = { git = "git ls-files --cached --others", no_git = "find . -type f -name '*'" },
-}
+local search = function(pattern)
+	return {
+		project = {
+			git = "git ls-files '*" .. pattern .. "*'",
+			no_git = "find . -type f -name '*" .. pattern .. "*' ! -path '*node_modules*'",
+		},
+		all = {
+			git = "git ls-files --cached --others '*" .. pattern .. "*'",
+			no_git = "find . -type f -name '*" .. pattern .. "*'",
+		},
+	}
+end
 
 local get_home_files = function(pattern)
 	local pat = "*" .. pattern .. "*"
@@ -60,8 +68,8 @@ local get_home_files = function(pattern)
 	return results
 end
 
-local get_files = function(scope)
-	local search_scope_vsc = Is_git_repo() and search[scope].git or search[scope].no_git
+local get_files = function(scope, pattern)
+	local search_scope_vsc = Is_git_repo() and search(pattern)[scope].git or search(pattern)[scope].no_git
 	return vim.fn.systemlist(search_scope_vsc)
 end
 
@@ -72,16 +80,11 @@ Files = function(type)
 		return
 	end
 
-	local files = type == "home" and get_home_files(pattern) or get_files(type)
+	local files = type == "home" and get_home_files(pattern) or get_files(type, pattern)
 	local results = {}
 
 	for _, g_file in ipairs(files) do
-		if type == "home" then
-			table.insert(results, { filename = g_file })
-		elseif vim.fn.tolower(g_file):find(pattern) then
-			local file = { filename = g_file }
-			table.insert(results, file)
-		end
+		table.insert(results, { filename = g_file })
 	end
 
 	if #results == 0 then
