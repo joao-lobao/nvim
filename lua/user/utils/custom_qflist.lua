@@ -16,14 +16,14 @@ ListedBuffers = function()
 	end
 
 	local buf_name = vim.fn.expand("%:f")
-	local buffers = {}
+	local results = {}
 	local opened_bufs = vim.fn.getbufinfo({ buflisted = 1 })
 	for _, buf in ipairs(opened_bufs) do
 		-- display buffer number on quickfix list item
 		buf["text"] = buf.bufnr
-		table.insert(buffers, buf)
+		table.insert(results, buf)
 	end
-	open_list_and_notify(buffers)
+	open_list_and_notify(results)
 	vim.fn.search(buf_name)
 end
 
@@ -86,49 +86,49 @@ Grep = function(params)
 		return
 	end
 
-	local matches = {}
+	local results = {}
 	for _, rg_match in ipairs(grep) do
 		local file, line, col, text = rg_match:match("([^:]+):(%d+):(%d+):(.*)")
-		table.insert(matches, { filename = file, lnum = line, col = col, text = text })
+		table.insert(results, { filename = file, lnum = line, col = col, text = text })
 	end
 
-	open_list_and_notify(matches)
+	open_list_and_notify(results)
 end
 
 Oldfiles = function()
 	local oldfiles = vim.api.nvim_exec2("filter /\\v^(fugitive|.*fugitiveblame$)@!/ oldfiles", { output = true })
 	oldfiles = vim.split(oldfiles.output, "\n")
-	local files = {}
+	local results = {}
 
 	local pattern = vim.fn.tolower(vim.fn.input("Search file: "))
 	for _, o_file in ipairs(oldfiles) do
 		local fname = vim.split(o_file, ": ")[2]
 		if fname ~= nil and vim.fn.tolower(fname):find(pattern) then
 			local file = { filename = fname }
-			table.insert(files, file)
+			table.insert(results, file)
 		end
 	end
 
-	if #files == 0 then
+	if #results == 0 then
 		Notification("No files found", vim.log.levels.INFO)
 		return
-	elseif #files == 1 then
-		vim.cmd("edit " .. files[1].filename)
+	elseif #results == 1 then
+		vim.cmd("edit " .. results[1].filename)
 		return
 	end
 
-	open_list_and_notify(files)
+	open_list_and_notify(results)
 end
 
 Diagnostics = function()
-	local diagnostics = vim.diagnostic.get()
-	if #diagnostics == 0 then
+	local results = vim.diagnostic.get()
+	if #results == 0 then
 		Notification("No diagnostics found", vim.log.levels.INFO)
 		return
 	end
 	vim.diagnostic.setqflist()
 	vim.cmd("copen")
-	vim.notify(#diagnostics .. " diagnostics found", vim.log.levels.INFO)
+	vim.notify(#results .. " diagnostics found", vim.log.levels.INFO)
 end
 
 Eslint_to_qflist = function()
@@ -146,10 +146,10 @@ Eslint_to_qflist = function()
 
 	local diagnostics = decode_eslint_result()
 
-	local lints = {}
+	local results = {}
 	local severity = { s2 = "E", s1 = "W" }
 	for _, diag in ipairs(diagnostics) do
-		table.insert(lints, {
+		table.insert(results, {
 			type = severity["s" .. diag.severity] or "N",
 			filename = diag.filename,
 			lnum = diag.lnum,
@@ -157,11 +157,11 @@ Eslint_to_qflist = function()
 			text = diag.text,
 		})
 	end
-	if #lints == 0 then
+	if #results == 0 then
 		Notification("No linting errors found", vim.log.levels.INFO)
 		return
 	end
-	open_list_and_notify(lints)
+	open_list_and_notify(results)
 end
 
 Mappings = function()
