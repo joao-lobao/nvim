@@ -72,12 +72,3 @@ function Notification(message, level)
 
 	table.insert(notifications, { message = message, level = level })
 end
-
-function Get_last_notification()
-	local index = #notifications
-	if #notifications > 0 then
-		vim.notify(notifications[index].message, notifications[index].level)
-	end
-end
-
-vim.api.nvim_create_user_command("LastNotification", ":lua Get_last_notification()", {})
