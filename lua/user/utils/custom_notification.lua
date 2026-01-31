@@ -17,7 +17,6 @@ local config = {
 	},
 }
 
-local notifications = {}
 local function set_ext_mark(buffer, screen_topline, id, icon, msg, level)
 	if vim.api.nvim_buf_is_loaded(buffer) then
 		vim.api.nvim_buf_set_extmark(buffer, namespace, screen_topline, 0, {
@@ -52,6 +51,4 @@ function Notification(message, level)
 			vim.api.nvim_buf_del_extmark(buffer, namespace, id)
 		end
 	end)
-
-	table.insert(notifications, { message = message, level = level })
 end
