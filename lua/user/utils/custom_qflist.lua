@@ -28,14 +28,16 @@ ListedBuffers = function()
 end
 
 local search = function(pattern)
+	local greedy_pattern = "'*" .. pattern .. "*'"
 	return {
 		project = {
-			git = "git ls-files '*" .. pattern .. "*'",
-			no_git = "find . -type f -name '*" .. pattern .. "*' ! -path '*node_modules*'",
+			git = "git ls-files " .. greedy_pattern,
+			-- no_git = "find . -type f -name " .. greedy_pattern .. " ! -path '*node_modules*'",
+			no_git = "find . (-path */node_modules/*) -prune -o -ipath " .. greedy_pattern .. " -print",
 		},
 		all = {
-			git = "git ls-files --cached --others '*" .. pattern .. "*'",
-			no_git = "find . -type f -name '*" .. pattern .. "*'",
+			git = "git ls-files --cached --others " .. greedy_pattern,
+			no_git = "find . -ipath " .. greedy_pattern .. " -print",
 		},
 	}
 end
