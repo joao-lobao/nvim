@@ -27,62 +27,50 @@ ListedBuffers = function()
 	vim.fn.search(buf_name)
 end
 
-local search = function(pattern)
-	local greedy_pattern = "'*" .. pattern .. "*'"
+local get_files_from = function(dir, pattern)
+	local pat = "*" .. pattern .. "*"
+
 	return {
-		project = {
-			git = "git ls-files " .. greedy_pattern,
-			-- no_git = "find . -type f -name " .. greedy_pattern .. " ! -path '*node_modules*'",
-			no_git = "find . (-path */node_modules/*) -prune -o -ipath " .. greedy_pattern .. " -print",
-		},
-		all = {
-			git = "git ls-files --cached --others " .. greedy_pattern,
-			no_git = "find . -ipath " .. greedy_pattern .. " -print",
-		},
+		prune = vim.fn.systemlist({
+			"find",
+			vim.fn.expand(dir),
+			"(",
+			"-path",
+			"*/node_modules/*",
+			"-o",
+			"-path",
+			"*/.git/*",
+			")",
+			"-prune",
+			"-o",
+			"-ipath",
+			pat,
+			"-print",
+		}),
+		no_prune = vim.fn.systemlist({
+			"find",
+			vim.fn.expand(dir),
+			"-ipath",
+			pat,
+			"-print",
+		}),
 	}
 end
 
-local get_home_files = function(pattern)
-	local pat = "*" .. pattern .. "*"
+Files = function(dir, prune)
+	if dir == nil or dir == "" then
+		dir = vim.fn.getcwd()
+	end
+	if prune == nil or prune == "" then
+		prune = "prune"
+	end
 
-	local results = vim.fn.systemlist({
-		-- vim.fn.expand("~") -> resolves ~ to your absolute home directory because there is no shell to expand it, only shell can do it
-		-- group paths to exclude, -o as OR and parenthesis to group conditions -> (-path '*/node_modules/*' -o -path '*/.git/*')
-		-- skip those directories -> -prune
-		-- Either it was pruned, OR evaluate what comes next -> -o
-		-- case-insensitive match on the entire path -> -ipath
-		-- output matching paths -> -print
-		"find",
-		vim.fn.expand("~"),
-		"(",
-		"-path",
-		"*/node_modules/*",
-		"-o",
-		"-path",
-		"*/.git/*",
-		")",
-		"-prune",
-		"-o",
-		"-ipath",
-		pat,
-		"-print",
-	})
-	return results
-end
-
-local get_files = function(scope, pattern)
-	local search_scope_vsc = Is_git_repo() and search(pattern)[scope].git or search(pattern)[scope].no_git
-	return vim.fn.systemlist(search_scope_vsc)
-end
-
-Files = function(type)
 	local pattern = vim.fn.tolower(vim.fn.input("Search file: ", "", "file"))
-
 	if pattern == "" then
 		return
 	end
 
-	local files = type == "home" and get_home_files(pattern) or get_files(type, pattern)
+	local files = get_files_from(dir, pattern)[prune]
 	local results = {}
 
 	for _, g_file in ipairs(files) do
@@ -240,11 +228,11 @@ end
 
 local opts = { noremap = true, silent = false }
 -- git/project files
-vim.api.nvim_set_keymap("n", "tf", "<cmd>lua Files('project')<CR>", opts)
+vim.api.nvim_set_keymap("n", "tf", "<cmd>lua Files()<CR>", opts)
 -- all files
-vim.api.nvim_set_keymap("n", "tF", "<cmd>lua Files('all')<CR>", opts)
+vim.api.nvim_set_keymap("n", "tF", "<cmd>lua Files('', 'no_prune')<CR>", opts)
 -- home files
-vim.api.nvim_set_keymap("n", "th", "<cmd>lua Files('home')<CR>", opts)
+vim.api.nvim_set_keymap("n", "th", "<cmd>lua Files('~')<CR>", opts)
 -- git grep
 vim.api.nvim_set_keymap("n", "tg", "<cmd>lua Grep()<CR>", opts)
 -- all grep
