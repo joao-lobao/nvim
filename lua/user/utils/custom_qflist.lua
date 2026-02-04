@@ -4,6 +4,10 @@ local is_qf_open = function()
 end
 
 local open_list_and_notify = function(results)
+	if #results == 0 then
+		Notification("No results found", vim.log.levels.WARN)
+		return
+	end
 	vim.fn.setqflist(results)
 	vim.cmd("copen")
 	vim.notify(#results .. " results found", vim.log.levels.INFO)
@@ -77,10 +81,7 @@ Files = function(dir, prune)
 		table.insert(results, { filename = g_file })
 	end
 
-	if #results == 0 then
-		Notification("No files found", vim.log.levels.INFO)
-		return
-	elseif #results == 1 then
+	if #results == 1 then
 		vim.cmd("edit " .. results[1].filename)
 		return
 	end
@@ -132,10 +133,7 @@ Oldfiles = function()
 		end
 	end
 
-	if #results == 0 then
-		Notification("No files found", vim.log.levels.INFO)
-		return
-	elseif #results == 1 then
+	if #results == 1 then
 		vim.cmd("edit " .. results[1].filename)
 		return
 	end
@@ -144,14 +142,8 @@ Oldfiles = function()
 end
 
 Diagnostics = function()
-	local results = vim.diagnostic.get()
-	if #results == 0 then
-		Notification("No diagnostics found", vim.log.levels.INFO)
-		return
-	end
 	vim.diagnostic.setqflist()
-	vim.cmd("copen")
-	vim.notify(#results .. " diagnostics found", vim.log.levels.INFO)
+	vim.notify(#vim.diagnostic.get() .. " diagnostics found", vim.log.levels.INFO)
 end
 
 Eslint_to_qflist = function()
@@ -180,10 +172,7 @@ Eslint_to_qflist = function()
 			text = diag.text,
 		})
 	end
-	if #results == 0 then
-		Notification("No linting errors found", vim.log.levels.INFO)
-		return
-	end
+
 	open_list_and_notify(results)
 end
 
@@ -219,10 +208,6 @@ Mappings = function()
 		end
 	end
 
-	if #results == 0 then
-		Notification("No mappings found", vim.log.levels.INFO)
-		return
-	end
 	open_list_and_notify(results)
 end
 
