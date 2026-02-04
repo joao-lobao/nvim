@@ -4,8 +4,8 @@ vim.api.nvim_set_hl(0, "MsgArea", { bg = Dark_gray, fg = Green })
 vim.api.nvim_set_hl(0, "NotificationInfo", { bold = true, bg = Green, fg = Medium_gray })
 vim.api.nvim_set_hl(0, "NotificationInfoInv", { bold = true, bg = Medium_gray, fg = Green })
 --Warn
-vim.api.nvim_set_hl(0, "NotificationWarn", { bold = true, bg = Bright_orange, fg = Medium_gray })
-vim.api.nvim_set_hl(0, "NotificationWarnInv", { bold = true, bg = Medium_gray, fg = Bright_orange })
+vim.api.nvim_set_hl(0, "NotificationWarn", { bold = true, bg = Yellow, fg = Medium_gray })
+vim.api.nvim_set_hl(0, "NotificationWarnInv", { bold = true, bg = Medium_gray, fg = Yellow })
 --Error
 vim.api.nvim_set_hl(0, "NotificationError", { bold = true, bg = Red, fg = Medium_gray })
 vim.api.nvim_set_hl(0, "NotificationErrorInv", { bold = true, bg = Medium_gray, fg = Red })
