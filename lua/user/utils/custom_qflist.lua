@@ -195,16 +195,14 @@ Mappings = function()
 
 		if key["rhs"] == nil then
 			key["rhs"] = ""
+		else
+			key["rhs"] = key["rhs"]:gsub("|", "")
 		end
 
 		local right = key["rhs"]:lower():find(pattern:lower())
 
 		if not (left == nil) or not (right == nil) then
-			if left ~= nil then
-				table.insert(results, 1, { filename = key["lhs"], pattern = key["rhs"] })
-			else
-				table.insert(results, { pattern = key["lhs"], filename = key["rhs"]:gsub("|", "") })
-			end
+			table.insert(results, 1, { filename = key["lhs"], pattern = key["rhs"] })
 		end
 	end
 
