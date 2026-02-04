@@ -198,6 +198,7 @@ Mappings = function()
 	local keys = vim.api.nvim_get_keymap("n")
 
 	for _, key in ipairs(keys) do
+		local left = key["lhs"]:lower():find(pattern:lower())
 		-- check key["lhs"] starts with a space
 		if key["lhs"]:sub(1, 1) == " " then
 			key["lhs"] = "<leader>" .. key["lhs"]:sub(2)
@@ -207,7 +208,6 @@ Mappings = function()
 			key["rhs"] = ""
 		end
 
-		local left = key["lhs"]:lower():find(pattern:lower())
 		local right = key["rhs"]:lower():find(pattern:lower())
 
 		if not (left == nil) or not (right == nil) then
