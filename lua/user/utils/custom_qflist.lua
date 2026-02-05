@@ -69,7 +69,7 @@ Files = function(dir, prune)
 		prune = "prune"
 	end
 
-	local pattern = vim.fn.tolower(vim.fn.input("Search file: ", "", "file"))
+	local pattern = vim.fn.tolower(vim.fn.input("Search file: ", vim.fn.expand(dir) .. "**/*", "file"))
 	if pattern == "" then
 		return
 	end
