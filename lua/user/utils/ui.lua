@@ -29,7 +29,8 @@ local ft = "%#StatusA#%y "
 local loaded_buffers = "%#MsgArea# %{len(getcompletion('', 'buffer'))} "
 local pwd = "%#StatusB#%{fnamemodify('', ':p:h')} "
 local filename = "%#StatusC#%f "
-local session = "%#StatusD#%{fnamemodify(v:this_session, ':t')} "
+local session =
+	"%#StatusD#%{fnamemodify(v:this_session, ':t') == '' ? 'No session loaded' : fnamemodify(v:this_session, ':t')} "
 local modified = "%#StatusModified#%{&modified ? ' 󰆓 ' : ''}"
 local readonly = "%#StatusModified#%r%*%="
 local line_percentage = "%#StatusD#%p%% "
@@ -38,13 +39,13 @@ local cols = "%#StatusA#c:%c "
 local total_lines = "%#StatusF#L:%L"
 -- tabline components
 local bufnr = "%#StatusA#:%{bufnr('%')} "
-local bufname = "%#TablineFill#%t%*%="
-local get_buf_size = "%#StatusD#%{printf('%.2f', str2float(getfsize(expand('%')))/1024)}kb "
+local bufname = "%#TablineFill#%t "
+local get_buf_size = "%*%=%#StatusD#%{printf('%.2f', str2float(getfsize(expand('%')))/1024)}kb "
 local encoding = "%#StatusE#%{&fileencoding} "
 local last_modified = "%#StatusA#%{strftime('%d %b %Y %H:%M:%S', getftime(expand('%')))} "
 local format = "%#StatusF#%{&fileformat}"
 vim.o.showtabline = 2
-vim.o.tabline = bufnr .. bufname .. get_buf_size .. encoding .. last_modified .. format
+vim.o.tabline = bufnr .. bufname .. session .. get_buf_size .. encoding .. last_modified .. format
 vim.o.statusline = ft
 	.. loaded_buffers
 	.. session
