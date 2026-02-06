@@ -59,7 +59,14 @@ SwitchToAlternate = function(main_alter_patt, sec_alter_patt, new_file_type)
 	if #source_file > 0 then
 		vim.cmd("edit " .. source_file[1])
 	else
-		create_alternate_file(new_file_type)
+		-- file extension
+		local ext = new_file_type
+		-- if file new_file_type does not contains a dot, it means the user provided a file extension
+		if new_file_type:find("%.") == nil then
+			ext = new_file_type .. "." .. vim.fn.expand("%:e")
+		end
+
+		create_alternate_file(ext)
 	end
 end
 
@@ -67,7 +74,7 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>A",
-	"<cmd>lua SwitchToAlternate('.[j|t]s.*', '.*[t|s][e|p][s|e][t|c].*', 'test.ts')<CR>",
+	"<cmd>lua SwitchToAlternate('.[j|t]s.*', '.*[t|s][e|p][s|e][t|c].*', 'test')<CR>",
 	opts
 )
 vim.api.nvim_set_keymap("n", "<leader>C", "<cmd>lua SwitchToAlternate('.[j|t]s.*','.*css', 'css')<CR>", opts)
