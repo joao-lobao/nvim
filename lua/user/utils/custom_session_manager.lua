@@ -21,7 +21,6 @@ function SessionLoad(session)
 	SessionSave()
 	vim.cmd("bufdo bw")
 	vim.cmd("source " .. Session_dir .. session)
-	vim.notify(session .. " session is loaded ✅", vim.log.levels.INFO)
 end
 
 function SessionDelete(session)
