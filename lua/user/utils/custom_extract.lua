@@ -7,16 +7,11 @@ local map_as = {
 }
 
 local feedkeys = function(extract_as)
-	vim.api.nvim_feedkeys("O" .. extract_as, "i", false)
-	vim.api.nvim_feedkeys("", "x", false)
-	vim.api.nvim_feedkeys("i\n", "n", false)
-	vim.api.nvim_feedkeys("", "x", false)
-	vim.api.nvim_feedkeys("Pk$B", "n", false)
-	vim.api.nvim_feedkeys(
-		vim.api.nvim_replace_termcodes(":lua vim.lsp.buf.format()<CR>ve<C-g>", true, true, true),
-		"n",
-		true
-	)
+	vim.api.nvim_command("normal! k")
+	require("nvim-treesitter.textobjects.move").goto_next_end("@function.outer", "textobjects")
+	vim.api.nvim_command("normal! o\n" .. extract_as)
+	vim.api.nvim_command("normal! k")
+	vim.api.nvim_command("normal! p")
 end
 
 local extract = function(as, to)
@@ -31,7 +26,7 @@ end
 local choose_extract = function(as)
 	local extraction_list = {
 		[map_as.class] = function()
-			extract("class Name {}")
+			extract("class Name {\n}")
 		end,
 		[map_as.func] = function()
 			extract("function name() {\n}")
