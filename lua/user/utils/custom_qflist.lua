@@ -4,11 +4,14 @@ local is_qf_open = function()
 end
 
 local open_list_and_notify = function(results)
+	local msg = " - " .. #results .. " "
 	if #results > 0 then
 		vim.fn.setqflist(results)
 		vim.cmd("copen")
+		msg = #results .. " "
 	end
-	vim.notify(" - " .. #results .. " results found", vim.log.levels.INFO)
+	msg = msg .. "results found"
+	vim.notify(msg, vim.log.levels.INFO)
 end
 
 ListedBuffers = function()
