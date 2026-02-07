@@ -223,7 +223,7 @@ vim.api.nvim_set_keymap("n", "tG", "<cmd>lua Grep('--no-ignore')<CR>", opts)
 -- keymaps
 vim.api.nvim_set_keymap("n", "tk", "<cmd>lua Mappings()<CR>", opts)
 -- others
-vim.api.nvim_set_keymap("n", "<leader>tf", ":find *", opts) -- to find hidden files have to replace "*" for ".*"
+-- vim.api.nvim_set_keymap("n", "tf", ":find *", opts) -- to find hidden files have to replace "*" for ".*"
 -- vim.api.nvim_set_keymap("n", "th", ":find ~/", opts)
 -- vim.api.nvim_set_keymap("n", "tg", ":vim  **/* **/.*<C-Left><C-Left><Left>", opts) -- use f as /test/f for fuzzy or \C as test\C for case sensitive search
 -- vim.api.nvim_set_keymap("n", "tb", ":buffers<CR>:b", opts)
