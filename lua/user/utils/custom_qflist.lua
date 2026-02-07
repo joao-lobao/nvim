@@ -4,13 +4,11 @@ local is_qf_open = function()
 end
 
 local open_list_and_notify = function(results)
-	if #results == 0 then
-		Notification("No results found", vim.log.levels.WARN)
-		return
+	if #results > 0 then
+		vim.fn.setqflist(results)
+		vim.cmd("copen")
 	end
-	vim.fn.setqflist(results)
-	vim.cmd("copen")
-	vim.notify(#results .. " results found", vim.log.levels.INFO)
+	vim.notify(" - " .. #results .. " results found", vim.log.levels.INFO)
 end
 
 ListedBuffers = function()
@@ -101,10 +99,6 @@ Grep = function(params)
 	-- --hidden (search hidden files)
 	-- --glob '!.git' (excludes the .git directory)
 	local grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
-	if #grep == 0 then
-		Notification("No matches found", vim.log.levels.ERROR)
-		return
-	end
 
 	local results = {}
 	for _, rg_match in ipairs(grep) do
@@ -155,7 +149,7 @@ Eslint_to_qflist = function()
 
 	-- error handling
 	if not pcall(decode_eslint_result) then
-		Notification("No eslint configuration", vim.log.levels.ERROR)
+		vim.notify("No eslint configuration", vim.log.levels.ERROR)
 		return
 	end
 

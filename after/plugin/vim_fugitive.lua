@@ -20,7 +20,7 @@ Browse_to_commit = function()
 			return vim.api.nvim_command("silent !xdg-open " .. remote_origin .. "/commit/" .. hash)
 		end
 	end
-	Notification("No commit hash found", vim.log.levels.ERROR)
+	vim.notify("No commit hash found", vim.log.levels.ERROR)
 end
 -- open commit url from git log diff or hash under cursor
 vim.api.nvim_set_keymap("n", "go", "<cmd>lua Browse_to_commit()<CR>", opts)
@@ -39,7 +39,7 @@ DiffTool = function()
 	vim.cmd("Git difftool")
 	if next(vim.fn.getqflist()) == nil then
 		vim.cmd("cclose")
-		Notification("No changes to show", vim.log.levels.INFO)
+		vim.notify("No changes to show", vim.log.levels.INFO)
 		return
 	end
 	vim.cmd("copen")
@@ -92,7 +92,7 @@ Goto_hunk = function(direction)
 	local cursor_line = vim.fn.line(".")
 
 	if #diff == 0 then
-		Notification("No valid changes to move to", vim.log.levels.ERROR)
+		vim.notify("No valid changes to move to", vim.log.levels.ERROR)
 		return
 	end
 

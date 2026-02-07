@@ -58,10 +58,10 @@ function Format_Null_ls()
 
 	if #clients > 0 and not is_diff_mode then
 		vim.lsp.buf.format({ filter = filter, bufnr = bufnr })
-		Notification("File formatted", vim.log.levels.INFO)
+		vim.notify("File formatted", vim.log.levels.INFO)
 		return
 	end
-	Notification("File not formatted", vim.log.levels.WARN)
+	vim.notify("File not formatted", vim.log.levels.WARN)
 end
 function Format_Native()
 	vim.cmd("lua vim.lsp.buf.format()")
