@@ -231,7 +231,7 @@ vim.api.nvim_set_keymap("n", "<leader>tf", ":find *", opts) -- to find hidden fi
 vim.api.nvim_set_keymap("n", "tb", "<cmd>lua ListedBuffers()<CR>", opts)
 vim.api.nvim_set_keymap("n", "to", "<cmd>lua Oldfiles()<CR>", opts)
 vim.api.nvim_set_keymap("n", "td", "<cmd>lua Diagnostics()<CR>", opts)
-vim.api.nvim_set_keymap("n", "tE", "<cmd>lua Eslint_to_qflist()<CR>", opts)
+vim.api.nvim_set_keymap("n", "te", "<cmd>lua Eslint_to_qflist()<CR>", opts)
 -- open quickfix list
 vim.api.nvim_set_keymap("n", "co", ":copen<CR>", opts)
 vim.api.nvim_set_keymap("n", "cc", ":cclose<CR>", opts)
