@@ -68,45 +68,42 @@ Files = function(dir, prune)
 	end
 
 	local pattern = vim.fn.tolower(vim.fn.input("Search file: ", vim.fn.expand(dir) .. "**/*", "file"))
-	if pattern == "" then
-		return
+	if pattern ~= "" then
+		local files = get_files_from(dir, pattern)[prune]
+		local results = {}
+
+		for _, g_file in ipairs(files) do
+			table.insert(results, { filename = g_file })
+		end
+
+		if #results == 1 then
+			vim.cmd("edit " .. results[1].filename)
+			return
+		end
+
+		open_list_and_notify(results)
 	end
-
-	local files = get_files_from(dir, pattern)[prune]
-	local results = {}
-
-	for _, g_file in ipairs(files) do
-		table.insert(results, { filename = g_file })
-	end
-
-	if #results == 1 then
-		vim.cmd("edit " .. results[1].filename)
-		return
-	end
-
-	open_list_and_notify(results)
 end
 
 Grep = function(params)
 	params = params or ""
 
 	local pattern = vim.fn.input("Grep pattern: ")
-	if pattern == "" then
-		return
-	end
-	-- -i (ignore case)
-	-- --vimgrep (output format, a line with more than one match will be printed more than once)
-	-- --hidden (search hidden files)
-	-- --glob '!.git' (excludes the .git directory)
-	local grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
+	if pattern ~= "" then
+		-- -i (ignore case)
+		-- --vimgrep (output format, a line with more than one match will be printed more than once)
+		-- --hidden (search hidden files)
+		-- --glob '!.git' (excludes the .git directory)
+		local grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
 
-	local results = {}
-	for _, rg_match in ipairs(grep) do
-		local file, line, col, text = rg_match:match("([^:]+):(%d+):(%d+):(.*)")
-		table.insert(results, { filename = file, lnum = line, col = col, text = text })
-	end
+		local results = {}
+		for _, rg_match in ipairs(grep) do
+			local file, line, col, text = rg_match:match("([^:]+):(%d+):(%d+):(.*)")
+			table.insert(results, { filename = file, lnum = line, col = col, text = text })
+		end
 
-	open_list_and_notify(results)
+		open_list_and_notify(results)
+	end
 end
 
 Oldfiles = function()
@@ -115,24 +112,22 @@ Oldfiles = function()
 	local results = {}
 
 	local pattern = vim.fn.tolower(vim.fn.input("Oldfiles pattern: "))
-	if pattern == "" then
-		return
-	end
-
-	for _, o_file in ipairs(oldfiles) do
-		local fname = vim.split(o_file, ": ")[2]
-		if fname ~= nil and vim.fn.tolower(fname):find(pattern) then
-			local file = { filename = fname }
-			table.insert(results, file)
+	if pattern ~= "" then
+		for _, o_file in ipairs(oldfiles) do
+			local fname = vim.split(o_file, ": ")[2]
+			if fname ~= nil and vim.fn.tolower(fname):find(pattern) then
+				local file = { filename = fname }
+				table.insert(results, file)
+			end
 		end
-	end
 
-	if #results == 1 then
-		vim.cmd("edit " .. results[1].filename)
-		return
-	end
+		if #results == 1 then
+			vim.cmd("edit " .. results[1].filename)
+			return
+		end
 
-	open_list_and_notify(results)
+		open_list_and_notify(results)
+	end
 end
 
 Diagnostics = function()
@@ -174,36 +169,34 @@ Mappings = function()
 	local results = {}
 
 	local pattern = vim.fn.input("Mappings pattern: ")
-	if pattern == "" then
-		return
+	if pattern ~= "" then
+		local keys = {}
+		vim.list_extend(keys, vim.api.nvim_get_keymap("n"))
+		vim.list_extend(keys, vim.api.nvim_get_keymap("v"))
+		vim.list_extend(keys, vim.api.nvim_get_keymap("i"))
+
+		for _, key in ipairs(keys) do
+			local left = key["lhs"]:lower():find(pattern:lower(), 1, true)
+			-- check key["lhs"] starts with a space
+			if key["lhs"]:sub(1, 1) == " " then
+				key["lhs"] = "<leader>" .. key["lhs"]:sub(2)
+			end
+
+			if key["rhs"] == nil then
+				key["rhs"] = ""
+			else
+				key["rhs"] = key["rhs"]:gsub("|", "")
+			end
+
+			local right = key["rhs"]:lower():find(pattern:lower(), 1, true)
+
+			if not (left == nil) or not (right == nil) then
+				table.insert(results, 1, { filename = key["lhs"], text = key["mode"], pattern = key["rhs"] })
+			end
+		end
+
+		open_list_and_notify(results)
 	end
-
-	local keys = {}
-	vim.list_extend(keys, vim.api.nvim_get_keymap("n"))
-	vim.list_extend(keys, vim.api.nvim_get_keymap("v"))
-	vim.list_extend(keys, vim.api.nvim_get_keymap("i"))
-
-	for _, key in ipairs(keys) do
-		local left = key["lhs"]:lower():find(pattern:lower(), 1, true)
-		-- check key["lhs"] starts with a space
-		if key["lhs"]:sub(1, 1) == " " then
-			key["lhs"] = "<leader>" .. key["lhs"]:sub(2)
-		end
-
-		if key["rhs"] == nil then
-			key["rhs"] = ""
-		else
-			key["rhs"] = key["rhs"]:gsub("|", "")
-		end
-
-		local right = key["rhs"]:lower():find(pattern:lower(), 1, true)
-
-		if not (left == nil) or not (right == nil) then
-			table.insert(results, 1, { filename = key["lhs"], text = key["mode"], pattern = key["rhs"] })
-		end
-	end
-
-	open_list_and_notify(results)
 end
 
 local opts = { noremap = true, silent = false }
