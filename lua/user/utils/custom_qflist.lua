@@ -37,6 +37,13 @@ local get_files_from = function(dir, pattern)
 
 	return {
 		prune = vim.fn.systemlist({
+			-- vim.fn.expand(dir) resolves to absolute directory in case dir is "~" for eg.
+			-- ( -path "*/node_modules/*" -o -path "*/.git/*" ) to group paths to exclude
+			-- -o is for logical OR
+			-- prune skips the trees node_modules and .git if matched
+			-- -o means either was pruned or evaluate what comes next
+			-- -ipath for case-insensitive match on the entire path
+			-- -print outputs matching paths to stdout
 			"find",
 			vim.fn.expand(dir),
 			"(",
