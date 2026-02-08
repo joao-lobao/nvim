@@ -181,10 +181,13 @@ Mappings = function()
 		return
 	end
 
-	local keys = vim.api.nvim_get_keymap("n")
+	local keys = {}
+	vim.list_extend(keys, vim.api.nvim_get_keymap("n"))
+	vim.list_extend(keys, vim.api.nvim_get_keymap("v"))
+	vim.list_extend(keys, vim.api.nvim_get_keymap("i"))
 
 	for _, key in ipairs(keys) do
-		local left = key["lhs"]:lower():find(pattern:lower())
+		local left = key["lhs"]:lower():find(pattern:lower(), 1, true)
 		-- check key["lhs"] starts with a space
 		if key["lhs"]:sub(1, 1) == " " then
 			key["lhs"] = "<leader>" .. key["lhs"]:sub(2)
@@ -196,10 +199,10 @@ Mappings = function()
 			key["rhs"] = key["rhs"]:gsub("|", "")
 		end
 
-		local right = key["rhs"]:lower():find(pattern:lower())
+		local right = key["rhs"]:lower():find(pattern:lower(), 1, true)
 
 		if not (left == nil) or not (right == nil) then
-			table.insert(results, 1, { filename = key["lhs"], pattern = key["rhs"] })
+			table.insert(results, 1, { filename = key["lhs"], text = key["mode"], pattern = key["rhs"] })
 		end
 	end
 
