@@ -103,6 +103,18 @@ require("lazy").setup({
 		-- this is equalent to setup({}) function
 	},
 	{
+		"joao-lobao/simple-session",
+		config = function()
+			require("simple-session").setup({
+				keymaps = {
+					load = "sl",
+					create = "sc",
+					delete = "sd",
+				},
+			})
+		end,
+	},
+	{
 		"coffebar/transfer.nvim",
 		lazy = true,
 		cmd = {

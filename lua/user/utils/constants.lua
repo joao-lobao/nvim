@@ -11,21 +11,7 @@ Bright_orange = "#fe8019"
 Yellow = "#ebc106"
 Gray = "#bbbbbb"
 White = "#ffffff"
-Session_dir = "~/.config/nvim/session/"
 function Is_git_repo()
 	local directory = vim.fn.expand("%:p:h")
 	return vim.fn.system("git -C " .. directory .. " rev-parse --is-inside-work-tree") == "true\n"
-end
-
-function Get_sessions_names(pattern)
-	local sessions = vim.fn.glob(Session_dir .. "*", true, true)
-	local sessions_names = {}
-	for _, session in ipairs(sessions) do
-		if pattern == nil then
-			table.insert(sessions_names, vim.fn.fnamemodify(session, ":t"))
-		elseif vim.startswith(vim.fn.fnamemodify(session:lower(), ":t"), pattern:lower()) then
-			table.insert(sessions_names, vim.fn.fnamemodify(session, ":t"))
-		end
-	end
-	return sessions_names
 end
