@@ -26,8 +26,7 @@ local find_alternate_file = function(pattern)
 end
 
 local create_alternate_file = function(alternate_type)
-	-- show message with error hl in case there is no alternate file
-	vim.cmd("echohl ErrorMsg | echo 'No alternate file found' | echohl None")
+	vim.notify("No alternate file found", vim.log.levels.ERROR)
 
 	local fname_no_ext = get_fname_no_ext()
 	local directory = vim.fn.expand("%:p:h")
