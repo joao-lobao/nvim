@@ -115,6 +115,13 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"joao-lobao/extract-tool.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-treesitter/nvim-treesitter-textobjects" },
+		config = function()
+			require("extract-tool").setup()
+		end,
+	},
+	{
 		"coffebar/transfer.nvim",
 		lazy = true,
 		cmd = {
