@@ -103,7 +103,7 @@ require("lazy").setup({
 		-- this is equalent to setup({}) function
 	},
 	{
-		"joao-lobao/simple-session",
+		"joao-lobao/simple-session.nvim",
 		config = function()
 			require("simple-session").setup({
 				keymaps = {
