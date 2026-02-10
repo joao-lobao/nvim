@@ -55,8 +55,6 @@ require("lazy").setup({
 	},
 
 	-- NOTE: Now, plugins that require configuration
-	-- LSP
-	{ "neovim/nvim-lspconfig", dependencies = { "hrsh7th/cmp-nvim-lsp" } }, -- easily configure language servers
 	{
 		"williamboman/mason.nvim",
 		dependencies = {
@@ -81,6 +79,7 @@ require("lazy").setup({
 	{
 		"hrsh7th/nvim-cmp", -- completion plugin
 		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
 			"L3MON4D3/LuaSnip", -- snippets engine
 			"rafamadriz/friendly-snippets", -- useful snippets
 			"saadparwaiz1/cmp_luasnip", -- for snippets autocompletion

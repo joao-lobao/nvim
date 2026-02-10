@@ -1,9 +1,3 @@
--- import lspconfig plugin safely
-local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status then
-	return
-end
-
 -- import cmp-nvim-lsp plugin safely
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
@@ -56,33 +50,93 @@ vim.diagnostic.config({
 	},
 })
 
--- configure multiple language servers
-local servers = { "html", "marksman", "ts_ls", "jsonls", "cssls", "vimls", "bashls", "pyright" }
-
-for _, lsp in pairs(servers) do
-	lspconfig[lsp].setup({
-		capabilities = capabilities,
+local servers = {
+	html = {
+		cmd = { "vscode-html-language-server", "--stdio" },
+		filetypes = { "html" },
+		root_markers = { ".git" },
 		on_attach = on_attach,
-	})
-end
+		capabilities = capabilities,
+	},
 
--- configure lua server (with special settings)
-lspconfig["lua_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = { -- custom settings for lua
-		Lua = {
-			-- make the language server recognize "vim" global
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				-- make language server aware of runtime files
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
+	lua_ls = {
+		cmd = { "lua-language-server" },
+		filetypes = { "lua" },
+		root_markers = { ".luarc.json", ".git" },
+		on_attach = on_attach,
+		capabilities = capabilities,
+		settings = {
+			Lua = {
+				diagnostics = { globals = { "vim" } },
 			},
 		},
 	},
-})
+
+	cssls = {
+		cmd = { "vscode-css-language-server", "--stdio" },
+		filetypes = { "css", "scss", "less" },
+		root_markers = { ".git" },
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+
+	jsonls = {
+		cmd = { "vscode-json-language-server", "--stdio" },
+		filetypes = { "json", "jsonc" },
+		root_markers = { ".git" },
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+
+	ts_ls = {
+		-- this replaces tsserver / ts_ls from lspconfig
+		cmd = { "typescript-language-server", "--stdio" },
+		filetypes = {
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
+			"javascript",
+			"javascriptreact",
+		},
+		root_markers = { "package.json", "tsconfig.json", ".git" },
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+
+	pyright = {
+		cmd = { "pyright-langserver", "--stdio" },
+		filetypes = { "python" },
+		root_markers = { "pyproject.toml", "setup.py", ".git" },
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+
+	bashls = {
+		cmd = { "bash-language-server", "start" },
+		filetypes = { "sh", "bash" },
+		root_markers = { ".git" },
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+
+	vimls = {
+		cmd = { "vim-language-server", "--stdio" },
+		filetypes = { "vim" },
+		root_markers = { ".git" },
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+
+	marksman = {
+		cmd = { "marksman", "server" },
+		filetypes = { "markdown" },
+		root_markers = { ".git", ".marksman.toml" },
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+}
+
+for name, config in pairs(servers) do
+	vim.lsp.config[name] = config
+	vim.lsp.enable(name)
+end
