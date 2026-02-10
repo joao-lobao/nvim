@@ -92,8 +92,12 @@ require("lazy").setup({
 	-- OTHERS
 	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
 	{ "norcalli/nvim-colorizer.lua" }, -- color highlighter
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- improve syntax highlighting
-	{ "nvim-treesitter/nvim-treesitter-textobjects", dependencies = "nvim-treesitter/nvim-treesitter" }, -- to create custom mappings for text objects (ex: `daf` to delete a function)
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", branch = "master" }, -- improve syntax highlighting
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		branch = "master",
+	}, -- to create custom mappings for text objects (ex: `daf` to delete a function)
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
