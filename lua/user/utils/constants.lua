@@ -11,7 +11,3 @@ Bright_orange = "#fe8019"
 Yellow = "#ebc106"
 Gray = "#bbbbbb"
 White = "#ffffff"
-function Is_git_repo()
-	local directory = vim.fn.expand("%:p:h")
-	return vim.fn.system("git -C " .. directory .. " rev-parse --is-inside-work-tree") == "true\n"
-end

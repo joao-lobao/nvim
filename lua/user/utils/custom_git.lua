@@ -20,9 +20,48 @@ local sign_line = function(line_number, line)
 	vim.api.nvim_command("sign place " .. line_nr .. " line=" .. line_nr .. " name=" .. get_type(line))
 end
 
+local is_real_file_buffer = function(buf)
+	local bo = vim.bo[buf]
+
+	-- 1. Must be a normal file buffer
+	if bo.buftype ~= "" then
+		return false
+	end
+
+	-- 2. Must have a name (rules out [No Name], plugin buffers, etc)
+	local name = vim.api.nvim_buf_get_name(buf)
+	if name == "" then
+		return false
+	end
+
+	-- 3. Must not be a directory
+	if vim.fn.isdirectory(name) == 1 then
+		return false
+	end
+
+	return true
+end
+
+local is_git_working_file = function(buf)
+	if not is_real_file_buffer(buf) then
+		return false
+	end
+
+	local name = vim.api.nvim_buf_get_name(buf)
+	local dir = vim.fn.fnamemodify(name, ":h")
+
+	-- find git root upward from the file's directory
+	local git_root = vim.fn.finddir(".git", dir .. ";")
+	if git_root == "" then
+		return false
+	end
+
+	return true
+end
+
 Get_git_info = function()
 	local msg_char_limit = 72
-	local is_git_repo = Is_git_repo()
+	local is_git_repo = is_git_working_file(0)
 	if is_git_repo then
 		local git_branch = "-- " .. string.gsub(vim.fn.system("git branch --show-current"), "\n", "")
 		local git_message = "-- "
@@ -37,15 +76,6 @@ end
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "gi", "<cmd>lua Get_git_info()<CR>", opts)
 vim.api.nvim_set_keymap("n", "gh", ":e ~/.config/nvim/lua/user/utils/git_commit_msg_help.txt<CR>", opts)
-
--- check buffer is a file in a git project
-IsBufferEligibleForSigning = function()
-	-- is file dir inside a git project
-	local is_git_repo = Is_git_repo()
-	-- is buffer in diff mode
-	local is_diff_mode = vim.api.nvim_exec2([[echo &diff]], { output = true }) == "1"
-	return is_git_repo and not is_diff_mode
-end
 
 SetDiffSigns = function()
 	local path = vim.fn.expand("%:p")
@@ -76,48 +106,8 @@ end
 -- create autocommands group so they can be cleared later
 local group_git = vim.api.nvim_create_augroup("CustomGit", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-	pattern = {
-		"*.js",
-		"*.cjs",
-		"*.mjs",
-		"*.jsx",
-		"*.json",
-		"*.ts",
-		"*.tsx",
-		"*.lua",
-		"*.css",
-		"*.scss",
-		"*.less",
-		"*.html",
-		"*.htm",
-		"*.xml",
-		"*.csv",
-		"*.java",
-		"*.rb",
-		"*.sql",
-		"*.prisma",
-		"*.swift",
-		"*.r",
-		"*.php",
-		"*.sh",
-		"*.go",
-		"*.c",
-		"*.cpp",
-		"*.py",
-		"*.md",
-		"*.keymap",
-		"*.yml",
-		"*.yaml",
-		"*.toml",
-		"*.conf",
-		"*.dev",
-		"*.env",
-		"*rc",
-		"*ignore",
-		"*config",
-	},
-	callback = function()
-		if IsBufferEligibleForSigning() then
+	callback = function(args)
+		if is_git_working_file(args.buf) then
 			SetDiffSigns()
 		end
 	end,
