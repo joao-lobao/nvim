@@ -115,7 +115,6 @@ require("lazy").setup({
 	},
 	{
 		"joao-lobao/extract-tool.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-treesitter/nvim-treesitter-textobjects" },
 		config = function()
 			require("extract-tool").setup()
 		end,
