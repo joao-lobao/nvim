@@ -106,9 +106,9 @@ require("lazy").setup({
 		-- this is equalent to setup({}) function
 	},
 	{
-		"joao-lobao/simple-session.nvim",
+		"joao-lobao/simplesession.nvim",
 		config = function()
-			require("simple-session").setup({
+			require("simplesession").setup({
 				keymaps = {
 					load = "sl",
 					create = "sc",
@@ -118,9 +118,9 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"joao-lobao/extract-tool.nvim",
+		"joao-lobao/extracttool.nvim",
 		config = function()
-			require("extract-tool").setup()
+			require("extracttool").setup()
 		end,
 	},
 	{
