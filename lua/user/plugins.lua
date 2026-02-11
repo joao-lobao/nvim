@@ -124,6 +124,17 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"joao-lobao/githunks.nvim",
+		config = function()
+			require("githunks").setup({
+				keymaps = {
+					goto_hunk_next = "gn",
+					goto_hunk_prev = "gp",
+				},
+			})
+		end,
+	},
+	{
 		"coffebar/transfer.nvim",
 		lazy = true,
 		cmd = {

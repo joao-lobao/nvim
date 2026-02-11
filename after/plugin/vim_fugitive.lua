@@ -4,6 +4,7 @@ vim.api.nvim_set_keymap("n", "gs", ":G<CR>)j", opts)
 vim.api.nvim_set_keymap("n", "gl", ":Gclog<CR>:b#<CR><C-w>j", opts)
 vim.api.nvim_set_keymap("n", "g%", ":Gclog -- %<CR>:b#<CR><C-w>j", opts)
 vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
+vim.api.nvim_set_keymap("n", "gh", ":e ~/.config/nvim/lua/user/utils/git_commit_msg_help.txt<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
 
@@ -80,47 +81,3 @@ ResetHunk = function()
 end
 vim.api.nvim_set_keymap("n", "<leader>gu", "<cmd>lua ResetHunk()<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua StageHunk()<CR>", opts)
-
-local hunk_line_number = function(diff, hunk_number)
-	local cline_nlines_pair = string.sub(vim.split(diff[hunk_number], " ")[3], 2)
-	return tonumber(vim.split(cline_nlines_pair, ",")[1])
-end
-
--- goto previous and next hunk
-Goto_hunk = function(direction)
-	local path = vim.fn.expand("%:p")
-	local diff = vim.fn.systemlist("git diff --unified=0 " .. path .. " | grep '^@@'")
-	local cursor_line = vim.fn.line(".")
-
-	if #diff == 0 then
-		vim.notify("No valid changes to move to", vim.log.levels.ERROR)
-		return
-	end
-
-	for i, _ in ipairs(diff) do
-		-- iterate over changed hunks
-		local line_number = hunk_line_number(diff, i)
-
-		if direction == "down" then
-			if line_number > cursor_line then
-				vim.api.nvim_command("normal! " .. line_number .. "G")
-				break
-			elseif i == #diff then
-				line_number = hunk_line_number(diff, 1)
-				vim.api.nvim_command("normal! " .. line_number .. "G")
-				break
-			end
-		end
-		if direction == "up" then
-			if line_number < cursor_line then
-				vim.api.nvim_command("normal! " .. line_number .. "G")
-			elseif i == 1 then
-				line_number = hunk_line_number(diff, #diff)
-				vim.api.nvim_command("normal! " .. line_number .. "G")
-			end
-		end
-	end
-end
-
-vim.api.nvim_set_keymap("n", "gp", "<cmd>lua Goto_hunk('up')<CR>", opts)
-vim.api.nvim_set_keymap("n", "gn", "<cmd>lua Goto_hunk('down')<CR>", opts)
