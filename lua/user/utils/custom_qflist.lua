@@ -23,44 +23,28 @@ ListedBuffers = function()
 end
 
 local get_files_from = function(dir, pattern)
-	local pat = "*" .. pattern .. "*"
-
 	return {
 		prune = vim.fn.systemlist({
-			-- vim.fn.expand(dir) resolves to absolute directory in case dir is "~" for eg.
-			-- ( -path "*/node_modules/*" -o -path "*/.git/*" ) to group paths to exclude
-			-- -o is for logical OR
-			-- prune skips the trees node_modules and .git if matched
-			-- -o means either was pruned or evaluate what comes next
-			-- -ipath for case-insensitive match on the entire path
-			-- -print outputs matching paths to stdout
-			"find",
+			"fdfind",
+			pattern,
 			vim.fn.expand(dir),
-			"(",
-			"-path",
-			"*/node_modules/*",
-			"-o",
-			"-path",
-			"*/.git/*",
-			"-o",
-			"-path",
-			"*/dist/*",
-			"-o",
-			"-path",
-			"*/build/*",
-			")",
-			"-prune",
-			"-o",
-			"-ipath",
-			pat,
-			"-print",
+			"--hidden",
+			"--ignore-case",
+			"--exclude",
+			"node_modules",
+			"--exclude",
+			".git",
+			"--exclude",
+			"dist",
+			"--full-path",
 		}),
 		no_prune = vim.fn.systemlist({
-			"find",
+			"fdfind",
+			pattern,
 			vim.fn.expand(dir),
-			"-ipath",
-			pat,
-			"-print",
+			"--no-ignore",
+			"--hidden",
+			"--ignore-case",
 		}),
 	}
 end
@@ -73,7 +57,7 @@ Files = function(dir, prune)
 		prune = "prune"
 	end
 
-	local pattern = vim.fn.tolower(vim.fn.input("Search file: ", vim.fn.expand(dir) .. "**/*", "file"))
+	local pattern = vim.fn.tolower(vim.fn.input("Search file: "))
 	if pattern ~= "" then
 		local files = get_files_from(dir, pattern)[prune]
 		local results = {}
