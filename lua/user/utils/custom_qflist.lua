@@ -22,44 +22,32 @@ ListedBuffers = function()
 	vim.fn.search(buf_name)
 end
 
-local get_files_from = function(dir, pattern)
-	return {
-		prune = vim.fn.systemlist({
-			"fdfind",
-			pattern,
-			vim.fn.expand(dir),
-			"--hidden",
-			"--ignore-case",
-			"--exclude",
-			"node_modules",
-			"--exclude",
-			".git",
-			"--exclude",
-			"dist",
-			"--full-path",
-		}),
-		no_prune = vim.fn.systemlist({
-			"fdfind",
-			pattern,
-			vim.fn.expand(dir),
-			"--no-ignore",
-			"--hidden",
-			"--ignore-case",
-		}),
-	}
+local get_files_from = function(dir, pattern, params)
+	return vim.fn.systemlist(
+		"rg -g "
+			.. "'*"
+			.. pattern
+			.. "*'"
+			.. " "
+			.. vim.fn.expand(dir)
+			.. " "
+			.. "--files --hidden --glob-case-insensitive"
+			.. " "
+			.. params
+	)
 end
 
-Files = function(dir, prune)
+Files = function(dir, params)
 	if dir == nil or dir == "" then
 		dir = vim.fn.getcwd()
 	end
-	if prune == nil or prune == "" then
-		prune = "prune"
+	if params == nil then
+		params = ""
 	end
 
 	local pattern = vim.fn.tolower(vim.fn.input("Search file: "))
 	if pattern ~= "" then
-		local files = get_files_from(dir, pattern)[prune]
+		local files = get_files_from(dir, pattern, params)
 		local results = {}
 
 		for _, g_file in ipairs(files) do
@@ -191,11 +179,16 @@ end
 
 local opts = { noremap = true, silent = false }
 -- git/project files
-vim.api.nvim_set_keymap("n", "tf", "<cmd>lua Files()<CR>", opts)
+vim.api.nvim_set_keymap("n", "tf", "<cmd>lua Files('', '-g \"!.git\"')<CR>", opts)
 -- all files
-vim.api.nvim_set_keymap("n", "tF", "<cmd>lua Files('', 'no_prune')<CR>", opts)
+vim.api.nvim_set_keymap("n", "tF", "<cmd>lua Files('', '--no-ignore -g \"!.git\"')<CR>", opts)
 -- home files
-vim.api.nvim_set_keymap("n", "th", "<cmd>lua Files('~')<CR>", opts)
+vim.api.nvim_set_keymap(
+	"n",
+	"th",
+	'<cmd>lua Files(\'~\', \'-g "!node_modules" -g "!dist" -g "!build" -g "!.git"\')<CR>',
+	opts
+)
 -- git grep
 vim.api.nvim_set_keymap("n", "tg", "<cmd>lua Grep()<CR>", opts)
 -- all grep
