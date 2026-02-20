@@ -60,8 +60,7 @@ Grep = function(params)
 		-- -i (ignore case)
 		-- --vimgrep (output format, a line with more than one match will be printed more than once)
 		-- --hidden (search hidden files)
-		-- --glob '!.git' (excludes the .git directory)
-		local grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " --glob '!.git' '" .. pattern .. "'")
+		local grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " '" .. pattern .. "'")
 
 		local results = {}
 		for _, rg_match in ipairs(grep) do
@@ -184,9 +183,9 @@ vim.api.nvim_set_keymap(
 	opts
 )
 -- git grep
-vim.api.nvim_set_keymap("n", "tg", "<cmd>lua Grep()<CR>", opts)
+vim.api.nvim_set_keymap("n", "tg", '<cmd>lua Grep(\'-g "!node_modules" -g "!dist" -g "!build" -g "!.git"\')<CR>', opts)
 -- all grep
-vim.api.nvim_set_keymap("n", "tG", "<cmd>lua Grep('--no-ignore')<CR>", opts)
+vim.api.nvim_set_keymap("n", "tG", "<cmd>lua Grep('--no-ignore -g \"!.git\"')<CR>", opts)
 -- keymaps
 vim.api.nvim_set_keymap("n", "tk", "<cmd>lua Mappings()<CR>", opts)
 -- others
