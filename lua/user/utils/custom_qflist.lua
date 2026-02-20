@@ -23,18 +23,7 @@ ListedBuffers = function()
 end
 
 local get_files_from = function(dir, pattern, params)
-	return vim.fn.systemlist(
-		"rg -g "
-			.. "'*"
-			.. pattern
-			.. "*'"
-			.. " "
-			.. vim.fn.expand(dir)
-			.. " "
-			.. "--files --hidden --glob-case-insensitive"
-			.. " "
-			.. params
-	)
+	return vim.fn.systemlist("rg --files --hidden " .. params .. " " .. dir .. " | rg -i " .. pattern)
 end
 
 Files = function(dir, params)
@@ -179,14 +168,19 @@ end
 
 local opts = { noremap = true, silent = false }
 -- git/project files
-vim.api.nvim_set_keymap("n", "tf", "<cmd>lua Files('', '-g \"!.git\"')<CR>", opts)
+vim.api.nvim_set_keymap(
+	"n",
+	"tf",
+	'<cmd>lua Files(\'\', \'-g "!node_modules" -g "!dist" -g "!build" -g "!.git"\')<CR>',
+	opts
+)
 -- all files
 vim.api.nvim_set_keymap("n", "tF", "<cmd>lua Files('', '--no-ignore -g \"!.git\"')<CR>", opts)
 -- home files
 vim.api.nvim_set_keymap(
 	"n",
 	"th",
-	'<cmd>lua Files(\'~\', \'-g "!node_modules" -g "!dist" -g "!build" -g "!.git"\')<CR>',
+	'<cmd>lua Files(\'~\', \'-g "!.npm" -g "!.nvm" -g "!.cache" -g "!node_modules" -g "!dist" -g "!build" -g "!.git" -g "!**/.local/state/**"\')<CR>',
 	opts
 )
 -- git grep
