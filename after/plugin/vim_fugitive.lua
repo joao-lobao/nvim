@@ -7,8 +7,6 @@ vim.api.nvim_set_keymap("n", "gb", ":Git blame<CR>", opts)
 vim.api.nvim_set_keymap("n", "gh", ":e ~/.config/nvim/lua/user/utils/git_commit_msg_help.txt<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>dg", ":diffget<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>dp", ":diffput<CR>", opts)
 
 Browse_to_commit = function()
 	local remote_origin = vim.fn.systemlist("git config --get remote.origin.url | sed -e 's/\\.git$//g'")[1]
