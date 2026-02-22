@@ -18,7 +18,8 @@ Browse_to_commit = function()
 
 	for _, hash in ipairs({ cfile, fname }) do
 		if vim.fn.system("git cat-file -t " .. hash) == "commit\n" then
-			return vim.api.nvim_command("silent !xdg-open " .. remote_origin .. "/commit/" .. hash)
+			-- works at least with github, gitlab, bitbucket
+			return vim.ui.open(remote_origin .. "/commit/" .. hash)
 		end
 	end
 	vim.notify("No commit hash found", vim.log.levels.ERROR)
