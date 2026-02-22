@@ -11,6 +11,7 @@ vim.api.nvim_set_hl(0, "StatusA", { bg = Dark_gray, fg = Dark_purple })
 vim.api.nvim_set_hl(0, "StatusB", { bg = Dark_gray, fg = Light_purple })
 vim.api.nvim_set_hl(0, "StatusC", { bg = Dark_gray, fg = Bright_orange })
 vim.api.nvim_set_hl(0, "StatusModified", { bg = Green, fg = Dark_gray })
+vim.api.nvim_set_hl(0, "StatusReadOnly", { bg = Light_purple, fg = Dark_gray })
 vim.api.nvim_set_hl(0, "StatusD", { bg = Dark_gray, fg = Pink })
 vim.api.nvim_set_hl(0, "StatusE", { bg = Dark_gray, fg = Orange })
 vim.api.nvim_set_hl(0, "StatusF", { bg = Dark_gray, fg = Cyan })
@@ -23,7 +24,7 @@ local filename = "%#StatusC#%f "
 local session =
 	"%#StatusD#%{fnamemodify(v:this_session, ':t') == '' ? 'No session loaded' : fnamemodify(v:this_session, ':t')} "
 local modified = "%#StatusModified#%{&modified ? ' 󰆓 ' : ''}"
-local readonly = "%#StatusModified#%r"
+local readonly = "%#StatusReadOnly#%r"
 local line_percentage = "%#StatusD#%p%% "
 local lines = "%#StatusE#l:%l "
 local cols = "%#StatusA#c:%c "
