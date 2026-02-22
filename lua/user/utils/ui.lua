@@ -30,16 +30,16 @@ local lines = "%#StatusE#l:%l "
 local cols = "%#StatusA#c:%c "
 local total_lines = "%#StatusF#L:%L"
 -- tabline components
-local bufnr = "%#StatusA#:%{bufnr('%')} "
-local branch = "%#TablineFill#%{slice(system('git branch --show-current'),0,-1)} "
-local commit = "%#StatusC#%{slice(system('git show -s --format=\"%s\"'),0,-1)} "
+local bufnr_and_name = "%#StatusA#:%{bufnr('%')} %t "
+local branch = "%#TablineFill#%{slice(system('git branch --show-current HEAD 2>/dev/null'),0,-1)} "
+local commit = "%#StatusC#%{slice(system('git show -s --format=\"%s\" HEAD 2>/dev/null'),0,-1)} "
 local get_buf_size = "%#StatusD#%{printf('%.2f', str2float(getfsize(expand('%')))/1024)}kb "
 local encoding = "%#StatusE#%{&fileencoding} "
 local last_modified = "%#StatusA#%{strftime('%d %b %Y %H:%M:%S', getftime(expand('%')))} "
 local format = "%#StatusF#%{&fileformat}"
 local separator = "%*%="
 vim.o.showtabline = 2
-vim.o.tabline = bufnr
+vim.o.tabline = bufnr_and_name
 	.. loaded_buffers
 	.. session
 	.. branch
