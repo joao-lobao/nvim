@@ -15,7 +15,7 @@ vim.api.nvim_set_hl(0, "StatusReadOnly", { bg = Light_purple, fg = Dark_gray })
 vim.api.nvim_set_hl(0, "StatusD", { bg = Dark_gray, fg = Pink })
 vim.api.nvim_set_hl(0, "StatusE", { bg = Dark_gray, fg = Orange })
 vim.api.nvim_set_hl(0, "StatusF", { bg = Dark_gray, fg = Cyan })
-vim.api.nvim_set_hl(0, "TablineFill", { bg = Dark_gray, fg = Green })
+vim.api.nvim_set_hl(0, "TablineFill", { bg = Dark_gray, fg = Light_purple })
 -- statusline components
 local ft = "%#StatusA#%y "
 local loaded_buffers = "%#MsgArea# %{len(getcompletion('', 'buffer'))} "
@@ -31,14 +31,24 @@ local cols = "%#StatusA#c:%c "
 local total_lines = "%#StatusF#L:%L"
 -- tabline components
 local bufnr = "%#StatusA#:%{bufnr('%')} "
-local bufname = "%#TablineFill#%t "
+local branch = "%#TablineFill#%{slice(system('git branch --show-current'),0,-1)} "
+local commit = "%#StatusC#%{slice(system('git show -s --format=\"%s\"'),0,-1)} "
 local get_buf_size = "%#StatusD#%{printf('%.2f', str2float(getfsize(expand('%')))/1024)}kb "
 local encoding = "%#StatusE#%{&fileencoding} "
 local last_modified = "%#StatusA#%{strftime('%d %b %Y %H:%M:%S', getftime(expand('%')))} "
 local format = "%#StatusF#%{&fileformat}"
 local separator = "%*%="
 vim.o.showtabline = 2
-vim.o.tabline = bufnr .. bufname .. session .. separator .. get_buf_size .. encoding .. last_modified .. format
+vim.o.tabline = bufnr
+	.. loaded_buffers
+	.. session
+	.. branch
+	.. commit
+	.. separator
+	.. get_buf_size
+	.. encoding
+	.. last_modified
+	.. format
 vim.o.statusline = ft
 	.. loaded_buffers
 	.. session
