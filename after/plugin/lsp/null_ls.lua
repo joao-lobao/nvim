@@ -59,9 +59,10 @@ function Format_Null_ls()
 	if #clients > 0 and not is_diff_mode then
 		vim.lsp.buf.format({ filter = filter, bufnr = bufnr })
 		vim.notify("File formatted", vim.log.levels.INFO)
-		return
+	else
+		vim.notify("File not formatted", vim.log.levels.WARN)
 	end
-	vim.notify("File not formatted", vim.log.levels.WARN)
+	vim.cmd("write")
 end
 function Format_Native()
 	vim.cmd("lua vim.lsp.buf.format()")
@@ -78,14 +79,3 @@ vim.api.nvim_create_user_command("NoFormatOnSave", function()
 	vim.cmd("write")
 	vim.b.disable_autoformat = false
 end, {})
-
--- Format On Save
-local group_format = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = group_format,
-	callback = function()
-		if not vim.b.disable_autoformat then
-			vim.cmd("lua Format_Null_ls()")
-		end
-	end,
-})

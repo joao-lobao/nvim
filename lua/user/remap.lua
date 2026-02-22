@@ -9,7 +9,7 @@ vim.api.nvim_set_keymap("i", "Ç", "ç", opts)
 -- clears message area and also clears hl on Esc
 vim.api.nvim_set_keymap("n", "<Esc>", ":nohl | echo ''<CR><Esc>", opts)
 -- Save file
-vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>w", "<cmd>lua Format_Null_ls()<CR>", opts)
 
 -- Refresh file
 vim.api.nvim_set_keymap("n", "<leader>5", ":e!<CR>", opts)
