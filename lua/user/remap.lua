@@ -52,10 +52,7 @@ vim.api.nvim_set_keymap("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', opts)
 
 -- terminal mode
 vim.api.nvim_set_keymap("t", "<esc>", "<c-\\><c-n><c-w><CR>", opts)
-vim.api.nvim_create_user_command("NoNumbers", ":setlocal nonumber norelativenumber", {})
-vim.api.nvim_set_keymap("n", "<leader>t", ":term<CR>:NoNumbers<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>%", ":vs | term<CR>:NoNumbers<CR>", opts)
-vim.api.nvim_set_keymap("n", '<leader>"', ":sp | term<CR>:NoNumbers<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>T", ":vert term<CR>", opts)
 
 -- other customizations
 vim.api.nvim_set_keymap("n", "<leader>s", ":source %<CR>", opts)
