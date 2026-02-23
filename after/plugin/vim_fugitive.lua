@@ -8,6 +8,15 @@ vim.api.nvim_set_keymap("n", "gh", ":e ~/.config/nvim/lua/user/utils/git_commit_
 vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", opts)
 
+local group_fugitive = vim.api.nvim_create_augroup("CustomFugitive", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "fugitive",
+	callback = function()
+		vim.keymap.set("n", ",", "<Plug>fugitive:(", { buffer = true })
+		vim.keymap.set("n", ".", "<Plug>fugitive:)", { buffer = true })
+	end,
+	group = group_fugitive,
+})
 Browse_to_commit = function()
 	local remote_origin = vim.fn.systemlist("git config --get remote.origin.url | sed -e 's/\\.git$//g'")[1]
 
