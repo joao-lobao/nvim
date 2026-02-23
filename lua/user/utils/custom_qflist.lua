@@ -55,12 +55,13 @@ end
 Grep = function(params)
 	params = params or ""
 
-	local pattern = vim.fn.input("Grep pattern: ")
-	if pattern ~= "" then
+	local string = vim.fn.input("Grep pattern: ")
+	if string ~= "" then
 		-- -i (ignore case)
 		-- --vimgrep (output format, a line with more than one match will be printed more than once)
 		-- --hidden (search hidden files)
-		local grep = vim.fn.systemlist("rg -i --vimgrep --hidden " .. params .. " '" .. pattern .. "'")
+		-- --fixed-strings (treat pattern as a literal string instead of a regex)
+		local grep = vim.fn.systemlist("rg -i --vimgrep --hidden --fixed-strings " .. params .. ' "' .. string .. '"')
 
 		local results = {}
 		for _, rg_match in ipairs(grep) do
