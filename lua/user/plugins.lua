@@ -78,6 +78,31 @@ require("lazy").setup({
 	},
 
 	-- OTHERS
+	{
+		"obsidian-nvim/obsidian.nvim",
+		version = "*", -- use latest release, remove to use latest commit
+		opts = {
+			legacy_commands = false, -- this will be removed in the next major release
+			workspaces = {
+				{
+					name = "projects",
+					path = "~/vaults/1_Projects",
+				},
+				{
+					name = "areas",
+					path = "~/vaults/2_Areas",
+				},
+				{
+					name = "resources",
+					path = "~/vaults/3_Resources",
+				},
+				-- {
+				-- 	name = "work",
+				-- 	path = "~/vaults/work",
+				-- },
+			},
+		},
+	},
 	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
 	{ "norcalli/nvim-colorizer.lua" }, -- color highlighter
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", branch = "master" }, -- improve syntax highlighting

@@ -36,3 +36,4 @@ vim.opt.exrc = true -- allow local .nvim.lua .vimrc .exrc files
 vim.opt.secure = true -- disable shell and write commands in local .nvim.lua .vimrc .exrc files
 -- vim.opt.spell = true -- important maps: zw zg zuw zug z=
 -- vim.opt.spelllang = { "en_us", "pt_pt" }
+vim.o.conceallevel = 2 -- conceal level for markdown (obsidian)
