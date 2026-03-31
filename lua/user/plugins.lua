@@ -85,6 +85,10 @@ require("lazy").setup({
 			legacy_commands = false, -- this will be removed in the next major release
 			workspaces = {
 				{
+					name = "inbox",
+					path = "~/vaults/0_Inbox",
+				},
+				{
 					name = "projects",
 					path = "~/vaults/1_Projects",
 				},
@@ -96,10 +100,10 @@ require("lazy").setup({
 					name = "resources",
 					path = "~/vaults/3_Resources",
 				},
-				-- {
-				-- 	name = "work",
-				-- 	path = "~/vaults/work",
-				-- },
+				{
+					name = "archive",
+					path = "~/vaults/4_Archive",
+				},
 			},
 		},
 	},
