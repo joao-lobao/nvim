@@ -39,6 +39,8 @@ null_ls.setup({
 		formatting.prettier, -- js/ts formatter
 		formatting.stylua, -- lua formatter
 		formatting.shfmt, -- bash formatter
+		formatting.black, -- python formatter
+		formatting.isort, -- python formatter
 		diagnostics.markdownlint, -- markdown linter
 		require("none-ls.diagnostics.eslint_d").with({ condition = Has_eslint_rules }),
 		require("none-ls.code_actions.eslint_d").with({ condition = Has_eslint_rules }),
