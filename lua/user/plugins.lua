@@ -81,6 +81,7 @@ require("lazy").setup({
 	{
 		"obsidian-nvim/obsidian.nvim",
 		version = "*", -- use latest release, remove to use latest commit
+		ui = { enable = false }, -- disabled to prevent render-markdown plugin incompatibility
 		opts = {
 			legacy_commands = false, -- this will be removed in the next major release
 			workspaces = {
