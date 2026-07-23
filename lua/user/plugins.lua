@@ -126,6 +126,7 @@ require("lazy").setup({
 		"joao-lobao/simplesession.nvim",
 		config = function()
 			require("simplesession").setup({
+				session_dir = vim.fn.stdpath("config") .. "/session/",
 				keymaps = {
 					load = "sl",
 					create = "sc",
